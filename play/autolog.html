@@ -1,0 +1,212 @@
+<HTML><HEAD><TITLE>.:Autolog:.</TITLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">
+var who = new Array(
+"ndroid.com.com/>Vicky Wong",
+"infinitematrix.net/columns/sterling/>Bruce Sterling",
+"textism.com/>Dean Allen",
+"camworld.com/>Camworld",
+"120degrees.com/>120 Degrees",
+"a.jaundicedeye.com/weblog/>A Jaundiced Eye",
+"a.wholelottanothing.org/>A Whole Lotta Nothing",
+"backupbrain.com/>Backup Brain",
+"catless.ncl.ac.uk/Lindsay/weblog/latest.html>Bifurcated Rivets",
+"boingboing.net/>Boing Boing",
+"craigburton.com/>Craig Burton",
+"danbricklin.com/log/>Dan Bricklin's Log",
+"dangerousmeta.com/>dangerousmeta",
+"doc.weblogs.com/>Doc Searls",
+"eatonweb.com/>EatonWeb",
+"evhead.com/>Evhead",
+"ftrain.com/>FTrain.com",
+"goodexperience.com/>Good Experience",
+"haddock.org/>Haddock.org",
+"harrumph.com/>Harrumph",
+"hit-or-miss.org/>Hit or Miss",
+"inessential.com/>Inessential",
+"kottke.org/>kottke.org",
+"kuro5hin.org/>Kuro5hin",
+"megnut.com/>Meg",
+"metafilter.com/>MetaFilter",
+"metagrrrl.com/>MetaGrrrl",
+"ntk.net/>Need To Know",
+"onfocus.com/>OnFocus",
+"overstated.net/>Overstated.net",
+"peterme.com/>PeterMe",
+"plastic.com/>Plastic",
+"powazek.com/zoom/log/>Powazek.com",
+"q.queso.com/>Q Daily News",
+"rebeccablood.net/>Rebecca's Pocket",
+"robotwisdom.com/>Robot Wisdom",
+"37signals.com/svn/>Signal vs. Noise",
+"tomalak.org/>Tomalak's Realm",
+"webword.com/>WebWord",	
+"whump.com/moreLikeThis/>Whump",
+"winterspeak.com/>Winterspeak",
+"zeldman.com/coming.html>Zeldman",
+"scripting.com>Dave Winer",
+"www.entish.org/willwhim>WillWhim"
+);
+for (i = 0; i < who.length; i++) {
+ who[i]="<A HREF=http://" + who[i] + "</A>";
+}
+var reports = new Array (
+"reports",
+"says",
+"says",
+"says",
+"says",
+"says",
+"writes",
+"pronounces",
+"states",
+"tells us",
+"asserts",
+"avers",
+"maintains",
+"recalls",
+"shares that",
+"repeats that",
+"questions whether",
+"denies"
+);
+var adjs = new Array(
+"evil",
+"happy", 
+"surprisingly cheap", 
+"genetically altered", 
+"enterprising",
+"anonymous",
+"Canadian",
+"depressed",
+"nihilistic",
+"clever young",
+"terrorist",
+"cypherpunk",
+"AI-inspired",
+"recently outted",
+"hi-tech",
+"ranting",
+"outrageous",
+"angry",
+"protesting",
+"overpriced",
+"underage",
+"troubled",
+"Internet-related",
+"foreign",
+"conversational",
+"feuding",
+"crackpot");
+var nouns = new Array(
+"cats", 
+"dogs", 
+"robots", 
+"fish",
+"nanotechnologies",
+"venture capitalists",
+"patents",
+"CD players",
+"P2P software modules",
+"laptops",
+"desktops",
+"angel investors",
+"cars",
+"activists",
+"lawyers",
+"clones",
+"eBay members",
+"correspondents",
+"liberals",
+"conservatives",
+"Libertarians",
+"radicals",
+"spies",
+"soldiers",
+"programmers",
+"programs",
+"ideas",
+"tools",
+"foodies",
+"postmodernists",
+"mavens"
+);
+var verbs = new Array(
+"are being sold by",
+"are funding",
+"like to play at",
+"are weblogging",
+"are being weblogged by",
+"like to complain about",
+"are very upset by",
+"are buying out",
+"are avenging",
+"are destroying",
+"love",
+"repel",
+"exonerate",
+"are spying on",
+"distress",
+"are upsetting",
+"are thinking a lot about",
+"are taking on");
+var objs = new Array(
+"Apple",
+"Sony",
+"IBM",
+"Sun",
+"Microsoft",
+"the CIA",
+"the US goverment",
+"the RIAA",
+"the Current Situation",
+"software piracy",
+"wireless",
+"telecom",
+"new technologies",
+"black holes",
+"God",
+"bed-time snacks",
+"biological weapons",
+"friends",
+"trolls",
+"Bill Gates",
+"the Fortune 500",
+"the publishing industry",
+"capitalism",
+"free trade",
+"Joyce scholars",
+"Google",
+"popular search engines",
+"emerging technologies",
+"downloadable music",
+"Disney"
+);
+var punct = new Array("!",".",".",".",".",".");
+var weblog = new Array(who, reports, adjs, nouns, verbs, objs);
+function randtext(texts) {
+ var a = Math.round(Math.random()*texts.length - 0.5)
+ return texts[a]
+}
+function texts(textarray) {
+ var i
+ for (i = 0; i < textarray.length; i++) {
+   document.write(" " + randtext(textarray[i]))
+ }
+}
+function blog (who,weblog) {
+ var i; 
+ var l = Math.round(Math.random()*(who.length/2) - 0.5)+5
+ for (i=0; i<l;i++) {
+  document.write("<BR>");texts(weblog);document.write(randtext(punct));
+ }
+}
+</SCRIPT>
+</HEAD><BODY  link=#ff6600 vlink=#ff6666 alink=#ff6600><center><b>.::| Autolog |::.</b><br>5 k&nbsp;&nbsp;v e r s i o n
+<br>{a <a href=http://www.entish.org/willwhim>will.whim</a> directory of wonderful zings}
+<p>.: <A HREF=autolog.html>yesterday</a>::- <A HREF=autolog.html>today</a> -::<A HREF=autolog.html>tomorrow</a> :.<BR>
+<script type="text/javascript">blog(who,weblog)</script>
+<p><b>.::| . . | . . |::.</b>
+<p>Weblog list from <a href=http://camworld.com>Camworld</a>. 
+Some code from <a href=http://greengabbro.net/haveblogs.shtml>They have Blogs!</a> <br>Design elements stolen from <a
+href=http://megnut.com>Meg</a>, <a href=http://kottke.org>Jason</a>, <a href=http://scripting.com>Dave</a>, <a href=http://boingboing.net>Cory</a>, and <a href=http://robotwisdom.com>Jorn</a>.<p>.:: <A HREF=autolog.html>home</a> ::.
+</center></BODY></HTML>
