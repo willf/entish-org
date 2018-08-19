@@ -1,0 +1,31 @@
+#ifndef UnigramTextClassifier_H_
+#define UnigramTextClassifier_H_
+#include <map>
+#include <iostream>
+#include <fstream>
+namespace std 
+{
+  class UnigramTextClassifier : public TextClassifier 
+  {
+  public:
+
+    /* ... etc ... */
+
+  private:
+
+    UnigramTextClassifier ut1 = UnigramTextClassifier();
+    UnigramTextClassifier ut2 = ut1;
+
+    void test(UnigramTextClassifier ut) { } 
+
+    void test() 
+    { 
+      UnigramTextClassifier* put1 = new UnigramTextClassifier();
+      UnigramTextClassifier* put2 = put1;
+      /* do some stuff */
+      delete put1;
+      put2 = 0;
+  };
+}
+using namespace std;
+#endif /* UnigramTextClassifier_H_ */
