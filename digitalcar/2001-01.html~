@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>Digital Car Journal (January, 2001)</title>
+  <style type="text/css">
+      body {font-family: verdana, arial, sans serif; font-size: 11px; line-height:16px; }
+	   td {font-family: verdana, arial, sans serif; font-size:11px; line-height:16px; }
+	   code, pre { font-family: "courier new", "courier";font-size:8px;}
+	   h1, h2, h3, h4, h5, h6 {font-weight:bold; font-family: verdana, arial, sans serif; font-size:1em; }
+    </style>
+
+</head>
+<body bgcolor="white" link="darkblue">
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+  <tbody>
+    <tr>
+      <td bgcolor="lightblue" width="120"><a href="/will/journal"><img src="includes/car.jpg" alt="A car."  border="0"  align="Left"></a></td>
+      <td bgcolor="lightblue">      
+      <center>      
+      <h2>Digital Car Journal</h2><b>A weblog about computers in cars</b><br />by Will Fitzgerald</center></td>
+    </tr>
+  </tbody>
+</table>
+
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+<tr><td>
+
+<p><a name="31"></a><a href="#31"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Wednesday, January 31,
+2001</b>
+
+<p><a
+href="http://www.voicexmlreview.org/features/Jan2001_what_is_voicexml.html">What
+is VoiceXML?</a> <blockquote>
+VoiceXML is a language for creating voice-user interfaces,
+particularly for the telephone. It uses speech recognition and
+touchtone (DTMF keypad) for input, and pre-recorded audio and
+text-to-speech synthesis (TTS) for output.  
+</blockquote>
+In <a
+href="http://www.voicexmlreview.org/">VoiceXML Review</a> magazine,
+produced by the <a href="http://www.voicexml.org/">VoiceXML
+Forum</a>.
+
+<p>This is an especially important quote from the same article:
+<blockquote>
+Beyond the scope of the language are application logic, state
+management, dialog generation and sequencing, database operations, and
+interfaces to legacy systems (e.g., "screen scraping"). These are
+handled by traditional Web application programming techniques. 
+</blockquote>
+
+(The crucial thing to notice is the limitations, but I find the idea
+of "traditional Web application programming techniques" to be
+amusing. "Yessir, you just do dialog generation and sequencing the
+same way your father did, your grandfather before him!")
+
+<p>From the CES: <a
+href="http://www.navtech.com/coinfo/releases/275.html">NAVTECH® MAPS
+ADD VOICE TO MAPPING SOLUTIONS</a> 
+<blockquote>Navigation Technologies Corp., the world's leading
+provider of digital map information for navigation systems, announced
+plans to introduce NAVTECH® brand map products for in-vehicle
+navigation systems featuring automatic speech recognition and voice
+generation.</blockquote> 
+
+<p><a name="26"></a><a href="#26"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Friday, January 26,
+2001</b>
+
+<p>The UK's <a href="http://www.open.ac.uk/text-only/">Open University</a> has a <a href="http://telematics.open.ac.uk/">Department of Telematics</a>.
+
+<p>Must be UK Day. Here's an Observer article: "<a
+href="http://www.observer.co.uk/business/story/0,6903,375709,00.html">Driving
+in my (telematic) car...</a>" from October, 2000. It has the most
+interesting use of digital car I've seen: <blockquote>Want a pink
+dashboard? Just tell the car that's the mood you're in. </blockquote>
+
+<p>Hmm...
+
+<p>British Vodafone bought Mannesmann. Mannesmann Telecommerce became
+Vodafone Telecommerce on January 1 (<a
+href="http://www.mannesmann-telecommerce.de/company/pressrel/04012001.htm">Press
+Release in German</a>). Last June, Mannesmann Telecommerce
+bought a 20% stake in ATX Technologies (<a
+href="http://www.fiercewireless.com/archives/weeklyreport/issue14.htm">FierceWireless.com
+report</a>).
+
+<p>In non-Brit news, <a
+href="http://www.eyeforauto.com/index.asp?news=10616">EyeForAuto
+reports</a> on a device from Networkcar Inc., currently being tested
+in California that <blockquote>... plugs into a car's on board
+diagnostic computer and uses wireless paging technology to relay
+information to whoever the car owner wants--auto dealerships,
+manufacturers or even a personalized Web page ... The car owner decides who gets the
+information.</blockquote>
+
+<p><a href="http://www.obdii.com/obdii.html">OBD-II Page</a>, a page
+about the on-board diagnostic computer standard.
+
+<p><a name="25"></a><a href="#25"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Thursday, January 25,
+2001</b>
+
+<p>We went to the Detroit 2001 Autoshow. <a href="autoshow2001/autoshow2001.html">Here are some pictures</a> (mostly of dashboards).
+
+
+<p><a
+href="http://www.johnsoncontrols.com/asg-electronics/products/connectivity/telematics.htm">Johnson
+Controls Telematics</a> page. Interestingly, apparently Mark Zeinstra,
+who is listed as the contact for Johnson Controls telematics, gave a talk on "Bluetooth In Car Systems for Entertainment &
+Convenience" at the  <a
+href="http://www.bluetoothcongress.com/cod/oinfo_body.asp?pid=ukccr1295&pname=body">2000
+Bluetooth Conference</a>. JCI had a "<a
+href="http://www.johnsoncontrols.com/CorpPR/Releases/asg/release338.asp">ultimate family concept vehicle</a>," called "LEGO in Motion" at the
+Autoshow, but somehow we missed it. A <a
+href="http://www.lego.com/inmotion/360.asp">360 degree view of the
+car</a> is on the LEGO web site, though.
+
+<p><a name="24"></a><a href="#24"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Wednesday, January 24,
+2001</b>
+
+<p><a
+href="http://www.ednmag.com/ednmag/reg/1997/030397/05DF_02.htm">Older
+article from 1997</a> (but still useful) that lists voice recognition chips and
+software development environment. By Stephen Kempainen, Technical
+Editor at <a href="http://www.ednmag.com/">EDN Access</a>, "The Design Source for Engineers and Managers Worldwide."
+
+<p><a href="http://www.ednmag.com/reg/1998/081798/17df1.htm">Another
+article</a> from 1998, by the same guy, on automotive telematics.
+
+<p><a
+href="http://www.ednmag.com/ednmag/reg/ProdSearch.asp?CATEGORY_CODE=ALL&CATEGORY=ALL&qu=voice+recognition&MAXPROD=20">This
+search of the EDN Access products database for 'voice recognition'</a>
+finds 6 voice reco chips, ranging in price from $3 to $50 each (in large
+lots, of course).
+
+<p>Who is behind <a href="http://www.inzigo.com">Inzigo Research</a>? They have a job
+opening for a <a
+href="http://linguistlist.org/issues/12/12-175.html#1">Senior Dialog
+Modeling Engineer</a>. Offices in Montreal and New York.
+<blockquote>inzigo
+aims at becoming the leading supplier of spoken dialog systems, moving
+far beyond IVR and scripted dialogs and into the world of intelligent
+communicative agents capable of truly mixed-initiative
+dialog.</blockquote> 
+
+<p>And why "inzigo" and not "Inzigo"?
+
+<p><a name="23"></a><a href="#23"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Tuesday, January 23,
+2001</b>
+
+<a
+href="http://www.motorola.com/ies/telematics/html/indexottestdrive.html">Motorola
+Telematics testdrive</a>.<blockquote>(wife, to husband) Do you mind if I look for some
+antique dealer listings? (husband) Sure, it's all yours. (wife, to
+computer) Search antique
+dealers. (computer) There are six antique dealers within 2 miles of your
+stated destination. I'll display directions to the nearest
+one.</blockquote>
+
+<p>Fortunately, this is all done before the car begins moving...
+
+<p><a
+href="http://www.wirelessweek.com/index.asp?layout=story&articleId=BW20010123BW2226">iVoice.com,
+Inc. Announces Patent Application Filing for Speech-enabled Name
+Dialer</a>. Basically, this is importing a PIM database and converting
+the names to recognizable phonemes so they can then be dialed. Scary patent.
+
+<p><a name="22"></a><a href="#22"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Monday, January 22,
+2001</b>
+
+<p><a
+href="http://38.144.115.20/eyeforauto/index.asp?news=10368">Excellent
+Inteview</a> with Saul Rubin (of UBS Warburg) on telematics.
+Some good quotes:
+<blockquote>The companies that will likely take centre stage in
+telematics will be those funded by, or have close alliances with,
+large auto OEMs. Hence, the likes of OnStar and Wingcast are here to
+stay. In europe also, the main telematics players have the backing of
+the auto groups and/or wireless companies - e.g. Wireless Car
+(Volvo/Ericcson/Telia), Teguron (DaimlerChrysler/Deutsche Telekom),
+Wappi! (Peugeot/Vivendi) </blockquote>
+and
+<blockquote>At the end of the day, the value in telematics is the
+content - it is those that provide the best content or are involved in
+its delivery or the technology behind it that will
+benefit. </blockquote>
+and
+<blockquote>Telematics services do not necessarily require fancy interfaces - much can be done through voice, and indeed may have to be done through voice in the future. </blockquote>
+
+<P>DaimlerChrysler may <a
+href="http://38.144.115.20/eyeforauto/index.asp?news=10407">buy 
+Lernout &amp; Hauspie's unit that makes voice recognition software for
+vehicles</a>. (L&amp;H is operating under bankruptcy orders).
+
+<p><a name="19"></a><a href="#19"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Friday, January 19,
+2001</b>&nbsp;
+
+<p><a
+href="http://38.144.115.20/eyeforauto/index.asp?news=10206">German
+carmaker BMW and U.S. company Google have teamed up for three months
+of field tests to try out a new voice-activated, in-car search
+engine</a>. This is a very bad idea, but I'm glad they're field
+testing it, and not just installing it.
+
+<p><a
+href="http://www.aaafts.org/multimedia/currentnews/article.cfm?SMContentIndex=13&SMContentSet=0">Ford
+Simulator to Test Distractions</a>. (from <a
+href="http://www.aaafts.org/">AAA Foundation</a> Traffic Safety
+News).
+
+<blockquote>"What we need to
+understand is what level of distraction is acceptable," said Helen
+Petrauskas, Ford vice president for safety. "We're used to listening
+to the radio or talking to a passenger, but how does new technology
+compare?"</blockquote>
+
+<p><a
+href="http://www.aaafts.org/multimedia/currentnews/article.cfm?SMContentIndex=4&SMContentSet=0">Interface
+Concerns Stall the in-Car PC</a>. Tech Web article (from <a
+href="http://www.aaafts.org/">AAA Foundation</a> Traffic Safety
+News). Good overview of the perceived issues in voice recognition in
+cars.
+
+<p><a href="http://www.eyeforauto.com/singapore/">EyeForAuto</a>, a ,
+has a <a
+href="http://www.eyeforauto.com/singapore/program.html#link4">program
+track on telematics</a>, including presentations by <a
+href="http://www.eyeforauto.com/singapore/gao.html">Xiao Ying Gao</a>
+on the potential of automotive telematics in Asia and in-vehicle multimedia, <a
+href="http://www.eyeforauto.com/singapore/ching.html">Ching Kwock Wing</a>
+on "doing business on the move," and Kazuo Tanji on driver distraction
+and safety.
+
+<p>A <a
+href="http://www.vdat.com/video1.asp?brand=VD&stream=rg2&file=fcsanjose/fc_sanjose_paneldriverdistraction_100k.rm&linkid=348">
+panel discussion on Telematics and Safety</a> (Realvideo) from the <a
+href="http://www.eyeforauto.com/sanjose/">EyeForAuto USA
+2000</a>. Panel members: David Willis, President and CEO, AAA
+Foundation; Bruno Bourguet, General Manager, Webraska; Chris Wilson,
+Group Manager, Telematics and Safety, DaimlerChrysler Research;
+Moderator: Bernhard Wagenblast, Editor, Transportation Communications
+Newsletter. (They also had a <a
+href="http://www.eyeforauto.com/sanjose/program.html#indexlink1">track
+on telematics</a>).
+
+<p><a name="18"></a><a href="#18"><img src="includes/anchor.gif"
+border="0" alt="URL for this day"></a> <b>Thursday, January 18,
+2001</b>&nbsp;
+
+<p>Off to the Detroit Autoshow today.
+
+<p><a name="17"></a><a href="#17"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Wednesday, January 17, 2001</b>&nbsp;
+
+<p><a
+href="http://www.newsdesk.com/vnr/showdoc.htm?file=pr182065.txt">Johnson
+Controls Delivers Unique Interior Systems For Innovative Volvo Safety
+Concept Car Project</a> (Newsdesk)
+
+<blockquote>To support Volvo Cars' vision -- enabling drivers to keep their eyes on
+the road and hands on the wheel -- Johnson Controls provided software
+development for an easy-to-use and non-distracting interface between human and
+machine. The driver-information software handles radio/compact disc player;
+controls for heating, ventilation and air conditioning; navigation system;
+communication system/phone and added safety technologies. Video displays are
+located in the instrument-panel gauge cluster and the center stack. For ease-
+of-use, controls are located on both the steering wheel and on the adjustable
+center console.</blockquote>
+
+<p><a
+href="http://www.newsdesk.com/vnr/showdoc.htm?file=pr183792.txt">Visteon
+Voice Technology(TM) to Appear on the 2002 Infiniti Q45</a> (Newsdesk)
+<blockquote>Drivers activate the system by pressing the voice button,
+conveniently located on the steering wheel, to obtain voice control of
+several functions within the vehicle interior.  Visteon Voice
+Technology(TM), in the Infiniti Q45 enables drivers to control audio,
+climate control, cellular phone (available in the fall) and navigation
+systems with simple voice commands. </blockquote> 
+
+<p><a
+href="http://www.prnewswire.com/cgi-bin/stories.pl?ACCT=104&STORY=/www/story/01-17-2001/0001405349&EDATE=">OnStar
+Licenses Nuance's Market-Leading Speech Recognition Software for
+Virtual Advisor</a>. (PR Newswire).
+
+<p><a
+href="http://www.3dlinks.com/wave/waveissue.cfm?issue=9115#9115.2">Interesting
+report on Bluetooth Conference</a>.
+
+<p><a
+href="http://www.ai-online.com/index.asp">AI-Online.com</a>. It's not
+artificial intelligence, but automotive industry online. They have a
+<a
+href="http://ai-online.com/articles/dec00/1200EngineersGuide.htm">Engineer's
+Guide to the Detroit Auto Show</a>. The Carlab's Eric Noble is quoted:
+<blockquote>Telematics, which combines audio, hands-free cell phone,
+navigation, Internet connectivity, e-mail and voice recognition, is
+going to have a massive impact on interiors, Noble says. People will
+be sick of seeing it, but telematics and streaming infotainment is not
+going to go away.</blockquote>
+
+Also, Noble says: <blockquote>Voice recognition technology is getting
+better and making it possible. On top of that, legislation is going to
+be making it a requirement. We just can’t have the visual distraction
+that we currently have with cell phones and navigation systems. Voice
+activation becomes critical from a safety standpoint.</blockquote>
+
+<p>What is The Carlab? A "Santa Ana, Calif.-based automotive product
+consulting firm." <a href="http://www.google.com/search?q=Eric+Noble,+president+of+The+CARLAB,&hl=en&lr=lang_en&safe=off&start=0&sa=N">Google
+search on "Eric Noble, president of The CARLAB"</a>. 
+
+<p><a name="16"></a><a href="#16"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Tuesday, January 16, 2001</b>&nbsp;
+
+<p>From <a href="http://www.venturewire.com">Venturewire</a>:
+<blockquote>
+<p>Voice Web Developer Telera Raises $62 Million in Series D      
+<p>CAMPBELL, Calif. (VENTUREWIRE) -- Telera, a developer of a network-based voice application platform, said it has received $62 million in its Series D round of funding led by new investor Bowman Capital. Other new investors American Express, Amerindo, Berkeley International Capital, Charter Growth Capital, and Intel joined previous investors Accel Partners, Meritech Capital Partners, and Sequoia Capital in the round. The company's product, Voice Web, is an interconnected network where Internet-based information and communications services can be accessed from any phone using the human voice. The company said it will use the capital to expand its application platform. Telera has raised more than $100 million to date. 
+<p><A href="http://www.telera.com">http://www.telera.com</a>
+</blockquote>
+
+Apparently, <a
+href="http://www.trafficstation.com/">TrafficStation</a> is using
+Telera's software--at least, Telera lists them as a customer.
+
+<p><a name="15"></a><a href="#15"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Monday, January 15, 2001</b>&nbsp;
+
+<p>You'd think a company that wants to "turn mobile devices into
+worldwide personal navigation systems" would have a webpage that
+loaded quickly. But no: <a href="http://www.webraska.com">Webraska</a>. And
+where did they get that name if they're located in Poissy, France?
+
+<p>This link won't work for long, but here are <a
+href="http://www.perceptualrobotics.com/">Perceptual Robotics</a>' <a
+href="http://pri7.perceptualrobotics.com/live/autocameras.jsp">live
+cameras at the Detroit Auto Show.
+
+<p><a name="12"></a><a href="#12"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Friday, January 12, 2001</b>&nbsp;
+
+<p>John Dvorak worries about <a
+href="http://www.zdnet.com/zdnn/stories/comment/0,5859,2466082,00.html">drive
+by wire</a> cars. <blockquote>Within this decade we're expected to be
+driving cars that are run by on-board networks with no direct
+mechanical connections between the drivers and the cars. Call it
+drive-by-wire. The cars will be just like that Airbus that didn't
+"pull up" at the Paris Air Show a few years ago. That was a
+fly-by-wire plane.</blockquote>
+
+<p><a name="10"></a><a href="#10"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Wednesday, January 10, 2001</b>&nbsp;
+
+<p><a
+href="http://slashdot.org/articles/01/01/10/1349205.shtml">Linux-powered
+Dodge</a> on Slashdot. (thanks to John Wiseman).
+
+<p><a href="http://iphrase.com/">iPhrase Technologies</a> does 'conversational
+interfaces' for the web. Their CTO (and founder), <a href="http://www.raylau.com/">Ray Lau</a>, was involved in <a href="http://www.sls.lcs.mit.edu/raylau/publications.html#ICSLP98_Galaxy">MIT's Galaxy II</a> project.
+
+<p>Google search on "<a href="http://www.google.com/search?as_q=&num=100&btnG=Google+Search&as_oq=&as_epq=conversational++interface&as_eq=&as_occt=title&lr=lang_en&as_dt=i&as_sitesearch=&safe=off">conversational interface</a>".
+
+<p>More on <a
+href="http://www.yazam.com/YZ/YZContent.nsf/(PressReleasesHTML)/51B030F44E795D88422569CE00292C1E?OpenDocument">Baobab</a>. The
+press release indicates they're focussing on customer service
+applications. Baobab's funders, <a
+href="http://www.yazam.com">Yazam</a>, faces "major restructuring,"
+according to <a
+href="http://www.venturewire.net/story.asp?sid=22501">this VentureWire
+report</a>.
+
+<p><a name="9"></a><a href="#9"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Tuesday, January 9, 2001</b>&nbsp;
+
+
+<p><a href="http://www.microsoft.com/AUTOMOTIVE/default.htm">Microsoft's Car.NET</a>. The official home.
+
+<p>A press release about <a href="http://www.itsa.org/itsnews.nsf/$All/524F4A61E64232E3852569CE0054E7C9?OpenDocument">
+Microsoft's Car.NET</a> initiative at CES.
+
+<blockquote> Car.NET uses speech-recognition technology that allows
+users to make cellular phone calls, change the music selection, or
+access information without taking their hands off the wheel or their
+eyes off the road. Distraction controls ensure that certain functions
+such as typing or reading text can be performed only while the car is
+stopped.  
+</blockquote>
+
+<p>The <a href="http://www.itsa.org/">Intelligent Transportation
+Society of America</a>.  
+
+<blockquote>
+The mission of the Intelligent Transportation Society of
+America (ITS America) is to foster public/private partnerships to
+increase the safety and efficiency of surface transportation through
+the application of advanced technologies. ITS America was mandated by
+the U.S. Congress in 1991 to coordinate the development and deployment
+of intelligent transportation systems in the United
+States.
+</blockquote>
+
+<p>At the ITSA site, I found this <a href="http://www.itsa.org/itsnews.nsf/$All/069C25FA5551971B8525693400688FB3?OpenDocument">list of Telematics marketing</a> surveys.
+
+
+<p>Who are <a href="http://www.venturewire.net/story.asp?sid=22438">Baobob Technologies</a>?
+
+<p><a name="8"></a><a href="#8"><img src="includes/anchor.gif" border="0" alt="URL for this day"></a> <b>Monday, January 8, 2001</b>&nbsp;
+
+<p>The <a href="http://cesweb.org">Consumer Electronics Show</a> has a <a
+href="http://www.cesweb.org/fac_pav/attendee_pavilions.asp?menuItem=9&subMenuItem=-1&tabName=Attendee#digitalcar">special
+pavilion</a> dedicated to digital cars:
+
+<blockquote>
+Experience the ride of the future at the Digital Car
+Pavilion. Discover developments in vehicle navigation, global
+positioning systems (GPS), geographic information systems (GIS)
+satellites, vehicle safety, obstacle warning systems, emergency
+notification and wireless products.
+
+<p>Meet the partners you'll need to tap into the Digital Car
+marketplace, including ETL, <a
+href="http://www.infomove.com">InfoMove.com</a>, Navigation
+Technologies, TravRoute and Ultradata Systems.
+</blockquote>
+
+(Thanks to Michael Hannemann).
+<p><a
+href="http://www.zdnet.com/anchordesk/stories/story/0,10738,2671994,00.html">Why
+the 'Digital Car' will Drive You to Distraction (or even an Early
+Grave)</a> is a commentary on digital cars by Patrick Houston.
+
+<p>The Society of Automobile Engineers (SAE) is having their <a
+href="http://www.sae.org/congress/index.htm">annual meeting</a> March
+5-8 at Detroit's Cobo Hall. One of their <a
+href="http://www.sae.org/congress/2001/techsess.pdf">technical
+sessions</a> (pdf file) is a panel session on "Automobile Telematics
+and User Interface" chaired by Mark A. Cummings-Hill, of Delphi Delco
+Electronics.
+
+<p>The SAE has also established an <a href="http://www.sae.org/topics/itsinits.htm"> Intelligent Transportation Systems and Intelligent Vehicle</a> program.
+</tr></td></table>
+
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+  <tbody>
+    <tr>
+      <td bgcolor="lightblue">      
+      <center><b>        &nbsp;&nbsp;&nbsp;&copy;
+2001 I/NET, Inc.&nbsp;&nbsp;&nbsp;<a href="2001-02.html">Next</a></b><br>
+      </center>
+      </td>
+      </tr>
+  
+</table>
+
+</body>
+</html>

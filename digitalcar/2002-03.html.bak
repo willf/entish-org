@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>The Digital Car Journal (March, 2002)</title>
+  <link rel="stylesheet" type="text/css" href="digitalcar.css" title=default>
+  <meta name=robots content="index,follow">
+<meta name="description"
+      content="The Digital Car Journal (March, 2002)">
+<meta name="author"
+      content="Will Fitzgerald">
+<link rev="made" href="mailto:fitzgerald@inetmi.com">
+</head>
+<body bgcolor="white" vlink="black" link="darkblue">
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+  
+    <tr>
+      <td bgcolor="lightblue" width="120"><A href="/"><IMG align=left alt="A car."  border=0  src="includes/car.jpg"></a></td>
+      <td bgcolor="lightblue">      
+      <center>      
+      <h2>The Digital Car Journal</h2><b>A weblog about computers in cars</b><br 
+      >by Will Fitzgerald</center></td>
+    </tr>
+  <tr><td bgcolor="white" colspan=2><center><a href="about.html">About</a>&nbsp;&nbsp;<a href="essais.html">Essays &amp; Rants</a>&nbsp;&nbsp;<a href="archives.html">Archives</a>&nbsp;&nbsp;<a href="mailto:fitzgerald@inetmi.com">Suggest or Contact</a></center></td></tr>
+</table>
+
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+<tr><td>
+
+<p><a name="18"></a><A href="#18"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Monday, March 18, 2002</b>
+
+<p>.: One of the small surprises for me at the recent SAE Digital Car conference was the continued importance of Bluetooth to telematics, as opposed to 802.11b wireless. Extended Systems provides <a href="http://www.extendedsystems.com/ESI/Products/Wireless+Connectivity+Products/default.htm">various Bluetooth wireless</a> software development tools, and they <A HREF="http://www.telematicsupdate.com/homepage2.asp?news=26739">recently signed a contract</A> with Johnson Controls for JCI's BlueConnect product. Extended Systems already have a relationship with Motorola as well as <A HREF="http://www.extendedsystems.com/ESI/Company+Info/Partners/OEMs/default.htm">other OEMs</A>, including IBM, which resells Extended Systems software as "IBM MobileConnect."
+
+<p>.: Consultancy Group <a href="http://www.bwcs.com">BWCS</a> disses location-based services for now, according to this <a href="http://www.telematicsupdate.com/homepage2.asp?news=26707">Telematics Update article</a>: <BLOCKQUOTE>"Mobile Location Based Services: Where’s The Revenue?" pierces the myth that mobile operators can rely on consumer LBS applications to drive up mobile data usage. Services such as "Where’s My Nearest ATM?" will not generate significant medium-term revenues. Instead operators should concentrate on services focused on personal safety, security and transport.</BLOCKQUOTE>
+
+<p>The full report, which costs $1,400, is available <a href="http://www.bwcs.com/reports/index2.cfm?reportid=87">here</a> (not that I'm planning to buy it).
+
+<p><a name="14"></a><A href="#14"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Thursday, March 14, 2002</b>
+
+<p>.: "Conversational Interface" on the search engines: I/NET is at the top <a href="http://domaindeluxe.oingo.com/apps/domainpark/results.cgi?Keywords=conversational+interface+&Partner=domaindeluxe&ac=s">at this Oingo search result</a>, at the top at <a href="http://www.altavista.com/sites/search/web?q=%22conversational+interface%22&pg=q&kl=XX">AltaVista</a> and <a href="http://search.dogpile.com/texis/search?q=%22conversational+interface%22&geo=no&fs=web">DogPile</a> and <a href="http://www.google.com/search?q=conversational.interface">Google</a> has us near the top.
+
+<p>.: Press release: <a href="http://www.gatespace.com/news/archive/20020312_en.shtml">Gatespace Secures Additional Financing and Acquires Ericsson's e-Services Venture</a>. And don't the people at the top look happy about it? I talked to a Gatespace engineer at the Digital Car conference, and they are doing some interesting things with <a href="http://www.osgi.org">OSGi</a>.
+
+<p><a name="13"></a><A href="#13"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Wednesday, March 13, 2002</b>
+
+<p>.: I don't quite know what to think about Ricardo Martinez, (former NHSTA administrator who gave a keynote speech <a href="#Martinez">reported on earlier</a>) want to be the company that creates the <a href="http://www.itsa.org/ITSNEWS.NSF/a619bd3fc912d6f38525658d00073cd1/ba182275068b4e4285256b7500438c64?OpenDocument">Global Safety Data Vault</a> to manage the data from car black boxes.
+
+<p>.: Consultants at Dove do a <a href="http://www.consultdove.com/press_031102telematics.htm">telematics study</a>:
+<blockquote>
+According to the study, over 80% of U.S. consumers nationwide are still unfamiliar with telematics services-showing no change from the study conducted by Dove last fall. But, the study also reveals that consumers who have experienced telematics first-hand are twice as likely to be interested in these services. </blockquote>
+
+<p><a href="http://www.consultdove.com/article%20download/030602TelematicsResults.ppt">Powerpoint version</a> of the "top level results". Although I hate the fact that Dove put a Powerpoint presentation up, I am impressed that they left <a href="http://www.e-dove.com/tele/telelogn.htm">the survey itself</a> up for view.
+
+<p><a name="12"></a><A href="#12"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Tuesday, March 12, 2002</b>
+
+<p>.: <a href="http://www.centerformediaresearch.com/cfmr_briefArchive.cfm?s=108994">Driver Distraction report</a> from Gartner: 
+
+<blockquote> According
+to a February 2002 report from GartnerG2, 80% of US consumers are
+scared that automobile drivers who drive while using their cellphone
+will cause accidents. Interestingly, although 59% of consumers say
+they are concerned that other drivers using a mobile phone might cause
+an accident, only 30% "strongly agree" that they themselves get
+distracted when they drive and talk on a mobile phone.
+</blockquote>
+
+This report also gives more figures for sizing the telematics
+market:
+
+<blockquote>For a greater perspective on the US telematics
+market, Parks Associates estimates that the automobile telematics
+market will grow from $2.7 billion in 2001 to $10.7 billion in
+2005. Similarly, Allied Business Intelligence estimates that the US
+telematics market for personal vehicles will grow to $13 billion in
+2006. Global Vehicle Telematics Estimate 2001 $3 billion 2006 $13
+billion.</blockquote>
+
+<p><a name="11"></a><A href="#11"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Monday, March 11, 2002</b>
+
+<p>.: More on Microsoft's Car.Net: <a
+href="http://www.telematicsupdate.com/homepage2.asp?news=26518">an
+interview with Gonzalo Bustillos</a>, Microsoft Automotive's Director
+of Business Development & Marketing:
+<blockquote>
+Windows CE for Automotive 3.5 showcases advanced automotive-centric features such as:
+(a) New Streamlined Graphical User Interface, ...
+(b) New Hands-Free Communication Interface,
+(c) New Platform Foundation, ...
+(d) New Microsoft Mobile Explorer, 
+(e) New Power Management, 
+(f) New Customizable Developer Tools.
+(g) Improved Graphics
+</blockquote>
+
+<p>This article is definitely worth a read.
+
+<p>.: Hitachi's processor for IBM's embedded speech: press release at <a
+href="http://www.telematicsupdate.com/homepage2.asp?news=26515">Telematics
+Update </a> or <a
+href="http://www.itsa.org/itsnews.nsf/$All/59041D3F65CC1B7285256B72005012B5?OpenDocument">ITS</a>.
+
+<p><a name="9"></a><A href="#9"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Saturday, March 9, 2002</b>
+
+<p>.: Interesting article <a
+href="http://www.eet.com/sys/news/OEG20020304S0039">Java vs. Windows
+.NET for telematics</a>.
+
+
+<h2>Reports from the Digital Car Conference and Exhibition</h2>
+
+<p><a name="7"></a><A href="#7"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Thursday, March 7, 2002</b>
+
+<p>.: I went to an IBM class on embedded Java, so I didn't do anything
+else--I even missed lunch. Overall, the Digital Car conference was a 
+success: lots of good new technology and good energy to make driving
+safer and better.
+
+<p><a name="6"></a><A href="#6"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Wednesday, March 6, 2002</b>
+
+<p>.: Most of my day today was on the Digital Car Exhibition
+floor. Some brief observations:
+
+<blockquote>
+<ul>
+<li>Microsoft had the flashiest display, in the most prominent
+position. They also sponsored the lanyardss that everyone wore around
+their necks with their ids, so "Windows CE for Automotive" was
+everywhere. And they had some cool voice recognition development
+tools. But I saw some people from an automotive standards group
+exchanging their Microsoft lanyards for Sun lanyards. Microsoft's
+voice recognition did <i>not</i> work well at the booth.
+
+<li>IBM's embedded speech recognition <i>did</i> work at the booth,
+with the demonstrator using a stem microphone in the very noisy
+hall. I wish the embedded speech SDK were available on the IBM web site.
+
+<li>Java was everywhere. IBM and Sun are battling for the telematics
+space, with rival Java virtual machines. 
+
+<li>Ford had a very cool display, showing off current and
+future technologies, including what Wingcast (the Ford/Qualcomm joint
+venture) hopes to deliver. Ford has a very good software architecture,
+and they showed off integration between Bluetooth devices, a Java
+button (which had personalization data on it), and telematics services. 
+
+<li>Several companies were touting their microphones and voice
+filters. Clarity was there (whom I've mentioned before). A new company
+to me was <a
+href="http://www.wavemakers.com/welcome/homepage.cfm">Wavemakers</a>.
+
+<li>There was an interesting panel sponsored by Intel (they gave away
+tiny radios), with representatives from DaimlerChrysler, IBM, Johnson
+Controls, Intel, and QNX. James Kohut (senior manager for Corporate
+Telematics at DaimlerChrysler) was the only car manufacturer
+representative, so he fielded a lot of questions people wanted to ask
+the car makers, which he did with good grace.
+
+</ul>
+</blockquote>
+
+<a name="Martinez"><p>.: The keynote lunch speaker was Dr. Ricardo Martinez, a former
+NHTSA administrator. He gave an engaging and interesting speech about
+safety. He made a strong case for "black-box"-like technologies in
+cars, since NHTSA needs lots of accurate data to help make cars
+safer. Two things he said that surprised me somewhat: If we could (on
+average) increase by 1 second the response time before a rear-end
+collision, we could decrease fatalities from these accidents to half
+their current level. He also had some good words to say for voice in
+the car: I think he believes that we've made (as a society) a choice
+for the convenience of using phones (etc.) in cars over safety, and so
+it's a matter of decreasing the danger of cell phone use, and voice
+could do this.  
+
+<p><a name="5"></a><A href="#5"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Tuesday, March 5, 2002</b>
+
+<p>.: I spent my day at the Digital Car Conference with IBM. They're
+running a repeating morning session and afternoon workshop on their
+software development platform for telematics and embedded systems. IBM
+is using their size, longevity, and commitment to standards as key
+selling points of their solutions to the automotive manufacturers and
+top component suppliers. IBM has relatively recently announced their
+Eclipse open source software development environment and the (more
+proprietary) "Websphere Studio Device Developer" environment (even one
+of the IBMers was willing to say this was a terrible name). Still,
+this looks very interesting, and the IBM booth is demonstrating
+several devices running on a couple of different car buses all running
+their J9 embedded Java virtual machine with remote debugging
+capabilities. Cool stuff.
+
+<p>.: W.S. "Ozzie" Osborne, head of IBM's Voice Systems, gave the
+keynote lunch speech. He spoke more about "pervasive computing" than
+voice per se, and he made some very good points about the importance
+of designing speech into an application from the start, rather than
+just an add-on to a system. He said the (next) major barrier to
+acceptance of voice in cars is the acoustical problem of recognizing
+speech in the car environment, but claimed that 1000-word at a time
+systems were possible today for cars today, with different recognition
+models being tuned for a car at rest, at 10 mph, at 50 mph, etc. In
+fact, the engineer on the floor was showing a speech system that
+seemed to be performing well even in the very noisy environment of the
+show floor--the microphone is just sticking out into the air (no
+chamber being used), and it just worked.
+
+
+<p><a name="4"></a><A href="#4"><IMG alt="URL for this day" border=0
+src="includes/anchor.gif" ></a> <b>Monday, March 4, 2002</b>
+
+<p>.: <b>Digital Car Journal, live again</b>. In honor of SAE's Digital Car
+Conference and Exhibition, the Digital Car Journal is live again. I'm
+at the conference, and here are some notes and commentary.
+
+<p>.: The Digital Car Conference doesn't start until Tuesday, so today
+I attended the SAE technical session on "Human Factors in Driving and
+Automotive Telematics". Peter Roessger of CAA gave a presentation on
+"Intercultural Differences in the Interaction between Drivers and
+Driver Information Systems," reporting on some cross-cultural surveys
+that CAA has done. Among the general claims:
+
+<blockquote><ul><li>Japanese (in general) don't mind "deeply
+structured" menus, like "HiTech" interfaces, want entertainment and
+games, accept parallel interfaces (like multiple maps on a display).
+<li>Europeans (in general) want sequential, easy-to-use interfaces that are obvious
+and clear. They want "high value," and the look and feel is
+important. Use of local language (i.e., not English) is important.
+<li>Americans (in general) want to talk; they are lonely in their
+cars. Like Europeans, they tend to be sequential. They want sports.
+</ul></blockquote>
+
+<p>It might be unfair to stereotype people in this way, but it is the
+case that systems developed in a culture for that culture tend to be
+more successful than systems developed by people across cultures.
+
+<p>Yauhiro Ihara of Panasonic described an "HMI Design and Evaluation
+for the Driver Information System." He contractdicted Roessger a bit,
+saying that intuitive and easy-to-use systems were guiding principles
+for his design. One of the interesting design ideas Ihara presented
+was that of a "virtual radio" for all audio; this consistent interface
+for radio, various news feeds and music feeds applied the standard radio
+metaphor of a "channel" well. I'm not really doing this justice, I'm
+afraid, but it seemed to me that the constraints on human audio
+processing (we can generally only listen to one "channel" at a time)
+made the ability to move around various virtual channels a powerful
+metaphor for streaming audio.
+
+<p>Some mechanical engineers from an accident reconstruction company,
+Triodyne, presented some history of how the law has treated driver
+reaction to "Sudden Emergencies," which is, apparently, a legal
+doctrine that goes back to the 19th century and coach-and-four
+days. People make bad decisions when presented with sudden
+emergencies, and their legal liability is under consideration. These
+guys reported that expectation failure, emotional stress, and
+uncertainty of the effects of one's actions, and the actions of
+others, play a big part in bad decisions. I was reminded of the <a
+href="2001-04.html#23">Buridan's Principle</a>, "A discrete decision
+based upon an input having a continous range of values cannot be made
+within a bounded length of time," which applies even under ideal
+conditions.
+
+<p>Finally, Vivek Bhise reported on some work investigating the
+"IVS-DEMAnD Driver Attention Demand Model," in which the task being
+undertaken, the traffic conditions and the age of the driver are major
+inputs on stresses to a driver's attention. This was a good piece of
+work, and I'll look for more information on it .SAE has a rather
+draconian policy of charging $10 for a single reprint of an article
+even for attendees.
+
+
+</TD></tr></table>
+<BR>
+<BR>
+<table border="0" cellpadding="8" cellspacing="0" width="475" align="center">
+  
+    <tr>
+      <td bgcolor="lightblue">      
+      <center><b><A href="2001-08.html">Previous</a>&nbsp;&nbsp;&nbsp;©
+2002 I/NET, Inc.&nbsp;&nbsp;&nbsp;</b><br>
+      </center>
+      </td>
+      </tr>
+  
+</table>
+
+<table align=center>
+<td >
+<center>
+<FORM ACTION="http://search.freefind.com/find.html" 
+METHOD="GET" target="_top">&nbsp;&nbsp;
+<font size=1 face="arial,helvetica" >
+<A HREF="http://search.freefind.com/find.html?id=535567">
+Search this site</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+powered by <A HREF="http://www.freefind.com">FreeFind</A><br>
+<INPUT TYPE="HIDDEN" NAME="id" SIZE="-1" VALUE="535567">
+<INPUT TYPE="HIDDEN" NAME="pid" SIZE="-1" VALUE="r">
+<INPUT TYPE="HIDDEN" NAME="mode" SIZE="-1" VALUE="ALL">&nbsp;
+<INPUT type="HIDDEN" name="n" value="0">
+<INPUT TYPE="TEXT" NAME="query" SIZE="20">
+<INPUT TYPE="SUBMIT" VALUE=" Find! ">
+</center>&nbsp;
+</font></FORM></td></table>
+
+</body>
+</html>

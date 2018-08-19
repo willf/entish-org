@@ -1,0 +1,9 @@
+body {font-family: verdana, arial, sans serif; font-size: .8em; line-height:1.3em; }
+td {font-family: verdana, arial, sans serif; font-size:.8em; line-height:1.3em; }
+p {font-family: verdana, arial, sans serif; line-height:1.3em; }
+
+blockquote, ol, ul, li, p ol, p ul {font-family: verdana, arial, sans serif;  }
+code, pre { font-family: "courier new", "courier";font-size:.8em;}
+h1, h2, h3, h4, h5, h6 {font-weight:bold; font-family: verdana, arial, sans serif; font-size:1em; }
+
+
