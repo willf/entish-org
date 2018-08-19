@@ -1,0 +1,88 @@
+body {
+	margin:0px;
+	padding:0px;
+	font-family: consolas, monospace;
+	color:#333;
+	background-color:white;
+	}
+h1 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:18px;
+	line-height:20px;
+	font-weight:900;
+	color:#666;
+	}
+h2 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:16px;
+	line-height:18px;
+	font-weight:900;
+	color:#666;
+	}
+p, li {
+	font:14px/20px consolas, monospace; 
+	margin:0px 0px 16px 0px;
+	padding:0px;
+	}
+blockquote {
+    font:14px/20px consolas, monospace;
+}
+#Content>p {margin:10px;}
+
+
+a {
+	color:#09c;
+	text-decoration:none;
+	font-weight:600;
+	font-family:verdana, consolas, monospace;
+	}
+a:link {color:#09c;}
+a:visited {color:#07a;}
+a:hover {background-color:#eee;}
+table.sample {
+	border-width: thin;
+	border-spacing: ;
+	border-style: solid;
+	border-color: gray;
+	border-collapse: collapse; 
+	margin-left:auto; 
+	margin-right:auto;
+}
+table.sample th {
+	border-width: thin;
+	padding: 3px;
+	border-style: inset;
+	border-color: gray;
+	background-color: rgb(255, 245, 238);;
+}
+table.sample td {
+	border-width: thin;
+	padding: 3px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+
+#Content {
+	margin:0px 110px 50px 10px;
+	padding:10px;
+	}
+
+#Menu {
+	position:absolute;
+	top:100px;
+	right:20px;
+	width:172px;
+	padding:10px;
+	background-color:#eee;
+	border:1px dashed #999;
+	line-height:17px;
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:150px;
+	}
+/* Again, "be nice to Opera 5". */
+body>#Menu {width:150px;}

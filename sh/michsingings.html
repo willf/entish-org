@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Michigan and Northern Indiana area monthly Sacred Harp singings</title>
+    <script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAVqfVBXTIff8sHFOGeGDwORRSb5xKe_-14XFBt6tYPA0NTWVhXRT7BtNjKXfKaz7o8j4uS-Z3InB_8Q" type="text/javascript"></script>
+  </head>
+<center>
+<h3>Michigan and Northern Indiana area monthly Sacred Harp singings</h3>
+  <body>
+    <div id="map" style="width: 640px; height: 500px"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+
+GMap.prototype.addOverlays=function(a){
+        var b=this;
+        for (i=0;i<a.length;i++) {
+                try {
+                        this.overlays.push(a[i]);
+                        a[i].initialize(this);
+                        a[i].redraw(true);
+                } catch(ex) {
+                        alert('err: ' + i + ', ' + ex.toString());
+                }
+        }
+        this.reOrderOverlays();
+
+};
+
+// ll=42.609706,-85.111084&spn=4.293762,5.813416&hl=en
+
+// Create a base icon for all of our markers that specifies the
+// shadow, icon dimensions, etc.
+var baseIcon = new GIcon();
+baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+baseIcon.iconSize = new GSize(20, 34);
+baseIcon.shadowSize = new GSize(37, 34);
+baseIcon.iconAnchor = new GPoint(9, 34);
+baseIcon.infoWindowAnchor = new GPoint(9, 2);
+baseIcon.infoShadowAnchor = new GPoint(18, 25);
+
+// Create a marker whose info window displays the letter corresponding
+// to the given index.
+function createMarker(point, index) {
+  // Create a lettered icon for this point using our icon class from above
+  //var letter = String.fromCharCode("A".charCodeAt(0) + index);
+  var icon = new GIcon(baseIcon);
+  icon.image = "http://www.google.com/mapfiles/marker" + index + ".png";
+  var marker = new GMarker(point, icon);
+  return marker;
+}
+
+var map = new GMap(document.getElementById("map"));
+map.addControl(new GSmallMapControl());
+map.addControl(new GMapTypeControl());
+map.centerAndZoom(new GPoint(-85.11, 42.61), 10); 
+var marker_cnt = 0;
+var markers = [];
+
+// Create a point from a lat,lng with marker text
+
+function mark(lat,lng, index, text) 
+{
+ var pt = new GPoint(lat,lng);
+ var mk = createMarker(pt, index);
+ var html = text;
+  GEvent.addListener(mk, "click", function() {
+    mk.openInfoWindowHtml(html);
+  });
+  markers[marker_cnt++] = mk;
+   //mk.openInfoWindowHtml(html);
+}
+
+mark(-85.836686, 41.582066, "A", "<div style='width: 300px;'><b>Goshen, Indiana</b>.<br />First Sundays 4:00 to 6:00 pm.<br />Potluck follows.<br /><a href='http://maps.google.com/maps?q=Goshen,+IN&amp;hl=en' target='new'>Location varies.</a></div>");
+
+mark(-83.748578, 42.279320, "B", "<div style='width: 300px;'><b>Ann Arbor, Michigan</b>.<br />Second Sundays 2:00 to 5:00 pm.<br /><a href='http://maps.google.com/maps?q=316+S+Main+St,+Ann+Arbor,+MI+48104&iwloc=A&amp;hl=en' target='new'>The Ark Coffeehouse, 316 South Main</a></div>");
+
+mark(-85.616573, 42.296522, "C", "<div style='width: 300px;'><b>Kalamazoo, Michigan</b>.<br />Third Sundays 4:00 to 6:00 pm.<br />Potluck follows.<br /><a href='http://maps.google.com/maps?q=529+Pinehurst+Blvd,+Kalamazoo,+MI&amp;hl=en' target='new'>529 Pinehurst</a></div>");
+
+mark(-84.567181, 42.739660, "D", "<div style='width: 300px;'><b>Lansing, Michigan</b>.<br />Fourth Sundays 3:00 to 5:30 pm.<br />Potluck follows.<br /><a href=http://maps.google.com/maps?q=528+North+Martin+Luther+King+Jr+Blvd,+Lansing,+MI&iwloc=AI&amp;hl=en' target='new'> 528 North MLK</a></div>");
+
+map.addOverlays(markers);
+    
+    //]]>
+    </script>
+</center>
+
+<p>Goshen, Indiana: First Sundays, 4:00-6:00 pm, followed by potluck supper. Location varies. Contact person: Samuel Sommers, 574-294-6180, scmws -at- yahoo.com
+
+<p>Ann Arbor: Second Sundays, 2:00-5:00 pm, ><a href='http://maps.google.com/maps?q=316+S+Main+St,+Ann+Arbor,+MI+48104&iwloc=A&amp;hl=en' target='new'>The Ark Coffeehouse, 316 South Main</a>, Ann Arbor. Contact person: Charlotte Wolfe, cawolfe -at- umich.edu or The Ark, 734-761-1800
+
+<p>Kalamazoo: Third Sundays, 4:00-6:00 pm followed by potluck supper, <a href="http://maps.google.com/maps?q=529+Pinehurst+Blvd,+Kalamazoo,+MI&amp;hl=en">529 Pinehurst Blvd.</a>, Bill &amp; Martha Beverly, 269-382-4288, mbeverly -at- chartermi.net</p>
+
+<p>Lansing: Fourth Sundays, 3:00-5:30 pm followed by potluck supper. Location: Grace Lutheran Church, <a href=http://maps.google.com/maps?q=528+North+Martin+Luther+King+Jr+Blvd,+Lansing,+MI&iwloc=AI&amp;hl=en' target='new'> 528 North Martin Luther King Blvd</a>, Lansing. Contact persons: Bob Borcherding and Anne Missavage, 517-381-1321, gapbob -at- yahoo.com. 
+
+<p>Further Information
+
+<p><a href="http://www.fasola.org">fasola.org</a>: The starting point for a wealth of information about shape note music.
+
+<p><a href="http://www.pilgrimproduction.org/sacredharp1.html">Voices Across America Shape-Note Music</a> at <a href="http://www.pilgrimproduction.org/">pilgrimproduction.org</a>: Listen to shape note or other live recordings on the web.
+
+<p>An <a href="http://www.entish.org">Entish.org</a> <a href="http://www.entish.org/sh">Sacred Harp</a> page by Will Fitzgerald.
+  </body>
+
+</html>
+

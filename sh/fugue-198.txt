@@ -1,0 +1,35 @@
+I am not a Wise One, so warning: Here There Be Unschooled Music Theory. 
+
+It seems to me there are two fuguing sections in the first half of the Greet Street. 
+(i.e., the part of the tune on page 198 of Denson), in the first five measures, then 
+the next six measures. It's B^T A^S (in Annie's notation), then T^S B^A. 
+The fugue starts, then restarts and leads into the closing of the first half with its hold. 
+
+Then, bang--you get back into the tune, all together, and then split apart--it's a 
+reverse fugue, if there's such a thing; but then one gets the symmetry of coming 
+together again with *another* short fugue to the finish of first time through. Where 
+the 'reverse fugue' and the 'fugue' begins is a little unclear and kind of cool 
+therefore. And here's another cool thing: the symmetry is broken by jumping back to 
+the closing measures of the fugue proper of the first half, and you have that hold 
+again. Sing the reverse fugue, sing the final fugue, and finish together. You're 
+always a little off center, but you never fall over. 
+
+So, to hallucinate some representation, let F be a fugue section, C be a closing section, 
+P be a 'plain' section, and R be a reverse fugue with an opening section O, 
+with numbers referring to measures. ':' marks the end of the first time through. 
+I hope this will be readable to you, but if not, I put a copy at 
+http://www.entish.org/sh/fugue-198.txt
+
+         1         2         3         4         5         6 
+12345678901234567890123456789012345678901234567890123456789012
+F--C-F----C--P-----O---R---F---C-----:P-----O---R---F---C-----
+
+Compare this to a canonical fugue, Northfield (155) sung with a repeat:
+
+         1         2
+12345678901234567890
+P---F----C-:F----C--
+
+And you can see a bit of the beauty and complexity of Green Street; better sung than 
+read, of course!
+
