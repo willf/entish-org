@@ -1,0 +1,2232 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Micro-Casper</TITLE></HEAD>
+<center><b>Micro-Casper</b><p>
+<b></center></b>In the tradition of the Inside... series (Schank &amp; Riesbeck
+1981, Riesbeck &amp; Schank 1989, Schank, Kass &amp; Riesbeck 1993), this
+appendix contains a version of the indexed concept parsing algorithm, together
+with a "micro" version of the Casper customer service representative tutor.
+This system uses Direct Memory Access Parsing (DMAP) for recognizing index
+concepts in the input text, so a version of DMAP and an underlying frame system
+are included. Table  A.1 lists the files included in the Micro-Casper system.<b>
+<TABLE BORDER></b>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>F</b><b>iles included in the Micro-Casper system</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>File</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Type</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">ICP.system
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Lisp
+code to load all other code and data
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Code
+<BR></TD>
+<TD colspan=1 align="left">folder
+<BR></TD>
+<TD colspan=1 align="left">Code
+folder
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+micro-casper.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Micro
+version of the Casper tutor
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+micro-icp.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Micro
+version of indexed concept parsing
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+micro-dmap.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Micro
+version of Direct Memory Access Parsing
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+micro-frame.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Micro
+frame memory
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+Utilities
+<BR></TD>
+<TD colspan=1 align="left">folder
+<BR></TD>
+<TD colspan=1 align="left">Utility
+code
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+	tables.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Simple
+table facility
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+	-&gt;list.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Convert
+strings to lists
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+	logging.lisp
+<BR></TD>
+<TD colspan=1 align="left">code
+<BR></TD>
+<TD colspan=1 align="left">Simple
+logging facility
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Data
+<BR></TD>
+<TD colspan=1 align="left">folder
+<BR></TD>
+<TD colspan=1 align="left">Data
+folder
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+micro-casper.data
+<BR></TD>
+<TD colspan=1 align="left">data
+<BR></TD>
+<TD colspan=1 align="left">CSR
+and customer data
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+frames.data
+<BR></TD>
+<TD colspan=1 align="left">data
+<BR></TD>
+<TD colspan=1 align="left">Frame
+definitions
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+phrases.data
+<BR></TD>
+<TD colspan=1 align="left">data
+<BR></TD>
+<TD colspan=1 align="left">Phrasal
+patterns for index concepts
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+associations.data
+<BR></TD>
+<TD colspan=1 align="left">data
+<BR></TD>
+<TD colspan=1 align="left">Index
+concept sets associated with target concepts
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Results
+<BR></TD>
+<TD colspan=1 align="left">folder
+<BR></TD>
+<TD colspan=1 align="left">Results
+folder
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+casper.example
+<BR></TD>
+<TD colspan=1 align="left">results
+<BR></TD>
+<TD colspan=1 align="left">Example
+Micro-Casper session
+<BR></TD></TR></TABLE><b>Example
+Micro-Casper session</b><p>
+<b></b>Micro-Casper provides a primitive, TTY-style interface, in which a
+student interacts with one simulated customer. No tutoring is available
+(because this does not impinge on parsing). System prompts are shown in bold.
+Student input is shown in TTY font. Micro-Casper begins with the CSR saying,
+"Hello, May I help you?" The customer provides an initial response, and then
+the student CSR is prompted for a statement or question. The transcript can be
+found in Table  A.2. 
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>E</b><b>xample Micro-Casper session </b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">?<b>
+</b>(casper)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+Hello, May I help you?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+I've rung up to complain about my water.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+What's your name, please?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1. 	1.00 ASK-NAME What is your name?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	0.69 ASK-NAME/ADDRESS What is your name and address, please?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+3.  	0.37 ASK-BITS-DESCRIPTION What do the bits look like?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+4.  	0.29 ASK-PROBLEM-DESCRIPTION What seems to be the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+5.  	0.29 ASK-ADDRESS What is your address?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+6.  	0.20 ASK-BITS-COLOUR What colour are the bits?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+What is your name?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+My name is Mr. Smith. Ronald Smith.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+Where do you live, Mr. Smith?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1.  	0.78 ASK-ADDRESS What is your address?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	0.56 ASK-NAME/ADDRESS What is your name and address, please?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+What is your address?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+I live at The Grange on Caledonian Drive in Eccles.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+Could you please describe the bits to me?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1. 	1.00 ASK-BITS-DESCRIPTION What do the bits look like?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	1.00 ASK-PROBLEM-DESCRIPTION What seems to be the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+3.  	0.57 ASK-BITS-COLOUR What colour are the bits?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+4.  	0.42 ASK-PROBLEM-DURATION How long have you had the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+5.  	0.36 ASK-ADDRESS What is your address?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+6.  	0.36 ASK-NAME What is your name?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+7.  	0.27 ASK-NAME/ADDRESS What is your name and address, please?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+What do the bits look like?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+The bits are black.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+How long have the bits been bothering you?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1.  	1.00 ASK-PROBLEM-DURATION How long have you had the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	0.61 ASK-PROBLEM-DESCRIPTION What seems to be the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+3.  	0.53 ASK-BITS-DESCRIPTION What do the bits look like?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+4.  	0.27 ASK-BITS-COLOUR What colour are the bits?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+5.  	0.22 ASK-BLACK-BITS Do you have black bits in your water?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+How long have you had the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+I just noticed the bits today.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+Have you seen any fire fighters around?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1.  	0.73 ASK-FIRE-BRIGADE Have you seen the fire brigade in the area?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	0.42 TELL-FIRE-BRIGADE-SEDIMENT The fire brigade stirred up some sediment
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+Have you seen the fire brigade in the area?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+The fire brigade were here earlier working on the hydrants.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+	i think the problem is that the fire brigade stirred up some sediment whilst
+working on the pipes
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1. 	 0.93 TELL-FIRE-BRIGADE-SEDIMENT The fire brigade stirred up some sediment
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+2.  	0.60 ASK-PROBLEM-DESCRIPTION What seems to be the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+3.  	0.39 ASK-PROBLEM-DURATION How long have you had the problem?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+4.  	0.27 ASK-FIRE-BRIGADE Have you seen the fire brigade in the area?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+The fire brigade stirred up some sediment
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+Is my water safe to drink?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+yes, it's safe.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Choose
+the best choice (0 for none):
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+1.  	0.76 TELL-WATER-SAFE Your water is perfectly safe to drink.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR?
+1
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">CSR:
+Your water is perfectly safe to drink.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Customer:
+Thank you for your help. Good-bye!
+<BR></TD></TR></TABLE><b>Running
+Micro-Casper</b><p>
+<b></b>To run Micro-Casper, load the file ICP.system. In this file, edit the
+default directory paths for the Code and Data directories. Then, evaluate the
+file. This code has been tested under Macintosh Common Lisp, version 2.0. It
+should run with few or no modifications under any Lisp system which complies
+with the Lisp standard defined in Common Lisp, the Language, 2nd Edition
+(Steele 1990). In particular, it makes use of the Common Lisp Object System
+(CLOS). However, very little of the code is dependant on CLOS-specific
+features, and the code could be rewritten using other data types, such as
+structures.<p>
+This code and data is also available via anonymous ftp from ftp.ils.nwu.edu, or
+directly from the author.<p>
+<b>Micro-Casper code</b><p>
+<b></b>The following pages contain the code for Micro-Casper, in the order
+described in Table  A.1. <p>
+<P><hr size=4>
+<b>Micro-Casper system</b><p>
+<b></b>This section contains code for loading the Micro-Casper program.<p>
+<p>
+(defparameter +code-dir+ "Leviathan:Micro-Casper:Code:")<p>
+(defparameter +data-dir+ "Leviathan:Micro-Casper:Data:")<p>
+;; change these for your system<p>
+<p>
+<b>Packages</b><p>
+<b></b>We define several packages, then use them.<p>
+<p>
+<code>
+;;; package definitions<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :icp)<p>
+    (make-package :icp))<p>
+<p>
+  (unless (find-package :frames)<p>
+    (make-package :frames))<p>
+<p>
+  (unless (find-package :dmap)<p>
+    (make-package :dmap))<p>
+<p>
+  (unless (find-package :log)<p>
+    (make-package :log))<p>
+  <p>
+  (unless (find-package :casper)<p>
+    (make-package :casper)))<p>
+<p>
+(use-package '( :log :dmap :frames :icp :casper))<p>
+</code>
+<p>
+PROBE-WARNING<p>
+This function warns if a file is not defined.  <p>
+<p>
+(defun probe-warning (pathname)<p>
+  (if (probe-file pathname)<p>
+    (format t "~%Found ~A" pathname)<p>
+    (format t "~%~A not found." pathname)))<p>
+<p>
+SLS<p>
+A Simple Loading System. This works under Macintosh Common Lisp 2.0. Other
+systems may differ. <p>
+<p>
+(defun sls (&amp;key directory subdirectory filenames (extension
+"lisp")<p>
+                 test)<p>
+  (let ((path (if subdirectory<p>
+                (format nil "~A~A" directory subdirectory)
+directory)))<p>
+  (loop for filename in filenames<p>
+        for comp = (format nil "~A~A.~A" path filename extension)<p>
+        do (if test (probe-warning comp) (load comp)))))<p>
+<p>
+load-utilities, load-micro-casper, load-data, load-source<p>
+SLS defintions for the Micro-Casper program.  <p>
+<p>
+(defun load-utilities (&amp;optional test)<p>
+  (sls :directory  +code-dir+<p>
+       :subdirectory "Utilities:"<p>
+       :filenames '("tables"<p>
+                    "logging"<p>
+                    "-&gt;list")<p>
+       :test test))<p>
+       <p>
+(defun load-micro-casper (&amp;optional test)<p>
+  (sls :directory  +code-dir+<p>
+       :filenames '("micro-frame" <p>
+                    "micro-dmap"<p>
+                    "micro-icp"<p>
+                    "micro-casper") <p>
+       :test test)<p>
+  )<p>
+<p>
+(defun load-data (&amp;optional test)<p>
+  (sls :directory  +data-dir+<p>
+       :filenames '("micro-casper" <p>
+                    "frames"<p>
+                    "phrases"<p>
+                    "associations" )<p>
+       :extension "data"<p>
+       :test test))<p>
+<p>
+(defun load-source (&amp;optional test)<p>
+  (load-utilities test)<p>
+  (load-micro-casper test))<p>
+<p>
+<b>SETUP</b><p>
+<b></b>Run (SETUP) to load the Micro-Casper program. <p>
+<p>
+(defun setup ()<p>
+  (load-source)<p>
+  (load-data))<p>
+<p>
+(format t "~%Run (SETUP) to setup everything.")<p>
+<b>Micro-Casper</b><p>
+<b></b>This section contains code for the Micro-Casper program. It's "micro" in
+the sense that no tutoring goes on--there's just a simple program loop that
+returns customer responses based on student statements. <p>
+ <p>
+(in-package "CASPER")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    MICRO-CASPER.LISP <p>
+;; Created: 11/10/94<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: A 'micro' version of the Casper Customer Service
+Representative<p>
+;;              Tutor<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<p>
+<b>Packages</b><p>
+<b></b>This code goes into its own package, and requires the tables and icp
+(indexed concept parsing) packages. <p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Packages<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :casper)<p>
+    (make-package :casper)))<p>
+<p>
+(in-package :casper)<p>
+(use-package :tables)<p>
+(use-package :icp)<p>
+<p>
+(export '(clear-statements def-csr def-cust def-response *casper-output*
+<p>
+          *casper-output* casper))<p>
+<p>
+<b>Statements</b><p>
+<b></b>A statement has a symbolic form and an English form. We store these in
+tables keyed on the symbolic form. The response of a customer is stored in a
+table keyed on the symbolic form of the CSR.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;;  Statements and responses<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+<p>
+(defclass statement ()<p>
+  ((symbolic-form :initarg :symbolic-form :initform nil :accessor
+symbolic-form)<p>
+   (english-form :initarg :english-form :initform nil :accessor
+english-form)))<p>
+<p>
+(defmethod print-object ((self statement) stream)<p>
+    (print-unreadable-object (self stream :type t :identity t)<p>
+      (format stream "~s" (symbolic-form self))))<p>
+<p>
+(defclass csr-statement (statement) ())<p>
+(defclass customer-statement (statement) ())<p>
+<p>
+(deftable cust-form-of)<p>
+(deftable csr-form-of)<p>
+(deftable response-of)<p>
+<p>
+(defun clear-statements ()<p>
+  (clear-table (cust-form-of))<p>
+  (clear-table (csr-form-of))<p>
+  (clear-table (response-of)))<p>
+<p>
+(defun csr-&gt;cust (csr-statement)<p>
+  "from a CSR statement (symbolic form) to a Customer's response"<p>
+  (cust-form-of (response-of csr-statement)))<p>
+<p>
+<b>Macro definitions</b><p>
+<b></b>This section defines macro defintions for CSR and customer statements.
+<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; CSR, Customer and Response definition macros.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defmacro def-csr (symbolic-form english-form)<p>
+  '(progn<p>
+     (setf (csr-form-of ',symbolic-form)<p>
+           (make-instance 'csr-statement<p>
+          :symbolic-form ',symbolic-form<p>
+          :english-form ,english-form)) ',symbolic-form))<p>
+<p>
+(defmacro def-cust (symbolic-form english-form)<p>
+  '(progn<p>
+     (setf (cust-form-of ',symbolic-form)<p>
+           (make-instance 'customer-statement<p>
+             :symbolic-form ',symbolic-form<p>
+             :english-form ,english-form)) ',symbolic-form))<p>
+<p>
+(defmacro def-response (csr-statement cust-statement)<p>
+  '(setf (response-of ',csr-statement) ',cust-statement))<p>
+<p>
+<b>Interface</b><p>
+<b></b>This section provides a minimal interface to take student input and
+display the customer statements. This is very primative, of course.  Notice the
+call to icp in get-csr-statement.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Interface functions. These are very primitive.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defvar *casper-output* *standard-output*)<p>
+(defvar *casper-input* *standard-input*)<p>
+(defvar *csr-prompt* "CSR? ")<p>
+<p>
+(defun display-csr-statement (csr-statement)<p>
+  (format *casper-output* "~%CSR: ~A" (english-form csr-statement)))<p>
+<p>
+(defun display-cust-statement (cust-statement)<p>
+  (format *casper-output* "~%Customer: ~A~%" (english-form
+cust-statement)))<p>
+<p>
+(defun get-csr-statement ()<p>
+  (terpri *casper-output*)<p>
+  (princ *csr-prompt* *casper-output*)<p>
+  (let ((words (cl-user::-&gt;symbols (read-line  *casper-input* ""
+nil))))<p>
+    (icp words)<p>
+    (target-concept (choose-best (best-results 7) :key
+'what-to-display))))<p>
+<p>
+(defun what-to-display (result)<p>
+  (format nil "~4,2F ~S ~A" <p>
+          (score result)<p>
+          (target-concept result)<p>
+          (let ((csr-statement (csr-form-of (target-concept
+result))))<p>
+            (if csr-statement (english-form csr-statement) ""))))<p>
+          <p>
+(defun choose-best (list &amp;key (key 'identity))<p>
+  (format *casper-output* "~%Choose the best choice (0 for none):")<p>
+  (loop for item in list<p>
+        for i from 1 doing<p>
+        (format t "~%~2,D. ~A" i (funcall key item)))<p>
+  (format *casper-output* "~%~A" *csr-prompt*)<p>
+  (let ((result (read *casper-input* nil 0)))<p>
+    (if (or (not (integerp result)) (= result 0)) nil<p>
+        (nth (1- result) list))))<p>
+<p>
+<b>Main Loop</b><p>
+<b></b>The main Casper loop starts the conversation off with greeting the
+customer, which has to be defined in the CL-USER package, and ends with the
+customer ringing off. <p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; The Casper main loop<p>
+;;----------------------------------------------------------------------------<p>
+(defun simple-casper-loop (csr-statement-name)<p>
+  (let ((csr-statement (csr-form-of csr-statement-name)))<p>
+    (when csr-statement<p>
+      (display-csr-statement csr-statement)<p>
+      (let ((cust-statement (csr-&gt;cust csr-statement-name)))<p>
+        (when cust-statement<p>
+          (display-cust-statement cust-statement)<p>
+          (when (eq (symbolic-form cust-statement)
+'cl-user::ring-off)<p>
+            (return-from simple-casper-loop t))))))<p>
+  (simple-casper-loop (get-csr-statement)))<p>
+<p>
+(defun casper ()<p>
+  (simple-casper-loop 'cl-user::greet-customer))<p>
+<p>
+<b>Micro index concept parsing</b><p>
+<b></b>Micro version of indexed concept parsing, using DMAP as the index
+concept recognizer and default appraiser functions.<p>
+<p>
+(in-package "ICP")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    MICRO-ICP.LISP <p>
+;; Created: 10/20/94<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: Micro version of indexed concept parsing.<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<b>Packages</b><p>
+<b></b>We define the ICP package, and use FRAMES, DMAP, TABLES, and LOG
+packages. <p>
+<p>
+<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :icp)<p>
+    (make-package :icp)))<p>
+<p>
+(in-package :icp)<p>
+<p>
+(use-package :frames)<p>
+(use-package :dmap)<p>
+(use-package :tables)<p>
+(use-package :log)<p>
+<p>
+(export '(def-assoc clear-icp-memory icp information-value<p>
+           best-results *icp-results* print-icp-log m-reference-concept
+m-root<p>
+           score target-concept index-concepts ticp))<p>
+<p>
+<b>Data structures</b><p>
+<b></b>Data structures for target concepts,  index concepts and their
+associations.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Data structures for index concepts, target concepts, and their
+relationships<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+;; an index set is a target concept and its associated index
+concepts<p>
+<p>
+(defclass index-set ()<p>
+  ((target-concept :initarg :target-concept :accessor
+target-concept)<p>
+   (indices :initarg :indices :accessor indices)))<p>
+<p>
+(defmethod print-object ((self index-set) stream)<p>
+    (print-unreadable-object (self stream :type t :identity t)<p>
+      (format stream "~s "  (target-concept self))<p>
+      (format stream "~s"(indices self))))<p>
+<b>Data tables</b><p>
+<b></b>Data tables include tracking target concepts and index concepts.<p>
+<p>
+<p>
+;; Data tables:<p>
+;; whether an object is a target concept;<p>
+;; from an index to all of the index sets it participates in;<p>
+;; from an index to all of the target concepts for which it is
+associated;<p>
+;; from an index to the number of target concepts it's associated with
+(for<p>
+;; calculating information value)<p>
+<p>
+(deftable target-concept-p)<p>
+(deftable index-&gt;index-sets)<p>
+(deftable index-&gt;target-concepts)<p>
+(deftable index-&gt;target-concepts-cardinality)<p>
+<p>
+(defun target-concept-cardinality ()<p>
+  "How many target concepts -- for calculating information value"<p>
+  (hash-table-count (target-concept-p)))<p>
+<p>
+<b>Installing index concept sets</b><p>
+<b></b>Installing an association between a set of index concepts and a target
+concept involves updating the various data tables.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Installation of index sets.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defmethod equal-instance-p ((index-set1 index-set) (index-set2
+index-set))<p>
+  (and (eql (target-concept index-set1)<p>
+            (target-concept index-set2))<p>
+       (equal (indices index-set1)<p>
+              (indices index-set2))))<p>
+<p>
+(defun set-index-&gt;target-concepts-cardinality (index)<p>
+  (if (index-&gt;target-concepts-cardinality index)<p>
+    (incf (index-&gt;target-concepts-cardinality index))<p>
+    (setf (index-&gt;target-concepts-cardinality index) 1)))<p>
+<p>
+(defmethod install ((index-set index-set))<p>
+  (with-slots (target-concept indices) index-set<p>
+  (dolist (index indices)<p>
+    (unless (frame-of index)<p>
+      (warn "~S does not name a frame." index))<p>
+    (unless (member index (index-&gt;target-concepts index))      <p>
+      (push target-concept (index-&gt;target-concepts index))<p>
+      (set-index-&gt;target-concepts-cardinality index))<p>
+    (pushnew index-set (index-&gt;index-sets index) :test
+'equal-instance-p))))<p>
+<p>
+(defun add-index-set (target-concept indices)<p>
+  (setf (target-concept-p target-concept) t)<p>
+  (install (make-instance 'index-set <p>
+             :target-concept target-concept<p>
+             :indices indices))<p>
+  target-concept)<p>
+<p>
+(defmacro def-assoc (name &amp;rest indices)<p>
+  '(progn<p>
+     (define-frame ',name '(m-reference-concept) nil)<p>
+     (add-index-set ',name ',indices)))<p>
+<p>
+<b>Results</b><p>
+<b></b>Each result from the parser contains three parts: the total score, the
+target concept, and the index concepts.<p>
+;;----------------------------------------------------------------------------<p>
+;; Class for result from the parser<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defclass icp-result ()<p>
+    ((score :initarg :score :initform 0 :accessor score)<p>
+     (target-concept :initarg :target-concept :initform nil :accessor
+target-concept)<p>
+     (index-concepts :initarg :index-concepts :initform nil :accessor
+index-concepts)))<p>
+<p>
+(defmethod print-object ((self icp-result) stream)<p>
+  (with-slots (score target-concept index-concepts) self<p>
+    (print-unreadable-object (self stream :type t :identity t)<p>
+      (format stream "~4,2F ~S ~S" score target-concept
+index-concepts))))<p>
+<p>
+(defun make-icp-result (score target-concept index-concepts)<p>
+  (make-instance 'icp-result<p>
+    :score score<p>
+    :target-concept target-concept<p>
+    :index-concepts index-concepts))<p>
+<b>Null defintions</b><p>
+<b></b>In case the parser returns no result, we define some null results.<p>
+<p>
+(defmethod score ((result null)) 0)<p>
+<p>
+(defmethod target-concept ((result null)) nil)<p>
+<p>
+(defmethod index-concepts ((result null)) nil)<p>
+  <p>
+<b>Indexed concept parsing loop</b><p>
+<b></b>The results are placed in *icp-results*, sorted by score, and duplicates
+removed.  Note that different matching functions could be defined.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; ICP proper<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defvar *icp-results* () "A place to store the results of the
+parser")<p>
+<p>
+(defun icp (words &amp;optional (match-fn 'words-&gt;indices))<p>
+  (setf *icp-results*<p>
+        (remove-duplicates <p>
+         (sort (score-index-sets (find-indices words match-fn))<p>
+               #'&gt; :key #'score)<p>
+         :key 'target-concept :from-end t))<p>
+  (first *icp-results*))<p>
+<p>
+(defun best-results (&amp;optional n)<p>
+  (if n (first-n *icp-results* n) *icp-results*))<p>
+<p>
+(defun find-indices (words match-fn)<p>
+  (funcall match-fn words))<p>
+<p>
+(defun score-index-sets (found-indices)<p>
+  (loop for index-set in (candidate-index-sets found-indices)<p>
+        collect (make-icp-result<p>
+                 (index-set-score index-set found-indices)<p>
+                 (target-concept index-set)<p>
+                 (indices index-set))))<p>
+<b>Candidate index concept sets</b><p>
+<b></b>Look for any index set association that contains one of the index
+concepts seen in the text--or an abstraction of the index concept.<p>
+<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Find all candidate index sets from the index concepts seen<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun candidate-index-sets (found-indices)<p>
+  (remove-duplicates<p>
+   (loop for index in (all-absts-in found-indices)<p>
+         append (index-&gt;index-sets index))))<p>
+<p>
+(defun all-absts-in (concepts)<p>
+  (remove-duplicates <p>
+   (loop for concept in concepts<p>
+         append (all-abstractions (frame-of concept)))))<p>
+<p>
+<p>
+<b>Calculating match scores</b><p>
+<b></b>Call the appraisers on the retreived candidates and calculate a total
+score.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Calculate the scores for each candidate index set<p>
+;; The real work is done by the appraiser functions. INDEX-SET-SCORE<p>
+;; just adds them up.  Appraisers with no votes are not called.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun index-set-score (index-set found-indices)<p>
+  (let ((score 0))<p>
+    (map-table #'(lambda (appraiser votes)<p>
+                   (unless (zerop votes)<p>
+                     (incf score<p>
+                           (call-appraiser appraiser <p>
+                                           index-set
+found-indices))))<p>
+               (appraiser-votes))<p>
+    (log:record-log (target-concept index-set)<p>
+                    "Total score for target ~S  = ~5,3F"<p>
+                    (target-concept index-set)  score)<p>
+    (log:record-log (target-concept index-set)<p>
+                    "Associated index concepts:
+~S~%~&amp;~75,,,'-&lt;~&gt;~%" <p>
+                    (indices index-set))<p>
+    score))<p>
+<p>
+(defun call-appraiser (appraiser index-set found-indices)<p>
+  (let ((score <p>
+         (* (funcall appraiser index-set found-indices)<p>
+            (appraiser-weight appraiser))))<p>
+    (log:record-log (target-concept index-set)<p>
+                    "~A score = ~5,3F (Raw score * ~5,3F
+weighting)~%"<p>
+                    appraiser score (appraiser-weight appraiser))<p>
+    score))<p>
+  <p>
+<b>Information value</b><p>
+<b></b>The information of an index concept is based on how often the index is
+associated with a target concept compared to the number of target concepts
+overall.<p>
+;;----------------------------------------------------------------------------<p>
+;; Information value functions<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun probability-of-index (index)<p>
+  (let ((cardinality (index-&gt;target-concepts-cardinality index)))<p>
+    (if (null cardinality) least-positive-short-float <p>
+        (/ cardinality <p>
+           (target-concept-cardinality)))))<p>
+<p>
+(defun information-value (index)<p>
+  (- (log (probability-of-index index) 2)))<p>
+<p>
+<b>Appraisers</b><p>
+<b></b>An appraiser is a weighted scoring function based on index concepts seen
+and predicted.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Appraisers<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+;;; An appraiser is a function assigned a non-zero number of votes.<p>
+;;; The function should take an index-set and an found-indices and
+return<p>
+;;; a score between 0 and 1 inclusive. The score is then multiplied
+by<p>
+;;; the appraiser's weight, which is the number of votes associated<p>
+;;; with the appraiser divided by the total number of votes for all<p>
+;;; appraisers. <p>
+<p>
+;;; (ASSIGN-VOTES name [votes]) =&gt; name<p>
+;;;   Assigns the given number of votes to an appraiser. If no votes<p>
+;;;   are specified, 1 is assumed.<p>
+<p>
+;;; Bookkeeping:<p>
+;;;<p>
+;;; As votes are assigned, we keep track of the total votes, to
+speed<p>
+;;; up calculating relative weights at parse time.<p>
+<p>
+(deftable appraiser-votes)<p>
+<p>
+(defvar *total-votes* 0<p>
+  "Total number of votes for appraisers.")<p>
+<p>
+(defun clear-appraisers ()<p>
+  (clear-table (appraiser-votes))<p>
+  (setf *total-votes* 0))<p>
+<p>
+(defun assign-votes (name &amp;optional (votes 1))<p>
+  (setf (appraiser-votes name) votes)<p>
+  (tally-votes)<p>
+  name)<p>
+<p>
+(defun tally-votes ()<p>
+  (setq *total-votes* 0)<p>
+  (map-table #'(lambda (name votes)<p>
+                 (declare (ignore name))<p>
+                 (incf *total-votes* votes))<p>
+             (appraiser-votes)))<p>
+<p>
+(defun appraiser-weight (appraiser)<p>
+  (/ (appraiser-votes appraiser) *total-votes*))<p>
+<p>
+<b>Default appraisers</b><p>
+<b></b>Default appraisers calcuate scores based directly on index concepts seen
+and predicted.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Default appraiser functions<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+;;; Each of these appraisers compares a given index set against the<p>
+;;; pool of indices actually seen in the input:<p>
+;;; <p>
+;;;   PREDICTED-SCORE -- how many predicted items were seen?<p>
+;;;   UNPREDICTED-SCORE -- how many items were not predicted?<p>
+;;;   UNSEEN-SCORE -- how many predicted items were not seen?<p>
+<p>
+<p>
+(defun predicted-score (index-set found-indices)<p>
+  (let* ((predicted (indices index-set))<p>
+         (predicted-items (predicted-items found-indices predicted))<p>
+         (score<p>
+          (/ (summed-value (target-concept index-set) predicted-items
+'identity)<p>
+             (summed-value (target-concept index-set) predicted
+'identity))))<p>
+    (log:record-log  (target-concept index-set)<p>
+                     "Predicted raw score = ~5,3F (successfully predicted /
+predicted)"<p>
+                     score)<p>
+    score))<p>
+<p>
+(defun unpredicted-score (index-set found-indices)<p>
+  (let* ((predicted (indices index-set))<p>
+         (unpredicted-items (unpredicted-items found-indices
+predicted))<p>
+         (score<p>
+          (- 1 (/ (summed-value (target-concept index-set)
+unpredicted-items 'identity)<p>
+                  (summed-value (target-concept index-set) found-indices
+'identity)))))<p>
+    (log:record-log  (target-concept index-set)<p>
+                     "Unpredicted raw score = ~5,3F (1 - unpredicted /
+seen)"<p>
+                     score)<p>
+    score))<p>
+<p>
+(defun unseen-score (index-set found-indices)<p>
+  (let* ((predicted (indices index-set))<p>
+         (unseen-items (unseen-items found-indices predicted))<p>
+         (score<p>
+          (- 1 (/ (summed-value (target-concept index-set) unseen-items
+'identity)<p>
+                  (summed-value (target-concept index-set) predicted
+'identity)))))<p>
+    (log:record-log  (target-concept index-set)<p>
+                     "Unseen raw score = ~5,3F (1 - unseen /
+predicted)"<p>
+                     score)<p>
+    score))<p>
+ <p>
+(defun remove-parts (l)<p>
+  "remove index concepts that form part of another index concept"<p>
+  (remove-if #'(lambda (item) (member item l :test 'part-of))<p>
+             l))<p>
+<p>
+(defun predicted-items (seen-set predicted-set)<p>
+  (intersection predicted-set seen-set :test 'abst-or-whole-of))<p>
+<p>
+(defun unpredicted-items (seen-set predicted-set)<p>
+  (set-difference seen-set predicted-set :test 'spec-or-part-of))<p>
+<p>
+(defun unpredicted-items (seen-set predicted-set)<p>
+  (set-difference (remove-parts seen-set) predicted-set :test
+'specp))<p>
+<p>
+(defun unseen-items (seen-set predicted-set)<p>
+  (set-difference predicted-set seen-set :test 'abst-or-whole-of))<p>
+<p>
+<p>
+(defun summed-value (base predicted-set fn)<p>
+  (let ((val<p>
+         (loop for item in predicted-set<p>
+               sum (funcall fn (information-value item)))))<p>
+    (log:record-log base "Summed value of ~S~:[ using ~A~;~*~] =&gt;
+~5,3F"<p>
+        predicted-set (eql fn 'identity) fn val)<p>
+    val))<p>
+<p>
+<p>
+<b>Expectation  appraiser</b><p>
+<b></b>This is an example of an appraiser based on whether a target concept was
+expected. This isn't used in the example, though.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; This is an example of how to write an expection appraiser, although this
+<p>
+;; isn't used by default.<p>
+;;----------------------------------------------------------------------------
+<p>
+<p>
+(defvar *expectations* nil <p>
+  "A list of target concepts predicted")<p>
+<p>
+(defun add-expectation (target-concept)<p>
+  (pushnew target-concept *expectations*))<p>
+<p>
+(defun clear-expectations ()<p>
+  (setf *expectations* nil))<p>
+<p>
+(defun set-expectations (target-concepts)<p>
+  (setf *expectations* target-concepts))<p>
+<p>
+(defun expected-p (target-concept)<p>
+  (and (member target-concept *expectations* ) t))<p>
+<p>
+(defun expected-score (index-set found-indices)<p>
+  (declare (ignore found-indices))<p>
+  (let* ((target-concept (target-concept index-set))<p>
+         (found (expected-p target-concept))<p>
+         (score (if found 1 0)))<p>
+    (log:record-log  target-concept<p>
+                     "Expected raw score = ~5,3F (1 if expected, 0
+otherwise)"<p>
+                     score)<p>
+    score))<p>
+<p>
+<b>Default appraiser weights</b><p>
+<b></b>This makes the predicted index score twice as important as the others.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Weight the appraisers<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(clear-appraisers)<p>
+<p>
+(assign-votes 'predicted-score 2)<p>
+(assign-votes 'unpredicted-score)<p>
+(assign-votes 'unseen-score)<p>
+<p>
+<b>Clearing memory</b><p>
+<b></b>This clears out all frames and predictions.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Clearing memory<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun clear-icp-memory ()<p>
+  (clear-frame-memory)<p>
+  (clear-predictions :all)<p>
+  (clear-table (target-concept-p))<p>
+  (clear-table (index-&gt;target-concepts))<p>
+  (clear-table (index-&gt;index-sets))<p>
+  (clear-table (index-&gt;target-concepts-cardinality))<p>
+  t)<p>
+<p>
+<b>DMAP-based matcher</b><p>
+<b></b>DMAP recognizes index concepts in the input text. These are collected
+and returned to the icp function.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; A DMAP-based index concept recognizer<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun words-&gt;indices (sent)<p>
+  (reset-parser)<p>
+  (let (concepts)<p>
+    (setf (call-backs 'm-root)<p>
+          (list #'(lambda (item start end) <p>
+                    (record-log 'DMAP "DMAP referenced ~S from ~S" <p>
+                                item (subseq sent (1- start) end))<p>
+                    (push item concepts))))<p>
+    (parse sent)<p>
+    (setf concepts (mapcar #'frames::name concepts))<p>
+    (record-log 'WORDS-&gt;INDICES <p>
+                "~S ~%produced the index pool ~S~%~75,,,'=&lt;~&gt;~%"
+<p>
+                sent concepts)<p>
+    concepts))<p>
+<p>
+<b>Logging and testing</b><p>
+<b></b>One can use ticp to test individual sentences and see how they are
+scored.<p>
+;;----------------------------------------------------------------------------<p>
+;; Logging  &amp; testing functions<p>
+;;----------------------------------------------------------------------------<p>
+(defun first-n (sequence n)<p>
+  (loop for i from 1 to n<p>
+        for el in sequence <p>
+        collect el))<p>
+<p>
+(defun print-icp-log (&amp;optional (n 7) (stream
+*standard-output*))<p>
+  (print-log 'WORDs-&gt;INDICES stream)<p>
+  (loop for result in (first-n *icp-results* n) <p>
+        doing<p>
+        (print-log (target-concept result) stream)))<p>
+<p>
+(defmacro ticp (&amp;rest words)<p>
+  '(with-logging<p>
+     (icp ',words)<p>
+     (print-icp-log)))<p>
+<b>Micro Direct Memory Access Parsing</b><p>
+<b></b>A 'light' version of the DMAP algorithm.<p>
+<p>
+(in-package "DMAP")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    MICRO-DMAP.LISP<p>
+ <p>
+;; Created: 10/19/94<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: Direct Memory Access Parsing.<p>
+;; based on various versions of DMAP by Chris Riesbeck.<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<p>
+<p>
+<b>Packages</b><p>
+<b></b>DMAP is in its own package, and depends on tables and frames.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Packages<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :dmap)<p>
+    (make-package :dmap)))<p>
+<p>
+(in-package :dmap)<p>
+<p>
+(use-package :tables)<p>
+(use-package :frames)<p>
+<p>
+(export '(add-phrasal-pattern def-phrase def-phrases<p>
+          parse reset-parser<p>
+          clear-predictions <p>
+          call-backs))<p>
+<p>
+<b>Predictions</b><p>
+<b></b>The main data structure is the prediction--expectations as to what will
+be seen next in the input.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Data structure for predictions. These are stored in tables keyed on
+the<p>
+;; "target" of their first phrasal pattern element<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defclass prediction ()<p>
+  ((base :initarg :base :initform nil :accessor base) <p>
+   (phrasal-pattern :initarg :phrasal-pattern :initform nil :accessor
+phrasal-pattern) <p>
+   (start :initarg :start :initform nil :accessor start)<p>
+   (next :initarg :next :initform nil :accessor next) <p>
+   (slots :initarg :slots :initform nil :accessor slots)))<p>
+<p>
+(defun make-prediction (&amp;key base phrasal-pattern start next slots)
+<p>
+  (make-instance 'prediction <p>
+    :base base :phrasal-pattern phrasal-pattern :start start :next next
+:slots slots))<p>
+<p>
+<b>Prediction Tables</b><p>
+<b></b>The anytime prediction table contains predictions that can fire at any
+time. Dynamic predictions are created as parts of any time predictions (or
+other dynamic predictions) are seen.<p>
+<p>
+(eval-when (:compile-toplevel :load-toplevel :execute)<p>
+  (tables:deftable anytime-predictions-on)<p>
+  (tables:deftable dynamic-predictions-on))<p>
+<p>
+(defun add-phrasal-pattern (base phrasal-pattern)<p>
+  "Adds the phrasal pattern of base to the table of static
+predictions."<p>
+  (if (and (eql base (first phrasal-pattern)) (null (rest
+phrasal-pattern)))<p>
+    nil<p>
+    (progn (index-anytime-prediction<p>
+            (make-prediction :base base :phrasal-pattern phrasal-pattern))
+<p>
+           phrasal-pattern)))<p>
+<p>
+(defun index-anytime-prediction (prediction)<p>
+  "Put the phrasal pattern/prediction in the table for its target."<p>
+  (push prediction (anytime-predictions-on (prediction-target
+prediction))))<p>
+<p>
+(defun index-dynamic-prediction (prediction)<p>
+  "Put the phrasal pattern/prediction in the table for its target."<p>
+  (push prediction (dynamic-predictions-on (prediction-target
+prediction))))<p>
+<p>
+(defun predictions-on (index)<p>
+  (append (anytime-predictions-on index)<p>
+          (dynamic-predictions-on index)))<p>
+<p>
+(defun clear-predictions (&amp;optional (which :dynamic))<p>
+  (ecase which<p>
+    (:dynamic (clear-table (dynamic-predictions-on)))<p>
+    (:anytime (clear-table (anytime-predictions-on)))<p>
+    (:all (clear-table (dynamic-predictions-on))<p>
+          (clear-table (anytime-predictions-on)))))<p>
+<p>
+(defmacro def-phrase (base &amp;rest phrasal-pattern)<p>
+  (if (and (eql base (car phrasal-pattern)) (null (cdr
+phrasal-pattern)))<p>
+      (error "~S can't reference itself" base)<p>
+      '(progn (add-phrasal-pattern ',base ',phrasal-pattern)<p>
+              ',phrasal-pattern)))<p>
+<p>
+DEF-PHRASE<p>
+This creates a prediction based on a phrasal pattern associated with a
+concept.<p>
+<p>
+(defmacro def-phrases (base &amp;rest phrasal-patterns)<p>
+  '(loop for phrasal-pattern in ',phrasal-patterns doing<p>
+         (add-phrasal-pattern ',base phrasal-pattern)))<p>
+<p>
+<b>Miscellany</b><p>
+<b></b>A global counter and a table of call back functions.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Misc. data structures.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defvar *dmap-pos* 0)           ;;global text position<p>
+<p>
+;; Call backs are ad-hoc functions run when a concept (or one of its<p>
+;; specializations) is referenced. Function should take three<p>
+;; parameters: the item referenced, the start position in the text,
+and<p>
+;; the end position in the text.<p>
+<p>
+(eval-when (:compile-toplevel :load-toplevel :execute)<p>
+  (tables:deftable call-backs))<p>
+<p>
+<b>Main </b>parse loop<p>
+Reference every word in the input list and see if any predictions are fired.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; To parse is to reference every word in the text, looking for
+predictions<p>
+;; on the words.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun parse (sent)<p>
+  (dolist (w sent)<p>
+    (setq *dmap-pos* (1+ *dmap-pos*))<p>
+    (reference w *dmap-pos* *dmap-pos*)))<p>
+<p>
+reference loop<p>
+To reference an item is to see if it (or one of its abstractions) fires a
+prediction, and then to run any potential call back fuctions.<p>
+<p>
+(defun reference (item start end)<p>
+  (dolist (abst (all-abstractions item))<p>
+    (dolist (prediction (predictions-on abst)) <p>
+      (advance-prediction prediction item start end))<p>
+    (dolist (fn (call-backs abst)) <p>
+      (funcall fn item start end))))<p>
+<p>
+<b>Prediction advancement</b><p>
+<b></b>If the phrasal pattern has been used up, reference the base target;
+otherwise, create a dynamic prediction for the next item to be seen in the
+phrasal pattern.<p>
+<p>
+(defun advance-prediction (prediction item start end)<p>
+  "Advancing a phrasal pattern/prediction means:<p>
+   if the predicted phrasal pattern has been completely seen, to reference
+<p>
+   the base of the prediction with the slots that have been
+collected;<p>
+   otherwise, to create a new prediction for the next item in the<p>
+   prediction phrasal pattern."<p>
+  (when (or (null (next prediction))<p>
+            (= (next prediction) start))<p>
+    (let ((base (base prediction))<p>
+          (phrasal-pattern (cdr (phrasal-pattern prediction)))<p>
+          (start (or (start prediction) start))<p>
+          (slots (extend-slots prediction item)))      <p>
+      (if (null phrasal-pattern)<p>
+        (reference (find-frame base slots) start end)<p>
+        (index-dynamic-prediction  <p>
+         (make-prediction :base base :phrasal-pattern phrasal-pattern
+:start start :next (1+ *dmap-pos*) <p>
+                          :slots slots))))))<p>
+<p>
+(defun extend-slots (prediction item)<p>
+  (let ((spec (first (phrasal-pattern prediction)))<p>
+        (slots (slots prediction)))<p>
+    (if (role-specifier-p spec)<p>
+        (if (abstp item (prediction-target prediction))<p>
+            slots<p>
+            (cons (list (role-specifier spec) (-&gt;name item))
+slots))<p>
+        slots)))<p>
+<p>
+<b>Prediction targets</b><p>
+<b></b>The first item in a phrasal pattern defines a target, with special
+syntax for feature specifiers.<p>
+<p>
+(defun prediction-target (prediction)<p>
+  "The target of a phrasal pattern is based on the first item in the<p>
+   phrasal pattern yet to be seen. <p>
+   If that item is a role-specifier, then the target is the <p>
+   inherited filler of its role;<p>
+   Otherwise, it is just the item itself."<p>
+  (let ((spec (first (phrasal-pattern prediction))))<p>
+    (if (role-specifier-p spec)<p>
+        (let ((base (base prediction)))<p>
+          (or (inherited-attribute-value (frame-of base) (role-specifier
+spec))<p>
+              (error "~S not a role in ~S" (first spec) base)))<p>
+        spec)))<p>
+<p>
+(defun role-specifier-p (item) (keywordp item))<p>
+(defun role-specifier (item) item)<p>
+<p>
+<b>Resetting the parser</b><p>
+<b></b>Resetting the global position counter and dynamic predictions.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Resetting the parser.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defun reset-parser ()<p>
+  (setf *dmap-pos* 0)<p>
+  (clear-predictions :dynamic)<p>
+  t)<p>
+<p>
+<b>Micro Frame package</b><p>
+<b></b>A 'light' version of a frame package.<p>
+<p>
+(in-package "FRAMES")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    MICRO-FRAME.LISP <p>
+;; Created: 10/17/94<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: based on various versions of frame code developed by
+Chris<p>
+;;              Riesbeck<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<p>
+<b>Packages </b><p>
+<b></b>Frames require the tables package.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Packages<p>
+;;----------------------------------------------------------------------------<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :frames)<p>
+    (make-package :frames)))<p>
+<p>
+(in-package :frames)<p>
+(use-package :tables)<p>
+<p>
+(export '(define-frame def-frame <p>
+           frame-of -&gt;frame -&gt;name frame-p<p>
+           abstractions specializations all-abstractions features<p>
+           attribute-value inherited-attribute-value<p>
+           abstp specp part-of whole-of <p>
+           abst-or-whole-of spec-or-part-of find-frame<p>
+           clear-frame-memory print-frames))<p>
+<p>
+<b>Frame data structure</b><p>
+<b></b>A frame is a CLOS object, stored in a table by their symbolic name.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; data structures for frames: Frames form a class, whose instances are
+stored<p>
+;; in a table keyed by their symbolic names.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(deftable frame-of)<p>
+<p>
+(defclass frame ()<p>
+  ((name :initarg :name :accessor name)<p>
+   (abstractions :initarg :abstractions :initform nil :accessor
+abstractions)<p>
+   (specializations :initarg :specializations :initform nil :accessor
+specializations)<p>
+   (all-abstractions :initarg :all-abstractions :accessor
+all-abstractions)<p>
+   (features :initarg :features :initform nil :accessor features)))<p>
+<p>
+<b>Various I/O Functions</b><p>
+<b></b>Printing, reading, forcing, etc frames.<p>
+<p>
+(defmethod print-object ((frame frame) stream)<p>
+  (format stream "[~S]" (name frame)))<p>
+<p>
+(defmethod name ((frame t)) frame)<p>
+<p>
+(defun frame-p (object)<p>
+  (typep object (find-class 'frame)))<p>
+<p>
+(defun -&gt;frame (object)<p>
+  (if  (frame-p object) object<p>
+       (frame-of object)))<p>
+<p>
+(defun -&gt;name (object)<p>
+  (if (frame-p object)<p>
+    (name object)<p>
+    object))<p>
+<p>
+(defun force-frame (name)<p>
+  (or (frame-of name)<p>
+      (setf (frame-of name) <p>
+            (make-instance 'frame <p>
+              :name name<p>
+              :all-abstractions (list name)))))<p>
+<p>
+<b>Features</b><p>
+<b></b>A feature is an attribute/value pair.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Data structure for features (slots). A attribute/value pair.<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defclass feature ()<p>
+  ((attribute :initarg :attribute :accessor attribute)<p>
+   (value :initarg :value :initform nil :accessor value)))<p>
+<p>
+<b>Various feature I/O fumctions</b><p>
+<b></b>Printing, creating, finding features and their values in frames.<p>
+<p>
+(defun feature-p (object)<p>
+  (typep object (find-class 'feature)))<p>
+<p>
+(defmethod make-feature (attribute value)<p>
+  (make-instance 'feature :attribute attribute :value value))<p>
+<p>
+(defun make-features (attribute-value-list)<p>
+  (loop for (attribute value) in attribute-value-list<p>
+        collect (make-feature attribute value)))<p>
+<p>
+(defmethod print-object ((feature feature) stream)<p>
+  (with-slots (attribute value) feature<p>
+    (print-unreadable-object (feature stream :type t :identity t)<p>
+      (format stream "~S ~S" attribute value))))<p>
+<p>
+<p>
+(defmethod feature-named ((frame frame) attribute)<p>
+  (loop for feature in (features frame)<p>
+        when (eq (attribute feature) attribute)<p>
+        return feature))<p>
+  <p>
+(defmethod attribute-value ((frame frame) attribute)<p>
+  (let ((feature (feature-named frame attribute)))<p>
+    (if feature (value feature) nil)))<p>
+<p>
+(defmethod (setf attribute-value) (value (frame frame) attribute)<p>
+  (let ((feature (feature-named frame attribute)))<p>
+    (if feature <p>
+      (setf (value feature) value)<p>
+      (let ((new-feature (make-feature :attribute attribute :value
+value)))<p>
+        (push new-feature (features frame))<p>
+        value))))<p>
+<p>
+;; inherited attribute values<p>
+<p>
+(defun inherited-attribute-value (frame attribute)<p>
+  (or (attribute-value (-&gt;frame frame) attribute)<p>
+      (loop for abstraction in (abstractions frame)<p>
+            thereis (inherited-attribute-value (-&gt;frame abstraction)
+attribute))))<p>
+ <p>
+<b>Testing partonomy</b><p>
+<b></b>Is a frame a part/whole of  another frame?<p>
+<p>
+(defmethod part-of ((part frame) (whole frame))<p>
+  (member (name part) (all-features whole)<p>
+          :key 'value))<p>
+<p>
+(defmethod part-of ((part t) (whole t))<p>
+  (let ((whole (frame-of whole))<p>
+        (part (frame-of part)))<p>
+    (if (and whole part)<p>
+      (part-of part whole)<p>
+      nil)))<p>
+<p>
+(defmethod whole-of ((whole t) (part t))<p>
+  (part-of whole part))<p>
+<p>
+<b>Abstractions and specializations</b><p>
+<b></b>Functions for defining, updating and accessing abstractions and
+specializations.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Abstractions and specializations<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defmethod all-abstractions ((frame t))<p>
+  (let ((frame-maybe (frame-of frame)))<p>
+    (if frame-maybe<p>
+      (all-abstractions frame-maybe)<p>
+      (list frame))))<p>
+<p>
+(defmethod update-specializations ((frame frame))<p>
+  (loop for abstraction in (abstractions frame) doing<p>
+        (setf (specializations (force-frame abstraction))<p>
+              (pushnew (name frame) (specializations (frame-of
+abstraction))))))<p>
+<p>
+(defmethod update-abstractions ((frame frame)) <p>
+  (setf (all-abstractions frame)<p>
+        (calculate-all-abstractions frame))<p>
+  (loop for specialization in (specializations frame) doing<p>
+        (update-abstractions (frame-of specialization))))<p>
+                    <p>
+(defmethod calculate-all-abstractions* ((frame frame))<p>
+  (cond <p>
+   ((null (abstractions frame)) nil)<p>
+   (t (append (abstractions frame)<p>
+              (loop for abstraction in (abstractions frame)<p>
+                    appending<p>
+                    (calculate-all-abstractions* (force-frame
+abstraction)))))))<p>
+<p>
+(defmethod calculate-all-abstractions ((frame frame))<p>
+  (cons (name frame) (remove-duplicates (calculate-all-abstractions*
+frame))))<p>
+<p>
+<p>
+(defmethod abstp ((abst frame) (spec frame))<p>
+  (member (name abst) (all-abstractions spec) :test 'eq))<p>
+<p>
+(defmethod abstp ((abst t) (spec t))<p>
+  (let ((af (frame-of abst))<p>
+        (sf (frame-of spec)))<p>
+    (if (and af sf)<p>
+      (abstp af sf)<p>
+      (eql abst spec))))<p>
+<p>
+(defmethod specp ((spec t) (abst t))<p>
+  (abstp abst spec))<p>
+<p>
+(defun abst-or-whole-of (big small)<p>
+  (or (abstp big small)<p>
+      (whole-of big small)))<p>
+<p>
+(defun spec-or-part-of (small big)<p>
+  (or (specp small big)<p>
+      (part-of small big)))<p>
+<p>
+<b>More I/O functions for frames and frame memory</b><p>
+<b></b>How frames are defined, including a read macro and the DEF-FRAME
+macro.<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Interface to clear memory and define frames<p>
+;;----------------------------------------------------------------------------<p>
+(defun clear-frame-memory ()<p>
+  (clear-table (frame-of)))<p>
+<p>
+(set-macro-character<p>
+ #\[<p>
+ #'(lambda(stream char)<p>
+     (declare (ignore char))<p>
+     '(frames:frame-of ',@(read-delimited-list #\] stream t)))<p>
+ nil  ; not non-terminating.  Cannot be embedded w/in symbols)<p>
+;;; causes a right-bracket w/o a left to signal an error<p>
+(set-macro-character #\] (get-macro-character #\) ) nil)<p>
+<p>
+(defun define-frame (name abstractions attribute-value-list)<p>
+  (let ((frame (force-frame name)))<p>
+    (setf (abstractions frame) (mapcar 'name abstractions))<p>
+    (setf (features frame) (make-features attribute-value-list))<p>
+    (update-specializations frame)<p>
+    (update-abstractions frame)<p>
+    frame))<p>
+<p>
+(defmacro def-frame (name &amp;optional abstractions &amp;rest
+attribute-value-list)<p>
+  '(define-frame ',name ',abstractions ',attribute-value-list))<p>
+<b>Frame finding</b><p>
+<b></b>Functions for finding a frame, based on a particular concept and a set
+of attribute/ value pairs.<p>
+<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Frame finding<p>
+;;----------------------------------------------------------------------------<p>
+<p>
+(defmethod all-features ((frame frame))<p>
+  (remove-duplicates<p>
+   (append <p>
+    (loop for abstraction in (abstractions frame)<p>
+          appending (all-features (frame-of abstraction)))<p>
+    (features frame))<p>
+   :key 'attribute))<p>
+           <p>
+   <p>
+(defun find-frame (abst features)<p>
+  "Find a frame starting at abst, with the features listed."<p>
+  (if (null features) (-&gt;frame abst)<p>
+      (let ((specs (find-specs abst features)))<p>
+        (if (and (null (rest specs))<p>
+                 (features-subsetp features (first specs)))<p>
+          (-&gt;frame (first specs))<p>
+          (define-frame <p>
+                  (gen-frame-name (first specs))<p>
+                  specs features)))))<p>
+<p>
+(defun find-specs (abst features)<p>
+  "Find the most specific specialization of abst."<p>
+  (or (remove-duplicates<p>
+       (loop for spec in (specializations (-&gt;frame abst))<p>
+             when (features-abstp spec features)<p>
+             nconc (find-specs spec features)))<p>
+      (list abst)))<p>
+<p>
+(defun features-abstp (abst features)<p>
+  (loop for (attribute value) in features<p>
+        always<p>
+        (abstp (inherited-attribute-value (-&gt;frame abst) attribute)
+value)))<p>
+<p>
+(defun features-subsetp (features abst)<p>
+  (subsetp features (all-features (-&gt;frame abst))<p>
+           :test<p>
+           #'(lambda (feature-list feature)<p>
+               (and (eql (first feature-list) (attribute feature))<p>
+                    (eql (second feature-list)  (value feature))))))<p>
+<p>
+<p>
+(defun gen-frame-name (name)<p>
+  (gentemp (format nil "~A-" (symbol-name name))))<p>
+<p>
+(defun features-&gt;feature-specs (features)<p>
+  (loop for feature in features <p>
+        collecting (list (attribute feature) (value feature))))<p>
+<p>
+<p>
+<b>Printing utilities for frames</b><p>
+<b></b>Methods for printing out a frame or the entire conceptual memory.<p>
+<p>
+;;; Printing utilities<p>
+;;;
+----------------------------------------------------------------------<p>
+<p>
+;;; (DISPLAY-FRAME frame [stream]) =&gt; no values<p>
+<p>
+;;; DISPLAY-FRAME prints the frame in a readable fashion on the
+stream<p>
+;;; (which defaults to the standard output). The frame argument<p>
+;;; can be either the name of a frame or an internal frame
+structure.<p>
+;;; Nested frames are printed in full form the first time they are<p>
+;;; seen.<p>
+<p>
+(defun display-frame (frame &amp;optional (stream
+*standard-output*))<p>
+  (cond ((null frame) nil)<p>
+	((not (frame-p frame))<p>
+	 (display-frame (frame-of frame)))<p>
+	(t<p>
+	 (let ((*frames-shown* '()))<p>
+	   (declare (special *frames-shown*))<p>
+	   (format stream "~%~S~%" (name frame))<p>
+	   (pprint-frame-info frame stream 4)<p>
+	   (format stream "~%")<p>
+	   (values)))))<p>
+<p>
+;;; (PPRINT-frame-INFO frame stream left-margin) =&gt; undefined<p>
+<p>
+;;; PPRINT-frame-INFO prints internal frame structures in a readable<p>
+;;; fashion on stream, indented left-margin number of spaces.<p>
+<p>
+(defun pprint-frame-info (frame stream left-margin)<p>
+  (declare (special *frames-shown*))<p>
+  (unless (or (null frame) (member frame *frames-shown*))<p>
+    (push frame *frames-shown*)<p>
+    (loop for abst in (abstractions frame)<p>
+	  do (format stream "~VT:ISA ~S~%" left-margin abst))<p>
+    (loop for feature in (features frame)<p>
+	  do (format stream "~VT~S ~S~%" <p>
+		     left-margin <p>
+		     (attribute feature)<p>
+		     (value feature))<p>
+	     (pprint-frame-info (frame-of (value feature))<p>
+			      stream<p>
+			      (+ left-margin 4)))))<p>
+<p>
+(defun display-frames-with-roles (name roles<p>
+		                       &amp;optional (stream *standard-output*) <p>
+		                       &amp;aux shown)<p>
+  (labels ((show (name prefix)<p>
+             (let* ((frame (-&gt;frame name))<p>
+                    (specs (specializations frame))<p>
+                   (features (and roles (features frame))))<p>
+               (cond ((member name shown)<p>
+                      (format stream<p>
+			      (if (or specs features) "~S...~%" "~S~%") name))<p>
+                     (t<p>
+                      (format stream "~S~%" name)<p>
+                      (push name shown)<p>
+                      (when features<p>
+                        (let ((bar (if specs "|" " ")))<p>
+                          (dolist (feature features)<p>
+                            (when (and<p>
+                                   (feature-p feature)<p>
+                                   (member (attribute feature)
+roles))<p>
+                              (format stream "~A ~A ~S ~S~%" prefix
+bar<p>
+                                      (attribute feature)<p>
+                                      (value feature))))))<p>
+                      (when specs<p>
+                        (do ((next-prefix (format nil "~A |   "
+prefix))<p>
+                             (last-prefix (format nil "~A     "
+prefix))<p>
+                             (l specs (cdr l)))<p>
+                            ((null (cdr l))<p>
+                             (format stream "~A +-- " prefix)<p>
+                             (show (car l) last-prefix))<p>
+                          (format stream "~A |-- " prefix)<p>
+                          (show (car l) next-prefix))))))))<p>
+    (show name "")<p>
+    name))<p>
+<p>
+<b>Table utility</b><p>
+<b></b>A simple table utility, taken directly from code created by Chris
+Riesbeck.<p>
+<p>
+;;; A simple table utility<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; - File: tables.lisp<p>
+;;; - Author: Chris Riesbeck<p>
+;;; - Most recent update: 7/27/94<p>
+<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; Defining a table function<p>
+;;;
+----------------------------------------------------------------------<p>
+<p>
+;;; (DEFTABLE name) =&gt; name<p>
+;;;<p>
+;;; DEFTABLE defines name to be a table function such that<p>
+;;; <p>
+;;;   -  (name key) retrieves a value for key, if any<p>
+;;;   -  (SETF (name key) value) stores a value for key<p>
+;;;   -  (name) returns the internal table associated with name;<p>
+;;;      this is useful when manipulating tables (see below).<p>
+;;;<p>
+;;; The table is empty when name is defined (or redefined).<p>
+;;;<p>
+;;; Examples:<p>
+;;;<p>
+;;;   &gt; (deftable AGE-of)<p>
+;;;   AGE-OF<p>
+;;;   &gt; (age-of 'john)<p>
+;;;   NIL<p>
+;;;   &gt; (setf (age-of 'john) 22)<p>
+;;;   22<p>
+;;;   &gt; (age-of 'john)<p>
+;;;   22<p>
+;;;<p>
+;;; Note: DEFTABLE is a top-level form, like DEFUN. It is not for<p>
+;;; creating local table functions.  The following is wrong:<p>
+;;;<p>
+;;;   (defun foo (...)<p>
+;;;     (deftable baz)<p>
+;;;     ...)<p>
+;;;<p>
+;;; If you want a local table, use MAKE-HASH-TABLE and GETHASH.<p>
+<p>
+<p>
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<p>
+;;; Packages<p>
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<p>
+<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :tables)<p>
+    (make-package :tables)))<p>
+<p>
+(in-package :tables)<p>
+<p>
+(export '(deftable in-table-p remove-key clear-table map-table))<p>
+<p>
+<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; Implementation notes:<p>
+;;; <p>
+;;;   - I avoided (DEFUN (SETF fn) ...) so as not to require CL 2<p>
+;;;   - I used PROGN to make the DEFSETF top-level for MacIntosh<p>
+;;;     Common Lisp.<p>
+<p>
+(defmacro deftable (fn &amp;optional test)<p>
+  (let ((set-fn (gensym)))<p>
+    '(progn<p>
+      (let* ((fn ',fn)<p>
+             (table (get-table fn ,test)))<p>
+        (defun ,fn (&amp;optional (key nil key-given-p))<p>
+          (if key-given-p<p>
+            (gethash key table)<p>
+            table))<p>
+        (defun ,set-fn (arg1 &amp;optional (arg2 nil arg2-p))<p>
+          (cond (arg2-p<p>
+                 (setf (gethash arg1 table) arg2))<p>
+                (t (set-table fn arg1)))))<p>
+      (defsetf ,fn ,set-fn)<p>
+      ',fn)))<p>
+<p>
+(defvar *tables* (make-hash-table)<p>
+  "Table of DEFTABLE functions.")<p>
+<p>
+(defun get-table (name test)<p>
+  (set-table name (make-hash-table :test (or test #'eql))))<p>
+<p>
+(defun set-table (name table)<p>
+  (if (hash-table-p table)<p>
+      (setf (gethash name *tables*) table)<p>
+      (error "~S not a table" table)))<p>
+<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; Manipulating tables<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; Certain functions need explicit access to the internal table. To<p>
+;;; get this table, call the table function with no arguments, e.g.,<p>
+;;; (AGE-OF).  This returns the internal table for AGE-OF, which<p>
+;;; can then be passed to a table manipulation function.<p>
+;;;<p>
+;;; Example: The following clears the AGE-OF table.<p>
+;;;<p>
+;;;   &gt; (clear-table (age-of))<p>
+;;;<p>
+;;; The nature of the internal table is implementation-dependent.<p>
+<p>
+;;; (IN-TABLE-P key table) =&gt; T or NIL<p>
+;;;   Returns true if key has a value in the table.<p>
+;;; (REMOVE-KEY key table) =&gt; T or NIL<p>
+;;;   Removes any entry for key in the table, and returns true<p>
+;;;   if there was one.<p>
+;;; (CLEAR-TABLE table) =&gt; table<p>
+;;;   Removes all entries from the table.<p>
+;;; (MAP-TABLE function table) =&gt; NIL<p>
+;;;   Calls (function key value) for every key and value in the
+table.<p>
+;;;   The order in which keys are found is implementation-dependent.<p>
+;;;
+----------------------------------------------------------------------<p>
+;;; Implementation notes:<p>
+;;; <p>
+;;;   - I avoided MULTIPLE-VALUE-BIND for Xlisp compatibility.<p>
+<p>
+(let ((flag (list nil)))<p>
+  (defun in-table-p (key table)<p>
+    (not (eq flag (gethash key table flag)))))<p>
+<p>
+(defun remove-key (key table) (remhash key table))<p>
+<p>
+(defun clear-table (table) (clrhash table))<p>
+<p>
+(defun map-table (fn table) (maphash fn table))<p>
+-&gt;list utility<p>
+Functions to convert strings into lists of strings and symbols.<p>
+(in-package "COMMON-LISP-USER")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    -&gt;LIST.LISP <p>
+;; Created: 2/25/93<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: Simple conversion utilities for strings to lists<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<p>
+<p>
+-&gt;LIST<p>
+General function for converting a string into a list.<p>
+<p>
+(defmethod -&gt;list ((self string) &amp;key <p>
+                   (start 0) <p>
+                   (char-bag '(#\Space))<p>
+                   (test #'(lambda (ch) (not (member ch char-bag :test
+'char=))))<p>
+                   (post-process 'identity))<p>
+  "Converts SELF into a list,<p>
+     starting at START;<p>
+     dividing words at boundaries defined by characters in CHAR-BAG,<p>
+                 or at boundaries defined by TEST;<p>
+     each item is run through POST-PROCESS as it is created. POST-PROCESS
+can<p>
+     be destructive (eg, NSTRING-DOWNCASE)."<p>
+  (labels ((-&gt;list* (position)<p>
+             (let* ((pos (position-if-not test self :start
+position))<p>
+                    (new-pos (if pos (position-if test self :start pos)
+nil)))<p>
+               (cond<p>
+                ((and pos new-pos)<p>
+                 (cons (funcall post-process (subseq self position
+pos))<p>
+                       (-&gt;list* new-pos)))<p>
+                (pos (list (funcall post-process (subseq self position
+pos))))     <p>
+                (t (list (funcall post-process (subseq self
+position))))))))<p>
+    <p>
+    (let ((pos (position-if test self :start start)))     <p>
+      (if pos (-&gt;list*  pos) nil))))<p>
+<p>
+-&gt;SYMBOLS<p>
+Functions to convert a string into a list of symbols.<p>
+(defmethod -&gt;symbols ((self string) &amp;optional (package
+*package*))<p>
+  "Converts a string into a list of symbols interned into PACKAGE,
+ignoring<p>
+   everything but alphanumerics and dashes."<p>
+  (-&gt;list self <p>
+          :post-process #'(lambda (str) <p>
+                            (intern (nstring-upcase str) package))<p>
+          :test #'(lambda (ch) (or (alphanumericp ch)<p>
+                                   (char= ch #\-)))))<p>
+<p>
+(defmethod -&gt;symbols ((self null) &amp;optional (package
+*package*))<p>
+  (declare (ignore package)) nil)<p>
+<p>
+<b>Simple logging facility</b><p>
+<b></b>Functions to record actions to a log.<p>
+(in-package "LOG")<p>
+;;----------------------------------------------------------------------------<p>
+;; <p>
+;; File:    LOGGING.LISP <p>
+;; Created: 10/19/94<p>
+;; Author:  Will Fitzgerald<p>
+;; <p>
+;; Description: A simple logging facility<p>
+;; <p>
+;;----------------------------------------------------------------------------<p>
+<p>
+<b>Packages</b><p>
+<b></b>This is placed in the log package, and uses the tables package.<p>
+;;----------------------------------------------------------------------------<p>
+;; Packages<p>
+;;----------------------------------------------------------------------------<p>
+(eval-when (load eval compile)<p>
+  (unless (find-package :log)<p>
+    (make-package :log)))<p>
+<p>
+(in-package :log)<p>
+(use-package :tables)<p>
+<p>
+(export '(reset-log set-logging record-log print-log with-logging))<p>
+<p>
+<p>
+<b>Data structure for logs</b><p>
+<b></b>A log is a list of strings keyed off a symbolic form. *logging* defines
+whether logging should occur, and *log-keys* keeps a list of keys defined so
+far.<p>
+;;----------------------------------------------------------------------------<p>
+;; A log is a list of statements keyed off a symbolic form.<p>
+;;----------------------------------------------------------------------------<p>
+(deftable log-of)<p>
+<p>
+(defvar *logging* nil)<p>
+(defvar *log-keys* nil)<p>
+<p>
+(defun reset-log ()<p>
+  (clear-table (log-of))<p>
+  (setf *log-keys* nil)<p>
+  *logging*)<p>
+<p>
+RECORD-LOG<p>
+Record-log works like format, and will place a statement in the log if logging
+is turned on.<p>
+;;----------------------------------------------------------------------------<p>
+;; Turning logging off and on.<p>
+;;----------------------------------------------------------------------------<p>
+(defun set-logging (&amp;optional (value t))<p>
+  (setf *logging* value))<p>
+<p>
+(defmacro with-logging (&amp;rest body)<p>
+  '(let ((*logging* t))<p>
+    (reset-log)<p>
+    ,@body))<p>
+<p>
+;;----------------------------------------------------------------------------<p>
+;; Making records in the log<p>
+;;----------------------------------------------------------------------------<p>
+(defun make-statement (string args)<p>
+  (format nil "~?" string args))<p>
+<p>
+(defun record-log (logname string &amp;rest args)<p>
+  (when *logging* <p>
+    (push (make-statement string args) (log-of logname))<p>
+    (pushnew logname *log-keys* )<p>
+    *logging*))<p>
+<p>
+PRINT-LOG<p>
+Prints the log, either for a particular entry, or all of the entries (in the
+order they were defined).<p>
+;;----------------------------------------------------------------------------<p>
+;; Printing the log<p>
+;;----------------------------------------------------------------------------<p>
+(defun print-log (&amp;optional logname (stream *standard-output*))<p>
+  (if logname<p>
+    (loop for log-entry in (reverse (log-of logname))<p>
+          doing<p>
+          (format stream "~A~%" log-entry))<p>
+    (loop for log-key in (reverse *log-keys*) doing<p>
+          (print-log log-key stream)))<p>
+  (values))<p>
+<P>
+<b>Casper Data</b><p>
+<b></b>This section includes the data for the Micro-Casper program. The first
+section includes data from the CSR/customer interactions, then definitions of
+index concepts followed by phrasal patterns on index concepts. Finally,
+associations between sets of indexed concepts and target concepts (the CSR
+statements) are defined. <p>
+<b>CSR and Customer statements</b><p>
+<b></b><p>
+(clear-statements)<p>
+(def-csr greet-customer "Hello, May I help you?")<p>
+(def-csr ask-name "What is your name?")<p>
+(def-csr ask-address "What is your address?")<p>
+(def-csr ask-name/address "What is your name and address, please?")<p>
+(def-csr ask-problem-description "What seems to be the problem?")<p>
+(def-csr ask-bits-description "What do the bits look like?")<p>
+(def-csr ask-problem-duration "How long have you had the problem?")<p>
+(def-csr ask-bits-colour "What colour are the bits?")<p>
+(def-csr ask-black-bits "Do you have black bits in your water?")<p>
+(def-csr ask-fire-brigade "Have you seen the fire brigade in the
+area?")<p>
+(def-csr tell-water-lead "Your water has lead in it.")<p>
+(def-csr tell-fire-brigade-sediment "The fire brigade stirred up some
+sediment")<p>
+(def-csr tell-water-safe "Your water is perfectly safe to drink.")<p>
+<p>
+<p>
+(def-cust say-problem "I've rung up to complain about my water.")<p>
+(def-cust say-address "I live at The Grange on Caledonian Drive in
+Eccles.")<p>
+(def-cust say-name "My name is Mr. Smith. Ronald Smith.")<p>
+(def-cust say-name/address "My name is Mr. Smith. Ronald Smith. I live at
+The Grange on Caledonian Drive in Eccles.")<p>
+(def-cust say-problem-description "My water's got bits in it.")<p>
+(def-cust say-problem-duration "I just noticed the bits today.")<p>
+(def-cust say-bits-colour "The bits are black.")<p>
+(def-cust say-fire-brigade "The fire brigade were here earlier working on
+the hydrants.")<p>
+(def-cust ask-water-safe "Is my water safe to drink?")<p>
+(def-cust ring-off "Thank you for your help. Good-bye!")<p>
+<p>
+(def-response greet-customer say-problem)<p>
+(def-response ask-name say-name)<p>
+(def-response ask-address say-address)<p>
+(def-response ask-name/address say-name/address)<p>
+(def-response ask-problem-description say-problem-description)<p>
+(def-response ask-bits-description say-bits-colour)<p>
+(def-response ask-problem-duration say-problem-duration)<p>
+(def-response ask-bits-colour say-bits-colour)<p>
+(def-response ask-fire-brigade say-fire-brigade)<p>
+(def-response tell-water-lead ask-water-safe)<p>
+(def-response tell-fire-brigade-sediment ask-water-safe)<p>
+(def-response tell-water-safe ring-off)<p>
+<p>
+<b>Index concept definitions</b><p>
+<b></b><p>
+(clear-icp-memory)<p>
+<p>
+(def-frame m-root)<p>
+(def-frame m-reference-concept (m-root))<p>
+(def-frame m-index (m-root))<p>
+(def-frame m-problem (m-index))<p>
+(def-frame m-water-bits (m-problem))<p>
+(def-frame m-coloured-water-bits (m-water-bits)<p>
+  (:colour m-colour)<p>
+  (:object m-water-bits))<p>
+(def-frame m-black-water-bits (m-coloured-water-bits)<p>
+  (:colour m-black))<p>
+(def-frame m-burst (m-problem))<p>
+(def-frame m-contain (m-index))<p>
+(def-frame m-description (m-index))<p>
+(def-frame m-duration (m-index))<p>
+(def-frame m-colour (m-index))<p>
+(def-frame m-black (m-colour))<p>
+(def-frame m-water (m-index))<p>
+<p>
+(def-frame m-greet (m-index))<p>
+(def-frame  m-description (m-index))<p>
+(def-frame m-address (m-index))<p>
+(def-frame m-name (m-index))<p>
+(def-frame m-see (m-index))<p>
+(def-frame m-fire-brigade (m-index))<p>
+(def-frame m-neighbourhood (m-index))<p>
+(def-frame m-lead (m-index))<p>
+(def-frame m-sediment (m-index))<p>
+(def-frame m-safe (m-index))<p>
+<p>
+<b>Phrasal patterns on index concepts</b><p>
+<b></b><p>
+(def-phrase m-problem problem)<p>
+(def-phrase m-water-bits bits)<p>
+(def-phrase m-water-bits particles)<p>
+(def-phrase m-water-bits pieces)<p>
+(def-phrase m-contain contain)<p>
+(def-phrase m-duration how long)<p>
+(def-phrase m-description describe)<p>
+(def-phrase m-black black)<p>
+(def-phrase m-water water)<p>
+(def-phrase m-burst burst)<p>
+(def-phrase m-coloured-water-bits :colour :object)<p>
+<p>
+(def-phrase m-greet hi)<p>
+(def-phrase m-greet hello)<p>
+(def-phrase m-greet good morning)<p>
+(def-phrase m-greet good afternoon)<p>
+(def-phrase  m-description what)<p>
+(def-phrase  m-description describe)<p>
+(def-phrase m-address address)<p>
+(def-phrase m-address live)<p>
+(def-phrase m-name name)<p>
+(def-phrase m-see see)<p>
+(def-phrase m-see seen)<p>
+(def-phrase m-fire-brigade fire fighters)<p>
+(def-phrase m-fire-brigade fire brigade)<p>
+(def-phrase m-fire-brigade firemen)<p>
+(def-phrase m-neighbourhood neighbourhood)<p>
+(def-phrase m-neighbourhood neighborhood)<p>
+(def-phrase m-neighbourhood area)<p>
+(def-phrase m-lead lead)<p>
+(def-phrase m-sediment sediment)<p>
+(def-phrase m-safe safe)<p>
+<p>
+<b>Target concepts and associated index concept sets</b><p>
+<b></b><p>
+(def-assoc greet-customer m-greet)<p>
+(def-assoc ask-name m-description m-name)<p>
+(def-assoc ask-address m-description m-address)<p>
+(def-assoc ask-name/address m-description m-address m-name)<p>
+(def-assoc ask-problem-description m-description m-problem)<p>
+(def-assoc ask-bits-description m-description m-water-bits)<p>
+(def-assoc ask-problem-duration m-problem m-duration)<p>
+(def-assoc ask-bits-colour m-description m-water-bits m-colour)<p>
+(def-assoc ask-fire-brigade m-see m-fire-brigade m-neighbourhood)<p>
+(def-assoc tell-water-lead m-water m-lead)<p>
+(def-assoc tell-fire-brigade-sediment  m-fire-brigade m-sediment)<p>
+(def-assoc tell-water-safe m-water m-safe)<p>
+(def-assoc ask-black-bits m-water m-contain m-black m-water-bits)<p>
+(def-assoc ask-black-bits m-water m-contain m-black m-water-bits
+m-black-water-bits)<p>
+<p>
+The last association is an example of an association that contains a
+structured index concept, m-black-water-bits., which has m-black and
+m-water-bits as parts (see the index concept definitions above, as well as the
+phrasal patterns).<p>
+<P><hr size=4>
+</body></html>

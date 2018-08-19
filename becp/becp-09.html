@@ -1,0 +1,633 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Perspectives on Building Embedded Conceptual Parsers</TITLE></HEAD>
+<center><b>Perspectives on Building Embedded Conceptual Parsers</b><p>
+<b></center></b>What we have described in this dissertation owes much to other
+lines of research, and so it is important to discuss related research and
+attempt to bring together several theories of building embedded parsing. We do
+this by discussing two broad areas of research that have a direct bearing on
+indexed concept parsing and the types of embedded conceptual parsers discussed
+in this work: other conceptual parsers and statistically-based information
+retrieval. After discussing these areas, we attempt a synthesis to create a
+unified architecture for building embedded conceptual parsers for interactive
+domains. <p>
+Having described related work, and a unified architecture, we describe possible
+extensions to other natural language engineering tasks, and what software tools
+could be developed to embody the unified architecture.<p>
+<b>The history of conceptual parsers</b><p>
+<b></b>Indexed concept parsing is one in a series of parsing architectures
+based on the premise that the nature of a natural language understanding system
+is primarily semantic. In the first chapter, we describe the lineage of
+conceptual parsers from which indexed concept parsing is derived. This lineage
+includes parsers based on the Conceptual Dependency (CD) theory of knowledge
+representation (Schank &amp; Abelson 1977), including Spinoza and Spinoza II
+(Schank, et al. 1970), MARGIE (Riesbeck 1975), ELI (Riesbeck &amp; Schank 1976)
+and CA (Birnbaum &amp; Selfridge 1981). As parsing became entwined with
+investigations into the larger issues of story understanding, the CD parsers
+were used in such systems as SAM (Schank &amp; Abelson 1977), PAM (Wilensky
+1978), and FRUMP (DeJong 1979). Later research focussed more and more on memory
+and inference, and with the development of Schank's model of Dynamic Memory
+(Schank 1982) a number of new parsing and inference systems, including IPP
+(Lebowitz 1980), BORIS (Dyer 1983) and MOPTRANS (Lytinen 1984) were developed.
+In contrast to these build and store systems (that is, parsers that build new
+conceptual representations and store them in memory--Riesbeck, 1986), DMAP
+(Direct Memory Access Parsing; Martin 1989, 1990) is a model of parsing that
+attempts to model parsing as largely a recognition task. But as we stated in
+the first chapter, issues of memory and inference, and eventually issues
+surrounding the building of large scale, practical systems began to dominate,
+and parsing was largely ignored. Rather, parsers are to be built to serve
+practical goals; the sort of parsers we have described in this work.<p>
+<b>Information retrieval and parsing</b><p>
+<b></b>Information retrieval systems (Croft 1990; Hayes 1990; Salton &amp;
+McGill 1983; Salton 1988; Sparck Jones 1990) are usually developed with the
+following task in mind: Given a query, and a set of documents, which documents
+best match the query? Typically, a set of key words or phrases, or index terms,
+is assigned to each document; a query is a set of these index terms which is
+matched to the index terms assigned to documents, and the best matching
+documents are returned as the result of the query. <p>
+Superficially, at least, the architecture for information retrieval is very
+similar to indexed concept parsing, which is built with the following task in
+mind: Given a query, and a set of target concepts, which target concepts best
+match the query? A set of index concepts is assigned to each target concept;
+parsing is used to convert the query into a set of index concepts. This set of
+index terms is matched to the index concepts assigned to target concepts, and
+the best matching target concepts are returned as the result of the query.<p>
+<b>Differences between information retrieval and indexed concept parsing</b><p>
+<b></b>The main differences between information retrieval technologies and
+indexed concept parsing include the object of a query, the purpose of a query,
+what composes a query, the addition of a parsing step in indexed concept
+parsing, and the matching function used. <p>
+The object of a query in text retrieval is usually a document or other
+information bearing object  (IBO); the object of a query in indexed concept
+parsing is a target concept. An IBO is an object that is external to the query
+mechanism; a target concept is an internal representation. A major implication
+of this difference is that internal representations of IBOs must be created for
+text retrieval; because IBOs (such as documents, videos, etc.) can be very
+complex to represent, the effort has been on cheap, automatic indexing based on
+the surface forms found in an IBO, such as the words of a document or the
+shapes of images in a video. Because target concepts can possibly be in the
+same representational language that is used by an indexed concept parser,
+advantage of this knowledge can be taken, as described in Chapter 5-7.<p>
+The purpose of a query in information retrieval systems and the purpose of a
+query for an application using indexed concept parsing will typically differ.
+Usually, an information retrieval system places very few constraints on the
+purpose of a query--which makes taking advantage of such constraints a
+difficult task. On the other hand, we have built indexed concept parsers for
+embedding into interactive dialog systems, where the goal is somewhat
+clearer--finding the closest match to a target concept to which the program
+knows a reasonable response. We have taken advantage of this constraint to bias
+the parser towards target concepts expected in a particular situation (see
+Chapter 6). <p>
+Indexed concept parsing provides a parsing step between the query and the
+matching steps, which most information retrieval systems don't provide. A
+parser allows a richer representation of the index concepts--index terms in
+information retrieval systems are typically just the surface forms, but index
+concepts can contain hierarchical and partonomic structure. Furthermore,
+different ways of phrasing the same index concept--which we'll call synonym
+sets, although the patterns can contain more than just individual words--is
+explicitly allowed in indexed concept systems, while in most information
+retrieval systems this is absent or implicit.<p>
+Finally, the match step in information retrieval systems is different from the
+match step in indexed concept parsing. Typically, information retrieval systems
+only use the type of appraiser that we have called the predicted score; that
+is, positive evidence that an IBO is relevant is accrued only in the case when
+an index term in the query is associated with the IBO. Indexed concept parsing
+provides other appraisers (such as unpredicted score and unseen score) as
+described in Chapters 5-7. This is related to the other differences we have
+mentioned, in that the complicated nature of the informational structure of an
+IBO, and the goals a user might have in searching for one, means the method of
+calculating the goodness of a match must almost necessarily be a weak one, and
+the predicted score provides just such a weak method. <p>
+Having described these differences, it must be admitted that there are a good
+many similarities between information retrieval systems and indexed concept
+parsing. In fact, information retrieval systems can be seen as a type of
+indexed concept parsing system--an idea we develop below. But first, we should
+ask the question, why not build a parser using index terms?<p>
+<b>Why not a parser built using index terms?</b><p>
+<b></b>There are attractions to automatic indexing, which is that the
+development costs are lower and that the indexing is done very consistently
+(that is, mechanically). Considering the indexed concept parser built for the
+Casper customer service representative, for example, it would be less expensive
+to generate the index concepts from the text of the target concepts (the CSR
+utterances), rather than require that a content specialist (knowledge engineer)
+assign index concepts to the target concepts.<p>
+Two experiments were run, creating index concepts automatically, and the
+results compared against the systems described in Chapters 5 and 6. The first
+text retrieval experiment used weighted, stemmed lexical items as index terms.
+The second experiment used weighted, stemmed lexical bigrams as index terms. By
+stemmed index terms we mean that the index terms were reduced to a canonical
+morphological root. To do this, we used data from the WordNet system (Miller et
+al. 1990) and a simple morphological stemmer based on this data to reduce each
+term to its stem. Because the data were relatively sparse, it seemed that an
+index term approach would be more successful with stemming than with the
+non-stemmed forms. So, in the lexical item experiment, the text of the target
+concept ASK-PROBLEM-DURATION, "How long have you had the problem?" resulted in
+the set of lexical terms {"how" "long" "have" "you" "the" "problem"}.<p>
+By lexical bigrams we mean that the lexical items in the input were taken two
+at a time. So, in the lexical bigram experiment, the text of the target concept
+ASK-PROBLEM-DURATION, "How long have you had the problem?" resulted in the set
+of lexical terms {"how long" "long have" "have you" "you have" "have the" "the
+problem"}.<p>
+The weights on an index term in both experiments were set as the information
+value (as defined in Chapter 5) of the index term; that is,    , where i is the
+number of times the index term is assigned to target concepts, and n is the
+number of target concepts. The index concept parsing algorithm was used for
+determining matches; only the predicted items appraiser was used, as is typical
+in text retrieval systems. <p>
+Table  9.1 shows the results of the experiments. The table shows a comparison
+between the index term systems and the index concept parsing systems described
+in Chapters 5 and 6. There are two columns under indexed concept parsing; the
+first shows the results of the first testing of the indexed concept parser; the
+second column shows the results of revising the knowledge representations, in
+which additional knowledge representation was done to create or change phrasal
+patterns, index concepts, or target concepts.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>R</b><b>esults comparison: Index term systems vs. indexed concept parsing</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><b>Index
+term systems</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><b>Indexed
+concept parsing</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><b>Bigrams</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Key
+words</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Basic
+KR</b><a name="fnB0" href="#fn0">[1
+<BR></TD></TR></TABLE><TABLE><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">]</a><b>Additional
+KR</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Perfect</b>
+<BR></TD>
+<TD colspan=1 align="right">36.8
+<BR></TD>
+<TD colspan=1 align="right">43.7
+<BR></TD>
+<TD colspan=1 align="right">55.7
+<BR></TD>
+<TD colspan=1 align="right">75.4
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Acceptable</b>
+<BR></TD>
+<TD colspan=1 align="right">54.5
+<BR></TD>
+<TD colspan=1 align="right">71.1
+<BR></TD>
+<TD colspan=1 align="right">82.7
+<BR></TD>
+<TD colspan=1 align="right">89.8
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Average
+Distance</b>
+<BR></TD>
+<TD colspan=1 align="right">1.7
+<BR></TD>
+<TD colspan=1 align="right">1.9
+<BR></TD>
+<TD colspan=1 align="right">1.4
+<BR></TD>
+<TD colspan=1 align="right">
+1.2
+<BR></TD></TR></TABLE>Between
+the two index term systems, the key word system performed better on all
+measures. However, even the first attempt at indexed concept parsing performed
+better than either index term system, by at least 10% on both recall measures.
+Why did indexed concept perform better?<p>
+An explanation suggests itself when the revised indexed concept parsing system
+is compared to the basic indexed concept parsing system. One notes that the
+additional knowledge representation done on the indexed concept parsing system
+produced improved results. At least for this application, it suggests that a
+major advantage of indexed concept parsing over key word systems is productive
+additivity, that is, the more knowledge added to the system, the better the
+system performs. Parsing systems based on statistical approaches can only
+perform as well as the laws of large numbers will take them. In fact, indexed
+concept parsing can be viewed as the addition of knowledge representation to
+the surface forms of index terms, by adding synonymy and structured knowledge
+representations.<p>
+<b>A unified architecture for embedded conceptual parsing in interactive
+domains</b><p>
+<b></b>The discussion of conceptual parsers and information retrieval systems
+brings us to make the following claim: the architecture for indexed concept
+parsing provides a unified architecture for conceptual parsing in interactive
+domains, which spans the continuum from key word systems to conceptual parsers.
+It allows us to define five stages of index concept parsers, on a continuum
+which describes the complexity of the index concepts. 
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>S</b><b>tages of complexity of embedded indexed concept parsers</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Stage</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">1
+<BR></TD>
+<TD colspan=1 align="left">Weighted
+key words (with and without stemming)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">2
+<BR></TD>
+<TD colspan=1 align="left">Synonym
+sets
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">3
+<BR></TD>
+<TD colspan=1 align="left">Abstraction
+relationships among index concepts
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">4
+<BR></TD>
+<TD colspan=1 align="left">Partonomic
+relationships among index concepts
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">5
+<BR></TD>
+<TD colspan=1 align="left">Target
+concepts serving as their own index concept
+<BR></TD></TR></TABLE>The
+first stage is key words. In a key word system, individual words (that is, the
+surface representations themselves, not the concepts behind them) form the
+universe of index concepts to associate to target concepts. In the experiments
+described previously, we used a morphological stemmer to group words related by
+the same root (such as {"eat" "eats" "eating," "ate" "eaten"} and {"dog"
+"dogs"}). Whether or not a stemmer is used, the main point is that the surface
+forms are used as indices. <p>
+The second stage is synonym sets. In this stage, key words are grouped
+according to their functional role within an application. For example, in the
+Casper tutor, {"bits" "particles" "pieces"} all perform the same role. In terms
+of the architecture of indexed concept parsing, this means creating an internal
+representation as the index concept (as in our example, m-water-bits) and
+assigning the members of the synonym set as phrasal patterns to that
+representation. <p>
+The third stage is the abstraction stage. In this stage, index concepts are
+assigned hierarchical relationships among themselves. For example, in the
+Casper tutor, the index concept m-smell was defined as a type of
+m-water-quality-problem. This allowed the Casper parser to recognize "How long
+have you had the smell?" as a way of saying "How long have you had the
+problem?" In terms of the architecture of indexed concept parsing, this means
+establishing abstraction relationships among index concepts. The parser in
+Casper was of this stage of complexity.<p>
+The fourth stage is the partonomic stage. In this stage, index concepts are
+assigned partonomic relationships among themselves. Although there was not a
+need for this in the Casper parser, imagine that there is a target concept:<p>
+ASK-COLOURED-BITS Do you have coloured bits in your water?<p>
+and that asking whether the customer's water contained black bits, brown bits,
+etc. should count the same as asking whether the water contained colored bits.
+In this case, an index concept, m-coloured-water-bits which had a :colour which
+was some m-colour, and an :object which is m-water-bits. With the conceptual
+relationships and phrasal patterns described and shown in Fig.  9.1, the index
+concept m-coloured-water-bits can be recognized in, for example:<p>
+Student:		Do you have brown bits in your water?<p>
+from the phrase "brown bits."<p>
+If only abstraction relationships were allowed, as in Stage 3, one could
+associate the index concepts {m-colour m-water-bits} with this target concept,
+but then the necessarily more specific index concept m-coloured-water-bits
+(specific in the sense of having a higher information value) could not be
+defined. In the parser built for the Casper tutor, as we stated in Chapter 6,
+the use of structured index concepts was not needed<a name="fnB1"
+href="#fn1">[2]</a>.<p>
+The fifth stage is direct target concept recognition. In this stage, target
+concepts are matched by directly recognizing references to the target concept
+in the input text. In essence, this can be done using Direct Memory Access
+Parsing, as described in Chapters 2 and 3. To incorporate DMAP-style
+recognition of target concepts into the indexed concept parsing architecture
+requires minimal work beyond the knowledge representation required for any DMAP
+parsing. This is how it can be done: An index concept set is created for a
+target concept that contains exactly one member, which is the target concept
+itself. An example of a conceptual memory fragment to do direct target concept
+recognition is shown in Fig.  9.1. Because a target concept assigned only to
+itself necessarily has the highest possible information value, appraisers based
+on information value must return the target concept as the best match if the
+target concept is referenced in the input text<a name="fnB2"
+href="#fn2">[3]</a>. <p>
+<b>What stage parser should one build?</b><p>
+<b></b>An important distinction among the different stages of the unified
+architecture is the complexity and amount of knowledge representation done at
+the various stages. In the first stage, no knowledge representation is done;
+the surface forms of words of the text associated with target concepts are used
+as the index concepts, without human intervention. In the second stage, manual
+grouping of words form synonym sets, which are then assigned to index
+concepts<a name="fnB3" href="#fn3">[4]</a>. A content specialist is required
+for Stages 3-5, to assign the relevant hierarchical and partonomic
+relationships and phrasal patterns.<p>
+Another hoped for distinction is the improvement in accuracy measures. In the
+experiments on the Casper data, significant differences exist between the index
+term systems and the Stage 3 indexed concept parsing system, with index concept
+parsing performing significantly better (with the improvement in perfect recall
+especially notable--from 44% to 75%). However, our experience in building a
+DMAP-style parser for Casper (see Chapter 4) cautions us that it may be very
+difficult to achieve these results, and that quite a bit of knowledge
+representation might be required to achieve marginal improvements.<p>
+Heuristically speaking, it might be best to start with a key word system (Stage
+1). If the performance is acceptable, then all is well; otherwise, building a
+Stage 3 parser (indexed concept system with abstraction relationships) using
+tools such as those described in Chapter 8 is recommended. If there isn't the
+luxury of trying out the system on several iterations of user trials, then a
+Stage 3 parser may provide a good trade-off of effort for results. When there
+is a lot of contextual support for the parser, as in the Creanimate parser,
+then it may be possible to build a Stage 4 or Stage 5 parser.<p>
+<b>The advantage of the unified architecture</b><p>
+<b></b>Having a unified architecture for conceptual parsing provides a couple
+of advantages to the software engineer charged with creating an embedded
+conceptual parser. The first advantage is that it creates the possibility for a
+single parsing tool set that can be applied to a wide variety of parsing
+problems. The heuristics in the previous section, for example, suggest that a
+system developer might want to adjust the parsing technology when faced with
+inadequate accuracy or a need to lower development costs. By using a single
+tool set, the developer does not have to switch parsing technologies in
+mid-project, with concomitant costs in re-engineering. Using such a tool should
+make it easier to add parsing capabilities to new projects, as well, as
+standard tools for creating index concepts, associating them with target
+concepts, defining phrasal patterns, debugging content, evaluation tools, etc.,
+are developed. <p>
+Another advantage to a unified architecture of the sort we have proposed is
+this: representations at the various stages can be mixed within the same
+parsing system. For example, one can imagine providing the knowledge
+representation required to match to some target concepts (a Stage 5 parser)
+with most target concepts being matched using indexed concepts in an
+abstraction hierarchy (a Stage 3 parser). <p>
+The main disadvantage of a unified architecture may be a degradation in
+performance, as specialized parsing and matching mechanisms are passed over in
+favor of a unified tool. This disadvantage can be overcome in one of two ways:
+either by carefully crafting and tuning the unified tool, or by using
+specialized mechanisms for special cases. <p>
+The unified architecture provides a blueprint for creating a unified tool for
+conceptual parsing, which would provide significant productivity improvements
+to the system designer thinking of embedding a conceptual parser in an
+application program.<p>
+As always, there is further work to be done. In fact, indexed concept parsing
+and the universal parsing architecture has been defined just to make parsing
+extensible to other natural language engineering tasks. The further work that
+needs to be done includes applying indexed concept parsing to new tasks and
+building a set of tools that instantiate the universal parsing architecture. <p>
+<b>Indexed concept parsing and other natural language engineering tasks</b><p>
+<b></b>This dissertation has described indexed concept parsing primarily for
+the task of interactive tutorial dialogs, but it is possible that indexed
+concept parsing (and associated ideas) can be used for other natural language
+engineering tasks, including other human-computer interaction tasks, text
+categorization and information extraction. These extensions are more or less
+difficult to make; we describe them from the easiest to the most difficult.<p>
+<b>Indexed concept parsing and managing interactive dialogs</b><p>
+<b></b>The first application of indexed concept parsing was the Casper customer
+service representative tutor, and this provides the prototype for useful
+applications of indexed concept parsing. As the parsing engine behind a
+human-computer interface in dialog systems, indexed concept parsing has shown
+its effectiveness in the Casper task. Other applications with similar
+specifications to Casper will also be improved by the addition of an indexed
+concept parser. The specifications include:<p>
+a model of interaction in which, at each point, the application is built to
+respond to a set number of user inputs,<p>
+the space of ways to express each of the user inputs is moderately limited,<a
+name="fnB4" href="#fn4">[5]</a><p>
+the use of free-form text would be advantageous,<p>
+choosing from the top n best results is acceptable.<p>
+However, with the unified parsing architecture we described previously in the
+chapter, an indexed concept parser would also be useful for applications such
+as Creanimate, even though the rich memory structure underlying Creanimate and
+the contextual supports all brought about the possibility of using Direct
+Memory Access Parsing. Because DMAP-based parsing can be incorporated into the
+parsing architecture, Creanimate-style applications can also be created using
+this architecture.<p>
+<b>Indexed concept parsing and Ask systems</b><p>
+<b></b>In Chapter 8, we described a prototype indexed concept parser in the
+TransAsk logistics advisor. This parser has two potential audiences:<p>
+Content specialists creating and editing the TransAsk system,<p>
+Logistics planners using the TransAsk system.<p>
+These two audiences have different needs, but a parser based on indexed concept
+parsing could be of benefit to both sets of users. For the content specialist,
+the parser can assist the work of indexing by providing a flexible means for
+navigating the Ask system, getting right to the question answered, question
+raised, or story being indexed. It can also potentially assist the content
+specialist in tracking down duplicate questions answered or questions raised,
+because the use of the parser provides a soft match between questions.<p>
+For the logistics planner, two uses of indexed concept parsing are envisioned:
+one is as a parsing zoomer. That is, a parser would provide an entr&eacute;e
+into the entire Ask system, in which the planner gets an answer to a specific
+question which he or she brings to the system. The other use is as an aide to
+return to answers to previously asked questions; that is, as a way to get back
+to where the planner has been before.<p>
+These benefits of indexed concept parsing would accrue to any Ask system, both
+for the content specialists creating the Ask system as well as the clients for
+whom the Ask system was developed. Content specialists could use indexed
+concept parsing for quick navigation of the Ask system, and finding groups of
+questions that are on similar topics. Clients could use indexed concept parsing
+for a parsing zoomer or for returning to answers to previously asked
+questions.<p>
+<b>Indexed concept parsing and information retrieval tasks</b><p>
+<b></b>As we previously stated in this chapter, the architecture for
+information retrieval can be incorporated into the general indexed concept
+parsing architecture. This suggest that "information retrieval" systems might
+benefit from the architecture of indexed concept parsing, in particular, that
+the knowledge representation/accuracy trade-off might be worth investigating
+for individual information retrieval tasks. <p>
+It may be the case that techniques being developed within the information
+retrieval paradigm may prove beneficial in creating improved indexed concept
+parsers, ideas such as relevance feedback (Salton 1988), alternative inference
+mechanisms (Croft 1990), and latent semantic indexing (Dumais, Furnas, &amp;
+Landauer 1990). In any case, it is hoped that the large divide that exists
+between statistically-based information retrieval and knowledge-intensive
+natural language processing has been partially bridged in this discussion of
+indexed concept parsing.<p>
+<b>Indexed concept parsing, text categorization, and information
+extraction</b><p>
+<b></b>The text categorization task is to assign texts to one of a small set of
+categories; for example, routing all news feed articles about mining to those
+with a need to know (Hayes 1990), or finding previous examples of solutions to
+problems coming into a computer help desk. Again, it may be possible to extend
+indexed concept parsing to these sorts of text categorization tasks. In
+particular, the unified parsing architecture suggests explicit structure in the
+text can be integrated with internal conceptual representations and more
+implicit structure in the text. Consider the following example, which might
+come from a data base of computer help desk problems:<p>
+Date:		6 June 1994<p>
+Machine:		LJ HyperPrinter III<p>
+Problem:		toner spills on paper<p>
+Long Desc:		When the user came to get her output, there were splotches of toner
+all over the paper. She was really upset.<p>
+Part:		Toner Cartridge<p>
+Solution:		I swapped the 		toner cartridge out for a new one and it seemed to
+work after that.<p>
+Consider the following user query:<p>
+Machine:		Laser Applewriter<p>
+Problem:		paper has toner all over it<p>
+Assuming there is a conceptual memory that represented laser printers,
+individual models, problems, etc., we might imagine phrasal patterns that took
+advantage of the structured nature of the text, that is, the field names such
+as "Machine:". Indexed concept parsing was developed to allow robust parsing
+texts such as "toner spills on paper" or "paper has toner all over it" as the
+same internal representation of the problem<a name="fnB5" href="#fn5">[6]</a>.
+So, the unified architecture provides a single method for integrating
+structured knowledge, structured text and unstructured text.<p>
+The task of information extraction is that of transforming incoming text into
+some structured internal representation, such as those systems involved in the
+Message Understanding Conferences (MUC 1991, 1992, 1993). Many of the same
+comments about text categorization apply here, as well. The unified
+architecture would allow for a method of robust parsing for information
+extraction. <p>
+The MUC conferences focussed on batch processing of large numbers of texts, but
+one could imagine useful information extraction systems that were interactive.
+For example, consider the task of converting existing texts (such as
+encyclopedia texts) into a format from which Ask systems could be built. In
+Fitzgerald and Wisdo (1994), we described how to use natural language
+processing to suggest connections among texts using Direct Memory Access
+Parsing. The key is that we imagine an interactive Story Editing Tool that a
+content specialist could use to review suggestions made by the natural language
+processing system and accept, reject or edit them as useful representations of
+the text.<p>
+<b>Building the Embedded Conceptual Parser Tool Set</b><p>
+<b></b>In addition to extending indexed concept parsing to other natural
+language engineering tasks, a useful next step would be to build a universal
+embedded conceptual parsing tool set based on the architecture described above,
+which would comprise three groups of tools: a parser definition tool, tools for
+knowledge engineering, and tools for debugging and evaluation.<p>
+<b>The parser definition tool</b><p>
+<b></b>In Section  9.3, we defined five stages of indexed concept parsers,
+based particularly on the complexity of the underlying knowledge representation
+required. A parser definition tool would allow a system designer to specify
+exactly which type of indexed concept parser to define. It should also contain
+advice about the advantages and disadvantages of the different stages of
+architecture, perhaps built on the experiences of previous designs. Part of
+defining such a tool would be to describe an application program interface
+(API) for the parser that can be used by the embedding application. <p>
+<b>Tools for knowledge engineering</b><p>
+<b></b>Chapter 8 describes several tools that were developed for the TransAsk
+logistics advisor parser. These knowledge engineering tools, built for the
+content specialist, were important for the creation of the TransAsk parser, and
+would be important for any attempt at architecting a parser. The TransAsk
+system had the following tool set: <p>
+A target concept browser (in the case of TransAsk, this was a list of questions
+answered),<p>
+An index concept set editor,<p>
+An index concept editor,<p>
+A phrasal pattern editor.<p>
+Tools for each of these tasks would be part of the knowledge engineering tool
+set. The target concept browser would allow a content specialist to choose a
+target concept to index. The index concept set editor would allow the
+specialist to associate sets of index concepts to target concepts. The index
+concept editor would allow the specialist to create, delete and modify new
+index concepts. The phrasal pattern editor would allow the specialist to
+associate phrasal patterns with index concepts.<p>
+Note that the stage at which one builds an indexed concept parser will affect
+which tools are needed, and how the tools work. A Stage 1 parser (key words)
+would only need a way to identify the target concepts and their associated
+text; the rest should occur automatically. A Stage 4 or 5 parser, on the other
+hand, would have to allow a specialist to define hierarchical and partonomic
+relationships between items in conceptual memory.<p>
+Note also that it is often the case that application programs come with their
+own editors. The parser definition tool should also allow the system developer
+to specify which tools will be needed, and define APIs for the other cases.
+Finally, note that the use of indexed concept parsing within the tools can
+provide useful functionality. In the TransAsk index concept set editor, the
+parser was used to suggest index concept sets based on the text of questions
+answered, and in the TransAsk index concept editor, the parser was used to
+locate index concepts within the conceptual memory. This functionality should
+be carried over into the knowledge engineering tools.<p>
+<b>Tools for debugging and evaluation </b><p>
+<b></b>Finally, the tool set should contain software tools for debugging and
+evaluation, tools which can be run interactively, or in batch mode. A
+foundation for debugging and evaluation is a standard method of logging the use
+of the parser, and its results<a name="fnB6" href="#fn6">[7]</a>. Such a
+logging facility would have advantages beyond simply improving the parser: the
+facility could be used by the embedding application program to log other events
+for further analysis. Again, a standard format for logging, a logging
+definition language, would be of use for evaluation and debugging. This
+language would define such standard features as sessions and session
+identifiers, and would allow a system designer to define simple events (such as
+button pushes) and structured events (such as a call to the parser and the
+returned results, or the initiation of watching a video, tracking how many
+times the video was seen, etc.). Depending on which stage parser is defined
+with the parser definition tool, standard logging language code could be
+created.<p>
+Using this standard logging facility would allow the creation of a standard
+interactive tool for testing parses, such as the tools built for the Creanimate
+parser (Chapter 3) and the TransAsk parser (Chapter 8), which would provide
+explanations for the results of parsing at the appropriate level--for example,
+the interactive tool should be able to present the results of the various
+appraisers to the content specialist so he or she understands why a particular
+result was returned.<p>
+Using the logging facility would also allow comparison and regression testing
+of a parser as changes are made in representation or even stage. We imagine
+another tool, called the standard evaluation tool, that would convert the logs
+created by the logging facility into a format that would allow comparison
+between different parsers or versions of the same parser (as we have done
+throughout this work). Such a tool would allow a system designer or content
+specialist to tag the results of individual parses with correct parses (thereby
+creating the oracle needed to measure accuracy), as well as other salient
+features, such as the state of the program (so that expectation sets can be
+defined, for example, or possible pronominal disambiguation). The standard
+evaluation tool would then allow different parsers to be run on the same set of
+data, so comparisons can be made. <p>
+<b>The Embedded Conceptual Parser Tool Set: A summary</b><p>
+<b></b>The creation of an embedded parsing tool set would comprise three sets
+of interrelated tools. The parser definition tool would allow a system designer
+to set the general parameters of the parser, and effect the operation of the
+other tools. The knowledge engineering tools would allow a content specialist
+to create the conceptual representations required to make the parser work
+within a program. The evaluation and debugging tools would allow the system
+designer and content specialist to evaluate and then modify the parser and the
+underlying knowledge representations.<p>
+In addition to these software tools, application program interfaces should be
+defined, including APIs for communication between the embedding application and
+the embedded parser; between possibly preexisting knowledge engineering tools
+and the parser; and for standard logging. Building this tool set will provide a
+useful way to add conceptual parsers to application programs.<p>
+<b>Summary</b><p>
+<b></b>Building conceptual parsers for Creanimate, Casper and TransAsk has
+provided a means for discovering new ways to think about parsing. Because these
+parsers were built for accomplishing real-world tasks, we have had to focus on,
+and in some cases develop, ways of evaluating the parsers we
+build--measurements of how well the parsers have done their task. It has also
+led the way to a new architecture for parsing, indexed concept parsing, that
+proved to be an effective way of allowing users of the Casper tutor to say what
+they wanted to say in a relatively open ended way. The development of the
+technique of indexed concept parsing led us to suspect that a continuum exists
+that describes a space of parsers, that moves from simple key word systems on
+the one end to structured conceptual parsing on the other.  We have described
+this continuum above, and suggested ways in which a universal embedded
+conceptual parser tool set could be developed.<p>
+<p>
+<a name="fn0" href="#fnB0">[1.]</a>KR: Knowledge representation<p>
+<a name="fn1" href="#fnB1">[2.]</a>The predicted and unpredicted appraisers
+defined for indexed concept parsing using partonomic relationships need to be
+written to take into account the presence of index concepts which are part of
+other index concepts (see Chapters 5 and 7).<p>
+<a name="fn2" href="#fnB2">[3.]</a>Although an appraiser based on
+expectations in context (as described in Chapter 6) might override appraisers
+based on information value. Depending on the needs of the application, this may
+be exactly what is needed. The appraisers based on information value will need
+to be sensitive to partonomic relationships, as in Stage 4.<p>
+<a name="fn3" href="#fnB3">[4.]</a>Statistical techniques exist to create
+synonym sets, as well, such as latent semantic indexing (Dumais, Furnas, &amp;
+Landauer 1990), which may obviate the need to manually assign synonyms. A
+previously defined thesaurus might be used as well. <p>
+<a name="fn4" href="#fnB4">[5.]</a>As an example of a space that is not
+limited, consider a system in which the system knows how to respond to making
+small talk, but the number of ways that a user might express that small talk is
+very large. See, for example, the Guss application, Yello (Burke 1993).<p>
+<a name="fn5" href="#fnB5">[6.]</a>One might imagine this occurring in an
+interactive dialog, in which the user of the system enters "paper has toner all
+over it" and the parser returns a canonical form for toner spills.<p>
+<a name="fn6" href="#fnB6">[7.]</a>A simple logging facility is defined in
+the appendix.
+
+<P><hr size=4>
+</body></html>

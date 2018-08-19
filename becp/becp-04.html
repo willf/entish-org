@@ -1,0 +1,503 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Direct Memory Access Parsing and the Casper Customer Service
+Representative Tutor</TITLE></HEAD>
+<center><b>Direct Memory Access Parsing and the Casper Customer Service
+Representative Tutor</b><p>
+<b></center></b><p>
+<p>
+A standard method for creating new software is to take old software and modify
+it to fit the present need. In this chapter, we discuss how we took the lessons
+we learned in building a parser for the Creanimate biology tutor and applied
+them to building a parser for another conversational system. We took those
+lessons, applied them--and failed to build a parser that worked. But learning
+from failure is an important way to learn, and sets the stage for the next
+chapter in which we describe building a parser for the same system
+successfully, but on different principles. But first, the case study of
+building a Direct Memory Access Parser for the Casper Customer Service
+Representative Tutor.<p>
+<b>Casper</b><p>
+<b></b>Casper is a tutorial program designed to train customer service
+representatives of a large British water utility (North West Water plc) in
+handling telephone calls from the utility's customers (Kass 1994). Customer
+service representatives (CSRs) are responsible for handling a variety of
+telephone calls, but the initial version of Casper was built to train CSRs to
+handle complaints about water quality. This is a challenging task--as Kass
+writes,<p>
+When a customer calls the water company to complain about water quality, the
+conversation typically begins with the customer describing a problem that he or
+she has noticed with the water coming out of the tap. The description is often
+vague and incomplete, and may even include mistaken information. The CSR must
+ask the right questions, diagnose the cause of the problem, if possible, and
+prescribe the appropriate remedy, which may be something the customer can do,
+such as running the water, or may involve sending a water company worker to
+investigate further or make repairs. Among the factors that make the job
+complicated is that the cause of the problem may be difficult or implausible
+for the customer to observe directly, so the CSR must deduce the cause of the
+problem by combining indirect, often probabilistic evidence (Kass 1994:8).<p>
+Casper allows a novice CSR to communicate with the simulated customer about
+their water quality problems. The simulated customers communicate with the
+novice CSR through prerecorded audio clips of customer statements and
+responses. In the first version of the Casper tutor, novice CSRs communicated
+with the simulated customer via pull-down menus (see Figure  4.2).<p>
+Communicating via pull-down menus breaks the illusion of a conversation with
+the customer. Furthermore, it can be difficult to find the set of menu
+selections that expresses one's intentions (the example in Figure  4.2 is a
+relatively straightforward example). It seemed worthwhile to build an interface
+that would allow novice CSRs to communication with the simulated customer by
+typing in their statements and questions. A type-in interface (see Figure  4.2)
+is prima facie more transparent than pull-down menus, because it shares more of
+the features of spoken conversation, namely:<p>
+a type-in interface allows one the freedom to express one's intentions in one's
+own words; a pull-down menu has a fixed vocabulary;<p>
+a type-in interface takes its input in linear order (as is mostly the case in
+speech); pull-down menus are hierarchical,<p>
+a type-in interface requires one to recall or construct how to express an
+intention; pull-down menus require one to recognize one's intentions from a
+fixed set;<p>
+a type-in interface creates the illusion that one can say anything; pull-down
+menus articulate the finitude of what the system can recognize.<p>
+Our task was to build a parser for a type-in interface of the sort shown in
+Figure  4.2 for the Casper tutor. From our experience in building a parser for
+the Creanimate biology tutor (see Chapter 3), we knew that there were three
+underlying questions we needed to answer:<p>
+What is the overall shape of the underlying conceptual memory?<p>
+What contextual support is given by the application that can be taken advantage
+of in parsing?<p>
+What additional representations are needed to support parsing?<p>
+<b>The underlying representation</b><p>
+<b></b>The basic underlying representation of conversation in Casper is that of
+a stimulus/response pair. That is, the novice CSR makes some statement or
+question, and the customer responds to that statement or question<a name="fnB0"
+href="#fn0">[1]</a>. For example, the conversation begins with the novice CSR
+answering the phone with the statement:<p>
+Student:		Hello, North West Water Customer Services. May I help you?<p>
+For one customer,<a name="fnB1" href="#fn1">[2]</a> the response was:<p>
+Customer: 		Hello, this is Mrs. Hughes in Liverpool. I've rung up to complain
+about bits in my water.<p>
+There was a limited number of CSR statements for which customer responses were
+built (remember, customers spoke to the student CSR via prerecorded audio
+clips). Each CSR statement and customer response had both a symbolic form (such
+as Greet-Customer) and an English form (such as "	Hello, North West Water
+Customer Services. May I help you?")<a name="fnB2" href="#fn2">[3]</a>. Parsing
+for a type-in parser for Casper, then, meant making a best match from the
+student's input text to the closest matching English form in the set of CSR
+utterances. <p>
+Unlike the Creanimate tutor, these statements were not structured in relation
+to one another; they did not stand in hierarchical relationship to one another,
+nor did they have or share partonomic structure.<p>
+Consider the following three CSR statements<a name="fnB3"
+href="#fn3">[4]</a>:<p>
+ASK-WATER-BITS-DESCRIPTION What kind of bits are in your water?<p>
+ASK-PROBLEM-DURATION How long have you had the problem?<p>
+ASK-WATER-BITS-BLACK Do you have black bits in your water?<p>
+The only connection among these statements is that they are members of the set
+of possible CSR statements. That they are all requests for information, for
+example, is not represented in Casper. Nor is the fact that two of these
+questions are about "bits," nor that bits in the water are a species of water
+quality problem. The CSR statements in Casper constitute a simple set.<p>
+<b>Contextual support from the human-computer interface</b><p>
+<b></b>Figure 4.2 indicates that the initial conception of the type-in
+interface has very few constraints on what could be typed into Casper. Although
+the state of the conversation at any given point during an interaction between
+the student and the simulated customer provides some clues to the student (and
+parser) as to what to expect, this doesn't provide very strong constraints on
+the form that student statements might take. For example, consider the
+following ways of asking the customer to describe the bits in the water, all of
+which come from actual student protocols:<p>
+Can you describe the particles?<p>
+Describe the bits<p>
+Please describe the bits<p>
+What are the bits like?<p>
+Could you describe what the bits look like?<p>
+Could you describe the bits<p>
+An analysis of the statements in Casper indicates that the statements are one
+of the following speech acts (Austin 1962):<p>
+Greetings (e.g., "Hello, North West Water Customer Services. May I help
+you?"),<p>
+Leave takings (e.g., "Thank you for calling North West Water."),<p>
+Requests for information (e.g., "Do you have lead pipes?"),<p>
+Informational statements (e.g., "Your pipes are made of lead."),<p>
+Requests for action on the part of the customer (e.g., "Could you run the water
+from the hot tap and tell me what you see?").<p>
+Furthermore, an analysis of the statements indicates that they are about one of
+the following topics:<p>
+the customer (e.g., "What is your name?")<p>
+the water and associated topics, especially the water quality problem (e.g.,
+"What does your water taste like?"<p>
+the house and property (e.g., "How old is your house?")<p>
+the plumbing (e.g., "Do you have lead pipes?")<p>
+the neighborhood (e.g., "Have you seen the fire brigade in the area?")<p>
+Using this analysis, we created the template screen interface shown in Figure
+4.3.<p>
+This interface consists of several elements. There are two button pads--one
+pertaining to action types, the other to topic types. Pressing one of the
+action types in combination with one of the topic types activates a third
+interface element, a template screen. Figure  4.3 shows the template screen
+brought up by pressing the "Ask caller about..." action button and "The
+problem/The water" topic button.<p>
+The student then chooses one of the templates and fills in the blank. An
+example can be seen in Figure  4.3, in which the student has used the "What
+does your water _____ like?" template to ask "What does your water <u>taste
+like?"  Pressing the Parse button activates the parser. The parser returns the
+statement that best matches the student's entry, and the student selects one of
+these statements to say to the simulated customer.</u><p>
+<u></u>To summarize, in order to make a statement with this interface, the
+student:<p>
+	thinks of a statement to make,<p>
+selects the action that best matches the speech act involved,<p>
+selects the topic that best matches the topic of the statement,<p>
+(these two steps can occur in either order, and brings up a template screen)<p>
+selects the template that best fits the statement,<p>
+types the text needed to fill out the template,<p>
+presses the Parse button,<p>
+and selects the best matching result.<p>
+The interface provides hints to the student as to what types of statements the
+parser will accept. But given the breadth of different statements that could be
+made, and the limited screen real estate available, it was not possible to
+provide these contextual clues for every class of statements. Therefore, each
+template screen generally required a more free-form template. For example, in
+Figure  4.3, the template "What does your water _____ like?" gives a strong
+hint as to the type of statements that will be acceptable (perceptual concepts,
+such as taste and smell), but the more general template "Regarding the problem,
+______" was created for collecting statements such as "Regarding the problem,
+<u>how long have you had the problem,</u>" and "Regarding the problem, <u>is the
+problem in both taps?</u>" Of the 20 possible template screens (5 action types x 4 topic 
+types), only 
+ 14 were necessary, because the Greeting and Ringing Off 
+ template screens were the same for all topic types.<p>
+<u></u><b>Additional knowledge representation to support DMAP</b><p>
+<b></b>The initial version of the Casper tutor provided a set of approximately
+200 target concepts, the CSR statements. The set was "flat" --that is, the
+statements did not have any structure to them, neither hierarchic nor
+partonomic. Although this was sufficient for the purposes of the tutor, the
+parser required more structured representations.<p>
+Based on the assumption that the selection of an action and a topic provided
+constraints on the type of statement the parser should expect from a particular
+template screen, we grouped the statements by action and topic, using a
+standard isa hierarchy<a name="fnB4" href="#fn4">[5]</a>. Figure 4.4 shows a
+fragment of the hierarchy of statements.<p>
+<b>Fragment of the hierarchy of CSR statements in the Casper tutor</b><p>
+<b></b>When a student presses the "Ask about..." and the "The Water/The
+Problem" buttons, the parser can be programmed to expect that the student's
+statement is one of the Information-Questions-About-Water/Problem questions.<p>
+The specific templates, in turn, suggest the internal structure for the
+statements. For example, the template "What does the water _____ like?" matches
+three of the CSR statements in Casper:<p>
+ASK-WATER-TASTE-DESCRIPTION What does your water taste like? <p>
+ASK-WATER-COLOUR-DESCRIPTION What does your water look like?<p>
+ASK-WATER-ODOUR-DESCRIPTION What does your water smell like?<p>
+To use a Direct Memory Access Parser such as the one used in the Creanimate
+biology tutor to make use of this template implies that:<p>
+these three statements all share the same abstraction in conceptual memory,<p>
+their common abstractions have a common slot,<p>
+the fillers of this slot in these statement instances all share the same
+abstraction,<p>
+the phrasal pattern associated with the common abstraction reference this
+slot.<p>
+Figure 4.5 shows the fragment of conceptual memory that represents these three
+statements.<p>
+<b>Representations to recognize the "What does the water _____ like?" template
+</b><p>
+<b>The architecture of the DMAP-based parser for Casper, a summary</b><p>
+<b></b>Our goal was to build a parser for the Casper customer service
+representative tutor. Following our experience in building a parser for the
+Creanimate biology tutor, we investigated the use of template screens that
+provide contextual support, giving clues to the student as to what is likely to
+constitute an acceptable statement, and constraining the type and amount of
+knowledge representation required. The interface had several elements,
+including two button pads that controlled the particular template screen that
+would be shown. One button pad mapped to the types of speech acts the student
+could perform; the other mapped to topics. Selecting an action and a topic
+controlled which template screen was shown. Each template screen had a small
+number of templates and other prompts (usually less than eight). Some templates
+were built for small classes of CSR statements (such as "What does your water
+____ like?"), whereas others were more general.<p>
+To support parsing using these template screens and their accompanying
+templates, a hierarchical conceptual representation of the CSR statements and
+their parts was created. CSR statements were placed in an isa hierarchy based
+on the action/topic combination they were associated with, and the content
+expected in the blanks of the templates were represented in a partonomy.<p>
+This effort had several similarities to the effort in Creanimate. Both parsers
+used Direct Memory Access Parsing; both relied on templates; both parsers
+required an underlying conceptual representation that captured both taxonomic
+and partonomic relations. There were differences, as well. Creanimate used
+taxonomic and partonomic representations to support its reminding strategies.
+In Casper, these needed to be created solely to support parsing. The dialog
+manager in Creanimate presented the student with only one template screen at a
+time; in Casper, all the template screens were available all the time. In
+Creanimate, every template supported just one or two portions of the conceptual
+hierarchy (for example, animals or their features). This was true in Casper for
+some templates, but other templates were much more open ended.<p>
+After creating a parser for the Casper system, it was time to do an
+evaluation.<p>
+<b>Evaluation of template-based parsing in the Casper CSR tutor</b><p>
+<b></b>We evaluated the template-based parser for the Casper tutor with three
+experienced customer service representatives. This was to be a formative
+evaluation--that is, our primary goal was to see what improvements (if any)
+needed to made to the interface (e.g., the template screens) and the internal
+representations. We felt reasonably confident that the parser would perform
+well and that the formative evaluation would allow us to modify the interface
+and representations in a relatively straightforward way.<p>
+The evaluation was performed in this way: One of the content specialists
+(knowledge engineers) on the Casper project who had expert knowledge of the
+Casper tutor played the role of the tutor, and would respond to the CSRs
+statements. The three experienced CSRs used an interface similar to Figure  4.3
+to express his or her statements.<p>
+The conversation took place in this way: the CSR would attempt to express
+something using the templates, the content specialist would respond verbally,
+then the CSR would attempt to express something else using the templates, and
+so on. The CSRs were trained in how to use the template-based type-in interface
+before they used it. None of the other portions of the Casper system--the tutor
+or on-line aides, was available to the CSRs during this evaluation. Two of the
+CSRs went through one problem-solving scenario with the content specialist; one
+CSR went though two.<p>
+The qualitative evaluation was a disaster as far as providing confidence that
+our approach to building an interface and parser was correct.<p>
+The following is an edited and annotated transcript of one of the conversations
+between a CSR and the content specialist. The transcript starts on the "Ask
+about...the problem/the water" template screen (as seen in Figure  4.3).
+Underlined text is what the student typed; other text in the same line was part
+of the template.<p>
+Customer:		"Regarding the problem, <u>hot or cold" </u><p>
+<u></u>Parser:		Unable to parse.<p>
+<p>
+Customer:		"Regarding the problem, <u>hot or cold taps" </u><p>
+<u></u>Parser:		Unable to parse.<p>
+<p>
+...<p>
+<p>
+Customer: 		"Regarding the problem, <u>how long with the problem"</u><p>
+<u></u>Parser:		Unable to parse.<p>
+<p>
+Customer: 		"Regarding the problem,<u> can you try the cold water tap for
+me"</u><p>
+<u></u>Parser:		Unable to parse.<p>
+<p>
+Note that this is a request for action, not a request for information. At this
+point, the content specialist intervened and suggested the student go to the
+"Ask caller to...(do something about) the problem/the water" template screen.<p>
+<p>
+Customer: 	"<u>Please try the cold water and then tell me if its
+discoloured"</u><p>
+<u></u>Parser:		Unable to parse.<p>
+...<p>
+As the transcript indicates, the parser did not perform well. Of the 36
+interactions between the CSRs and the content specialist, only six were parsed
+correctly (17%). Significantly, all six were in interactions with the one CSR
+who went through two scenarios. This CSR had a total of 15 interactions with
+the parser. So, for two of the CSRs, the parser completely failed to find an
+acceptable parse, and, for the third CSR, the parser achieved only a 40%
+acceptability score.<p>
+This was an unexpected and disappointing result, as far as building a parser
+for Casper was concerned. But it raised some important questions: Why did
+DMAP-based parsing work as well as it did in Creanimate, and fail in Casper?
+What could be done to create a parser that works? We begin to answer these
+questions with an analysis of the correct parses in Casper, as well as some
+incorrect ones. Then, we do a more detailed comparison between the parser in
+Creanimate and the parser in Casper. After describing these differences, we go
+on (in the next chapter) to discuss our solution to the parsing problem in
+Casper: indexed concept parsing.<p>
+<b>Analysis of correct parses</b><p>
+<b></b>The following four statements are the only statements that were
+correctly parsed:<p>
+(1) Customer: 		"Regarding the problem, <u>how long have you had this problem"
+(2 times)</u><p>
+<u></u>(2) Customer: 		"Regarding the problem, <u>are your neighbours affected"
+(2 times)</u><p>
+<u></u>(3) Customer: 		"What does your water <u>smell like?"</u><p>
+<u></u>(4) Customer: 		"The water is <u>Yes the water is safe to drink"</u><p>
+<u></u>These statements are characterized by either (a) fitting into the most
+specific templates (number 3), or (b) being highly stereotypical statements a
+CSR makes (numbers 1, 2 and 4). Notice that in statement (4), the CSR has
+ignored the first part of the template.<p>
+<b>Analysis of specific incorrect parses</b><p>
+<b></b>A look at some of the incorrect parses is also illustrative. As a first
+example, consider the following student input:<p>
+Customer: 		Regarding the problem, <u>hot or cold</u><p>
+<u></u>The best match (which the DMAP-based parser failed to find) is the
+following CSR statement:<p>
+ASK-TAPS-BOTH Is it in both the hot and the cold taps?<p>
+There is no good template for this statement, and the student relies on an
+open-ended template. She chooses to be very telegraphic in her statement. <p>
+For a second example, consider this student input (which is followed by the
+best match in the CSR statement set):<p>
+Customer:		Regarding the problem, <u>could it be chlorine say like the swimming
+baths</u><p>
+<u></u>ASK-WATER-ODOUR-CHLORINE Does your water smell like chlorine? <p>
+This student is much more verbose in her answers. There is a template that more
+or less matches the internal CSR statement. The template "Is/Does your water
+_______?" could be used to say "Is/Does your water <u>smell like chlorine?"
+Despite this, the student uses an open-ended template (thereby forfeiting the
+expectations that the more specific template sends to the parser). Furthermore,
+the student uses "Could it be..." as a polite way to introduce her question, a
+way of asking that the parser is not prepared to process. There is an anaphoric
+"it" referring back to the problem. She uses a part-for-whole metonymy
+("chlorine" for "chlorine smell"). Finally, she finishes her question with a
+specific example of chlorine smell, the smell of chlorine at a swimming pool.
+</u><p>
+<u></u>As a third example, consider a similar problem occuring in the following
+statement:<p>
+Customer:		The problem is (caused by) <u>the discolouration in your supply
+could be due to the work being carried out at the back of your property</u><p>
+<u></u>The best match is:<p>
+TELL-INFO-PROBLEM-CAUSE-CSP-WORKS The problem has been caused by work on the
+common supply pipe that your property is connected to.<p>
+Here, in addition to ignoring the template prompt, the student's input can be
+connected to the internal CSR statement representation via an inference that
+requires rich world knowledge. This includes knowing that common supply pipes
+typically run through the back yards of properties in England. Note, too, the
+knowledge that "discolouration in your supply" is a type of water quality
+problem. Finally, this includes knowing that a water utility employee might
+talk about the water as "the supply," in a type of
+container-for-thing-contained metonymy.<p>
+Examining these, and other incorrect parses, suggests that the typical problems
+of natural language processing are still present in this interface, viz,<p>
+People tend to speak periphrastically and telegraphically,<p>
+Inference about world knowledge is required to understand language, and (in the
+limit) this can require arbitrarily large amounts of other world knowledge.<p>
+In general, it appears that the interface did not sufficiently constrain the
+types of inputs that students make to the Casper system. In the next section,
+we explore this further by contrasting the successful parser that was built for
+Creanimate with the unsuccessful parser built for Casper.<p>
+<b>Contrasting the Creanimate and Casper parsers</b><p>
+<b></b>Exploring the similarities and differences between the Creanimate and
+Casper parsers will shed some light on why the Creanimate parser was
+successful, and why the Casper parser was not. This comparison concentrates on
+the knowledge representations underlying both systems, and what effect the
+human computer interface had on parsing.<p>
+In Creanimate, as we have seen, the conceptual memory was created first of all
+with the pedagogical goal of supporting reminding strategies for storytelling.
+In particular, there were several different types of hierarchies--the animal,
+behavior, feature, action and action/behavior hierarchies--the concepts which
+had rich internal structure. Furthermore, most of the different levels in the
+conceptual hierarchies were "referable"--that is, they represented concepts
+that could be expressed in English, and that the Creanimate tutor and dialog
+manager could make use of. For example, consider the following path through the
+Animal hierarchy: Animal, Bird, Flying-bird, Raptor, Eagle,
+White-breasted-sea-eagle. Consider filling in the first template of "I want to
+create a _____." Any one of these levels in the hierarchy (with the possible
+exception of Flying-bird) is easy to express in English, and the parser is
+likely to recognize it, and the tutor make use of it. Intuitively, we can think
+of these hierarchies as the sorts of things one would expect in a
+dictionary--different classes and instances of animal species, body parts,
+actions and behaviors. Further, Creanimate has a relatively well elaborated
+series of these taxonomies; that is, what students are likely to talk about,
+Creanimate is likely to have in its memory. Creanimate has many species of
+birds, for example, and stories about specific bird families (such as the white
+breasted sea eagle). <p>
+In the Casper tutor, on the other hand, the types of statements CSRs make that
+are encoded in the conceptual memory are much more encyclopedic in nature. That
+is, they exhibit a lot of relational structure, potentially requiring
+representations beyond the state of the art in knowledge representation.
+Consider the following CSR statement from Casper:<p>
+ASK-NEIGHBOURS-AFFECTED "Are your neighbours also affected?"<p>
+ What does it mean to represent the intention of this text in a cognitively
+plausible manner? To begin with, we notice that this is a question asking for
+information to confirm or disconfirm the proposition underlying a statement
+such as "Your neighbours are affected" (in Conceptual Dependency terms--Schank
+&amp; Abelson 1977, an MTRANS). We'd also have to analyze the deictic nature of
+"your" and "neighbour"--perhaps even "affected." Who is `you'? What counts as
+that person's neighbor? What counts as being affected? A common way that
+students expressed the same intent as this sentence is "Do your neighbours have
+the same problem?" This articulates some of the background knowledge: that
+people are affected by something; in this domain, it is some problem. We
+probably would also want to know the context of the conversation--the
+expectations that the scripted nature of a problem solving conversation produce
+(including the ways that novice problem solvers make mistakes in problem
+solving conversations). <p>
+Furthermore, in Casper, there is a great variety of statements one can make.
+For example, the customer service representative can ask the customer's address
+or inform the customer that he or she is responsible for the repairs on the
+common supply pipe, or the customer's water has been contaminated by manganese.
+Although there is some natural grouping of what content needs to be
+represented, each of these statements bring with them "representational thorns"
+(Guha &amp; Lenat 1990) that are difficult to overcome. And of course, DMAP
+would require appropriate phrasal patterns to associate with these
+representations.<p>
+But these representations were not present in Casper. The original system had
+no structure to speak of. Some representation was added to the Casper system to
+support parsing from the template-based type-in boxes, but they weren't of the
+type we have just been discussing.<p>
+What contextual support is given by the application that can be taken advantage
+of in parsing? In Creanimate, we used a template-based type-in interface, as
+shown in Figure 3.3. The dialog manager module in the Creanimate tutor manages
+the interactions between the student and the tutor. At any given point in a
+conversation, the dialog manager knows exactly the type of object to expect.
+For example, in Figure 3.3, the student has just finished stating he or she
+wants to build a hiding butterfly, so Creanimate asks the student how to change
+the butterfly so it can hide. The answers are limited to (in Creanimate's
+terms) features. There are never more than three type-in boxes on a template
+screen in Creanimate, and each points to a specific hierarchy within the
+Creanimate representation system, and because of the reasons discussed
+previously, it was likely that the parser will be able to find the correct item
+in memory.<p>
+In Casper, on the other hand, the dialog task is much more open ended. One of
+the pedagogical tasks of Casper is to teach the student to ask good questions,
+or make good statements; in order to do this, Casper has to allow students to
+make inappropriate statements or ask inappropriate questions, so the Casper
+tutor can do its task of instruction on this point. Therefore, nearly any
+statement or question needs to be anticipated at each point in the dialog.
+Thus, the predictions on what might be said next are much weaker in Casper than
+in Creanimate.<p>
+Furthermore, as we have seen, the multiple template screen approach did not
+work. The CSRs often used the "wrong" template screen--asking the customer to
+take some action regarding the water problem (ideally done on the template
+screen brought up by pressing the "Ask customer to..." and "The problem/the
+water" buttons) from the template screen built for asking questions about the
+water problem. We can speculate why this was the case--the number of steps was
+too great, lack of cognitive congruence between the design and what the CSRs
+were thinking--but the important point is that the approach did not work.
+Specifically, it did not provide constraints that the parser could take
+advantage of. In fact, when the CSRs used the "wrong" template, the parser was
+provided with the wrong predictions. <p>
+The individual templates often did not provide enough constraint either. For
+the reasons discussed earlier--the wide ranging number of statements that CSRs
+might say--it was difficult to create useful templates. In the limit, there was
+only one statement in a particular class, and so if there were a template built
+for that statement, the type-in interface was reduced to the pull-down menu
+interface, which also had a one-to-one mapping between menus and statements.<p>
+What additional representation is needed to support parsing? Attempting to
+build a DMAP-style parser for Casper brought home this lesson: It would require
+a lot of work. The template-based type-in box approach with multiple template
+screens was unsuccessful. Moving to a free text type-in box appears to require
+a very difficult representational task--a task undertaken just to support
+parsing, and which wouldn't directly aid the other modules of the Casper
+system, in particular, the tutor.<p>
+<b>Conclusions</b><p>
+<b></b>Our first attempt at building a parser for Casper based on Direct Memory
+Access Parsing using template-based type-in boxes and template screens failed.
+It failed because we did not have adequate conceptual representations for the
+statements that the Casper tutor was prepared to handle. It failed because we
+could not build an interface that was simple enough for the students to use,
+yet provided useful information to the parser. This leaves us with four
+options:<p>
+Redo the representations. Do the difficult representational work that is
+required to do DMAP parsing from a type-in box,<p>
+Redo the interface. Solve the problems of the template selector, <p>
+Abandon parsing. Forget trying to build a type-in interface, and use only
+pull-down menus or other "point-and-click" interfaces,<p>
+New parsing approaches. Try a different approach to parsing altogether.<p>
+For the reasons we have just discussed, redoing the representations appears too
+difficult, and redoing the interface appears impossible. Abandoning parsing is
+a possibility, but we would lose the advantages of a type-in interface,
+specifically, the relative similarity of typing to conversing in contrast to
+pull-down menus. This leaves us with developing a new approach to parsing.
+Chapter Five describes such an approach, indexed concept parsing, which proved
+an effective method for parsing in the Casper tutor.<p>
+<a name="fn0" href="#fnB0">[1.]</a>From now on, unless the distinction is
+important, we will use "statement" to mean "statement or question."<p>
+<a name="fn1" href="#fnB1">[2.]</a>In the version of Casper for which we
+built a parser, there were six different simulated customers.<p>
+<a name="fn2" href="#fnB2">[3.]</a>Just to be clear, the Casper system also
+includes side-effects of the CSR statements and customer responses, marking,
+for example, that the customer has stated his or her name. Because these
+side-effects do not effect parsing, we ignore them here. See Kass (1994) for
+details.<p>
+<a name="fn3" href="#fnB3">[4.]</a>We will show the CSR statements by giving
+its symbolic form, followed by its English form.<p>
+<a name="fn4" href="#fnB4">[5.]</a>Much of the representation work was done
+by Howard Stamp, a North West Water, plc, intern.
+
+<P><hr size=4>
+</body></html>

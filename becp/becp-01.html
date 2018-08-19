@@ -1,0 +1,331 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Natural Language Processing, Knowledge Representation and Practical
+Programs</TITLE></HEAD>
+<BODY BACKGROUND="../images/r2harch.gif" TEXT=#1809BB>
+<center><b>Natural Language Processing, Knowledge Representation and Practical
+Programs</b><p>
+<b></center></b>One of the hallmarks of an intelligent machine would be the
+ability to talk to it--and so, from the earliest days, natural language
+processing has been an important subfield of artificial intelligence (AI)
+research. Turing's Imitation Game (Turing 1963), often called the "Turing test"
+for machine intelligence, is premised on being able to converse with a
+computer, and the mechanical translation of text was an early hope (for
+example, Locke &amp; Booth 1955). Building machines that understand natural
+language (that is, language produced by humans, as opposed to programming
+languages) was and continues to be a goal of AI research.<p>
+<b>The history of conceptual parsers</b><p>
+<b></b>An important point of programs that could be said to understand natural
+language is that understanding must necessarily be semantic in nature; that is,
+there must be some sort of underlying conceptual representation. Early examples
+of such parsers were based on the Conceptual Dependency theory of knowledge
+representation (Schank 1972; Schank &amp; Abelson 1977). Conceptual Dependency
+theory proposed a small set of semantic primitives which formed a language of
+thought into which text should parse. <p>
+<b>Parsing as a semantic task</b><p>
+<b></b>The first conceptual parsers were Spinoza and Spinoza II (Schank, et al.
+1970); a later, more well known system was MARGIE (Riesbeck 1975). The
+principle control mechanism in MARGIE was the request, which was associated
+with lexical items. Requests were expectation rules which encoded syntactic and
+semantic (primarily semantic) knowledge about language. Requests were if-then
+rules that encoded the knowledge required to recognize that "give" followed by
+"kiss" (as in "Bess gave Mark a kiss") should parse to a fundamentally
+different conceptual representation than "give" followed by "book" (as in "Jane
+gave Rachel a book").<p>
+Later parsers built in the same tradition included ELI (Riesbeck &amp; Schank
+1976) and CA (Birnbaum &amp; Selfridge 1981). In Riesbeck's overview, he
+states:<p>
+[These later conceptual analyzers] extended and changed the basic approach in
+many ways, including better control structures, standardized request formats,
+and so on. They maintained the basic ideas, however. The parsers always
+produced a meaning representation, not a syntactic structure, by applying
+requests attached to words read left to right in a sentence. The meaning
+representation was then passed to inference modules, for language-independent
+processing (Riesbeck 1986:238).<p>
+One important functional difference between the early conceptual analyzers and
+the later ones is their use by other reasoning programs. For example, ELI was
+used in SAM (Schank &amp; Abelson 1977), PAM (Wilensky 1978), and FRUMP (DeJong
+1979). FRUMP was a particularly interesting program, from the point of view of
+the development of building practical parsers. FRUMP was a text understanding
+program that skimmed input text to fill in what were called "sketchy scripts"
+about the text. FRUMP's input was taken directly from the news wires. It was
+the first program in this tradition to be evaluated based on empirical measures
+using real-world data.<p>
+<b>Parsing as a memory task</b><p>
+<b></b>As research continued into the 1980s, more and more focus was placed on
+the modeling of memory and inference. Schank's model of Dynamic Memory (Schank
+1982) inspired and was inspired by work on a number of new parsing and
+inference systems, including IPP (Lebowitz 1980), BORIS (Dyer 1983) and
+MOPTRANS (Lytinen 1984). Conceptual representations were described as Memory
+Organization Packages (MOPs), which differed from previous conceptual models by
+their dynamic quality (that is, the state of memory should change as a result
+of new experiences in the world, such as reading a text) and a greater emphasis
+on the packaging of conceptual representations--packaging that can be learned
+and generalized across experiences.<p>
+Riesbeck (1986) has described all of these conceptual analyzers as build and
+store systems: That is, the parser builds up a conceptual representation during
+the parse, which is then stored in memory. DMAP (Direct Memory Access Parsing;
+Martin 1989, 1990) is a model of parsing that attempts to model parsing as an
+integrated memory process<a name="fnB0" href="#fn0">[1]</a>. DMAP is a
+recognition parser; that is, it relies on an elaborated conceptual memory
+representation to recognize references to parts of that memory. <p>
+As this history of MARGIE to ELI to DMAP indicates, the focus of parsing
+research has been on creating cognitive models of the way people process text,
+models that focus on the semantic and memory-based aspects of parsing.
+Eventually, cognitive modelling began to dominate the research agenda, and
+parsing was left behind. <p>
+<b>Parsing as a practical task</b><p>
+<b></b>As the cognitive modeling continued, a second shift took place: an
+increased emphasis on building practical, large scale programs. Schank (1991)
+claims that real AI research can only take place while completing practical
+real-world tasks.<p>
+This view affected the research on NLP, especially evident in the title of
+Schank's presentation at the ISSCO 21st Birthday Symposium<a name="fnB1"
+href="#fn1">[2]</a>, entitled "Why we don't do NLP anymore." The role of NLP
+has changed, Schank says:<p>
+To be clear, NLP does have an immediate role in the systems we build. But its
+role is pragmatic. Though we cannot yet model how people use language, we can
+use NLP as a helpful tool in practical systems with large case bases. When
+their programs contained little knowledge, researchers viewed natural language
+as a way to get new knowledge into the system. With systems that have large
+amounts of knowledge, the role of NLP is not to create new concepts, but to
+recognize those concepts that the program already knows (Schank &amp; Cleary
+1993).<p>
+This paragraph brings together several strains in which to place the embedded
+conceptual parsers we will discuss in this work:<p>
+A tool view. NLP is a tool to apply to practical problems, rather than a means
+of exploring cognitive models.<p>
+A memory-based view. Parsers need to be built on semantic and memory-based
+principles. Their primary task is to recognize existing memory structures.<p>
+An embedded view. Building case bases of large size will affect and support the
+type of parsers we build. <p>
+Our emphasis will be on applying these viewpoints to the creation of embedded
+conceptual parsers. <p>
+<b>Parsers for application programs</b><p>
+<b></b>The parsers described in this dissertation were developed to support
+three different application programs. All three application programs share
+certain features. The first feature they share is the nature of the task the
+parser was called on to perform: supporting the ability to engage in a dialog
+with the computer. This is in contrast to many of the parsers described above,
+which were developed in large part for stand alone story understanding. A
+second feature is related to the first: That parsers need to be robust in the
+face of the many different ways people try to talk to computers--sometimes they
+are very telegraphic in their input, sometimes overly verbose, sometimes making
+statements that require complex anaphoric resolution or inference. Finally,
+while the parsers needed to be robust, the knowledge engineering requirements
+had to be modest: The focus in all of these programs could not be on natural
+language processing, but on the task for which the application programs were
+built. This implies that the knowledge representation already present must form
+the major part of any knowledge engineering work, and be done to satisfy the
+needs of the application program. <p>
+<b>A DMAP parser for Creanimate</b><p>
+<b></b>Creanimate is a tutorial program that teaches fourth to sixth grade
+children about certain aspects of biology (Edelson 1993). In particular,
+Creanimate attempts to inculcate an attitude in students--an attitude of
+looking at the physical features of animals (such as wings, eyes, etc.) and
+asking what functions they perform. Creanimate accomplishes this by engaging in
+a dialog with a student, allowing him or her to create an animal with novel
+features (a butterfly with a big nose, for example). But engaging in a dialog
+implies that the computer needs to have some understanding of the student's
+side of the conversation.<p>
+Creanimate contains complex conceptual representations of animals, features,
+animal behaviors, and the connections among them. Although Direct Memory Access
+Parsing (DMAP) had previously only been used for cognitive modeling of story
+understanding, it appeared to us that DMAP would be a good parsing technology
+to embed into Creanimate, because the type of complex representation that
+Creanimate already required was just the type of memory representation that
+DMAP required for parsing. Very little additional knowledge representation was
+required--only the attachment of phrasal patterns, that is, sequences of words
+and pointers to conceptual memory. This could be done by the content specialist
+(knowledge engineer) already assigned the task for creating representations for
+storytelling. <p>
+For example, in one of the interactions between Creanimate and a student, the
+student was creating a pike with wings. Creanimate replied by saying, "If your
+pike is going to have wings, that should help it to do something. Why would you
+like your pike to have wings?" The student was given (among other options) a
+prompted fill-in-the-blank, "So it can ______" The student entered, "So it can
+<u>escape enimies (sic)." The DMAP parser recognized this (despite the
+misspelling) as a reference to Creanimate's internal representation of fleeing
+predators and other enemies.</u><p>
+<u></u>DMAP was a good technology in this application: even early results
+showed that the DMAP parser in Creanimate had an accuracy rate of over 80%.<p>
+<b>A DMAP parser for Casper</b><p>
+<b></b>The next application was Casper, another dialog-based tutorial system.
+Casper was developed to teach novice customer service representatives (CSRs) at
+a large water utility how to solve customers' problems over the telephone (Kass
+1994). The dialog takes place between the student (in the role of a CSR) and
+simulated customers. Based on our experience in building a parser for
+Creanimate, we set about the task of building a parser for Casper based on
+DMAP.<p>
+As stated above, we could take advantage of the existing knowledge
+representation in Creanimate as we built Creanimate's parser. Creanimate's
+memory was arranged in structured hierarchies in which subset/superset/instance
+relationships (taxonomy) and attribute/value relationships (partonomy) were
+elaborated for a large number of objects. This was not the case in Casper. The
+goal of the Casper parser was to map from student textual input to one of a set
+of predefined CSR statements, which numbered approximately 200. However, these
+CSR statements did not have the type of structured relationships present in
+Creanimate. In fact, the only relationship they bore to one another was of
+being members of the set of CSR statements.<p>
+Therefore, we began the work of building from scratch the conceptual
+representations that DMAP requires. After several person-months of work, we
+tested the parser with three experienced CSRs. The results were discouraging.
+First, DMAP required fairly elaborate representational work. Second, for two of
+the CSRs, the parser did not produce a single correct answer, and for the other
+CSR, the accuracy rate was only 40%.<p>
+<b>Casper and indexed concept parsing</b><p>
+<b></b>The failure to build a traditional DMAP parser for Casper that was both
+robust and had minimal knowledge representation requirements led to a
+rethinking of how to build embedded conceptual parsers. Taking a cue from the
+case-based reasoning literature (for example, Riesbeck &amp; Schank 1989,
+Kolodner 1994), we began to explore the idea of viewing the individual CSR
+statements as cases that could be indexed. <p>
+The second attempt to build a parser for Casper led to a new architecture for
+recognizing memory structure, indexed concept parsing. In indexed concept
+parsing, each potential target concept (that is, those conceptual
+representations which may match the intention of a user, such as the CSR
+statements in Casper) is assigned one or more sets of index concepts. An index
+concept can be a relatively simple conceptual representation. In the indexed
+concept parser created for Casper, the index concepts formed a shallow
+taxonomic hierarchy. Each index concept has associated with it one or more
+phrasal patterns. So, knowledge representation in indexed concept parsing
+consists of creating index concepts, associating them with target concepts, and
+assigning them phrasal patterns. <p>
+In the parsing phrase, the parser looks for the occurrence of phrasal patterns
+in the input text. Each phrasal pattern seen results in its associated index
+concept being collected into a pool of index concepts. This index concept pool
+is then used as a probe into the case base of target concepts, comparing the
+index concept pool to the index concepts associated with each target concept.
+The best matching target concepts are returned as the results of parsing.<p>
+For example, in the Casper tutor, one of the CSR statements was the question,
+"Is the problem in both the hot and cold taps?" This target concept was tagged
+with the index concepts {water-quality-problem hot cold taps}. When a student
+entered, "Are the bits coming from your cold water tap?" three index concepts
+were recognized: water-bits, from "bits," and cold, from "cold,"   water from
+"water" and taps from tap. Because water-bits are a kind of
+water-quality-problem, the CSR statement, "Is the problem in both the hot and
+cold taps?" was returned as the best match, despite not seeing a reference to
+the index concept hot and seeing a reference to an index concept, water, not in
+its associated set of index concepts.<p>
+One goal was met: The knowledge representation requirements were minimal. The
+target concepts already existed, and the index concepts and phrasal patterns
+were easy to add. Despite the relative paucity of the representation, the other
+goal was met as well. The accuracy of the first indexed concept parser built
+for Casper was as accurate as the DMAP parser for Creanimate, over 80%. Using
+the results of initial testing to do additional knowledge representation (of
+the same form done for the first testing) and adding expectations led to 90%
+accuracy for the indexed concept parser for Casper.<p>
+<b>Indexed concept parsing and the TransAsk logistics advisor</b><p>
+<b></b>The third application described in this work is the TransAsk logistics
+advisor, a hypermedia job aid for transportation planners (Bareiss &amp; Osgood
+1993). TransAsk is an Ask system (Ferguson, et al. 1992) containing hundreds of
+stories about logistics planning. Each story is indexed with a set of questions
+answered, that is questions that are answered in the story. In an attempt to
+test whether indexed concept parsing could scale up to larger domains, an
+indexed concept parser was built for TransAsk, with the questions answered
+being the target concepts. Approximately 1,650 questions answered were indexed.
+The results of this prototype parser indicate that indexed concept parsing can
+scale up to larger domains, both in terms of the knowledge engineering required
+and in terms of accuracy. Several software tools for visually editing index
+concepts, phrasal patterns, and the association of index concepts to target
+concepts were built. One interesting by-product of these tools was the way in
+which indexed concept parsing could be used in the tools themselves to suggest
+index concept associations and to debug and refine the index concept
+hierarchy.<p>
+As an example, in one case the question "What kind of data is in the Global
+Transportation Network<a name="fnB2" href="#fn2">[3]</a>?" was asked.  Several
+questions answered were returned as close matches, including:<p>
+What information goes into GTN?<p>
+What data is tied together in the GTN?<p>
+What is GTN?<p>
+How will GTN be used to obtain information?<p>
+Some not so closely matching questions answered were:<p>
+What were some of the early problems with the GTN protocol?<p>
+How can an AO (action officer) anticipate transportation requirements?<p>
+<p>
+The TransAsk parser can be seen as valuable not only for a user of the TransAsk
+system, but also for the content specialists building up the content in a
+system such as TransAsk, as a way to move quickly inside the system, and to
+check for data integrity in the questions answered assigned to stories.<p>
+The existing knowledge representation in the Creanimate system made the use of
+DMAP possible. But creating the knowledge representation required for DMAP from
+scratch proved prohibitively expensive and ultimately failed to create accurate
+parsers for other programs. This led to a re-examination of the parsing task,
+and then to the development of indexed concept parsing. Indexed concept parsing
+proved to be a viable methodology to create accurate parsers for both Casper
+and TransAsk.<p>
+The successful deployment of indexed concept parsers in the Casper and TransAsk
+applications suggests that indexed concept parsing can also be a viable
+methodology for other application programs. <p>
+<b>Building embedded conceptual parsers: A guide to this work</b><p>
+<b></b>Building an embedded conceptual parser is the design and implementation
+of software that<p>
+converts natural language into useful conceptual representations and<p>
+is embedded within an application program<p>
+where a "useful" representation is one that can be used by the application
+program to service the goals for which it was built. <p>
+In Chapter 2, we discuss the evaluation of embedded parsers. We begin with such
+a discussion because, for software written to achieve practical, real-world
+goals, we need methods to measure our success or failure in achieving these
+goals. Further, because of the practical, real-world nature of the tasks to
+which these parsers will be put, qualitative evaluations will not always
+suffice for building better parsers. For example, should a particular parser
+have anaphoric resolution built into it? Clearly, from a cognitive modelling
+point of view, a valid, full-scale parser must do anaphora resolution. But is
+it needed in a particular case? We will only know if we have the measurements
+at hand that can tell us.<p>
+In Chapter 3, we discuss the design and implementation of a particular
+conceptual parser, the parser for the Creanimate biology tutor. In Chapter 4,
+we describe the experimental DMAP parser created for the Casper CSR tutor.
+Unlike the parser built for Creanimate, which was quite successful, the DMAP
+parser built for Casper was not very successful. Comparing these systems, and
+their underlying knowledge representations and requirements, brought about a
+new parsing technology (and the major contribution of this work): indexed
+concept parsing.<p>
+Indexed concept parsing is described in the context of the Casper tutor in
+Chapter 5. Indexed concept parsing is a parsing architecture that provides good
+results in exchange for modest knowledge engineering requirements, and this is
+borne out in our evaluation of the indexed concept parser built for Casper. In
+Chapter 6, we describe how the parser for Casper could be even further
+improved.<p>
+Having described indexed concept parsing in the particular context of Casper,
+we turn in Chapter 7 to a more general description of how to build an embedded
+conceptual parser using indexed concept parsing. (Someone looking for the
+quickest route to understanding indexed concept parsing would do well to read
+Chapters 5 and 7.) Another parser, this one a prototype, is described in
+Chapter 8: a parser for the TransAsk logistics advisor.<p>
+In the final chapter, we further relate indexed concept parsing to other
+work--on the one hand, to other conceptual parsers, and, on the other, to
+information retrieval systems. This examination leads to a discussion of
+indexed concept parsing as a universal architecture for parsing in interactive
+domains--that is, one that works over the entire continuum of representational
+systems--from key word systems to partonomic hierarchies. We further claim that
+indexed concept parsing can form the basis of an embedded conceptual parser
+tool set--a set of tools for designing and implementing conceptual parsers for
+a wide variety of interactive application programs.<p>
+Good research is shared research, and the appendix contains code, written in
+the Lisp programming language, conforming to the de facto standard, Common
+Lisp, the Language, 2nd Edition (Steele 1990). This code implements a version
+of indexed concept parsing, including a "micro" form of the Casper CSR tutor
+(just enough of the tutor to permit the parser to work).<p>
+Some day, we may build machines we can talk to, machines that will win Turing's
+Imitation Game in a deep and satisfying way. Until then, we can build machines
+that still do useful functions--educate, allow us access to the stored wisdom
+of experts, etc. This dissertation describes implementations and designs for
+ways of talking to these programs. Perhaps, in the end, it will turn out that's
+what we wanted to do all along--build useful artifacts, not play imitation
+games.<p>
+<a name="fn0" href="#fnB0">[1.]</a>Actually, Riesbeck (1986) calls any parser
+that models parsing as an integrated memory process a direct memory access
+parser; the specific family of implementations described in Martin (1989, 1990)
+and in Chapter 3 of this dissertation all go by this generic name.<p>
+<a name="fn1" href="#fnB1">[2.]</a>ISSCO (Institut Dalle Molle pour les
+Etudes Semantiques et Cognitives) is a research laboratory attached to the
+University of Geneva which conducts research in artificial intelligence and
+computational linguistics. Schank spent some time there early in its history,
+and wrote the first technical report issued by the Institute (Schank 1973).<p>
+<a name="fn2" href="#fnB2">[3.]</a>The Global Transportation Network, or GTN,
+is a automation system used to request transportation.
+
+<P><hr size=4>
+</body></html>

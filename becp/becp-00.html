@@ -1,0 +1,178 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Building Embedded Conceptual Parsers Front Matter</TITLE></HEAD>
+<BODY BACKGROUND="../images/r2harch.gif" TEXT=#1809BB>
+<center>NORTHWESTERN UNIVERSITY<p>
+</center><p>
+<center><b>Building Embedded Conceptual Parsers</b><p>
+<b></center></b><p>
+<center>A DISSERTATION<p>
+</center><center>SUBMITTED TO THE GRADUATE SCHOOL IN PARTIAL FULFILLMENT OF THE
+REQUIREMENTS<p>
+</center><center>for the degree<p>
+</center><center>DOCTOR OF PHILOSOPHY<p>
+</center><p>
+<center>Field of Computer Science<p>
+</center><p>
+<center>By<p>
+</center><center>William Alan Fitzgerald<p>
+</center><p>
+<center>EVANSTON, ILLINOIS<p>
+</center><center>Dissertation submitted and approved December 1994<p>
+</center><p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<center>(c) Copyright by William Alan Fitzgerald 1995<p>
+</center><center>All Rights Reserved<p>
+</center><p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<b></b><p>
+<b><center>ABSTRACT</b><p>
+<b></center><center></b>Building Embedded Conceptual Parsers<p>
+</center><p>
+<center>William Alan Fitzgerald<p>
+</center><p>
+This dissertation describes how to build conceptual parsers (that is, natural
+language understanding systems built on semantic and pragmatic principles) that
+are embedded into application programs. A new architecture for building such
+parsers, indexed concept parsing, is described. Indexed concept parsing is a
+case-based reasoning approach to parsing, in which underlying target concepts
+(that is, those conceptual representations of the application program
+identified as important to recognize) are associated with sets of index
+concepts. Each index concept is associated with sets of phrasal patterns. At
+run time, the parser looks for phrasal patterns in input text, and the index
+concepts recognized thereby are used to appraise the best matching target
+concepts. The architecture defines a range of parsers, in which the complexity
+of the index concept representations can vary according to the needs of the
+application program: index concepts can be key words, synonym sets,
+representations in an abstraction hierarchy, or representations in a partonomic
+hierarchy. Indexed concept parsing was developed to build parsers for Casper,
+an interactive learning environment designed to teach customer service
+representatives how to solve customer problems, and TransAsk, a multimedia
+system for transportation planners. Indexed concept parsing proved robust (for
+example, the Casper parser had an accuracy rate ranging from 83-96%), yet
+required minimal knowledge representation. A methodology for building an
+indexed concept parser is given, and evaluation metrics are described. Another
+parser, based on Direct Memory Access Parsing (DMAP), and developed for the
+Creanimate biology tutor, is also described, as well as a DMAP parser for
+Casper. Indexed concept parsing and DMAP are contrasted as architectures for
+building embedded conceptual parsers. <p>
+<b></b><p>
+<b><center>ACKNOWLEDGMENTS</b><p>
+<b></center></b>Chris Riesbeck was the first member of the faculty I met at the
+Institute for the Learning Sciences. He fascinated me with the idea of parsers
+that could get bored if they had to, and then (patiently, over many months)
+taught me why one might have to. He has modelled many things for me--elegant
+programming style; how to do research in artificial intelligence and natural
+language processing; how to write and act as a member of a community of
+scholars. His advice, patience, example and humor have shaped my past few
+years.<p>
+Larry Birnbaum and Ken Forbus also served as members of my dissertation
+committee. As others before me have said, I cannot underestimate the importance
+of Larry's introduction to the ways of artificial intelligence research--how
+hard, how intriguing, how much fun AI research can be. Ken works very hard, and
+is very insightful--a combination before which I've often stood in awe. It was
+an honor to have them on my committee.<p>
+Roger Schank has gathered an astoundingly wonderful group of researchers at the
+Institute for the Learning Sciences, and, through his vision for new ways of
+educating, has provided many interesting opportunities for working on
+intriguing projects. I am in his debt. I worked on building parsers that were
+embedded in application programs, and I am indebted to the people who built
+those application programs. Danny Edelson and Alex Kass were both graduate
+students before me, and I profited from their advice and example, and am glad
+for their friendship. Ray Bareiss encouraged and challenged me as I worked on
+the challenge of adding a parser to a large-scale system. Other faculty and
+staff at Northwestern have had their impact in ways too numerous to
+mention--but I cannot fail to mention, by name at least, three others who were
+my teachers: Gregg Collins, Paul Cooper, and Dedre Gentner.<p>
+Grad school often provides a place for friendships to develop, and this was
+true among those who took the qualifying exam the same year as I: Chip Cleary,
+John Cleave, David Foster, John Hubbel, Steven McGee, Mike Sang, Nikitas
+Sgouros, Eric Shafto, Ian Underwood, and Chris Wisdo. Chip has been a steady
+friend and source of insights, suggestions and good coffee. Eric can convince
+me of anything (even when we both know it's wrong). David,
+conservative/rocker/professional volleyball player/AI hacker, is someone I
+never have enough time to talk to. Chris has been a constant intellectual
+sparring partner and colleague. Eric Goldstein always had an encouraging word
+about my research.<p>
+ Louise Pryor was a master at the mot juste, including wishing me the best of
+British luck exactly when I needed it. Andy Fano helped me sharpen the
+distinctions among different types of conceptual parsers. The members of the
+Millard Fillmore Memorial (Film Noir) Lunch group patiently listened to my
+ramblings even as I impatiently listened to theirs. Members of the
+administrative and support staffs, including Elizabeth Brown, Amy Juhl, Teri
+Lehmann, Heidi Levin, Sharon Lewis, Doug MacFarlane, Paul Ring, Michelle Suran
+and Tina Turnbull made the Institute a (usually) efficient as well as an
+(always) humane place to be. Heidi Levin also did the momentous favor of
+proof-reading the technical report version of the dissertation. Friends outside
+the Institute also need to be acknowledged, especially my fellow dissertator
+Terry Wolfer; fellow household members Mark Knoper, Paul Tretbar, Bev Wiebe and
+Dan Yutzy; and the members of the Elmwood Small Group and the JJSG at Reba
+Place Church.<p>
+It's impossible to acknowledge how important Bess Fitzgerald (my wife) has been
+to my getting here. She has been constant in her support and love along the
+way, never letting me quit or become overly discouraged. Our children, Mark
+William Fitzgerald and Jane Elizabeth Fitzgerald, are just plain delightful and
+a joy to come home to.<p>
+This work was supported in part by the Defense Advanced Research Projects
+Agency, monitored by the Office of Naval Research under contracts
+N00014-91-J-4092 and N00014-90-J-4117. The Institute for the Learning Sciences
+was established in 1989 with the support of Andersen Consulting, part of The
+Arthur Andersen Worldwide Organization. The Institute receives additional
+support from Ameritech and North West Water Group plc, Institute Partners.<p>
+<center><b>DEDICATION</b><p>
+<b></center><center></b>For my father, Harold Fitzgerald,who gave me a love for
+books,and to the memory of my mother,Muriel Shaughnessy,who first took me to
+college.<p>
+</center><P><hr size=4>
+</body></html>

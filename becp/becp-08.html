@@ -1,0 +1,665 @@
+<html><head><!-- This document was created from RTF source by rtftohtml version
+2.7.5 --></head><body><b>Building an Indexed Concept Parser for the TransAsk
+Logistics Advisor</b><p>
+<b></b><p>
+<p>
+On August 2, 1990, Iraqi troops invaded the neighboring country of Kuwait and
+overran its defenses within a few days. The United States began deploying
+forces in Saudi Arabia (as part of Operation Desert Shield) on August 7, at the
+invitation of the Saudi government. On January 17, 1991, international forces
+led by the United States (in Operation Desert Storm) invaded Iraq and
+approximately one month later forced Iraqi troops to leave Kuwait (Blair 1992,
+McCausland 1993).<p>
+Transportation support for the United States forces was provided by the United
+States Transportation Command (Transcom). Transcom's job was a difficult and
+complex one during Desert Storm/Desert Shield (DSS). Over 500,000 US troops,
+120 ships and 1,700 aircraft were used in DSS. Furthermore, the rapid
+deployment of US forces and the rapid advance against Iraqi forces created
+pressures on the logistics network.<p>
+<b>The TransAsk logistics advisor</b><p>
+<b></b>TransAsk is a multimedia system which attempts to capture the experience
+of 25 transportation planners in DSS (Bareiss &amp; Osgood 1993). Designed as a
+"job aid, training tool and reference" for officers assigned to Transcom,
+TransAsk is a richly interconnected collection of video stories created within
+the Ask hypermedia architecture (Ferguson et al. 1992). Figure 8.1 shows the
+browsing interface to TransAsk.
+<IMG SRC="becp-08-1.gif"><p>
+<b>Navigating Ask Systems</b><p>
+<b></b>As Figure&nbsp; 8.1 suggests, links from stories to other stories are
+described in terms of questions. In Question-based Indexing (Osgood 1994), two
+stories are linked if a question raised in one story is answered in another. In
+other words, each story has a set of questions raised and may hold the answers
+to a set of questions answered. The intersection of questions raised in one
+story and the questions answered in another form the link between the
+stories.<p>
+There are two methods for navigating Ask systems. One is the questions
+raised/question answered linking just described, organized in a taxonomy of
+categories thought to underlie human conversation (Schank &amp; Abelson 1977).
+This provides local links from story to story. The other interface is the
+"zoomer" interface. This provides global structure to navigating an Ask system,
+acting as an overview or map to the system. In TransAsk, the zoomer<p>
+is organized around a model of the job roles in the Transcom crisis action team
+(CAT), the tasks carried out by people in those roles, and typical problems in
+successfully accomplishing them. This mirrors the situation in which an action
+officer is likely to consult TransAsk: he/she is in a particular role, carrying
+out a task, and having a problem doing so (Bareiss &amp; Osgood 1993:4).<p>
+Table&nbsp; 8.1 shows the steps a user goes through in order to find a story,
+using the zooming interface for the TransAsk system.
+
+<pre>
+Steps to zoom to a video                                                      
+story in TransAsk                                                             
+Step the user takes        What the user sees on the screen                   
+The user selects the       <IMG SRC="becp-08-2.gif">                                                  
+organization (here "US                                                        
+TRANSCOM").                                                                   
+The user selects a         <IMG SRC="becp-08-3.gif">                                                  
+functional role (here                                                         
+"Requirements".                                                               
+The user selects the       <IMG SRC="becp-08-4.gif">                                                  
+specific tasks of                                                             
+interest (here, "Verify                                                       
+accuracy of                                                                   
+requirements").                                                               
+The user selects the       <IMG SRC="becp-08-5.gif">                                                  
+specific question s/he                                                        
+has about the task (here                                                      
+"Handle errors in                                                             
+requirements").                                                               
+
+</pre>
+The
+zooming interface provides a global method of entering the Ask system. The
+questions raised/questions answered links provide a method for moving locally
+from story to story in a coherent way. <p>
+<b>A parsing interface for TransAsk?</b><p>
+<b></b>In TransAsk, the basic organizing principle is this: The user of the
+system has a question that he or she wants answered. To find the answer to that
+question, the user can navigate the zooming interface globally, or find answers
+to questions raised in a particular story.<p>
+The zooming interface and the browsing interface have their advantages, but
+their main disadvantage is that it is difficult to go directly to a story that
+answers a question a user has. In the zooming interface, the user must go
+through four steps to find the question he or she wants--and this assumes the
+task-based model for organizing the questions is congruent to the user's own
+model of how questions might be organized. In the browsing interface for
+TransAsk, the user is limited to just those questions that are raised by the
+current story.<a href="becp-08-fn.html#fn0">[1]</a> A user would
+not be able to jump to a story about in-transit visibility during DSS from a
+story about the dangers of the Good Old Boy Network, for example.<p>
+A third interface suggests itself--allow the user to type in his or her
+question, and bring up the story that answers the question. In the limit, this
+would require a perfectly intelligent machine, but the techniques for indexed
+concept parsing may allow us to create a good enough interface. As a prototype
+parsing interface, consider Table&nbsp; 8.2. The user enters a question.
+Indexed concept parsing is used to find the best matches to the question, and
+the user selects one of the best matches. <p>
+In this chapter, we discuss building a prototype parsing interface for the
+TransAsk system. In this chapter, we:<p>
+Illustrate the method described in the previous chapter to add an indexed
+concept parser to a new application program, and<p>
+Test indexed concept parsing on a domain with a larger case base than the
+Casper system.<p>
+It should be stressed that this parser is a prototype, and that issues of
+transparency and so on have not yet been addressed.
+
+<pre>
+Steps to parse to a                                                          
+video story in TransAsk,                                                     
+using a prototype                                                            
+question matcher based                                                       
+on indexed concept                                                           
+parsing                                                                      
+Step the user takes        What the user sees on the screen                  
+The user types in a                                                          
+question and presses the                                                     
+Find button.                                                                 
+The user selects the                                                         
+best matching question                                                       
+and presses the Select                                                       
+button.                                                                      
+
+</pre>
+<b>Background
+information on TransAsk</b><p>
+<b></b>In the previous chapter, a methodology for creating indexed concept
+parsers for application programs was described. The first step is to gather
+background information on the application program, and do the following:<p>
+						Identify the target concepts<p>
+Identify the architecture of conceptual memory	<p>
+	Identify contextual clues provided by the application program.	<p>
+<b>Target concepts and the architecture of conceptual memory in TransAsk</b><p>
+<b></b>The target concept in TransAsk is the question answered. Links from one
+story in TransAsk to another are made by the questions the one story raises to
+the answers found in the other story. The internal representation of a question
+answered is simple. It consists of two parts: a question identification number
+and the text of the number. The following, for example, is a question answered
+in the TransAsk system:<p>
+1408.		What is the function of the requirement cell?<p>
+This representation is very similar to that of the Casper system, in which CSR
+statements consisted of a unique symbolic identification and the text of the
+statement.<p>
+One important difference between the statements in Casper and the questions
+answered in TransAsk is their relative quantity. The Casper tutor had responses
+to approximately 200 CSR statements. The TransAsk system has approximately
+1,800 questions answered, of which approximately 1,650 questions answered were
+indexed in the TransAsk parser prototype<a href="08 ICP and
+TransAsk_fn.html#fn0">[2]</a>. <p>
+<b>Contextual clues in TransAsk</b><p>
+<b></b>The purpose of the TransAsk system was to serve as a job aid, training
+tool and reference tool for transportation planners in the United States
+Transportation Command. The prototypical user, then, is a transportation
+planner generally familiar with the role of transportation planning, and who
+wants to access the "corporate memory" of transportation planning to answer a
+particular question he or she has. We make the following assumption:<p>
+The Cooperative User Assumption: Statements made reflect the primary goals of a
+typical user for whom the system was designed.<p>
+That is, we assume that it is a transportation planner who is asking questions
+about transportation planning for the purpose of doing or learning about
+transportation planning. This assumption is a fairly weak one, in that it still
+licenses a large number of questions. Still, it allows us to assume that the
+user isn't asking questions trying to stress or break the parser (for example,
+"Did Tonya Harding attack Nancy Kerrigan during Desert Storm?", or ask
+questions that the user already knows the answer (for example, "What is a
+transportation planner?").<p>
+The purpose of a zooming interface<p>
+is not designed to get a reader to the exact passage that necessarily answers a
+specific question. Rather its task is to get the reader into a region of the
+database within which likely initial questions and others derived from them
+will be answered via the more precise process of browsing (Osgood 1994:42).<p>
+What this means for a parsing zoomer is that "close enough" will be the
+criterion by which we judge success--and close enough will mean being in a
+region of the database from which a user can get an appropriate answer for his
+or her question.<p>
+TransAsk's domain is all of transportation planning, especially in the context
+of Desert Storm/Desert Shield. With Casper, it shares the characteristic of
+having a very broad underlying conceptual domain, unlike in the Creanimate
+tutor, where there were strong constraints on what a student could be expected
+to type.<p>
+<b>Matching and appraiser functions, and a design for a TransAsk parser</b><p>
+<b></b>TransAsk is a general tool that is designed for exploration. Unlike the
+Creanimate and Casper tutors, there is no control program guiding the
+interactions between the user and the application, no notion of a scripted path
+or conversation model. So, the contextual support provided by the pedagogical
+dialogs in Creanimate and Casper are missing in the TransAsk system. <p>
+Further, the broad underlying conceptual domain implies the type of template
+screens used in Creanimate would fail for the same reason that template screens
+failed to be a good interface for the first parser for Casper (see chapter
+4)--there are too many disparate concepts to represent to build template
+screens for.<p>
+On the other hand, there are two sources of expectations that might be useful.
+A first source is the cache of recently asked questions and the stories
+associated with them (currently accessible from the "Go Back" button). Assuming
+that a user is more likely to want to return to a story that answers a question
+he or she has recently asked, we might bias the parser towards this cache.
+Another source of expectations might be the questions answered that appear on
+the current screen. Because the user knows these questions are definitely in
+the system, it might be useful to bias the parser towards these. Although these
+are empirical questions worth exploring once past a prototype system, we
+developed the TransAsk parser using the following parameters:<p>
+A type-in box without prompts,<p>
+Using DMAP to match to index concepts,<p>
+Using a morphological stemmer which converts strings to stemmed symbols,<p>
+Using matching functions that compute the goodness of match based on indices
+predicted, indices not seen, and indices not predicted, with a bias towards
+indices predicted.<p>
+These are just the defaults used in the indexed concept parser code given in
+the appendix. <p>
+<b>Building representations for the TransAsk parser</b><p>
+<b></b>There are two steps in building representations for an indexed concept
+parser:<p>
+Index each target concept with sets of index concepts	,<p>
+	Index each index concept with phrasal patterns	.<p>
+Because the questions answered in TransAsk did not have any internal structure,
+we needed to build the index concepts de novo. We built a number of simple
+tools to index questions answered in TransAsk. These were: 
+
+<pre>
+Steps to create a set of                                                     
+index concepts                                                               
+associated with the                                                          
+question answered "What                                                      
+data is tied together in                                                     
+the GTN?"                                                                    
+What the specialist does   What the content specialist sees on the screen    
+ The content specialist    <IMG SRC="becp-08-6.gif">                                                 
+presses the "Suggest"                                                        
+button.                                                                      
+The index concepts         <IMG SRC="becp-08-7.gif">                                                 
+{M-THING-DESCRIBE                                                            
+M-INFORMATION M-GTN} are                                                     
+suggested. The content                                                       
+specialist accepts the                                                       
+suggestions, then closes                                                     
+the editor.                                                                  
+
+</pre>
+A
+question answered browser (see Figure&nbsp; 8.2),<p>
+An index concept set editor (see Figure&nbsp; 8.3 and Table&nbsp; 8.4),<p>
+An index concept editor (see Figure&nbsp; 8.4),<p>
+A phrasal pattern editor (see Table&nbsp; 8.5).<p>
+The basic method for indexing the questions raised was the following:<p>
+Choose a question answered from the question answered browser,<p>
+Use the index concept set editor to associate sets of index concept sets with
+the question answered,<p>
+Use the index concept editor to add new index concepts as needed,<p>
+Use the phrasal pattern editor to add phrasal patterns to index concepts as
+needed.<p>
+In the next two sections, we go through two examples of indexing specific
+questions answered.<p>
+<b>An example of indexing questions answered in TransAsk</b><p>
+<b></b>We will walk through the steps required for a content specialist
+(knowledge engineer) to index the following questions answered:<p>
+445. 	How is data tied together into GTN<a href="08 ICP and
+TransAsk_fn.html#fn0">[3]</a>?<p>
+In our first pass, we will show the steps needed to add index concepts to an
+index concept set attached to "What data is tied together in the GTN?" We do
+this to show how index concept parsing can be used even while the indexing
+phase is taking place. Assuming, the content specialist has chosen the question
+"What data is tied together in the GTN?" from the questions answered selector,
+and is about to add index concepts to the index concept set associated with
+this question, Table&nbsp; 8.3 shows the steps the content specialist takes.
+<IMG SRC="becp-08-8.gif"><p>
+The content specialist does the following:
+<IMG SRC="becp-08-9.gif"><p>
+The specialist presses the "Suggest" button.<p>
+The specialist accepts the results.<p>
+By pressing the "Suggest" button, the content specialist is requesting that the
+parser suggest index concepts from the text of the question. In this case, the
+index concept M-THING-DESCRIBE is suggested from the string "What;" the concept
+M-INFORMATION from "data;" and M-GTN from "GTN." Because these are just the
+index concepts the content specialist wishes to associate with the question
+"How is data tied together in GTN?", the suggested concepts can be accepted.<p>
+<b>A more complete example of indexing a question answered in TransAsk</b><p>
+<b></b>In the previous section, we showed the content specialist creating index
+concepts sets from the suggestions made by the index concept parser. In this
+section, we will walk through a more complete series of steps to index the
+question:<p>
+182.	 What is GTN?<p>
+Chronologically, it is likely that indexing this question occurs before the
+previous question. The indexing done for this question will provide the
+foundation for the index concept set editor to suggest the right index concepts
+for "How is data tied together in GTN?" In this section, we will go through the
+very specific steps the content specialist takes.<p>
+The first step takes is to select a question answered. The content specialist
+selects a question answered using the selector shown in Figure&nbsp; 8.2.<p>
+This displays a list of questions answered. Each question answered shows three
+elements: the question identification number, the number of sets of indexed
+concepts already associated with the question answered, and the text of the
+question answered. The cursor is on question 182, "What is GTN," and the
+content specialist uses the standard Macintosh convention of double-clicking to
+bring up the editor for adding index concept sets. This is shown in
+Figure&nbsp; 8.3.<p>
+Because no index concept sets have yet been assigned to this question answered,
+the display is blank. Clicking on the "New" button brings up the editor for
+adding a set of index concept sets, shown in Table&nbsp; 8.4. 
+
+<pre>
+Steps to create a set of                                                      
+index concepts                                                                
+associated with the                                                           
+question answered "What                                                       
+is GTN" before the index                                                      
+concept M-GTN has been                                                        
+created                                                                       
+Step the user takes        What the user sees on the screen                   
+Finding a blank set of     <IMG SRC="becp-08-10.gif">                                                  
+index concepts assigned                                                       
+to "What is GTN?", the                                                        
+user presses the                                                              
+"Suggest" button to view                                                      
+suggested index concepts.                                                     
+A single index concept     <IMG SRC="becp-08-11.gif">                                                  
+is suggested,                                                                 
+M-THING-DESCRIBE (from                                                        
+"What").                                                                      
+
+</pre>
+The
+index set editor has four elements: a display of the text of the question
+answered, a place to enter a paraphrase of the question answered, the list of
+index concepts assigned to the question answered, and a "Suggest" button. The
+paraphrase text can be used to indicate that the index concepts are suggested
+by a different reading of the question answered. As in Casper, paraphrases can
+be useful as bridges from a user's input text to the canonical text associated
+with a target concept--for example, the paraphrase "How were improvements made
+to Jopes during DSS?" for "How were improvements to the system accomplished
+during the crisis?"<p>
+The names of index concepts can be added directly into the list of index
+concepts by clicking on the "Click here to add" portion of the index concept
+set display. Index concepts can be deleted from the list by clicking on the
+index concept and erasing the text of its name.<p>
+However, the index set editor has a powerful tool for creating index concept
+sets: the "Suggest" button. When the "Suggest" button is pressed, the system
+calls the indexed concept parser on the text of the question answered (or the
+paraphrase, if it is defined). The index concepts referenced in the text are
+placed in the set of index concepts. The content specialist can then edit the
+set as described above. Table 8.4 shows this in action. The content specialist
+has pressed the "Suggest" button, and one index concept is suggested,
+M-THING-DESCRIBE (from matching "What" in the text).<p>
+As we suggested in the previous chapter, using the indexed concept parser to
+suggest index concept sets is powerful because:<p>
+The content specialist doesn't have to add index concepts to the set manually.
+Instead, he or she can filter the suggestions made by the system.<p>
+The content specialist can discover which indexed concepts are missing from the
+conceptual memory representations by noting which index concepts are not
+suggested.<p>
+The content specialist can discover what phrasal patterns are missing from
+index concepts by noting which existing index concepts are not suggested.<p>
+In the present case, the very common M-THING-DESCRIBE is suggested, but there
+is no index concept suggested that might indicate something about the Global
+Transportation Network computerized automation system. This suggests that
+either there is no indexed concept associated with the Global Transportation
+Network, or the phrasal pattern "GTN" has not been assigned to this concept. In
+fact, there is not, at this time, such an index concept, and the content
+specialist has to add this concept. One can find out which of these is the
+case--and create or edit the index concept--by using the index concept editor.
+Figure 8.4 shows an index concept editor created for the TransAsk parser<a
+href="becp-08-_fn.html#fn0">[4]</a>. 
+<IMG SRC="becp-08-12.gif"><p>
+<b>	</b>There are several things to note about this index concept editor.
+First, abstraction relations among index concepts are indicated by
+indentation--specializations of a concept appear indented immediately below the
+concept. Hence, in Figure&nbsp; 8.4, one can see that all concepts are
+specializations of the index concept M-ROOT. Secondly, we adopt the convention
+of prefixing the names of index concepts with M-; this is to remind ourselves
+that index concepts are not English words<a href="08 ICP and
+TransAsk_fn.html#fn0">[5]</a>. Third, specializations of index concepts can be
+viewed or hidden by pressing on the triangle to the left of an index concept.
+In Figure&nbsp; 8.4, the specializations of M-ROOT are shown, but their
+specializations are hidden; hence the difference in orientation of the
+triangle. If an index concept has no specializations, there is no triangle
+shown.<p>
+To add an index concept, a content specialist needs to:<p>
+Find the index concept that will be the immediate abstraction of the index
+concept,<p>
+Add the index concept as a specialization of that concept.<p>
+To find an index concept, the content specialist can use the "twist down"
+triangles to browse the abstraction hierarchy. As the hierarchy of index
+concepts grew large, this became increasingly difficult to do, however. So we
+use the index concept parser in yet another way: to find the location of index
+concepts in the index concept editor. To find an index concept, the content
+specialist can enter the text associated with the index concept, or the exact
+name of the index concept, in the type-in box at the bottom left of the editor,
+and press the "Find" button.<p>
+Because the content specialist knows that GTN is a computer automation system,
+he or she needs to find the index concept associated with computer programs,
+and add an index concept as a specialization of that. Table&nbsp; 8.5 shows the
+steps the content specialist takes to add the index concept M-GTN. 
+
+<pre>
+ Steps to add the index                                                       
+concept M-GTN to the                                                          
+index concept hierarchy                                                       
+Step the user takes        What the user sees on the screen                   
+The content specialist,    <IMG SRC="becp-08-13.gif">                                                  
+looking for the index                                                         
+concept associated with                                                       
+computer programs, types                                                      
+in "program" and presses                                                      
+the "Find" button.                                                            
+The system finds the       <IMG SRC="becp-08-14.gif">                                                  
+index concept                                                                 
+M-COMPUTER-PROGRAM and                                                        
+displays it.                                                                  
+The content specialist     <IMG SRC="becp-08-15.gif">                                                  
+types in M-GTN and                                                            
+presses the "Add" button                                                      
+After the system adds      <IMG SRC="becp-08-16.gif">                                                  
+M-GTN to the index                                                            
+concept hierarchy, it is                                                      
+shown as a                                                                    
+specialization of                                                             
+M-COMPUTER-PROGRAM.                                                           
+
+</pre>
+Once
+the location of the immediate abstraction of the index concept to add is
+located, the symbolic name for the index concept is entered in the type-in box
+at the bottom left of the editor, and the "Add" button is pressed. Internally,
+this adds the named index concept to the hierarchy. Multiple inheritance is
+supported: An index concept can be added as the specialization of two or more
+different index concepts.<p>
+Having added the index concept M-GTN to the index concept hierarchy, it is
+still necessary to associate phrasal patterns to this concept. A content
+specialist can use a simple phrasal pattern editor by double-clicking on an
+index concept in the index concept editor. Table&nbsp; 8.6 shows two views of
+the phrasal pattern editor.<p>
+The content specialist has now added an index concept to the index concept
+hierarchy, and its associated phrasal patterns. Table&nbsp; 8.7 shows the steps
+the content specialist takes to finish the indexing. The specialist presses the
+"Suggest" button again, and this time M-GTN is suggested as an index. The
+content specialist accepts the suggestions and closes the editor;  the question
+answered "What is GTN?" has been indexed with the index concepts
+{M-THING-DESCRIBE M-GTN};  indexing this question is now done.<p>
+If this were a chronological description, the content specialist might then go
+on to index the question "How is data tied together in GTN?" Adding the index
+concept M-GTN and its associated phrasal patterns provides the means for the
+index concept parser to suggest M-GTN as an index for this question, too.<p>
+<b>An example parsing interface for TransAsk</b><p>
+<b></b>Figure 8.5 shows an example parsing interface for TransAsk that a
+content specialist might use as he or she associates index concepts with
+questions answered in TransAsk stories.
+<IMG SRC="becp-08-17.gif"><p>
+We describe it as an interface for a content specialist because it gives more
+detail than a typical user of the TransAsk system would require. The user
+enters text into the type in box at the top of the interface window, and there
+are three output areas:<p>
+Best matching questions. These are the results from the index concept parser,
+sorted by how well they match the input text. The total score, the numeric
+identification and the text of the question answer are all given.<p>
+Indices seen. These are the index concepts that the parser has seen in the
+input text. Also shown is the subtext of the input text that the index concept
+parser matched to the index concept, the information value of the index
+concept, and all of the abstractions of the index concept. <p>
+Indices predicted. These are the index concepts associated with the question
+answer highlighted in the best matching questions area. Clicking on another
+question answered in the best matching questions area will display a different
+set of index concepts that were predicted.<p>
+From the display in Figure&nbsp; 8.5, the content specialist could conclude,
+for example:<p>
+The questions "What information goes into GTN?" and "What data is tied together
+in GTN?" have the same index concepts associated with them. Using this
+information, he or she could decide whether this seems right or not, and make
+adjustments in the indexing if so. In particular, the specialist might ask
+whether "data" and "information" are the same for this domain.<p>
+M-TRANSPORTATION is being referenced because of the "Transportation" of "Global
+Transportation Network," and lowering the overall score of the best two
+matches. Using this information, he or she might examine just how
+M-TRANSPORATION is used in other index concept sets and decide whether
+adjustments need to be made.<p>
+In any case, this prototype interface for content specialist provides a view of
+the internal processes of the index concept parser and the knowledge structures
+that have been created to support parsing.
+
+<pre>
+Using the phrasal                                                             
+pattern editor to                                                             
+associated phrases to                                                         
+the index concept M-GTN                                                       
+Description                What the content specialist sees on the screen     
+The default phrasal        <IMG SRC="becp-08-18.gif">                                                  
+pattern for an index                                                          
+concept is simply the                                                         
+name of the index                                                             
+concept, less its M-                                                          
+prefix.                                                                       
+Multiple phrases can be    <IMG SRC="becp-08-19.gif">                                                  
+associated with an index                                                      
+concept.                                                                      
+
+</pre>
+<b>Evaluating
+the TransAsk index concept parser</b><p>
+<b></b>As a prototype parser for the TransAsk system, it would be premature to
+apply all of the evaluation criteria set forth in the second chapter. However,
+one of our main goals in building the parser for TransAsk was to test the
+ability of indexed concept parsing to scale up; that is, to work in the context
+of ever larger numbers of target concepts. The Casper tutor had approximately
+200 customer service representative statements in the case base of target
+concepts--enough to do what was needed pedagogically, and a large enough case
+base to build a parser for. Approximately 1,600 questions answered were indexed
+in the TransAsk parser, a significant increase in the number of target concepts
+indexed. How well did indexed concept parsing scale up to this larger task?<p>
+We will look at two issues of scale up. First, we will examine the cost of
+indexing--asking whether it is reasonable to expect a content specialist to be
+able to create the index concepts sets required for a large number of target
+concepts. Second, we will examine the effect of a large number of target
+concepts on the time to parse, that is, how long it takes for the parser to
+return results. <p>
+<b>The cost of indexing</b><p>
+<b></b>In the previous sections, we gave examples of assigning index concepts
+to questions answered in TransAsk. In the first example ("What is GTN?"), the
+content specialist was required to create a new index concept and its
+associated phrasal patterns. In the second example ("What data are tied
+together in GTN?"), the index concepts needed to index the question had already
+been created. The content specialist used the "Suggest" button, which suggested
+index concepts for a question answered. When index concepts already exist in
+the system, it can be very inexpensive to associate a new set of index concepts
+to a target concept. When index concepts need to be created, then it can be
+relatively more expensive. On the workstation used for indexing for the
+TransAsk parser, it took approximately 15 seconds to add a new set of index
+concepts for a question answered when the "Suggest" button was used and all of
+the suggestions made by the system were good ones. It took at least a minute to
+add a new index concept and its phrasal patterns. <p>
+This suggests that the cost of indexing will depend on two things: the number
+of target concepts that need indexing, and the number of new indexed concepts
+required at each stage of indexing. Our experience with indexing the TransAsk
+parser provides some good news: There appears to be a exponential decrease in
+the number of new indexed concepts required as additional target concepts are
+indexed. In the case of TransAsk, 20 or more new index concepts were required
+for each 50 questions answered (or paraphrase) for the first 200 questions
+answered; after that, there were always fewer than 20 new indexed required per
+50 questions answered that were indexed. This is shown in graphical form in
+Figure&nbsp; 8.6.
+<IMG SRC="becp-08-20.gif"><p>
+The good news, then, is that there actually seems to be a speed up as the
+system scales up; previously created indexed concepts can be reused for the
+indexing new target concepts. This implies that the cost of indexing will be
+mostly linear in the number of target concepts<a href="08 ICP and
+TransAsk_fn.html#fn0">[6]</a>. <p>
+<b>Parse time</b><p>
+<b></b>As an embedded tool, an indexed concept parser must return its results
+quickly enough to sustain the interest of the user. In a conversational system
+such as Casper or Creanimate, this means sustaining the illusion that a
+conversation is taking place; in TransAsk, this means quickly enough so that
+the user does not become frustrated waiting for results.<p>
+Theoretically, the indexed concept parsing algorithm could be viewed as a
+parallel algorithm: compute the match score for the input index concepts
+(referenced in the input text) against each target concept in parallel, and
+return the best results. Practically, the algorithm described previously
+matches only against those target concepts which have an index concept in its
+index concept set that was referenced in the input text<a href="08 ICP and
+TransAsk_fn.html#fn0">[7]</a>. This set can grow large, however, if the index
+concepts are reused (as we hoped they would be, according to the previous
+section). The use of this discrimination makes it difficult to describe the
+exact computational complexity of the algorithm, but the parallel version of
+the algorithm suggests that parsing time will be linear in the number of target
+concepts<a href="becp-08-fn.html#fn0">[8]</a>. As a first
+approximation of the effect of the number of target concepts on parsing time,
+we plotted how long it took to parse the question "What is TRANSCOM?" after 50
+target concepts were indexed, 100 target concepts were indexed, and so on, up
+to 1,600 indexed concepts. The index concept M-THING-DESCRIBE (which is
+activated in text by "What") is a very common concept, appearing in over 70% of
+the index concept sets (after all 1,600 or so index concept sets have been
+created). The index concept M-TRANSCOM is also fairly common, appearing in
+approximately 13% of the index concept sets. Over 75% of the index concept sets
+contain either M-THING-DESCRIBE or M-TRANSCOM. Figure 8.7 plots the number of
+seconds it takes to parse "What is TRANSCOM?" as the number of index concept
+sets increases
+<IMG SRC="becp-08-21.gif">.
+These results were created on a Power Macintosh 7100/66 computer running
+Macintosh Common Lisp, 2.0, running in emulation mode (approximately the same
+speed as running Macintosh Common Lisp on a Macintosh IIci computer).<p>
+Figure 8.7 indicates two results:<p>
+The time it takes to parse statements that contain references to common index
+concepts grows linearly as the number of index concept sets increases.<p>
+As the number of index concept sets increases, parsing time begins to be too
+slow--even at 150 index concept sets, it takes over 10 seconds for the parser
+to return its results. <p>
+On the one hand, apparent linear growth is good--the use of more powerful
+machines, parallel processors, etc., will directly improve parsing time. On the
+other hand, our concern has been to build parsers that are workable now, not in
+the future. So the slow parsing times are a problem.<p>
+<b>A greedy version of indexed concept parsing</b><p>
+<b></b>The solution to this problem is to create an anytime algorithm for
+returning results from the parser. An anytime algorithm can return, at any
+point in time, its best results so far. The major cost in indexed concept
+parsing is in doing the matching between the input set of index concepts and
+the index concept set associated with the retrieved target concepts. <p>
+We can create an anytime version of the indexed concept parser by doing greedy
+retrieval of target concepts--retrieving just those target concepts that seem
+most likely to have a high match score. Recall that in the non-greedy version
+of indexed concept parsing, retrieval takes place in this way:<p>
+for each index concept in the input index concept set,<p>
+	for each abstraction of the index concept (including the index concept),<p>
+	retrieve (non-duplicated) target concepts that have the abstraction in its
+associated index concept set<p>
+Then matching takes place:<p>
+for each retrieved target concept, calculate a match score,<p>
+sort the retrieved target concepts by their match score and return.<p>
+The greedy version of retrieval does a presorting of the retrieved target
+concepts:<p>
+let retrieval-indices &lt;- {}<p>
+for each index concept in the input index concept set,<p>
+	for each (non-duplicated) abstraction of the index concept (including the
+index concept),<p>
+		put abstraction into abstractions<p>
+sort retrieval-indices by the information value of its elements<p>
+for each abstraction in retrieval-indices<p>
+	retrieve (non-duplicated) target concepts that have the abstraction in its
+associated index concept set<p>
+The same list of target concepts is returned by both the greedy version and the
+non-greedy version of the algorithm. In the greedy version, however, the target
+concepts that have index concepts with a higher information value in their
+associated index concept set are closer to the front of the list than the those
+that have index concepts with a lower information value. This means that target
+concepts whose index concepts have high information values will tend to be
+processed first. Note that this isn't enough to do matching--the matching
+algorithm can also take into account missing index concepts (missing from the
+input set or the target concept's index concept set) and expectations within
+situations. Nor does it guarantee that the target concepts are sorted by the
+positive evidence they provide; a number of index concepts with lower
+information value could possibly have a total combined information value than
+the one index concept used for greedy sorting. However, it does ensure that
+index concepts that have better discrimination value are used before those that
+have worse discrimination value.<p>
+The anytime version of matching simply sets a time limit on matching, and
+returns any results that are found before the time limit has been reached:<p>
+let results &lt;- {}<p>
+for each retrieved target concept,<p>
+	if time limit hasn't been reached, calculate a match score, and add to sorted
+results<p>
+	else end loop<p>
+<p>
+The advantage of this greedy, anytime algorithm is an upper limit can be set
+based on how it affects the transparency of the application program--what the
+users of the system will tolerate in waiting for a result from the parser. The
+disadvantage is the algorithm may not return the same top results as it would
+have if all target concepts were matched. Whether this disadvantage is serious
+remains an open question--the answer will probably depend on several factors,
+including the queries users make, the space of information values of the index
+concepts involved, the amount of time given to the time limit, the speed of the
+machine used, and so forth. In our informal prototype, a time limit of three
+seconds seems to be acceptable as a trade-off between amount of time to wait
+and results returned. Faster serial algorithms or faster machines or parallel
+machines will provide better results.<p>
+<b>Summary</b><p>
+<b></b>In this chapter, we described the process of building a prototype
+indexed concept parser for the TransAsk logistics advisor. Our aims were
+twofold: to make concrete the steps that a content specialist would undertake
+to create index concepts and assign them to target concepts, and to investigate
+using indexed concept parsing in a domain with a larger number of target
+concepts than were used in the Casper project.<p>
+Our evaluation of the TransAsk parser indicated that:<p>
+It is practical to build index concept representations for systems as large as
+TransAsk,<p>
+Parse times can be decreased by using a greedy, anytime algorithm for retrieval
+and matching, <p>
+In general, it is practical to build indexed concept parsers for systems as
+large as TransAsk.<p>
+In the next chapter, we summarize the work we have done, and compare it to
+other conceptual (and non-conceptual parsers) that have been created.<p>
+<p>
+</body></html>

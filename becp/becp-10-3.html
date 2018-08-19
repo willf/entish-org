@@ -1,0 +1,154 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Without a title - Title</TITLE></HEAD>
+<BODY BACKGROUND="../images/r2harch.gif" TEXT=#1809BB>
+<A HREF="10 Appendix end-Contents.html"><IMG SRC="../images/contg.gif" ALT="Contents " border=0></A>
+<hr size=4>
+<H1>
+Without a title</H1>
+<b>Casper Data</b><p>
+<b></b>This section includes the data for the Micro-Casper program. The first
+section includes data from the CSR/customer interactions, then definitions of
+index concepts followed by phrasal patterns on index concepts. Finally,
+associations between sets of indexed concepts and target concepts (the CSR
+statements) are defined. <p>
+<b>CSR and Customer statements</b><p>
+<b></b><tt></tt><p>
+<tt>(clear-statements)</tt><p>
+<tt>(def-csr greet-customer "Hello, May I help you?")</tt><p>
+<tt>(def-csr ask-name "What is your name?")</tt><p>
+<tt>(def-csr ask-address "What is your address?")</tt><p>
+<tt>(def-csr ask-name/address "What is your name and address, please?")</tt><p>
+<tt>(def-csr ask-problem-description "What seems to be the problem?")</tt><p>
+<tt>(def-csr ask-bits-description "What do the bits look like?")</tt><p>
+<tt>(def-csr ask-problem-duration "How long have you had the problem?")</tt><p>
+<tt>(def-csr ask-bits-colour "What colour are the bits?")</tt><p>
+<tt>(def-csr ask-black-bits "Do you have black bits in your water?")</tt><p>
+<tt>(def-csr ask-fire-brigade "Have you seen the fire brigade in the
+area?")</tt><p>
+<tt>(def-csr tell-water-lead "Your water has lead in it.")</tt><p>
+<tt>(def-csr tell-fire-brigade-sediment "The fire brigade stirred up some
+sediment")</tt><p>
+<tt>(def-csr tell-water-safe "Your water is perfectly safe to drink.")</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(def-cust say-problem "I've rung up to complain about my water.")</tt><p>
+<tt>(def-cust say-address "I live at The Grange on Caledonian Drive in
+Eccles.")</tt><p>
+<tt>(def-cust say-name "My name is Mr. Smith. Ronald Smith.")</tt><p>
+<tt>(def-cust say-name/address "My name is Mr. Smith. Ronald Smith. I live at
+The Grange on Caledonian Drive in Eccles.")</tt><p>
+<tt>(def-cust say-problem-description "My water's got bits in it.")</tt><p>
+<tt>(def-cust say-problem-duration "I just noticed the bits today.")</tt><p>
+<tt>(def-cust say-bits-colour "The bits are black.")</tt><p>
+<tt>(def-cust say-fire-brigade "The fire brigade were here earlier working on
+the hydrants.")</tt><p>
+<tt>(def-cust ask-water-safe "Is my water safe to drink?")</tt><p>
+<tt>(def-cust ring-off "Thank you for your help. Good-bye!")</tt><p>
+<tt></tt><p>
+<tt>(def-response greet-customer say-problem)</tt><p>
+<tt>(def-response ask-name say-name)</tt><p>
+<tt>(def-response ask-address say-address)</tt><p>
+<tt>(def-response ask-name/address say-name/address)</tt><p>
+<tt>(def-response ask-problem-description say-problem-description)</tt><p>
+<tt>(def-response ask-bits-description say-bits-colour)</tt><p>
+<tt>(def-response ask-problem-duration say-problem-duration)</tt><p>
+<tt>(def-response ask-bits-colour say-bits-colour)</tt><p>
+<tt>(def-response ask-fire-brigade say-fire-brigade)</tt><p>
+<tt>(def-response tell-water-lead ask-water-safe)</tt><p>
+<tt>(def-response tell-fire-brigade-sediment ask-water-safe)</tt><p>
+<tt>(def-response tell-water-safe ring-off)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Index concept definitions</b><p>
+<b></b><tt></tt><p>
+<tt>(clear-icp-memory)</tt><p>
+<tt></tt><p>
+<tt>(def-frame m-root)</tt><p>
+<tt>(def-frame m-reference-concept (m-root))</tt><p>
+<tt>(def-frame m-index (m-root))</tt><p>
+<tt>(def-frame m-problem (m-index))</tt><p>
+<tt>(def-frame m-water-bits (m-problem))</tt><p>
+<tt>(def-frame m-coloured-water-bits (m-water-bits)</tt><p>
+<tt>  (:colour m-colour)</tt><p>
+<tt>  (:object m-water-bits))</tt><p>
+<tt>(def-frame m-black-water-bits (m-coloured-water-bits)</tt><p>
+<tt>  (:colour m-black))</tt><p>
+<tt>(def-frame m-burst (m-problem))</tt><p>
+<tt>(def-frame m-contain (m-index))</tt><p>
+<tt>(def-frame m-description (m-index))</tt><p>
+<tt>(def-frame m-duration (m-index))</tt><p>
+<tt>(def-frame m-colour (m-index))</tt><p>
+<tt>(def-frame m-black (m-colour))</tt><p>
+<tt>(def-frame m-water (m-index))</tt><p>
+<tt></tt><p>
+<tt>(def-frame m-greet (m-index))</tt><p>
+<tt>(def-frame  m-description (m-index))</tt><p>
+<tt>(def-frame m-address (m-index))</tt><p>
+<tt>(def-frame m-name (m-index))</tt><p>
+<tt>(def-frame m-see (m-index))</tt><p>
+<tt>(def-frame m-fire-brigade (m-index))</tt><p>
+<tt>(def-frame m-neighbourhood (m-index))</tt><p>
+<tt>(def-frame m-lead (m-index))</tt><p>
+<tt>(def-frame m-sediment (m-index))</tt><p>
+<tt>(def-frame m-safe (m-index))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Phrasal patterns on index concepts</b><p>
+<b></b><tt></tt><p>
+<tt>(def-phrase m-problem problem)</tt><p>
+<tt>(def-phrase m-water-bits bits)</tt><p>
+<tt>(def-phrase m-water-bits particles)</tt><p>
+<tt>(def-phrase m-water-bits pieces)</tt><p>
+<tt>(def-phrase m-contain contain)</tt><p>
+<tt>(def-phrase m-duration how long)</tt><p>
+<tt>(def-phrase m-description describe)</tt><p>
+<tt>(def-phrase m-black black)</tt><p>
+<tt>(def-phrase m-water water)</tt><p>
+<tt>(def-phrase m-burst burst)</tt><p>
+<tt>(def-phrase m-coloured-water-bits :colour :object)</tt><p>
+<tt></tt><p>
+<tt>(def-phrase m-greet hi)</tt><p>
+<tt>(def-phrase m-greet hello)</tt><p>
+<tt>(def-phrase m-greet good morning)</tt><p>
+<tt>(def-phrase m-greet good afternoon)</tt><p>
+<tt>(def-phrase  m-description what)</tt><p>
+<tt>(def-phrase  m-description describe)</tt><p>
+<tt>(def-phrase m-address address)</tt><p>
+<tt>(def-phrase m-address live)</tt><p>
+<tt>(def-phrase m-name name)</tt><p>
+<tt>(def-phrase m-see see)</tt><p>
+<tt>(def-phrase m-see seen)</tt><p>
+<tt>(def-phrase m-fire-brigade fire fighters)</tt><p>
+<tt>(def-phrase m-fire-brigade fire brigade)</tt><p>
+<tt>(def-phrase m-fire-brigade firemen)</tt><p>
+<tt>(def-phrase m-neighbourhood neighbourhood)</tt><p>
+<tt>(def-phrase m-neighbourhood neighborhood)</tt><p>
+<tt>(def-phrase m-neighbourhood area)</tt><p>
+<tt>(def-phrase m-lead lead)</tt><p>
+<tt>(def-phrase m-sediment sediment)</tt><p>
+<tt>(def-phrase m-safe safe)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Target concepts and associated index concept sets</b><p>
+<b></b><tt></tt><p>
+<tt>(def-assoc greet-customer m-greet)</tt><p>
+<tt>(def-assoc ask-name m-description m-name)</tt><p>
+<tt>(def-assoc ask-address m-description m-address)</tt><p>
+<tt>(def-assoc ask-name/address m-description m-address m-name)</tt><p>
+<tt>(def-assoc ask-problem-description m-description m-problem)</tt><p>
+<tt>(def-assoc ask-bits-description m-description m-water-bits)</tt><p>
+<tt>(def-assoc ask-problem-duration m-problem m-duration)</tt><p>
+<tt>(def-assoc ask-bits-colour m-description m-water-bits m-colour)</tt><p>
+<tt>(def-assoc ask-fire-brigade m-see m-fire-brigade m-neighbourhood)</tt><p>
+<tt>(def-assoc tell-water-lead m-water m-lead)</tt><p>
+<tt>(def-assoc tell-fire-brigade-sediment  m-fire-brigade m-sediment)</tt><p>
+<tt>(def-assoc tell-water-safe m-water m-safe)</tt><p>
+<tt>(def-assoc ask-black-bits m-water m-contain m-black m-water-bits)</tt><p>
+<tt>(def-assoc ask-black-bits m-water m-contain m-black m-water-bits
+m-black-water-bits)</tt><p>
+<tt></tt><p>
+<tt></tt>The last association is an example of an association that contains a
+structured index concept, m-black-water-bits., which has m-black and
+m-water-bits as parts (see the index concept definitions above, as well as the
+phrasal patterns).<p>
+<P><hr size=4>
+<A HREF="10 Appendix end-Contents.html"><IMG SRC="../images/contg.gif" ALT="Contents " border=0></A>
+</body></html>

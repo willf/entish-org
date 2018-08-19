@@ -1,0 +1,864 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Building on Indexed Concept Parsing</TITLE></HEAD>
+<center><b>Building on Indexed Concept Parsing</b><p>
+<b></center></b><p>
+The previous chapter describes a technique for parsing called indexed concept
+parsing. In particular, it described the implementation of indexed concept
+parsing in the North West Water customer service representative tutor, Casper.
+The evaluation of the parser in Casper indicated that the parser was successful
+approximately 80% of the time, when judged by whether the parser in Casper
+suggested a correct answer in the top seven best matches; and 60% of the time,
+when judged by whether the parser in Casper suggested a correct answer that was
+the best match. In this chapter, we will analyze the failures in the Casper
+parser, and ways we can augment indexed concept parsing to increase the success
+of the parser.<p>
+<b>Analysis of failures</b><p>
+<b></b>Before one can make something better, one must understand what is wrong
+with it in the first place. Accordingly, an analysis of the parsing failures in
+the Casper beta test was done. We examined cases in which the student did not
+accept the result from the parser, but used the pull-down menus or used the
+parser again, instead. These failures fall into several categories: content
+errors, failure to recognize anaphoric references, spelling errors and
+cross-talk. <p>
+<b>Content</b><p>
+<b></b>As is perhaps not surprising in building a conceptual parser, most of
+the failures were failures in representation--either something was represented
+in such a way that a parsing failure was caused, or (the more common case)
+something wasn't represented at all. Given the taxonomy we have been using for
+index concept parsing, content failures were failures in representing index
+concepts, phrasal patterns or target concepts.<p>
+<b>Missing concepts</b><p>
+<b></b>Many of the examples can be traced to failure to represent either what
+would be target concepts or index concepts. Consider the following statement:<p>
+Student:		Do you have an immersion heater or is you (sic) water supplied from a
+multipoint heater?<p>
+The student wants to know what type of water heater the customer has. There
+aren't any target concepts in Casper that match this type of question, nor are
+there index concepts that specialize water heaters as to type (immersion
+heaters vs. multipoint heaters).<p>
+<b>Missing phrasal patterns</b><p>
+<b></b>A fairly minor problem in the beta test was the failure to associate
+appropriate phrasal patterns to indices. For example, one of the indices was
+WORKERS, that had phrasal patterns such as "workers" and "workmen" attached to
+it. A phrasal pattern missing, through, was "gang," and so the following
+statement did not activate the index WORKERS:<p>
+Student:		already have a gang on site sorting out problem<p>
+ <p>
+<b>Simple paraphrases and complex inferences</b><p>
+<b></b>Another type of content error is the case of simple paraphrases of CSR
+statements. For example, to express the same intent as<p>
+TELL-INSTRUCT-WAIT-AND-SEE-SHORT-TERM Your water problem should clear itself up
+within a couple of hours<p>
+a few students typed in something like "it is just a temporary problem." But
+there was no set of index concepts close enough to bridge between a statement
+of this type to the CSR statement. As another example, consider the following
+pair, a student statement and a target concept which is a close paraphrase of
+it:<p>
+Student:		This is probably caused by bubbles in the system<p>
+TELL-INFO-PROBLEM-AIR-IN-WATER Your water has air bubbles in it.<p>
+In this case, the student is expressing that the cause of the discoloration of
+the client's water is due to bubbles in the water. <p>
+But consider the following student statement:<p>
+Customer:		But what can be done about it? (discoloration in the water, due to
+bubbles) ...<p>
+Student:		The air is completely harmless<p>
+There is no TELL-INFO-AIR-IS-SAFE target concept in Casper, but there is the
+following target concept:<p>
+TELL-INFO-WATER-SAFE Your water is perfectly safe to drink.<p>
+It seems clear that TELL-INFO-WATER-SAFE is the closest match to the student's
+statement. But consider the inferential process that must occur for this match
+to be made, which is something like:<p>
+The water is safe to drink because, although it is often the case that stuff in
+the water is harmful to drink, air in water is not harmful. The only thing
+contained in this water is air. Therefore, this water is safe to drink. <p>
+Or perhaps:<p>
+Water is safe to drink if all of the stuff contained in the water is safe to
+drink. This water contains air (and only air). Air is safe to drink. Therefore,
+this water is safe to drink.<p>
+Or perhaps:<p>
+ Water is safe to drink if all of the stuff contained in the water is safe to
+drink. This water contains air and perhaps other substances. We assume that the
+other substances are safe to drink. Air is safe to drink. Therefore, this water
+is safe to drink.<p>
+ The point of dwelling on different ways to reach the same conclusion (and
+notice, by the way, we ignored all of the issues of going from natural language
+into some representational form that could handle the conclusions above,
+including knowing that "harmless" means "safe.") is this: At any point in our
+programs, we can expect, as a possibility, that deep inference and deep
+modeling will be required to make a best match. The inference chains above and
+the models behind them provide a worst-case scenario for building embedded
+conceptual parsers. If what we need to have is accurate models, and if we need
+to allow unlimited inferential capability, then we may not be able to build
+these parsers--the task will prove too difficult or expensive. But if it is the
+case that we can limit, in some way, the needs for these models and inferences,
+then the task may prove possible. <p>
+<b>Phatic utterances </b><p>
+<b></b>There is another class of student utterances that the parser (in the
+beta test) could not match. These were simple responses of the following
+type:<p>
+Customer:		Well, do you know if my water is safe to drink?<p>
+Student:		yes<p>
+The Casper system did not have CSR statements for simple yes and no responses.
+Therefore, the parser, lacking any knowledge regarding how to connect "yes" to
+a CSR statement, meant that the parser failed to match to any target concept.
+(The correct match is, of course, TELL-INFO-WATER-SAFE).<p>
+<b>Other sources of error</b><p>
+<b></b>In addition to errors which are caused by faulty or missing content,
+there were errors due to other reasons. We include under these other causes of
+errors the failure of the parser to handle anaphoric reference correctly,
+spelling and typographic mistakes on the part of the student and cross-talk
+within the parser.<p>
+<b>Anaphora</b><p>
+<b></b>Anaphoric disambiguation is generally considered to be a very difficult
+problem, and it is no surprise that it caused difficulty within the beta test.
+For example, failure to disambiguate the pronoun "they" (as BITS) in the
+following statement contributed to a parsing failure:<p>
+Customer:		[The bits] look like tea leaves. <p>
+Student:		Are they only in your cold water supply? <p>
+And in more complicated interaction:<p>
+Customer:		Okay. I'll be calling you if [the problem] doesn't clear up soon.<p>
+Student:		Please do<p>
+there is an anaphoric reference to calling if the problem doesn't clear. And in
+this example:<p>
+Customer:		What are you going to do about [my water quality problem]?<p>
+Student:		Being dealt with now.<p>
+there is a complex interaction between anaphoric presupposition ["(The problem
+is) being dealt with now (by us)"], inference and syntactic form.<p>
+<b>Spelling and typographic errors </b><p>
+<b></b>Not surprisingly, student customer service representatives made a number
+of spelling and typographical errors which resulted in parser failures. For
+example, <p>
+Customer:		But what is wrong with my water?<p>
+Student:		theproblem (sic) will be resolved in a few hours<p>
+the lack of a space between "the" and "problem" meant that the index PROBLEM
+was missed. <p>
+<b>Cross-talk</b><p>
+<b></b>Because of the scoring mechanism used in the indexed concept parser in
+Casper, the following situation sometimes occurred. There would be, say, two
+target concepts R1 and R2. The student would say, "phrase1 and phrase2" where
+phrase1 would, if stated alone, parse to R1, and phrase2 would, if stated
+alone, parse to R2. Because the scoring mechanism counts against target
+concepts that do not include seen index concepts, cross-talk can occur, and
+neither R1 nor R2 may be returned.<p>
+For example, <p>
+Student:		ring us back and we will arrange for a system controller to flush the
+main<p>
+where "ring us back" would normally parse to TELL-INSTRUCT-CALL-BACK-NIL and
+"we will arrange for a system controller to flush the main" would parse to
+TELL-INSTRUCT-SEND-SYSTEMS-CONTROLLER-FLUSH-MAIN. But enough points accumulated
+against each of these parses to make them unacceptable.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>T</b><b>ypes of parsing failures in Casper </b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Category</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>N</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>%
+of total errors</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Content
+<BR></TD>
+<TD colspan=1 align="left">78
+<BR></TD>
+<TD colspan=1 align="left">81.3%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+    Missing Concepts
+<BR></TD>
+<TD colspan=1 align="right">44
+<BR></TD>
+<TD colspan=1 align="right">46.81%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+    Phrasal patterns
+<BR></TD>
+<TD colspan=1 align="right">18
+<BR></TD>
+<TD colspan=1 align="right">19.2%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+    Simple inference
+<BR></TD>
+<TD colspan=1 align="right">
+7
+<BR></TD>
+<TD colspan=1 align="right">
+7.5%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+    Complex inference
+<BR></TD>
+<TD colspan=1 align="right">
+7
+<BR></TD>
+<TD colspan=1 align="right">
+7.5%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">
+    Phatic utterances missing
+<BR></TD>
+<TD colspan=1 align="right">
+2
+<BR></TD>
+<TD colspan=1 align="right">
+2.1%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Anaphoric
+failures
+<BR></TD>
+<TD colspan=1 align="left">15
+<BR></TD>
+<TD colspan=1 align="left">17.0%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Spelling
+errors
+<BR></TD>
+<TD colspan=1 align="left">
+2
+<BR></TD>
+<TD colspan=1 align="left">
+2.1%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Cross
+talk
+<BR></TD>
+<TD colspan=1 align="left">
+5
+<BR></TD>
+<TD colspan=1 align="left">
+5.3%
+<BR></TD></TR></TABLE><b>Summary
+of parsing failures</b><p>
+<b></b>Table  6.1 summarizes the parsing failures that occurred during the beta
+test. Remember we examined those statements found unacceptable by the students
+(as evidenced by their trying to make a different statement with the parser, or
+by using the pull-down menus). There were a total of 94 statements (of 492)
+that fit this category. These numbers should be used to gain an understanding
+of the overall types of errors, because the scoring must necessarily be
+subjective. The percentages add up to more than 100% because statements could
+fall into more than one error category. Clearly, the lion's share of the errors
+occur because of problems with content. The specific class of content errors
+that is most worrisome--complex inference errors--does not seem to account for
+a larger percentage of the errors.<p>
+<b>Improvements</b><p>
+<b></b>As Table  6.1 indicates, the place where we should look for improvements
+is in the content--some four fifths of the errors appear to be due to content.
+As we stated previously, this should not be surprising as we develop conceptual
+parsers. In this section, we will discuss specific measures taken to improve
+parsing in Casper, including adding content, building in expectations,
+resolving anaphoric references, and applying more sophisticated parsing
+techniques. But, adding content will be the place to start		.<p>
+<b>Additional content (I)</b><p>
+<b></b>We have described three broad classes of content in building indexed
+concept parsers: target concepts, index concepts and phrasal patterns. In this
+section, we will discuss adding instances in each of these classes. In each
+case, we will use examples from the Casper tutor to illustrate.<p>
+<b>Target concepts</b><p>
+<b></b>One place in which we might add content is to add additional target
+concepts. This is appropriate when, especially as a result of testing the
+parser in real-life situations, we notice the users of the application program
+trying to express concepts that are not defined in the program<a name="fnB0"
+href="#fn0">[1]</a>. For example, here are some examples of sentences that
+novice customer representatives said in the beta testing of Casper:<p>
+Student:		please run your water and the problem will clear in a short time <p>
+Student:		if you leave your tap to run on reduced pressure it will clear itself
+<p>
+Student:		if you leave your cold water tap running it will clear<p>
+Student:		As the water is drawn off the problem will clear<p>
+Student:		if you run the cold water tap for a while the water should clear<p>
+Student:		could you try running your first cold water tap until it runs clear
+<p>
+Student:		if you run your cold water for fifteen minutes you should find that
+it will clear<p>
+Student:		yes, but if you flush the tap for 15 minutes it should clear up<p>
+The commonalities of these statements is something like this: "If you run the
+water from the cold tap for a while the problem should clear." That is, the
+solution to the problem is conditional to a customer action, which is running
+the cold water tap. <p>
+There are some related CSR statements in the Casper system:<p>
+TELL-INSTRUCT-WAIT-AND-SEE-SHORT-TERM Your water problem should clear itself up
+within a couple of hours.<p>
+TELL-INSTRUCT-RUNOFF-WATER-NIL Try running the water from the cold tap for a
+quarter hour. <p>
+Each of these is a close match: the first is a statement that the problem will
+clear up (the results clause of this new target concept); the second is an
+instruction to run the tap for a short time (the condition clause). <p>
+It may be the case that if the parser matches to either one of these closely
+related utterances than this is acceptable. But there are reasons to believe
+that this could cause problems. First of all, there are other, superficially
+close utterances that should not match. For example,<p>
+TELL-INSTRUCT-RUN-COLD-TAP-REPORT-RESULT Can you run the cold tap for a bit and
+tell me what you see? <p>
+TELL-CONDITIONAL-WATER-NOT-SAFE-IF-DOESNT-CLEAR If the problem doesn't clear
+up, I wouldn't recommend drinking the water.<p>
+For a variety of reasons, these may be seen as a better match than the two
+acceptable matches. This is likely to at least decrease the perfect match
+percentage, and at worse put the acceptable matches out of the top seven.<p>
+Secondly, it may not be the case that the user of the parser will agree that
+these statements are close enough in meaning. It's easy to imagine, for
+example, a student saying that "Your problem will clear up in a short time"
+does not mean the same as "If you run the water for a short time, your problem
+will clear up," just because the conditional clause is missing.<p>
+The solution, of course, is to add a new CSR statement:<p>
+TELL-INSTRUCT-RUNOFF-WATER-THEN-WAIT-AND-SEE-SHORT-TERM If you run the water
+from the cold tap for a while the problem should clear.<p>
+Another example comes from the following two statements (both by the same
+person):<p>
+Student:		what is the pipe before your internal pipe madeof (sic)<p>
+Student:		what is you (sic) service pipe made of<p>
+These are closely related to two other CSR statements:<p>
+ASK-PIPES-LEAD Do you have lead pipework in your house?<p>
+ASK-PIPES-MATERIAL What kind of pipework do you have in your house?<p>
+But clearly these have very different intents. The student doesn't want to talk
+about the internal pipework; the student wants to ask about the pipe which
+leads from the internal pipes to the main pipework. Again, the feedback from
+the beta sessions is useful, and two CSR statements are added:<p>
+ASK-SERVICE-PIPE-LEAD Are your service pipes made of lead?<p>
+ASK-SERVICE-PIPE-MATERIAL What material are your service pipes made of?<p>
+Notice, by the way, that these statements don't have to be good
+statements--that is, good statements to make to a customer--to be good to have
+in the tutorial. In fact, a tutorial system will want to have in it just those
+bad statements as teaching points.<p>
+<b>Additional indices</b><p>
+<b></b>In addition to target concepts, we can also add index concepts to the
+system. For the aforementioned examples about service pipes:<p>
+ASK-SERVICE-PIPE-LEAD Are your service pipes made of lead?<p>
+ASK-SERVICE-PIPE-MATERIAL What material are your service pipes made of?<p>
+it is imperative that we create an index concept service-pipe if one did not
+exist already; otherwise, we would not be able to index either of these target
+concepts differently from the questions about pipes internal to the home.<p>
+But there are cases were additional sets of index concepts are important,
+especially as students use paraphrases of existing CSR statements for which the
+system was not prepared. For example, consider the following CSR statement:<p>
+TELL-INFO-PIPES-LEAD Your pipes are made of lead.<p>
+and the following student's paraphrase:<p>
+Student:		you could have lead pipework to your property.<p>
+Before the beta test, there was only one index concept set associated with
+TELL-INFO-PIPES-LEAD, that is, the set {pipes consist-of lead}. This student's
+answer indicates there is another way to express that the pipes are lead; one
+can state that the property contains lead pipes. Therefore, the set {property
+contain lead pipes} was added to the index concept sets associated with
+TELL-INFO-PIPES-LEAD.<p>
+<b>Additional phrasal patterns</b><p>
+<b></b>A third place where additional content can be added is in the phrasal
+patterns associated with indices. For example, the phrasal patterns associated
+with the index CAUSE in the original beta test were {"cause", "caused by"}. But
+there were several statements by students that used "due to." For example:<p>
+Student:		It is probanly (sic) due to air in the pipes.<p>
+Student:		your discolouration is probably due to other utilities working in
+your area<p>
+Student:		Your problem is more than likely due to the old lead pipework<p>
+Adding "due to" to the phrasal patterns associated with the index concept CAUSE
+assured that this index would be activated when "due to" was part of the input
+sentence.<p>
+<b>Building in expectations</b><p>
+<b></b>The basic indexed concept parsing algorithms assumes that, before
+parsing begins, each target concept is just as likely to be referenced as any
+other. Typically, though, at a given point in the running of the application
+program, certain target concepts are much more likely than others. This is
+especially true of interactive programs such as Casper, in which the novice
+customer service representative goes through different phases of discovering
+the cause of a problem and then making recommendations to the simulated
+customer. It is more likely that a student will ask "Is the problem in both
+taps?" after the customer says, "Hello, this is Mrs. Hughes in Liverpool. I've
+rung up to complain about bits in my water," than after the customer says,
+"I've got the problem in both taps." It's also likely that the customer service
+representative will ask the customer her address. In sum, at any point, certain
+target concepts will be more likely than others.<p>
+There are various methods of generating expectations using context. A very rich
+model of the interaction between the customer and the customer service
+representative could be built for the Casper system, for example. In the case
+of the Casper system, we have opted for a much simpler solution. Because the
+list of possible customer utterances is static (remember, a sound clip is
+created for each utterance), we treat each customer utterance as a one-level
+stimulus for possible student responses. That is to say, we build a simple
+stimulus/response record--if the customer says X, the student is likely to
+reply with Y or Z. For example, if the customer says, "Hello, this is Mrs.
+Hughes in Liverpool. I've rung up to complain about bits in my water," we
+predict that any of the following CSR statements will occur:<p>
+ASK-CUSTOMER-ADDRESS What is your address?<p>
+ASK-TAPS-BOTH Is it in both the hot and the cold taps?<p>
+ASK-WATER-BITS-DESCRIPTION What kind of bits are in your water?<p>
+ASK-PROBLEM-DURATION How long have you had the problem?<p>
+The actual student statements made in response to this customer statement
+were:<p>
+Student:		are the bits coming from your cold water tap<p>
+Student:		How long have you had this problem<p>
+Student:		How long have you had this problem?<p>
+Student:		could you describe them to me please?<p>
+Student:		Please describe the bits<p>
+Student:		Please can I have your address?<p>
+Student:		how long have you had the problem mrs hughes<p>
+Student:		may i have your address please<p>
+Student:		i'm sorry mrs hughes, may i have your address please<p>
+Student:		WHAT IS YOUR ADDRESS<p>
+Student:		Could you describe what the bits look like?<p>
+Each of these student responses is a paraphrase of one of the predicted CSR
+statements.<p>
+In Chapter 3, we describe three criteria for calculating goodness of match
+between a probe index concept set and target concepts. These were information
+about the presence of references to index concepts associated with the target
+concept, information about the absence of references to index concepts
+associated with the target concept, and information about the presence of
+references to index concepts not associated with the target concept. The method
+we are currently describing indicates a fourth criterion, that is, Is this
+target concept expected at this point in the dialog? (More specifically, we ask
+this question only if some index associated with the target concept is
+referenced). Unlike the other three criteria, this criterion is a binary one:
+Either the target concept is expected or not.<p>
+For example, the customer has just asked what she can do about her problem, and
+the student replies:<p>
+Student:		If you leave your tap to run on reduced pressure it will clear itself
+<p>
+Without expectations, the parser returned as the best match:<p>
+TELL-INSTRUCT-RUN-COLD-TAP-REPORT-RESULT Could you run the water from the cold
+tap and tell me what you see? (Paraphrase: Can you run the water for a bit and
+see if it clears?)<p>
+The real best match is only second in the list:<p>
+TELL-INSTRUCT-RUNOFF-WATER-THEN-WAIT-AND-SEE-SHORT-TERM If you run the water
+from the cold tap for a while the problem should clear.<p>
+With expectations, this CSR statement is returned as the best match.
+Expectations are especially good at improving the perfect match score, and
+reducing the total distance from the top. Although two target concepts may have
+a similar score on the criteria that calculate information from the presence
+and absence of references to index concepts, the expectation that a target
+concept is expected in a particular context is enough to break the tie.<p>
+<b>Disambiguating pronominal reference</b><p>
+<b></b>Not surprisingly, some of the failures in parsing are caused by
+students' use of pronouns instead of direct references to index concepts. For
+example, consider the following fragment:<p>
+Student:		What do the bits look like?<p>
+Customer:		They look like dark flakes.<p>
+Student:		Are they brown, black, or another colour?<p>
+The two closest CSR statements are:<p>
+ASK-WATER-BITS-BLACK Do you have black bits in your water?<p>
+ASK-WATER-BITS-DESCRIPTION What kind of bits are in your water? (Paraphrase:
+Please describe the colour of the bits in your water.)<p>
+Even with expectations, the lack of an explicit reference to bits means neither
+of these is returned as the best match. On examining the dialog, however, it is
+clear that "they" refers to bits. Disambiguating pronominal reference is a very
+difficult problem however, as evidenced by Winograd's famous example, "The city
+councilmen refused to give the women a permit for a demonstration because they
+feared violence/advocated revolution" (Winograd 1971, cited in Grishman
+1986:130). In the limit, arbitrary amounts of inference is required to do
+pronoun disambiguation.<p>
+As usual, there is hope for a simpler solution. Each customer utterance is
+tagged with a set of index concepts a pronoun is likely to refer to. In the
+example above, "They look like dark flakes," this set is {bits flakes}. We also
+define a special index, m-pronoun, with the typical surface forms of pronouns
+(they, them, etc.) attached as phrasal patterns. If a pronoun is seen, the set
+of tagged indexed concepts is added to the set of indices seen in the sentence,
+and then the appraisers are run in the usual way. <p>
+Note that this does not require, as in the expectations case, an additional
+criterion. We simply add all of the indexed concepts tagged on a customer
+utterances when a pronoun is seen, and the existing criteria calculate the
+score for each target concept. <p>
+<b>Added content (II)</b><p>
+<b></b>Indexed concept parsing relies on recognizing index concepts associated
+with target concepts. The presence, or absence, of index concepts associated
+with a target concept determines whether the parser returns the target concept
+as its result. But notice a potential difficulty: Indexed concept parsing does
+not take ordering information of the index concepts into account. Here is a
+example from the Casper system, with two target concepts pertaining to
+telephone calls:<p>
+TELL-INSTRUCT-NWW-WILL-CALL-NIL I will call you back.<p>
+TELL-INSTRUCT-CALL-BACK-NIL Please give us a call back.<p>
+Both target concepts have an identical index concept set associated with them:
+{NWW CALL BACK}, with first person personal pronouns ("I," "we," "me," "us")
+attached as phrasal patterns to the index concept NWW (that is, North West
+Water, the water utility). The indexed concept parsing algorithms we have
+discussed so far can not distinguish between these target concepts, except via
+tagging one or the other as likely to occur in some context. On reading "I will
+call you back," the evaluation function will return a tie for these two target
+concepts (assuming they are equally likely to occur in a particular context).
+Although the two results will be close together in the results list, it really
+would be a better result if TELL-INSTRUCT-NWW-WILL-CALL-NIL had a better score
+than TELL-INSTRUCT-CALL-BACK-NIL upon reading "I will call you back."<p>
+<b>Direct Memory Access Parsing</b><p>
+<b></b>Direct Memory Access Parsing techniques can be used for finding either
+target concepts or index concepts. By "finding target concepts," we mean using
+DMAP in just the way described in the previous chapters--attaching phrasal
+patterns to target concepts and thus recognizing the concepts directly. By
+"finding index concepts," we mean using DMAP to recognize index concepts that
+contain structure (other than hierarchical and partonomic relations), and
+therefore matching phrasal patterns than can contain target to that structure
+(not just strings, as we have discussed so far). We discuss using DMAP to
+recognize target concepts and index concepts in turn.<p>
+<b>Looking for target concepts</b><p>
+<b></b>When we are using DMAP to find target concepts, what we are saying, in
+effect, is that we have a strong theory of what phrasal pattern will trigger a
+reference to that concept. Using the example of <p>
+TELL-INSTRUCT-NWW-WILL-CALL-NIL I will call you back<p>
+we might have strong expectations that students will type in:<p>
+"NWW will CALL-BACK"<p>
+where NWW and CALL-BACK are themselves concepts, with (say) the following
+phrasal patterns:<p>
+NWW: "I", "we", "North West Water"<p>
+CALL-BACK: "call back" "return your call" "phone"<p>
+and, therefore, according to the algorithm presented previously, DMAP will
+recognize a reference to TELL-INSTRUCT-NWW-WILL-CALL-NIL with any of the
+following sentences (among others):<p>
+I will call back<p>
+We will call back<p>
+North West Water will call back<p>
+I will return your call<p>
+We will return your call<p>
+If this is the case, then we have very strong evidence that the concept being
+referenced is TELL-INSTRUCT-NWW-WILL-CALL-NIL and not, say,
+TELL-INSTRUCT-CALL-BACK-NIL. In effect, then, this becomes another criterion
+for evaluating the score for target concepts: Is this concept referenced by a
+complete DMAP phrasal pattern<a name="fnB1" href="#fn1">[2]</a>?<p>
+<b> Looking for index concepts</b><p>
+<b></b>We can use DMAP to look for index concepts, too. It should be clear that
+we can use DMAP to match phrasal patterns of the sort we have discussed
+previously, but we can do two other useful things with DMAP parsing of index
+concepts. First, we can use DMAP to find discontinuous phrases. Consider the
+index concept set we described for TELL-INSTRUCT-NWW-WILL-CALL-NIL: {NWW CALL
+BACK}. Having BACK as an index concept seems wrong. We would like an index
+concept like CALL-BACK instead, but there is difficulty in handling sentences
+such as:<p>
+I will call you back<p>
+because the "you" interrupts "call" and "back." One solution would be to create
+a structured index for CALL-BACK with an:OBJECT slot, and add the phrasal
+pattern:<p>
+call:OBJECT back<p>
+in which "you" can reference the:OBJECT of CALL-BACK in some way. But there is
+an easier way.<p>
+By relaxing a statement in the procedure advance-prediction, we can create
+discontinuous phrasal patterns. The algorithm for advancing a prediction is (as
+stated in Chapter 3):<p>
+To advance a prediction on item from start to end:<p>
+	<b>if the prediction is static or a dynamic prediction whose </b>next<b> value
+equals </b>start<b>, do:</b> <p>
+		if the phrasal pattern value is empty, do:<p>
+			reference the base of the prediction from start to the end of the
+prediction<p>
+		else do:<p>
+			create a new (dynamic) prediction with the following values:<p>
+				the base of the new prediction is the base of the existing prediction,<p>
+				the phrasal pattern of the new prediction is all but the first item of the
+phrasal pattern of the existing prediction,<p>
+				the start of the new prediction is one more than the start of the existing
+prediction,<p>
+			key the new prediction on the target of the new prediction's base and the
+first item of the existing prediction's phrasal pattern.<p>
+If the line in bold reads:<p>
+	<b>if the prediction is static or a dynamic prediction whose </b>next<b> value
+&gt;= </b>start<b>, do:</b> <p>
+(that is, the test is changed from equal to greater than or equal), then
+discontinuous phrases will be recognized. In our specific example, predictions
+we be advanced even if "you" intervenes between "call" and "back<a name="fnB2"
+href="#fn2">[3]</a>."<p>
+We can also go a long way towards solving the problem of distinguishing between
+target concepts with identical index concept sets, by creating index concepts
+which consist of other, conjoined indexed concepts. Returning to the "We'll
+call you/you call us" examples, we can create new index concepts for
+TELL-INSTRUCT-NWW-WILL-CALL-NIL and TELL-INSTRUCT-CALL-BACK-NIL. For
+TELL-INSTRUCT-NWW-WILL-CALL-NIL we can add the index concept NWW-CALLS, with
+the phrasal pattern "NWW CALL." For TELL-INSTRUCT-NWW-CALL-BACK-NIL we can add
+the index concept CALL-NWW, with the phrasal pattern "CALL NWW." Using the
+indexed concept parsing techniques described in Chapter 3, these new indices
+distinguish between the two target concepts.<p>
+<b>Evaluation</b><p>
+<b></b>We have discussed several options for improving the use of an indexed
+concept parser:<p>
+We can add additional content, in the form of new target concepts, index
+concepts and phrasal patterns.<p>
+We can build in contextual expectations about which target concepts are likely
+to appear.<p>
+We can build in pronominal disambiguation.<p>
+We can attach phrasal patterns directly to target concepts and use DMAP.<p>
+We can create discontinuous phrasal patterns that can distinguish ordering
+between statement elements.<p>
+In looking at the results of using indexed concept parsing in the Casper beta
+testing, we experimented with several of these options. In this section, we
+examine the gains one might expect by taking each of these options.<p>
+<b>Methodology</b><p>
+<b></b>From the transcripts of the beta testing sessions, we extracted every
+use of the type-in parser. There were 492 uses of the type-in box. To create an
+oracle for the evaluation (see Chapter 2), each of these uses was tagged with a
+set of targets concepts, each of which was a reasonable parse of that
+statement. For example, the student input: <p>
+<tt> </tt><p>
+<tt></tt>Student:		please ring back and a system controller will call and flush
+the main <p>
+was tagged with the following target concepts:<p>
+TELL-INSTRUCT-CALL-BACK-NIL Please give us a call back <p>
+TELL-INSTRUCT-SEND-SYSTEMS-CONTROLLER-FLUSH-MAIN I'll send out a systems
+controller to flush out the main.<p>
+By tagging this input with these target concepts, we are saying that either one
+of these target concepts is an acceptable parse of the student input<a
+name="fnB3" href="#fn3">[4]</a>. An automated testing procedure was then
+developed to run the parser on each student input, checking the results against
+the correct parses. As described in Chapter 1, each parser could be described
+as perfect--that is, the best result of the parser was one of the correct
+parses, or acceptable--that is, one of the correct parses appeared within the
+top n parses, where n is the acceptable set size (in this case 7).<p>
+The parser was tested with and without additional content. Testing the parser
+without additional content was an attempt to duplicate the evaluation of the
+beta test. The parser was also tested with and without pronominal
+disambiguation. To add pronominal disambiguation, each customer utterance was
+tagged with an index concept which might be referred to. For example, the
+customer statement:<p>
+Customer:		That's good to hear. But what needs to be done about the
+discolouration? <p>
+was tagged with the index concept DISCOLOURATION, which meant that pronouns in
+the next student utterance would count as references to DISCOLOURATION, as
+described above.<p>
+Further, the parser was tested both with and without contextual expectations.
+To add expectations, each customer utterance was tagged with a set of target
+concepts that were likely follow-up statements; again, as described above. For
+example, the customer statement:<p>
+ Customer:		"Hello, this is Mrs. Hughes in Liverpool. I've rung up to complain
+about bits in my water."<p>
+was tagged with the following expectations:<p>
+ASK-CUSTOMER-ADDRESS What is your address?<p>
+ASK-TAPS-BOTH Is it in both the hot and the cold taps?<p>
+ASK-WATER-BITS-DESCRIPTION What kind of bits are in your water?<p>
+ASK-PROBLEM-DURATION How long have you had the problem?<p>
+Eight series were run then: all combinations of with and without additional
+content, with and without contextual expectations, and with and without
+pronominal disambiguation. <p>
+<b>Results</b><p>
+<b></b>Table  6.2 summarizes the results of running the tests on the basic
+content.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>R</b><b>esults of tests without additional content</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><b>Basic
+Content</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Pronoun</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Expectations</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Pronouns
+&amp; Expectations</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Perfect
+(n)</b>
+<BR></TD>
+<TD colspan=1 align="left">274
+<BR></TD>
+<TD colspan=1 align="left">278
+<BR></TD>
+<TD colspan=1 align="left">341
+<BR></TD>
+<TD colspan=1 align="left">339
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Acceptable
+(n)</b>
+<BR></TD>
+<TD colspan=1 align="left">407
+<BR></TD>
+<TD colspan=1 align="left">407
+<BR></TD>
+<TD colspan=1 align="left">426
+<BR></TD>
+<TD colspan=1 align="left">427
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Perfect</b>
+<BR></TD>
+<TD colspan=1 align="left">55.69
+<BR></TD>
+<TD colspan=1 align="left">56.50
+<BR></TD>
+<TD colspan=1 align="left">69.31
+<BR></TD>
+<TD colspan=1 align="left">68.90
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Acceptable</b>
+<BR></TD>
+<TD colspan=1 align="left">82.72
+<BR></TD>
+<TD colspan=1 align="left">82.72
+<BR></TD>
+<TD colspan=1 align="left">86.59
+<BR></TD>
+<TD colspan=1 align="left">86.79
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Perfect of Possible</b>
+<BR></TD>
+<TD colspan=1 align="left">60.22
+<BR></TD>
+<TD colspan=1 align="left">61.10
+<BR></TD>
+<TD colspan=1 align="left">74.95
+<BR></TD>
+<TD colspan=1 align="left">74.51
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Acceptable of Poss.</b>
+<BR></TD>
+<TD colspan=1 align="left">89.45
+<BR></TD>
+<TD colspan=1 align="left">89.45
+<BR></TD>
+<TD colspan=1 align="left">93.63
+<BR></TD>
+<TD colspan=1 align="left">93.85
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Average
+Distance</b>
+<BR></TD>
+<TD colspan=1 align="left">1.36
+<BR></TD>
+<TD colspan=1 align="left">1.34
+<BR></TD>
+<TD colspan=1 align="left">1.22
+<BR></TD>
+<TD colspan=1 align="left">1.23
+<BR></TD></TR></TABLE><tt>
+Table  6.3 shows the results of running the tests on the additional content.
+<TABLE BORDER></tt>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>R</b><b>esults of tests with additional content</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><b>Added
+Content</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Pronoun</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Expectations</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Pronouns
+&amp; Expectations</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Perfect
+(n)</b>
+<BR></TD>
+<TD colspan=1 align="left">332
+<BR></TD>
+<TD colspan=1 align="left">334
+<BR></TD>
+<TD colspan=1 align="left">373
+<BR></TD>
+<TD colspan=1 align="left">371
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Acceptable
+(n)</b>
+<BR></TD>
+<TD colspan=1 align="left">436
+<BR></TD>
+<TD colspan=1 align="left">437
+<BR></TD>
+<TD colspan=1 align="left">441
+<BR></TD>
+<TD colspan=1 align="left">442
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Perfect</b>
+<BR></TD>
+<TD colspan=1 align="left">67.48
+<BR></TD>
+<TD colspan=1 align="left">67.89
+<BR></TD>
+<TD colspan=1 align="left">75.81
+<BR></TD>
+<TD colspan=1 align="left">75.41
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Acceptable</b>
+<BR></TD>
+<TD colspan=1 align="left">88.62
+<BR></TD>
+<TD colspan=1 align="left">88.82
+<BR></TD>
+<TD colspan=1 align="left">89.63
+<BR></TD>
+<TD colspan=1 align="left">89.84
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Perfect of Possible</b>
+<BR></TD>
+<TD colspan=1 align="left">72.33
+<BR></TD>
+<TD colspan=1 align="left">72.77
+<BR></TD>
+<TD colspan=1 align="left">81.26
+<BR></TD>
+<TD colspan=1 align="left">80.83
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>%
+Acceptable of Poss.</b>
+<BR></TD>
+<TD colspan=1 align="left">94.99
+<BR></TD>
+<TD colspan=1 align="left">95.21
+<BR></TD>
+<TD colspan=1 align="left">96.08
+<BR></TD>
+<TD colspan=1 align="left">96.30
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Average
+Distance</b>
+<BR></TD>
+<TD colspan=1 align="left">
+1.31
+<BR></TD>
+<TD colspan=1 align="left">
+1.29
+<BR></TD>
+<TD colspan=1 align="left">
+1.17
+<BR></TD>
+<TD colspan=1 align="left">
+1.19
+<BR></TD></TR></TABLE><b>Summary</b><p>
+<b></b>In this chapter, we have examined various ways to improve indexed
+concept parsers, which included creating additional content, building in
+expectations, pronominal disambiguation, and using Direct Memory Access Parsing
+to recognize structured index concepts (and target concepts). We experimentally
+made these improvements to the Casper index concept parser, post hoc to the
+beta testing of the Casper system. These results indicated that adding content
+and building in expectations would make a big difference in the Casper parser,
+and that pronoun disambiguation would have a small effect. These changes, in
+combination, brought the recognition rate to nearly 96%. This meant that using
+DMAP to recognize structured index concepts or recognizing CSR statements
+directly would not provide much incremental benefit. One possible reason for
+this is that the number of CSR utterances--that is, the size of the target
+concept set--is only about 200. In Chapter 8, where we describe building a
+parser for a system that contains over 1,600 target concepts, we will see that
+recognizing structured indices can provide an advantage. But first, we describe
+the general methodology behind building an indexed concept parser for an
+application program.<p>
+<a name="fn0" href="#fnB0">[1.]</a>This points out an additional value of a
+parsing system over a `point and click' interface: Users of the application
+program can attempt to express things that the program can't handle. Although
+by definition the parser can not make an accurate match for this type of input,
+the creators of the application program can use these mismatched expressions as
+feedback for further system development.<p>
+<a name="fn1" href="#fnB1">[2.]</a>Alternatively, one could create an index
+concept set associated with a target concept which contains the target concept.
+The target concept would have a high information value, and when seen in the
+input text, create a good match.<p>
+<a name="fn2" href="#fnB2">[3.]</a>We need to use these discontinuous phrasal
+patterns with caution, though. The index concept CALL-BACK will be referenced
+by the sentence "Call your mother, she's back at the ranch."<p>
+<a name="fn3" href="#fnB3">[4.]</a>The vast majority of the inputs were
+tagged with either one target concept or the UNKNOWN token.
+
+<P><hr size=4>
+</body></html>

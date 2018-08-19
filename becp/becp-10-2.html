@@ -1,0 +1,1700 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Without a title - Title</TITLE></HEAD>
+<BODY BACKGROUND="../images/r2harch.gif" TEXT=#1809BB>
+<A HREF="10 Appendix code-Contents.html"><IMG SRC="../images/contg.gif" ALT="Contents " border=0></A>
+<hr size=4>
+<H1>
+Without a title</H1>
+<b>Micro-Casper system</b><p>
+<b></b>This section contains code for loading the Micro-Casper program.<p>
+<tt></tt><p>
+<tt>(defparameter +code-dir+ "Leviathan:Micro-Casper:Code:")</tt><p>
+<tt>(defparameter +data-dir+ "Leviathan:Micro-Casper:Data:")</tt><p>
+<tt>;; change these for your system</tt><p>
+<tt></tt><p>
+<tt></tt><b>Packages</b><p>
+<b></b>We define several packages, then use them.<p>
+<tt></tt><p>
+<tt>;;; package definitions</tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :icp)</tt><p>
+<tt>    (make-package :icp))</tt><p>
+<tt></tt><p>
+<tt>  (unless (find-package :frames)</tt><p>
+<tt>    (make-package :frames))</tt><p>
+<tt></tt><p>
+<tt>  (unless (find-package :dmap)</tt><p>
+<tt>    (make-package :dmap))</tt><p>
+<tt></tt><p>
+<tt>  (unless (find-package :log)</tt><p>
+<tt>    (make-package :log))</tt><p>
+<tt>  </tt><p>
+<tt>  (unless (find-package :casper)</tt><p>
+<tt>    (make-package :casper)))</tt><p>
+<tt></tt><p>
+<tt>(use-package '( :log :dmap :frames :icp :casper))</tt><p>
+<tt></tt><p>
+<tt></tt>PROBE-WARNING<p>
+This function warns if a file is not defined.  <p>
+<tt></tt><p>
+<tt>(defun probe-warning (pathname)</tt><p>
+<tt>  (if (probe-file pathname)</tt><p>
+<tt>    (format t "~%Found ~A" pathname)</tt><p>
+<tt>    (format t "~%~A not found." pathname)))</tt><p>
+<tt></tt><p>
+<tt></tt>SLS<p>
+A Simple Loading System. This works under Macintosh Common Lisp 2.0. Other
+systems may differ. <p>
+<p>
+<tt>(defun sls (&amp;key directory subdirectory filenames (extension
+"lisp")</tt><p>
+<tt>                 test)</tt><p>
+<tt>  (let ((path (if subdirectory</tt><p>
+<tt>                (format nil "~A~A" directory subdirectory)
+directory)))</tt><p>
+<tt>  (loop for filename in filenames</tt><p>
+<tt>        for comp = (format nil "~A~A.~A" path filename extension)</tt><p>
+<tt>        do (if test (probe-warning comp) (load comp)))))</tt><p>
+<tt></tt><p>
+<tt></tt>load-utilities, load-micro-casper, load-data, load-source<p>
+SLS defintions for the Micro-Casper program.  <p>
+<p>
+<tt>(defun load-utilities (&amp;optional test)</tt><p>
+<tt>  (sls :directory  +code-dir+</tt><p>
+<tt>       :subdirectory "Utilities:"</tt><p>
+<tt>       :filenames '("tables"</tt><p>
+<tt>                    "logging"</tt><p>
+<tt>                    "-&gt;list")</tt><p>
+<tt>       :test test))</tt><p>
+<tt>       </tt><p>
+<tt>(defun load-micro-casper (&amp;optional test)</tt><p>
+<tt>  (sls :directory  +code-dir+</tt><p>
+<tt>       :filenames '("micro-frame" </tt><p>
+<tt>                    "micro-dmap"</tt><p>
+<tt>                    "micro-icp"</tt><p>
+<tt>                    "micro-casper") </tt><p>
+<tt>       :test test)</tt><p>
+<tt>  )</tt><p>
+<tt></tt><p>
+<tt>(defun load-data (&amp;optional test)</tt><p>
+<tt>  (sls :directory  +data-dir+</tt><p>
+<tt>       :filenames '("micro-casper" </tt><p>
+<tt>                    "frames"</tt><p>
+<tt>                    "phrases"</tt><p>
+<tt>                    "associations" )</tt><p>
+<tt>       :extension "data"</tt><p>
+<tt>       :test test))</tt><p>
+<tt></tt><p>
+<tt>(defun load-source (&amp;optional test)</tt><p>
+<tt>  (load-utilities test)</tt><p>
+<tt>  (load-micro-casper test))</tt><p>
+<tt></tt><p>
+<tt></tt><b>SETUP</b><p>
+<b></b>Run (SETUP) to load the Micro-Casper program. <p>
+<tt></tt><p>
+<tt>(defun setup ()</tt><p>
+<tt>  (load-source)</tt><p>
+<tt>  (load-data))</tt><p>
+<tt></tt><p>
+<tt>(format t "~%Run (SETUP) to setup everything.")</tt><p>
+<tt></tt><b>Micro-Casper</b><p>
+<b></b>This section contains code for the Micro-Casper program. It's "micro" in
+the sense that no tutoring goes on--there's just a simple program loop that
+returns customer responses based on student statements. <p>
+ <p>
+<tt>(in-package "CASPER")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    MICRO-CASPER.LISP </tt><p>
+<tt>;; Created: 11/10/94</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: A 'micro' version of the Casper Customer Service
+Representative</tt><p>
+<tt>;;              Tutor</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt></tt><b>Packages</b><p>
+<b></b>This code goes into its own package, and requires the tables and icp
+(indexed concept parsing) packages. <p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Packages</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :casper)</tt><p>
+<tt>    (make-package :casper)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :casper)</tt><p>
+<tt>(use-package :tables)</tt><p>
+<tt>(use-package :icp)</tt><p>
+<tt></tt><p>
+<tt>(export '(clear-statements def-csr def-cust def-response *casper-output*
+</tt><p>
+<tt>          *casper-output* casper))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Statements</b><p>
+<b></b>A statement has a symbolic form and an English form. We store these in
+tables keyed on the symbolic form. The response of a customer is stored in a
+table keyed on the symbolic form of the CSR.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;;  Statements and responses</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt></tt><p>
+<tt>(defclass statement ()</tt><p>
+<tt>  ((symbolic-form :initarg :symbolic-form :initform nil :accessor
+symbolic-form)</tt><p>
+<tt>   (english-form :initarg :english-form :initform nil :accessor
+english-form)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod print-object ((self statement) stream)</tt><p>
+<tt>    (print-unreadable-object (self stream :type t :identity t)</tt><p>
+<tt>      (format stream "~s" (symbolic-form self))))</tt><p>
+<tt></tt><p>
+<tt>(defclass csr-statement (statement) ())</tt><p>
+<tt>(defclass customer-statement (statement) ())</tt><p>
+<tt></tt><p>
+<tt>(deftable cust-form-of)</tt><p>
+<tt>(deftable csr-form-of)</tt><p>
+<tt>(deftable response-of)</tt><p>
+<tt></tt><p>
+<tt>(defun clear-statements ()</tt><p>
+<tt>  (clear-table (cust-form-of))</tt><p>
+<tt>  (clear-table (csr-form-of))</tt><p>
+<tt>  (clear-table (response-of)))</tt><p>
+<tt></tt><p>
+<tt>(defun csr-&gt;cust (csr-statement)</tt><p>
+<tt>  "from a CSR statement (symbolic form) to a Customer's response"</tt><p>
+<tt>  (cust-form-of (response-of csr-statement)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Macro definitions</b><p>
+<b></b>This section defines macro defintions for CSR and customer statements.
+<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; CSR, Customer and Response definition macros.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-csr (symbolic-form english-form)</tt><p>
+<tt>  '(progn</tt><p>
+<tt>     (setf (csr-form-of ',symbolic-form)</tt><p>
+<tt>           (make-instance 'csr-statement</tt><p>
+<tt>          :symbolic-form ',symbolic-form</tt><p>
+<tt>          :english-form ,english-form)) ',symbolic-form))</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-cust (symbolic-form english-form)</tt><p>
+<tt>  '(progn</tt><p>
+<tt>     (setf (cust-form-of ',symbolic-form)</tt><p>
+<tt>           (make-instance 'customer-statement</tt><p>
+<tt>             :symbolic-form ',symbolic-form</tt><p>
+<tt>             :english-form ,english-form)) ',symbolic-form))</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-response (csr-statement cust-statement)</tt><p>
+<tt>  '(setf (response-of ',csr-statement) ',cust-statement))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Interface</b><p>
+<b></b>This section provides a minimal interface to take student input and
+display the customer statements. This is very primative, of course.  Notice the
+call to icp in get-csr-statement.<p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Interface functions. These are very primitive.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defvar *casper-output* *standard-output*)</tt><p>
+<tt>(defvar *casper-input* *standard-input*)</tt><p>
+<tt>(defvar *csr-prompt* "CSR? ")</tt><p>
+<tt></tt><p>
+<tt>(defun display-csr-statement (csr-statement)</tt><p>
+<tt>  (format *casper-output* "~%CSR: ~A" (english-form csr-statement)))</tt><p>
+<tt></tt><p>
+<tt>(defun display-cust-statement (cust-statement)</tt><p>
+<tt>  (format *casper-output* "~%Customer: ~A~%" (english-form
+cust-statement)))</tt><p>
+<tt></tt><p>
+<tt>(defun get-csr-statement ()</tt><p>
+<tt>  (terpri *casper-output*)</tt><p>
+<tt>  (princ *csr-prompt* *casper-output*)</tt><p>
+<tt>  (let ((words (cl-user::-&gt;symbols (read-line  *casper-input* ""
+nil))))</tt><p>
+<tt>    (icp words)</tt><p>
+<tt>    (target-concept (choose-best (best-results 7) :key
+'what-to-display))))</tt><p>
+<tt></tt><p>
+<tt>(defun what-to-display (result)</tt><p>
+<tt>  (format nil "~4,2F ~S ~A" </tt><p>
+<tt>          (score result)</tt><p>
+<tt>          (target-concept result)</tt><p>
+<tt>          (let ((csr-statement (csr-form-of (target-concept
+result))))</tt><p>
+<tt>            (if csr-statement (english-form csr-statement) ""))))</tt><p>
+<tt>          </tt><p>
+<tt>(defun choose-best (list &amp;key (key 'identity))</tt><p>
+<tt>  (format *casper-output* "~%Choose the best choice (0 for none):")</tt><p>
+<tt>  (loop for item in list</tt><p>
+<tt>        for i from 1 doing</tt><p>
+<tt>        (format t "~%~2,D. ~A" i (funcall key item)))</tt><p>
+<tt>  (format *casper-output* "~%~A" *csr-prompt*)</tt><p>
+<tt>  (let ((result (read *casper-input* nil 0)))</tt><p>
+<tt>    (if (or (not (integerp result)) (= result 0)) nil</tt><p>
+<tt>        (nth (1- result) list))))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Main Loop</b><p>
+<b></b>The main Casper loop starts the conversation off with greeting the
+customer, which has to be defined in the CL-USER package, and ends with the
+customer ringing off. <p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; The Casper main loop</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun simple-casper-loop (csr-statement-name)</tt><p>
+<tt>  (let ((csr-statement (csr-form-of csr-statement-name)))</tt><p>
+<tt>    (when csr-statement</tt><p>
+<tt>      (display-csr-statement csr-statement)</tt><p>
+<tt>      (let ((cust-statement (csr-&gt;cust csr-statement-name)))</tt><p>
+<tt>        (when cust-statement</tt><p>
+<tt>          (display-cust-statement cust-statement)</tt><p>
+<tt>          (when (eq (symbolic-form cust-statement)
+'cl-user::ring-off)</tt><p>
+<tt>            (return-from simple-casper-loop t))))))</tt><p>
+<tt>  (simple-casper-loop (get-csr-statement)))</tt><p>
+<tt></tt><p>
+<tt>(defun casper ()</tt><p>
+<tt>  (simple-casper-loop 'cl-user::greet-customer))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Micro index concept parsing</b><p>
+<b></b>Micro version of indexed concept parsing, using DMAP as the index
+concept recognizer and default appraiser functions.<p>
+<p>
+<tt>(in-package "ICP")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    MICRO-ICP.LISP </tt><p>
+<tt>;; Created: 10/20/94</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: Micro version of indexed concept parsing.</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><b>Packages</b><p>
+<b></b>We define the ICP package, and use FRAMES, DMAP, TABLES, and LOG
+packages. <p>
+<p>
+<tt></tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :icp)</tt><p>
+<tt>    (make-package :icp)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :icp)</tt><p>
+<tt></tt><p>
+<tt>(use-package :frames)</tt><p>
+<tt>(use-package :dmap)</tt><p>
+<tt>(use-package :tables)</tt><p>
+<tt>(use-package :log)</tt><p>
+<tt></tt><p>
+<tt>(export '(def-assoc clear-icp-memory icp information-value</tt><p>
+<tt>           best-results *icp-results* print-icp-log m-reference-concept
+m-root</tt><p>
+<tt>           score target-concept index-concepts ticp))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Data structures</b><p>
+<b></b>Data structures for target concepts,  index concepts and their
+associations.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Data structures for index concepts, target concepts, and their
+relationships</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>;; an index set is a target concept and its associated index
+concepts</tt><p>
+<tt></tt><p>
+<tt>(defclass index-set ()</tt><p>
+<tt>  ((target-concept :initarg :target-concept :accessor
+target-concept)</tt><p>
+<tt>   (indices :initarg :indices :accessor indices)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod print-object ((self index-set) stream)</tt><p>
+<tt>    (print-unreadable-object (self stream :type t :identity t)</tt><p>
+<tt>      (format stream "~s "  (target-concept self))</tt><p>
+<tt>      (format stream "~s"(indices self))))</tt><p>
+<tt></tt><b>Data tables</b><p>
+<b></b>Data tables include tracking target concepts and index concepts.<p>
+<p>
+<tt></tt><p>
+<tt>;; Data tables:</tt><p>
+<tt>;; whether an object is a target concept;</tt><p>
+<tt>;; from an index to all of the index sets it participates in;</tt><p>
+<tt>;; from an index to all of the target concepts for which it is
+associated;</tt><p>
+<tt>;; from an index to the number of target concepts it's associated with
+(for</tt><p>
+<tt>;; calculating information value)</tt><p>
+<tt></tt><p>
+<tt>(deftable target-concept-p)</tt><p>
+<tt>(deftable index-&gt;index-sets)</tt><p>
+<tt>(deftable index-&gt;target-concepts)</tt><p>
+<tt>(deftable index-&gt;target-concepts-cardinality)</tt><p>
+<tt></tt><p>
+<tt>(defun target-concept-cardinality ()</tt><p>
+<tt>  "How many target concepts -- for calculating information value"</tt><p>
+<tt>  (hash-table-count (target-concept-p)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Installing index concept sets</b><p>
+<b></b>Installing an association between a set of index concepts and a target
+concept involves updating the various data tables.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Installation of index sets.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defmethod equal-instance-p ((index-set1 index-set) (index-set2
+index-set))</tt><p>
+<tt>  (and (eql (target-concept index-set1)</tt><p>
+<tt>            (target-concept index-set2))</tt><p>
+<tt>       (equal (indices index-set1)</tt><p>
+<tt>              (indices index-set2))))</tt><p>
+<tt></tt><p>
+<tt>(defun set-index-&gt;target-concepts-cardinality (index)</tt><p>
+<tt>  (if (index-&gt;target-concepts-cardinality index)</tt><p>
+<tt>    (incf (index-&gt;target-concepts-cardinality index))</tt><p>
+<tt>    (setf (index-&gt;target-concepts-cardinality index) 1)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod install ((index-set index-set))</tt><p>
+<tt>  (with-slots (target-concept indices) index-set</tt><p>
+<tt>  (dolist (index indices)</tt><p>
+<tt>    (unless (frame-of index)</tt><p>
+<tt>      (warn "~S does not name a frame." index))</tt><p>
+<tt>    (unless (member index (index-&gt;target-concepts index))      </tt><p>
+<tt>      (push target-concept (index-&gt;target-concepts index))</tt><p>
+<tt>      (set-index-&gt;target-concepts-cardinality index))</tt><p>
+<tt>    (pushnew index-set (index-&gt;index-sets index) :test
+'equal-instance-p))))</tt><p>
+<tt></tt><p>
+<tt>(defun add-index-set (target-concept indices)</tt><p>
+<tt>  (setf (target-concept-p target-concept) t)</tt><p>
+<tt>  (install (make-instance 'index-set </tt><p>
+<tt>             :target-concept target-concept</tt><p>
+<tt>             :indices indices))</tt><p>
+<tt>  target-concept)</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-assoc (name &amp;rest indices)</tt><p>
+<tt>  '(progn</tt><p>
+<tt>     (define-frame ',name '(m-reference-concept) nil)</tt><p>
+<tt>     (add-index-set ',name ',indices)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Results</b><p>
+<b></b>Each result from the parser contains three parts: the total score, the
+target concept, and the index concepts.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Class for result from the parser</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defclass icp-result ()</tt><p>
+<tt>    ((score :initarg :score :initform 0 :accessor score)</tt><p>
+<tt>     (target-concept :initarg :target-concept :initform nil :accessor
+target-concept)</tt><p>
+<tt>     (index-concepts :initarg :index-concepts :initform nil :accessor
+index-concepts)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod print-object ((self icp-result) stream)</tt><p>
+<tt>  (with-slots (score target-concept index-concepts) self</tt><p>
+<tt>    (print-unreadable-object (self stream :type t :identity t)</tt><p>
+<tt>      (format stream "~4,2F ~S ~S" score target-concept
+index-concepts))))</tt><p>
+<tt></tt><p>
+<tt>(defun make-icp-result (score target-concept index-concepts)</tt><p>
+<tt>  (make-instance 'icp-result</tt><p>
+<tt>    :score score</tt><p>
+<tt>    :target-concept target-concept</tt><p>
+<tt>    :index-concepts index-concepts))</tt><p>
+<tt></tt><b>Null defintions</b><p>
+<b></b>In case the parser returns no result, we define some null results.<p>
+<tt></tt><p>
+<tt>(defmethod score ((result null)) 0)</tt><p>
+<tt></tt><p>
+<tt>(defmethod target-concept ((result null)) nil)</tt><p>
+<tt></tt><p>
+<tt>(defmethod index-concepts ((result null)) nil)</tt><p>
+<tt>  </tt><p>
+<tt></tt><b>Indexed concept parsing loop</b><p>
+<b></b>The results are placed in *icp-results*, sorted by score, and duplicates
+removed.  Note that different matching functions could be defined.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; ICP proper</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defvar *icp-results* () "A place to store the results of the
+parser")</tt><p>
+<tt></tt><p>
+<tt>(defun icp (words &amp;optional (match-fn 'words-&gt;indices))</tt><p>
+<tt>  (setf *icp-results*</tt><p>
+<tt>        (remove-duplicates </tt><p>
+<tt>         (sort (score-index-sets (find-indices words match-fn))</tt><p>
+<tt>               #'&gt; :key #'score)</tt><p>
+<tt>         :key 'target-concept :from-end t))</tt><p>
+<tt>  (first *icp-results*))</tt><p>
+<tt></tt><p>
+<tt>(defun best-results (&amp;optional n)</tt><p>
+<tt>  (if n (first-n *icp-results* n) *icp-results*))</tt><p>
+<tt></tt><p>
+<tt>(defun find-indices (words match-fn)</tt><p>
+<tt>  (funcall match-fn words))</tt><p>
+<tt></tt><p>
+<tt>(defun score-index-sets (found-indices)</tt><p>
+<tt>  (loop for index-set in (candidate-index-sets found-indices)</tt><p>
+<tt>        collect (make-icp-result</tt><p>
+<tt>                 (index-set-score index-set found-indices)</tt><p>
+<tt>                 (target-concept index-set)</tt><p>
+<tt>                 (indices index-set))))</tt><p>
+<tt></tt><b>Candidate index concept sets</b><p>
+<b></b>Look for any index set association that contains one of the index
+concepts seen in the text--or an abstraction of the index concept.<p>
+<p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Find all candidate index sets from the index concepts seen</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun candidate-index-sets (found-indices)</tt><p>
+<tt>  (remove-duplicates</tt><p>
+<tt>   (loop for index in (all-absts-in found-indices)</tt><p>
+<tt>         append (index-&gt;index-sets index))))</tt><p>
+<tt></tt><p>
+<tt>(defun all-absts-in (concepts)</tt><p>
+<tt>  (remove-duplicates </tt><p>
+<tt>   (loop for concept in concepts</tt><p>
+<tt>         append (all-abstractions (frame-of concept)))))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt><b>Calculating match scores</b><p>
+<b></b>Call the appraisers on the retreived candidates and calculate a total
+score.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Calculate the scores for each candidate index set</tt><p>
+<tt>;; The real work is done by the appraiser functions. INDEX-SET-SCORE</tt><p>
+<tt>;; just adds them up.  Appraisers with no votes are not called.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun index-set-score (index-set found-indices)</tt><p>
+<tt>  (let ((score 0))</tt><p>
+<tt>    (map-table #'(lambda (appraiser votes)</tt><p>
+<tt>                   (unless (zerop votes)</tt><p>
+<tt>                     (incf score</tt><p>
+<tt>                           (call-appraiser appraiser </tt><p>
+<tt>                                           index-set
+found-indices))))</tt><p>
+<tt>               (appraiser-votes))</tt><p>
+<tt>    (log:record-log (target-concept index-set)</tt><p>
+<tt>                    "Total score for target ~S  = ~5,3F"</tt><p>
+<tt>                    (target-concept index-set)  score)</tt><p>
+<tt>    (log:record-log (target-concept index-set)</tt><p>
+<tt>                    "Associated index concepts:
+~S~%~&amp;~75,,,'-&lt;~&gt;~%" </tt><p>
+<tt>                    (indices index-set))</tt><p>
+<tt>    score))</tt><p>
+<tt></tt><p>
+<tt>(defun call-appraiser (appraiser index-set found-indices)</tt><p>
+<tt>  (let ((score </tt><p>
+<tt>         (* (funcall appraiser index-set found-indices)</tt><p>
+<tt>            (appraiser-weight appraiser))))</tt><p>
+<tt>    (log:record-log (target-concept index-set)</tt><p>
+<tt>                    "~A score = ~5,3F (Raw score * ~5,3F
+weighting)~%"</tt><p>
+<tt>                    appraiser score (appraiser-weight appraiser))</tt><p>
+<tt>    score))</tt><p>
+<tt>  </tt><p>
+<tt></tt><b>Information value</b><p>
+<b></b>The information of an index concept is based on how often the index is
+associated with a target concept compared to the number of target concepts
+overall.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Information value functions</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun probability-of-index (index)</tt><p>
+<tt>  (let ((cardinality (index-&gt;target-concepts-cardinality index)))</tt><p>
+<tt>    (if (null cardinality) least-positive-short-float </tt><p>
+<tt>        (/ cardinality </tt><p>
+<tt>           (target-concept-cardinality)))))</tt><p>
+<tt></tt><p>
+<tt>(defun information-value (index)</tt><p>
+<tt>  (- (log (probability-of-index index) 2)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Appraisers</b><p>
+<b></b>An appraiser is a weighted scoring function based on index concepts seen
+and predicted.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Appraisers</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>;;; An appraiser is a function assigned a non-zero number of votes.</tt><p>
+<tt>;;; The function should take an index-set and an found-indices and
+return</tt><p>
+<tt>;;; a score between 0 and 1 inclusive. The score is then multiplied
+by</tt><p>
+<tt>;;; the appraiser's weight, which is the number of votes associated</tt><p>
+<tt>;;; with the appraiser divided by the total number of votes for all</tt><p>
+<tt>;;; appraisers. </tt><p>
+<tt></tt><p>
+<tt>;;; (ASSIGN-VOTES name [votes]) =&gt; name</tt><p>
+<tt>;;;   Assigns the given number of votes to an appraiser. If no votes</tt><p>
+<tt>;;;   are specified, 1 is assumed.</tt><p>
+<tt></tt><p>
+<tt>;;; Bookkeeping:</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; As votes are assigned, we keep track of the total votes, to
+speed</tt><p>
+<tt>;;; up calculating relative weights at parse time.</tt><p>
+<tt></tt><p>
+<tt>(deftable appraiser-votes)</tt><p>
+<tt></tt><p>
+<tt>(defvar *total-votes* 0</tt><p>
+<tt>  "Total number of votes for appraisers.")</tt><p>
+<tt></tt><p>
+<tt>(defun clear-appraisers ()</tt><p>
+<tt>  (clear-table (appraiser-votes))</tt><p>
+<tt>  (setf *total-votes* 0))</tt><p>
+<tt></tt><p>
+<tt>(defun assign-votes (name &amp;optional (votes 1))</tt><p>
+<tt>  (setf (appraiser-votes name) votes)</tt><p>
+<tt>  (tally-votes)</tt><p>
+<tt>  name)</tt><p>
+<tt></tt><p>
+<tt>(defun tally-votes ()</tt><p>
+<tt>  (setq *total-votes* 0)</tt><p>
+<tt>  (map-table #'(lambda (name votes)</tt><p>
+<tt>                 (declare (ignore name))</tt><p>
+<tt>                 (incf *total-votes* votes))</tt><p>
+<tt>             (appraiser-votes)))</tt><p>
+<tt></tt><p>
+<tt>(defun appraiser-weight (appraiser)</tt><p>
+<tt>  (/ (appraiser-votes appraiser) *total-votes*))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Default appraisers</b><p>
+<b></b>Default appraisers calcuate scores based directly on index concepts seen
+and predicted.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Default appraiser functions</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>;;; Each of these appraisers compares a given index set against the</tt><p>
+<tt>;;; pool of indices actually seen in the input:</tt><p>
+<tt>;;; </tt><p>
+<tt>;;;   PREDICTED-SCORE -- how many predicted items were seen?</tt><p>
+<tt>;;;   UNPREDICTED-SCORE -- how many items were not predicted?</tt><p>
+<tt>;;;   UNSEEN-SCORE -- how many predicted items were not seen?</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(defun predicted-score (index-set found-indices)</tt><p>
+<tt>  (let* ((predicted (indices index-set))</tt><p>
+<tt>         (predicted-items (predicted-items found-indices predicted))</tt><p>
+<tt>         (score</tt><p>
+<tt>          (/ (summed-value (target-concept index-set) predicted-items
+'identity)</tt><p>
+<tt>             (summed-value (target-concept index-set) predicted
+'identity))))</tt><p>
+<tt>    (log:record-log  (target-concept index-set)</tt><p>
+<tt>                     "Predicted raw score = ~5,3F (successfully predicted /
+predicted)"</tt><p>
+<tt>                     score)</tt><p>
+<tt>    score))</tt><p>
+<tt></tt><p>
+<tt>(defun unpredicted-score (index-set found-indices)</tt><p>
+<tt>  (let* ((predicted (indices index-set))</tt><p>
+<tt>         (unpredicted-items (unpredicted-items found-indices
+predicted))</tt><p>
+<tt>         (score</tt><p>
+<tt>          (- 1 (/ (summed-value (target-concept index-set)
+unpredicted-items 'identity)</tt><p>
+<tt>                  (summed-value (target-concept index-set) found-indices
+'identity)))))</tt><p>
+<tt>    (log:record-log  (target-concept index-set)</tt><p>
+<tt>                     "Unpredicted raw score = ~5,3F (1 - unpredicted /
+seen)"</tt><p>
+<tt>                     score)</tt><p>
+<tt>    score))</tt><p>
+<tt></tt><p>
+<tt>(defun unseen-score (index-set found-indices)</tt><p>
+<tt>  (let* ((predicted (indices index-set))</tt><p>
+<tt>         (unseen-items (unseen-items found-indices predicted))</tt><p>
+<tt>         (score</tt><p>
+<tt>          (- 1 (/ (summed-value (target-concept index-set) unseen-items
+'identity)</tt><p>
+<tt>                  (summed-value (target-concept index-set) predicted
+'identity)))))</tt><p>
+<tt>    (log:record-log  (target-concept index-set)</tt><p>
+<tt>                     "Unseen raw score = ~5,3F (1 - unseen /
+predicted)"</tt><p>
+<tt>                     score)</tt><p>
+<tt>    score))</tt><p>
+<tt> </tt><p>
+<tt>(defun remove-parts (l)</tt><p>
+<tt>  "remove index concepts that form part of another index concept"</tt><p>
+<tt>  (remove-if #'(lambda (item) (member item l :test 'part-of))</tt><p>
+<tt>             l))</tt><p>
+<tt></tt><p>
+<tt>(defun predicted-items (seen-set predicted-set)</tt><p>
+<tt>  (intersection predicted-set seen-set :test 'abst-or-whole-of))</tt><p>
+<tt></tt><p>
+<tt>(defun unpredicted-items (seen-set predicted-set)</tt><p>
+<tt>  (set-difference seen-set predicted-set :test 'spec-or-part-of))</tt><p>
+<tt></tt><p>
+<tt>(defun unpredicted-items (seen-set predicted-set)</tt><p>
+<tt>  (set-difference (remove-parts seen-set) predicted-set :test
+'specp))</tt><p>
+<tt></tt><p>
+<tt>(defun unseen-items (seen-set predicted-set)</tt><p>
+<tt>  (set-difference predicted-set seen-set :test 'abst-or-whole-of))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(defun summed-value (base predicted-set fn)</tt><p>
+<tt>  (let ((val</tt><p>
+<tt>         (loop for item in predicted-set</tt><p>
+<tt>               sum (funcall fn (information-value item)))))</tt><p>
+<tt>    (log:record-log base "Summed value of ~S~:[ using ~A~;~*~] =&gt;
+~5,3F"</tt><p>
+<tt>        predicted-set (eql fn 'identity) fn val)</tt><p>
+<tt>    val))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt><b>Expectation  appraiser</b><p>
+<b></b>This is an example of an appraiser based on whether a target concept was
+expected. This isn't used in the example, though.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; This is an example of how to write an expection appraiser, although this
+</tt><p>
+<tt>;; isn't used by default.</tt><p>
+<tt>;;----------------------------------------------------------------------------
+</tt><p>
+<tt></tt><p>
+<tt>(defvar *expectations* nil </tt><p>
+<tt>  "A list of target concepts predicted")</tt><p>
+<tt></tt><p>
+<tt>(defun add-expectation (target-concept)</tt><p>
+<tt>  (pushnew target-concept *expectations*))</tt><p>
+<tt></tt><p>
+<tt>(defun clear-expectations ()</tt><p>
+<tt>  (setf *expectations* nil))</tt><p>
+<tt></tt><p>
+<tt>(defun set-expectations (target-concepts)</tt><p>
+<tt>  (setf *expectations* target-concepts))</tt><p>
+<tt></tt><p>
+<tt>(defun expected-p (target-concept)</tt><p>
+<tt>  (and (member target-concept *expectations* ) t))</tt><p>
+<tt></tt><p>
+<tt>(defun expected-score (index-set found-indices)</tt><p>
+<tt>  (declare (ignore found-indices))</tt><p>
+<tt>  (let* ((target-concept (target-concept index-set))</tt><p>
+<tt>         (found (expected-p target-concept))</tt><p>
+<tt>         (score (if found 1 0)))</tt><p>
+<tt>    (log:record-log  target-concept</tt><p>
+<tt>                     "Expected raw score = ~5,3F (1 if expected, 0
+otherwise)"</tt><p>
+<tt>                     score)</tt><p>
+<tt>    score))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Default appraiser weights</b><p>
+<b></b>This makes the predicted index score twice as important as the others.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Weight the appraisers</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(clear-appraisers)</tt><p>
+<tt></tt><p>
+<tt>(assign-votes 'predicted-score 2)</tt><p>
+<tt>(assign-votes 'unpredicted-score)</tt><p>
+<tt>(assign-votes 'unseen-score)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Clearing memory</b><p>
+<b></b>This clears out all frames and predictions.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Clearing memory</tt><p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun clear-icp-memory ()</tt><p>
+<tt>  (clear-frame-memory)</tt><p>
+<tt>  (clear-predictions :all)</tt><p>
+<tt>  (clear-table (target-concept-p))</tt><p>
+<tt>  (clear-table (index-&gt;target-concepts))</tt><p>
+<tt>  (clear-table (index-&gt;index-sets))</tt><p>
+<tt>  (clear-table (index-&gt;target-concepts-cardinality))</tt><p>
+<tt>  t)</tt><p>
+<tt></tt><p>
+<tt></tt><b>DMAP-based matcher</b><p>
+<b></b>DMAP recognizes index concepts in the input text. These are collected
+and returned to the icp function.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; A DMAP-based index concept recognizer</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun words-&gt;indices (sent)</tt><p>
+<tt>  (reset-parser)</tt><p>
+<tt>  (let (concepts)</tt><p>
+<tt>    (setf (call-backs 'm-root)</tt><p>
+<tt>          (list #'(lambda (item start end) </tt><p>
+<tt>                    (record-log 'DMAP "DMAP referenced ~S from ~S" </tt><p>
+<tt>                                item (subseq sent (1- start) end))</tt><p>
+<tt>                    (push item concepts))))</tt><p>
+<tt>    (parse sent)</tt><p>
+<tt>    (setf concepts (mapcar #'frames::name concepts))</tt><p>
+<tt>    (record-log 'WORDS-&gt;INDICES </tt><p>
+<tt>                "~S ~%produced the index pool ~S~%~75,,,'=&lt;~&gt;~%"
+</tt><p>
+<tt>                sent concepts)</tt><p>
+<tt>    concepts))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Logging and testing</b><p>
+<b></b>One can use ticp to test individual sentences and see how they are
+scored.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Logging  &amp; testing functions</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun first-n (sequence n)</tt><p>
+<tt>  (loop for i from 1 to n</tt><p>
+<tt>        for el in sequence </tt><p>
+<tt>        collect el))</tt><p>
+<tt></tt><p>
+<tt>(defun print-icp-log (&amp;optional (n 7) (stream
+*standard-output*))</tt><p>
+<tt>  (print-log 'WORDs-&gt;INDICES stream)</tt><p>
+<tt>  (loop for result in (first-n *icp-results* n) </tt><p>
+<tt>        doing</tt><p>
+<tt>        (print-log (target-concept result) stream)))</tt><p>
+<tt></tt><p>
+<tt>(defmacro ticp (&amp;rest words)</tt><p>
+<tt>  '(with-logging</tt><p>
+<tt>     (icp ',words)</tt><p>
+<tt>     (print-icp-log)))</tt><p>
+<tt></tt><b>Micro Direct Memory Access Parsing</b><p>
+<b></b>A 'light' version of the DMAP algorithm.<p>
+<p>
+<tt>(in-package "DMAP")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    MICRO-DMAP.LISP</tt><p>
+<tt> </tt><p>
+<tt>;; Created: 10/19/94</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: Direct Memory Access Parsing.</tt><p>
+<tt>;; based on various versions of DMAP by Chris Riesbeck.</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt><b>Packages</b><p>
+<b></b>DMAP is in its own package, and depends on tables and frames.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Packages</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :dmap)</tt><p>
+<tt>    (make-package :dmap)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :dmap)</tt><p>
+<tt></tt><p>
+<tt>(use-package :tables)</tt><p>
+<tt>(use-package :frames)</tt><p>
+<tt></tt><p>
+<tt>(export '(add-phrasal-pattern def-phrase def-phrases</tt><p>
+<tt>          parse reset-parser</tt><p>
+<tt>          clear-predictions </tt><p>
+<tt>          call-backs))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Predictions</b><p>
+<b></b>The main data structure is the prediction--expectations as to what will
+be seen next in the input.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Data structure for predictions. These are stored in tables keyed on
+the</tt><p>
+<tt>;; "target" of their first phrasal pattern element</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defclass prediction ()</tt><p>
+<tt>  ((base :initarg :base :initform nil :accessor base) </tt><p>
+<tt>   (phrasal-pattern :initarg :phrasal-pattern :initform nil :accessor
+phrasal-pattern) </tt><p>
+<tt>   (start :initarg :start :initform nil :accessor start)</tt><p>
+<tt>   (next :initarg :next :initform nil :accessor next) </tt><p>
+<tt>   (slots :initarg :slots :initform nil :accessor slots)))</tt><p>
+<tt></tt><p>
+<tt>(defun make-prediction (&amp;key base phrasal-pattern start next slots)
+</tt><p>
+<tt>  (make-instance 'prediction </tt><p>
+<tt>    :base base :phrasal-pattern phrasal-pattern :start start :next next
+:slots slots))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Prediction Tables</b><p>
+<b></b>The anytime prediction table contains predictions that can fire at any
+time. Dynamic predictions are created as parts of any time predictions (or
+other dynamic predictions) are seen.<p>
+<p>
+<tt>(eval-when (:compile-toplevel :load-toplevel :execute)</tt><p>
+<tt>  (tables:deftable anytime-predictions-on)</tt><p>
+<tt>  (tables:deftable dynamic-predictions-on))</tt><p>
+<tt></tt><p>
+<tt>(defun add-phrasal-pattern (base phrasal-pattern)</tt><p>
+<tt>  "Adds the phrasal pattern of base to the table of static
+predictions."</tt><p>
+<tt>  (if (and (eql base (first phrasal-pattern)) (null (rest
+phrasal-pattern)))</tt><p>
+<tt>    nil</tt><p>
+<tt>    (progn (index-anytime-prediction</tt><p>
+<tt>            (make-prediction :base base :phrasal-pattern phrasal-pattern))
+</tt><p>
+<tt>           phrasal-pattern)))</tt><p>
+<tt></tt><p>
+<tt>(defun index-anytime-prediction (prediction)</tt><p>
+<tt>  "Put the phrasal pattern/prediction in the table for its target."</tt><p>
+<tt>  (push prediction (anytime-predictions-on (prediction-target
+prediction))))</tt><p>
+<tt></tt><p>
+<tt>(defun index-dynamic-prediction (prediction)</tt><p>
+<tt>  "Put the phrasal pattern/prediction in the table for its target."</tt><p>
+<tt>  (push prediction (dynamic-predictions-on (prediction-target
+prediction))))</tt><p>
+<tt></tt><p>
+<tt>(defun predictions-on (index)</tt><p>
+<tt>  (append (anytime-predictions-on index)</tt><p>
+<tt>          (dynamic-predictions-on index)))</tt><p>
+<tt></tt><p>
+<tt>(defun clear-predictions (&amp;optional (which :dynamic))</tt><p>
+<tt>  (ecase which</tt><p>
+<tt>    (:dynamic (clear-table (dynamic-predictions-on)))</tt><p>
+<tt>    (:anytime (clear-table (anytime-predictions-on)))</tt><p>
+<tt>    (:all (clear-table (dynamic-predictions-on))</tt><p>
+<tt>          (clear-table (anytime-predictions-on)))))</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-phrase (base &amp;rest phrasal-pattern)</tt><p>
+<tt>  (if (and (eql base (car phrasal-pattern)) (null (cdr
+phrasal-pattern)))</tt><p>
+<tt>      (error "~S can't reference itself" base)</tt><p>
+<tt>      '(progn (add-phrasal-pattern ',base ',phrasal-pattern)</tt><p>
+<tt>              ',phrasal-pattern)))</tt><p>
+<tt></tt><p>
+<tt></tt>DEF-PHRASE<p>
+This creates a prediction based on a phrasal pattern associated with a
+concept.<p>
+<p>
+<tt>(defmacro def-phrases (base &amp;rest phrasal-patterns)</tt><p>
+<tt>  '(loop for phrasal-pattern in ',phrasal-patterns doing</tt><p>
+<tt>         (add-phrasal-pattern ',base phrasal-pattern)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Miscellany</b><p>
+<b></b>A global counter and a table of call back functions.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Misc. data structures.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defvar *dmap-pos* 0)           ;;global text position</tt><p>
+<tt></tt><p>
+<tt>;; Call backs are ad-hoc functions run when a concept (or one of its</tt><p>
+<tt>;; specializations) is referenced. Function should take three</tt><p>
+<tt>;; parameters: the item referenced, the start position in the text,
+and</tt><p>
+<tt>;; the end position in the text.</tt><p>
+<tt></tt><p>
+<tt>(eval-when (:compile-toplevel :load-toplevel :execute)</tt><p>
+<tt>  (tables:deftable call-backs))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Main </b>parse loop<p>
+Reference every word in the input list and see if any predictions are fired.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; To parse is to reference every word in the text, looking for
+predictions</tt><p>
+<tt>;; on the words.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun parse (sent)</tt><p>
+<tt>  (dolist (w sent)</tt><p>
+<tt>    (setq *dmap-pos* (1+ *dmap-pos*))</tt><p>
+<tt>    (reference w *dmap-pos* *dmap-pos*)))</tt><p>
+<tt></tt><p>
+<tt></tt>reference loop<p>
+To reference an item is to see if it (or one of its abstractions) fires a
+prediction, and then to run any potential call back fuctions.<p>
+<p>
+<tt>(defun reference (item start end)</tt><p>
+<tt>  (dolist (abst (all-abstractions item))</tt><p>
+<tt>    (dolist (prediction (predictions-on abst)) </tt><p>
+<tt>      (advance-prediction prediction item start end))</tt><p>
+<tt>    (dolist (fn (call-backs abst)) </tt><p>
+<tt>      (funcall fn item start end))))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Prediction advancement</b><p>
+<b></b>If the phrasal pattern has been used up, reference the base target;
+otherwise, create a dynamic prediction for the next item to be seen in the
+phrasal pattern.<p>
+<p>
+<tt>(defun advance-prediction (prediction item start end)</tt><p>
+<tt>  "Advancing a phrasal pattern/prediction means:</tt><p>
+<tt>   if the predicted phrasal pattern has been completely seen, to reference
+</tt><p>
+<tt>   the base of the prediction with the slots that have been
+collected;</tt><p>
+<tt>   otherwise, to create a new prediction for the next item in the</tt><p>
+<tt>   prediction phrasal pattern."</tt><p>
+<tt>  (when (or (null (next prediction))</tt><p>
+<tt>            (= (next prediction) start))</tt><p>
+<tt>    (let ((base (base prediction))</tt><p>
+<tt>          (phrasal-pattern (cdr (phrasal-pattern prediction)))</tt><p>
+<tt>          (start (or (start prediction) start))</tt><p>
+<tt>          (slots (extend-slots prediction item)))      </tt><p>
+<tt>      (if (null phrasal-pattern)</tt><p>
+<tt>        (reference (find-frame base slots) start end)</tt><p>
+<tt>        (index-dynamic-prediction  </tt><p>
+<tt>         (make-prediction :base base :phrasal-pattern phrasal-pattern
+:start start :next (1+ *dmap-pos*) </tt><p>
+<tt>                          :slots slots))))))</tt><p>
+<tt></tt><p>
+<tt>(defun extend-slots (prediction item)</tt><p>
+<tt>  (let ((spec (first (phrasal-pattern prediction)))</tt><p>
+<tt>        (slots (slots prediction)))</tt><p>
+<tt>    (if (role-specifier-p spec)</tt><p>
+<tt>        (if (abstp item (prediction-target prediction))</tt><p>
+<tt>            slots</tt><p>
+<tt>            (cons (list (role-specifier spec) (-&gt;name item))
+slots))</tt><p>
+<tt>        slots)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Prediction targets</b><p>
+<b></b>The first item in a phrasal pattern defines a target, with special
+syntax for feature specifiers.<p>
+<p>
+<tt>(defun prediction-target (prediction)</tt><p>
+<tt>  "The target of a phrasal pattern is based on the first item in the</tt><p>
+<tt>   phrasal pattern yet to be seen. </tt><p>
+<tt>   If that item is a role-specifier, then the target is the </tt><p>
+<tt>   inherited filler of its role;</tt><p>
+<tt>   Otherwise, it is just the item itself."</tt><p>
+<tt>  (let ((spec (first (phrasal-pattern prediction))))</tt><p>
+<tt>    (if (role-specifier-p spec)</tt><p>
+<tt>        (let ((base (base prediction)))</tt><p>
+<tt>          (or (inherited-attribute-value (frame-of base) (role-specifier
+spec))</tt><p>
+<tt>              (error "~S not a role in ~S" (first spec) base)))</tt><p>
+<tt>        spec)))</tt><p>
+<tt></tt><p>
+<tt>(defun role-specifier-p (item) (keywordp item))</tt><p>
+<tt>(defun role-specifier (item) item)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Resetting the parser</b><p>
+<b></b>Resetting the global position counter and dynamic predictions.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Resetting the parser.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defun reset-parser ()</tt><p>
+<tt>  (setf *dmap-pos* 0)</tt><p>
+<tt>  (clear-predictions :dynamic)</tt><p>
+<tt>  t)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Micro Frame package</b><p>
+<b></b>A 'light' version of a frame package.<p>
+<p>
+<tt>(in-package "FRAMES")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    MICRO-FRAME.LISP </tt><p>
+<tt>;; Created: 10/17/94</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: based on various versions of frame code developed by
+Chris</tt><p>
+<tt>;;              Riesbeck</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt></tt><b>Packages </b><p>
+<b></b>Frames require the tables package.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Packages</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :frames)</tt><p>
+<tt>    (make-package :frames)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :frames)</tt><p>
+<tt>(use-package :tables)</tt><p>
+<tt></tt><p>
+<tt>(export '(define-frame def-frame </tt><p>
+<tt>           frame-of -&gt;frame -&gt;name frame-p</tt><p>
+<tt>           abstractions specializations all-abstractions features</tt><p>
+<tt>           attribute-value inherited-attribute-value</tt><p>
+<tt>           abstp specp part-of whole-of </tt><p>
+<tt>           abst-or-whole-of spec-or-part-of find-frame</tt><p>
+<tt>           clear-frame-memory print-frames))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Frame data structure</b><p>
+<b></b>A frame is a CLOS object, stored in a table by their symbolic name.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; data structures for frames: Frames form a class, whose instances are
+stored</tt><p>
+<tt>;; in a table keyed by their symbolic names.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(deftable frame-of)</tt><p>
+<tt></tt><p>
+<tt>(defclass frame ()</tt><p>
+<tt>  ((name :initarg :name :accessor name)</tt><p>
+<tt>   (abstractions :initarg :abstractions :initform nil :accessor
+abstractions)</tt><p>
+<tt>   (specializations :initarg :specializations :initform nil :accessor
+specializations)</tt><p>
+<tt>   (all-abstractions :initarg :all-abstractions :accessor
+all-abstractions)</tt><p>
+<tt>   (features :initarg :features :initform nil :accessor features)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Various I/O Functions</b><p>
+<b></b>Printing, reading, forcing, etc frames.<p>
+<p>
+<tt>(defmethod print-object ((frame frame) stream)</tt><p>
+<tt>  (format stream "[~S]" (name frame)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod name ((frame t)) frame)</tt><p>
+<tt></tt><p>
+<tt>(defun frame-p (object)</tt><p>
+<tt>  (typep object (find-class 'frame)))</tt><p>
+<tt></tt><p>
+<tt>(defun -&gt;frame (object)</tt><p>
+<tt>  (if  (frame-p object) object</tt><p>
+<tt>       (frame-of object)))</tt><p>
+<tt></tt><p>
+<tt>(defun -&gt;name (object)</tt><p>
+<tt>  (if (frame-p object)</tt><p>
+<tt>    (name object)</tt><p>
+<tt>    object))</tt><p>
+<tt></tt><p>
+<tt>(defun force-frame (name)</tt><p>
+<tt>  (or (frame-of name)</tt><p>
+<tt>      (setf (frame-of name) </tt><p>
+<tt>            (make-instance 'frame </tt><p>
+<tt>              :name name</tt><p>
+<tt>              :all-abstractions (list name)))))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Features</b><p>
+<b></b>A feature is an attribute/value pair.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Data structure for features (slots). A attribute/value pair.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defclass feature ()</tt><p>
+<tt>  ((attribute :initarg :attribute :accessor attribute)</tt><p>
+<tt>   (value :initarg :value :initform nil :accessor value)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Various feature I/O fumctions</b><p>
+<b></b>Printing, creating, finding features and their values in frames.<p>
+<p>
+<tt>(defun feature-p (object)</tt><p>
+<tt>  (typep object (find-class 'feature)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod make-feature (attribute value)</tt><p>
+<tt>  (make-instance 'feature :attribute attribute :value value))</tt><p>
+<tt></tt><p>
+<tt>(defun make-features (attribute-value-list)</tt><p>
+<tt>  (loop for (attribute value) in attribute-value-list</tt><p>
+<tt>        collect (make-feature attribute value)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod print-object ((feature feature) stream)</tt><p>
+<tt>  (with-slots (attribute value) feature</tt><p>
+<tt>    (print-unreadable-object (feature stream :type t :identity t)</tt><p>
+<tt>      (format stream "~S ~S" attribute value))))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(defmethod feature-named ((frame frame) attribute)</tt><p>
+<tt>  (loop for feature in (features frame)</tt><p>
+<tt>        when (eq (attribute feature) attribute)</tt><p>
+<tt>        return feature))</tt><p>
+<tt>  </tt><p>
+<tt>(defmethod attribute-value ((frame frame) attribute)</tt><p>
+<tt>  (let ((feature (feature-named frame attribute)))</tt><p>
+<tt>    (if feature (value feature) nil)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod (setf attribute-value) (value (frame frame) attribute)</tt><p>
+<tt>  (let ((feature (feature-named frame attribute)))</tt><p>
+<tt>    (if feature </tt><p>
+<tt>      (setf (value feature) value)</tt><p>
+<tt>      (let ((new-feature (make-feature :attribute attribute :value
+value)))</tt><p>
+<tt>        (push new-feature (features frame))</tt><p>
+<tt>        value))))</tt><p>
+<tt></tt><p>
+<tt>;; inherited attribute values</tt><p>
+<tt></tt><p>
+<tt>(defun inherited-attribute-value (frame attribute)</tt><p>
+<tt>  (or (attribute-value (-&gt;frame frame) attribute)</tt><p>
+<tt>      (loop for abstraction in (abstractions frame)</tt><p>
+<tt>            thereis (inherited-attribute-value (-&gt;frame abstraction)
+attribute))))</tt><p>
+<tt> </tt><p>
+<tt></tt><b>Testing partonomy</b><p>
+<b></b>Is a frame a part/whole of  another frame?<p>
+<p>
+<tt>(defmethod part-of ((part frame) (whole frame))</tt><p>
+<tt>  (member (name part) (all-features whole)</tt><p>
+<tt>          :key 'value))</tt><p>
+<tt></tt><p>
+<tt>(defmethod part-of ((part t) (whole t))</tt><p>
+<tt>  (let ((whole (frame-of whole))</tt><p>
+<tt>        (part (frame-of part)))</tt><p>
+<tt>    (if (and whole part)</tt><p>
+<tt>      (part-of part whole)</tt><p>
+<tt>      nil)))</tt><p>
+<tt></tt><p>
+<tt>(defmethod whole-of ((whole t) (part t))</tt><p>
+<tt>  (part-of whole part))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Abstractions and specializations</b><p>
+<b></b>Functions for defining, updating and accessing abstractions and
+specializations.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Abstractions and specializations</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defmethod all-abstractions ((frame t))</tt><p>
+<tt>  (let ((frame-maybe (frame-of frame)))</tt><p>
+<tt>    (if frame-maybe</tt><p>
+<tt>      (all-abstractions frame-maybe)</tt><p>
+<tt>      (list frame))))</tt><p>
+<tt></tt><p>
+<tt>(defmethod update-specializations ((frame frame))</tt><p>
+<tt>  (loop for abstraction in (abstractions frame) doing</tt><p>
+<tt>        (setf (specializations (force-frame abstraction))</tt><p>
+<tt>              (pushnew (name frame) (specializations (frame-of
+abstraction))))))</tt><p>
+<tt></tt><p>
+<tt>(defmethod update-abstractions ((frame frame)) </tt><p>
+<tt>  (setf (all-abstractions frame)</tt><p>
+<tt>        (calculate-all-abstractions frame))</tt><p>
+<tt>  (loop for specialization in (specializations frame) doing</tt><p>
+<tt>        (update-abstractions (frame-of specialization))))</tt><p>
+<tt>                    </tt><p>
+<tt>(defmethod calculate-all-abstractions* ((frame frame))</tt><p>
+<tt>  (cond </tt><p>
+<tt>   ((null (abstractions frame)) nil)</tt><p>
+<tt>   (t (append (abstractions frame)</tt><p>
+<tt>              (loop for abstraction in (abstractions frame)</tt><p>
+<tt>                    appending</tt><p>
+<tt>                    (calculate-all-abstractions* (force-frame
+abstraction)))))))</tt><p>
+<tt></tt><p>
+<tt>(defmethod calculate-all-abstractions ((frame frame))</tt><p>
+<tt>  (cons (name frame) (remove-duplicates (calculate-all-abstractions*
+frame))))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(defmethod abstp ((abst frame) (spec frame))</tt><p>
+<tt>  (member (name abst) (all-abstractions spec) :test 'eq))</tt><p>
+<tt></tt><p>
+<tt>(defmethod abstp ((abst t) (spec t))</tt><p>
+<tt>  (let ((af (frame-of abst))</tt><p>
+<tt>        (sf (frame-of spec)))</tt><p>
+<tt>    (if (and af sf)</tt><p>
+<tt>      (abstp af sf)</tt><p>
+<tt>      (eql abst spec))))</tt><p>
+<tt></tt><p>
+<tt>(defmethod specp ((spec t) (abst t))</tt><p>
+<tt>  (abstp abst spec))</tt><p>
+<tt></tt><p>
+<tt>(defun abst-or-whole-of (big small)</tt><p>
+<tt>  (or (abstp big small)</tt><p>
+<tt>      (whole-of big small)))</tt><p>
+<tt></tt><p>
+<tt>(defun spec-or-part-of (small big)</tt><p>
+<tt>  (or (specp small big)</tt><p>
+<tt>      (part-of small big)))</tt><p>
+<tt></tt><p>
+<tt></tt><b>More I/O functions for frames and frame memory</b><p>
+<b></b>How frames are defined, including a read macro and the DEF-FRAME
+macro.<p>
+<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Interface to clear memory and define frames</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun clear-frame-memory ()</tt><p>
+<tt>  (clear-table (frame-of)))</tt><p>
+<tt></tt><p>
+<tt>(set-macro-character</tt><p>
+<tt> #\[</tt><p>
+<tt> #'(lambda(stream char)</tt><p>
+<tt>     (declare (ignore char))</tt><p>
+<tt>     '(frames:frame-of ',@(read-delimited-list #\] stream t)))</tt><p>
+<tt> nil  ; not non-terminating.  Cannot be embedded w/in symbols)</tt><p>
+<tt>;;; causes a right-bracket w/o a left to signal an error</tt><p>
+<tt>(set-macro-character #\] (get-macro-character #\) ) nil)</tt><p>
+<tt></tt><p>
+<tt>(defun define-frame (name abstractions attribute-value-list)</tt><p>
+<tt>  (let ((frame (force-frame name)))</tt><p>
+<tt>    (setf (abstractions frame) (mapcar 'name abstractions))</tt><p>
+<tt>    (setf (features frame) (make-features attribute-value-list))</tt><p>
+<tt>    (update-specializations frame)</tt><p>
+<tt>    (update-abstractions frame)</tt><p>
+<tt>    frame))</tt><p>
+<tt></tt><p>
+<tt>(defmacro def-frame (name &amp;optional abstractions &amp;rest
+attribute-value-list)</tt><p>
+<tt>  '(define-frame ',name ',abstractions ',attribute-value-list))</tt><p>
+<tt></tt><b>Frame finding</b><p>
+<b></b>Functions for finding a frame, based on a particular concept and a set
+of attribute/ value pairs.<p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Frame finding</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>(defmethod all-features ((frame frame))</tt><p>
+<tt>  (remove-duplicates</tt><p>
+<tt>   (append </tt><p>
+<tt>    (loop for abstraction in (abstractions frame)</tt><p>
+<tt>          appending (all-features (frame-of abstraction)))</tt><p>
+<tt>    (features frame))</tt><p>
+<tt>   :key 'attribute))</tt><p>
+<tt>           </tt><p>
+<tt>   </tt><p>
+<tt>(defun find-frame (abst features)</tt><p>
+<tt>  "Find a frame starting at abst, with the features listed."</tt><p>
+<tt>  (if (null features) (-&gt;frame abst)</tt><p>
+<tt>      (let ((specs (find-specs abst features)))</tt><p>
+<tt>        (if (and (null (rest specs))</tt><p>
+<tt>                 (features-subsetp features (first specs)))</tt><p>
+<tt>          (-&gt;frame (first specs))</tt><p>
+<tt>          (define-frame </tt><p>
+<tt>                  (gen-frame-name (first specs))</tt><p>
+<tt>                  specs features)))))</tt><p>
+<tt></tt><p>
+<tt>(defun find-specs (abst features)</tt><p>
+<tt>  "Find the most specific specialization of abst."</tt><p>
+<tt>  (or (remove-duplicates</tt><p>
+<tt>       (loop for spec in (specializations (-&gt;frame abst))</tt><p>
+<tt>             when (features-abstp spec features)</tt><p>
+<tt>             nconc (find-specs spec features)))</tt><p>
+<tt>      (list abst)))</tt><p>
+<tt></tt><p>
+<tt>(defun features-abstp (abst features)</tt><p>
+<tt>  (loop for (attribute value) in features</tt><p>
+<tt>        always</tt><p>
+<tt>        (abstp (inherited-attribute-value (-&gt;frame abst) attribute)
+value)))</tt><p>
+<tt></tt><p>
+<tt>(defun features-subsetp (features abst)</tt><p>
+<tt>  (subsetp features (all-features (-&gt;frame abst))</tt><p>
+<tt>           :test</tt><p>
+<tt>           #'(lambda (feature-list feature)</tt><p>
+<tt>               (and (eql (first feature-list) (attribute feature))</tt><p>
+<tt>                    (eql (second feature-list)  (value feature))))))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>(defun gen-frame-name (name)</tt><p>
+<tt>  (gentemp (format nil "~A-" (symbol-name name))))</tt><p>
+<tt></tt><p>
+<tt>(defun features-&gt;feature-specs (features)</tt><p>
+<tt>  (loop for feature in features </tt><p>
+<tt>        collecting (list (attribute feature) (value feature))))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt><b>Printing utilities for frames</b><p>
+<b></b>Methods for printing out a frame or the entire conceptual memory.<p>
+<p>
+<tt>;;; Printing utilities</tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>;;; (DISPLAY-FRAME frame [stream]) =&gt; no values</tt><p>
+<tt></tt><p>
+<tt>;;; DISPLAY-FRAME prints the frame in a readable fashion on the
+stream</tt><p>
+<tt>;;; (which defaults to the standard output). The frame argument</tt><p>
+<tt>;;; can be either the name of a frame or an internal frame
+structure.</tt><p>
+<tt>;;; Nested frames are printed in full form the first time they are</tt><p>
+<tt>;;; seen.</tt><p>
+<tt></tt><p>
+<tt>(defun display-frame (frame &amp;optional (stream
+*standard-output*))</tt><p>
+<tt>  (cond ((null frame) nil)</tt><p>
+<tt>	((not (frame-p frame))</tt><p>
+<tt>	 (display-frame (frame-of frame)))</tt><p>
+<tt>	(t</tt><p>
+<tt>	 (let ((*frames-shown* '()))</tt><p>
+<tt>	   (declare (special *frames-shown*))</tt><p>
+<tt>	   (format stream "~%~S~%" (name frame))</tt><p>
+<tt>	   (pprint-frame-info frame stream 4)</tt><p>
+<tt>	   (format stream "~%")</tt><p>
+<tt>	   (values)))))</tt><p>
+<tt></tt><p>
+<tt>;;; (PPRINT-frame-INFO frame stream left-margin) =&gt; undefined</tt><p>
+<tt></tt><p>
+<tt>;;; PPRINT-frame-INFO prints internal frame structures in a readable</tt><p>
+<tt>;;; fashion on stream, indented left-margin number of spaces.</tt><p>
+<tt></tt><p>
+<tt>(defun pprint-frame-info (frame stream left-margin)</tt><p>
+<tt>  (declare (special *frames-shown*))</tt><p>
+<tt>  (unless (or (null frame) (member frame *frames-shown*))</tt><p>
+<tt>    (push frame *frames-shown*)</tt><p>
+<tt>    (loop for abst in (abstractions frame)</tt><p>
+<tt>	  do (format stream "~VT:ISA ~S~%" left-margin abst))</tt><p>
+<tt>    (loop for feature in (features frame)</tt><p>
+<tt>	  do (format stream "~VT~S ~S~%" </tt><p>
+<tt>		     left-margin </tt><p>
+<tt>		     (attribute feature)</tt><p>
+<tt>		     (value feature))</tt><p>
+<tt>	     (pprint-frame-info (frame-of (value feature))</tt><p>
+<tt>			      stream</tt><p>
+<tt>			      (+ left-margin 4)))))</tt><p>
+<tt></tt><p>
+<tt>(defun display-frames-with-roles (name roles</tt><p>
+<tt>		                       &amp;optional (stream *standard-output*) </tt><p>
+<tt>		                       &amp;aux shown)</tt><p>
+<tt>  (labels ((show (name prefix)</tt><p>
+<tt>             (let* ((frame (-&gt;frame name))</tt><p>
+<tt>                    (specs (specializations frame))</tt><p>
+<tt>                   (features (and roles (features frame))))</tt><p>
+<tt>               (cond ((member name shown)</tt><p>
+<tt>                      (format stream</tt><p>
+<tt>			      (if (or specs features) "~S...~%" "~S~%") name))</tt><p>
+<tt>                     (t</tt><p>
+<tt>                      (format stream "~S~%" name)</tt><p>
+<tt>                      (push name shown)</tt><p>
+<tt>                      (when features</tt><p>
+<tt>                        (let ((bar (if specs "|" " ")))</tt><p>
+<tt>                          (dolist (feature features)</tt><p>
+<tt>                            (when (and</tt><p>
+<tt>                                   (feature-p feature)</tt><p>
+<tt>                                   (member (attribute feature)
+roles))</tt><p>
+<tt>                              (format stream "~A ~A ~S ~S~%" prefix
+bar</tt><p>
+<tt>                                      (attribute feature)</tt><p>
+<tt>                                      (value feature))))))</tt><p>
+<tt>                      (when specs</tt><p>
+<tt>                        (do ((next-prefix (format nil "~A |   "
+prefix))</tt><p>
+<tt>                             (last-prefix (format nil "~A     "
+prefix))</tt><p>
+<tt>                             (l specs (cdr l)))</tt><p>
+<tt>                            ((null (cdr l))</tt><p>
+<tt>                             (format stream "~A +-- " prefix)</tt><p>
+<tt>                             (show (car l) last-prefix))</tt><p>
+<tt>                          (format stream "~A |-- " prefix)</tt><p>
+<tt>                          (show (car l) next-prefix))))))))</tt><p>
+<tt>    (show name "")</tt><p>
+<tt>    name))</tt><p>
+<tt></tt><p>
+<tt></tt><b>Table utility</b><p>
+<b></b>A simple table utility, taken directly from code created by Chris
+Riesbeck.<p>
+<p>
+<tt>;;; A simple table utility</tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; - File: tables.lisp</tt><p>
+<tt>;;; - Author: Chris Riesbeck</tt><p>
+<tt>;;; - Most recent update: 7/27/94</tt><p>
+<tt></tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; Defining a table function</tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt>;;; (DEFTABLE name) =&gt; name</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; DEFTABLE defines name to be a table function such that</tt><p>
+<tt>;;; </tt><p>
+<tt>;;;   -  (name key) retrieves a value for key, if any</tt><p>
+<tt>;;;   -  (SETF (name key) value) stores a value for key</tt><p>
+<tt>;;;   -  (name) returns the internal table associated with name;</tt><p>
+<tt>;;;      this is useful when manipulating tables (see below).</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; The table is empty when name is defined (or redefined).</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; Examples:</tt><p>
+<tt>;;;</tt><p>
+<tt>;;;   &gt; (deftable AGE-of)</tt><p>
+<tt>;;;   AGE-OF</tt><p>
+<tt>;;;   &gt; (age-of 'john)</tt><p>
+<tt>;;;   NIL</tt><p>
+<tt>;;;   &gt; (setf (age-of 'john) 22)</tt><p>
+<tt>;;;   22</tt><p>
+<tt>;;;   &gt; (age-of 'john)</tt><p>
+<tt>;;;   22</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; Note: DEFTABLE is a top-level form, like DEFUN. It is not for</tt><p>
+<tt>;;; creating local table functions.  The following is wrong:</tt><p>
+<tt>;;;</tt><p>
+<tt>;;;   (defun foo (...)</tt><p>
+<tt>;;;     (deftable baz)</tt><p>
+<tt>;;;     ...)</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; If you want a local table, use MAKE-HASH-TABLE and GETHASH.</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</tt><p>
+<tt>;;; Packages</tt><p>
+<tt>;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</tt><p>
+<tt></tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :tables)</tt><p>
+<tt>    (make-package :tables)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :tables)</tt><p>
+<tt></tt><p>
+<tt>(export '(deftable in-table-p remove-key clear-table map-table))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; Implementation notes:</tt><p>
+<tt>;;; </tt><p>
+<tt>;;;   - I avoided (DEFUN (SETF fn) ...) so as not to require CL 2</tt><p>
+<tt>;;;   - I used PROGN to make the DEFSETF top-level for MacIntosh</tt><p>
+<tt>;;;     Common Lisp.</tt><p>
+<tt></tt><p>
+<tt>(defmacro deftable (fn &amp;optional test)</tt><p>
+<tt>  (let ((set-fn (gensym)))</tt><p>
+<tt>    '(progn</tt><p>
+<tt>      (let* ((fn ',fn)</tt><p>
+<tt>             (table (get-table fn ,test)))</tt><p>
+<tt>        (defun ,fn (&amp;optional (key nil key-given-p))</tt><p>
+<tt>          (if key-given-p</tt><p>
+<tt>            (gethash key table)</tt><p>
+<tt>            table))</tt><p>
+<tt>        (defun ,set-fn (arg1 &amp;optional (arg2 nil arg2-p))</tt><p>
+<tt>          (cond (arg2-p</tt><p>
+<tt>                 (setf (gethash arg1 table) arg2))</tt><p>
+<tt>                (t (set-table fn arg1)))))</tt><p>
+<tt>      (defsetf ,fn ,set-fn)</tt><p>
+<tt>      ',fn)))</tt><p>
+<tt></tt><p>
+<tt>(defvar *tables* (make-hash-table)</tt><p>
+<tt>  "Table of DEFTABLE functions.")</tt><p>
+<tt></tt><p>
+<tt>(defun get-table (name test)</tt><p>
+<tt>  (set-table name (make-hash-table :test (or test #'eql))))</tt><p>
+<tt></tt><p>
+<tt>(defun set-table (name table)</tt><p>
+<tt>  (if (hash-table-p table)</tt><p>
+<tt>      (setf (gethash name *tables*) table)</tt><p>
+<tt>      (error "~S not a table" table)))</tt><p>
+<tt></tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; Manipulating tables</tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; Certain functions need explicit access to the internal table. To</tt><p>
+<tt>;;; get this table, call the table function with no arguments, e.g.,</tt><p>
+<tt>;;; (AGE-OF).  This returns the internal table for AGE-OF, which</tt><p>
+<tt>;;; can then be passed to a table manipulation function.</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; Example: The following clears the AGE-OF table.</tt><p>
+<tt>;;;</tt><p>
+<tt>;;;   &gt; (clear-table (age-of))</tt><p>
+<tt>;;;</tt><p>
+<tt>;;; The nature of the internal table is implementation-dependent.</tt><p>
+<tt></tt><p>
+<tt>;;; (IN-TABLE-P key table) =&gt; T or NIL</tt><p>
+<tt>;;;   Returns true if key has a value in the table.</tt><p>
+<tt>;;; (REMOVE-KEY key table) =&gt; T or NIL</tt><p>
+<tt>;;;   Removes any entry for key in the table, and returns true</tt><p>
+<tt>;;;   if there was one.</tt><p>
+<tt>;;; (CLEAR-TABLE table) =&gt; table</tt><p>
+<tt>;;;   Removes all entries from the table.</tt><p>
+<tt>;;; (MAP-TABLE function table) =&gt; NIL</tt><p>
+<tt>;;;   Calls (function key value) for every key and value in the
+table.</tt><p>
+<tt>;;;   The order in which keys are found is implementation-dependent.</tt><p>
+<tt>;;;
+----------------------------------------------------------------------</tt><p>
+<tt>;;; Implementation notes:</tt><p>
+<tt>;;; </tt><p>
+<tt>;;;   - I avoided MULTIPLE-VALUE-BIND for Xlisp compatibility.</tt><p>
+<tt></tt><p>
+<tt>(let ((flag (list nil)))</tt><p>
+<tt>  (defun in-table-p (key table)</tt><p>
+<tt>    (not (eq flag (gethash key table flag)))))</tt><p>
+<tt></tt><p>
+<tt>(defun remove-key (key table) (remhash key table))</tt><p>
+<tt></tt><p>
+<tt>(defun clear-table (table) (clrhash table))</tt><p>
+<tt></tt><p>
+<tt>(defun map-table (fn table) (maphash fn table))</tt><p>
+<tt></tt>-&gt;list utility<p>
+Functions to convert strings into lists of strings and symbols.<p>
+<tt>(in-package "COMMON-LISP-USER")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    -&gt;LIST.LISP </tt><p>
+<tt>;; Created: 2/25/93</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: Simple conversion utilities for strings to lists</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt>-&gt;LIST<p>
+General function for converting a string into a list.<p>
+<p>
+<tt>(defmethod -&gt;list ((self string) &amp;key </tt><p>
+<tt>                   (start 0) </tt><p>
+<tt>                   (char-bag '(#\Space))</tt><p>
+<tt>                   (test #'(lambda (ch) (not (member ch char-bag :test
+'char=))))</tt><p>
+<tt>                   (post-process 'identity))</tt><p>
+<tt>  "Converts SELF into a list,</tt><p>
+<tt>     starting at START;</tt><p>
+<tt>     dividing words at boundaries defined by characters in CHAR-BAG,</tt><p>
+<tt>                 or at boundaries defined by TEST;</tt><p>
+<tt>     each item is run through POST-PROCESS as it is created. POST-PROCESS
+can</tt><p>
+<tt>     be destructive (eg, NSTRING-DOWNCASE)."</tt><p>
+<tt>  (labels ((-&gt;list* (position)</tt><p>
+<tt>             (let* ((pos (position-if-not test self :start
+position))</tt><p>
+<tt>                    (new-pos (if pos (position-if test self :start pos)
+nil)))</tt><p>
+<tt>               (cond</tt><p>
+<tt>                ((and pos new-pos)</tt><p>
+<tt>                 (cons (funcall post-process (subseq self position
+pos))</tt><p>
+<tt>                       (-&gt;list* new-pos)))</tt><p>
+<tt>                (pos (list (funcall post-process (subseq self position
+pos))))     </tt><p>
+<tt>                (t (list (funcall post-process (subseq self
+position))))))))</tt><p>
+<tt>    </tt><p>
+<tt>    (let ((pos (position-if test self :start start)))     </tt><p>
+<tt>      (if pos (-&gt;list*  pos) nil))))</tt><p>
+<tt></tt><p>
+<tt></tt>-&gt;SYMBOLS<p>
+Functions to convert a string into a list of symbols.<p>
+<tt>(defmethod -&gt;symbols ((self string) &amp;optional (package
+*package*))</tt><p>
+<tt>  "Converts a string into a list of symbols interned into PACKAGE,
+ignoring</tt><p>
+<tt>   everything but alphanumerics and dashes."</tt><p>
+<tt>  (-&gt;list self </tt><p>
+<tt>          :post-process #'(lambda (str) </tt><p>
+<tt>                            (intern (nstring-upcase str) package))</tt><p>
+<tt>          :test #'(lambda (ch) (or (alphanumericp ch)</tt><p>
+<tt>                                   (char= ch #\-)))))</tt><p>
+<tt></tt><p>
+<tt>(defmethod -&gt;symbols ((self null) &amp;optional (package
+*package*))</tt><p>
+<tt>  (declare (ignore package)) nil)</tt><p>
+<tt></tt><p>
+<tt></tt><b>Simple logging facility</b><p>
+<b></b>Functions to record actions to a log.<p>
+<tt>(in-package "LOG")</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; </tt><p>
+<tt>;; File:    LOGGING.LISP </tt><p>
+<tt>;; Created: 10/19/94</tt><p>
+<tt>;; Author:  Will Fitzgerald</tt><p>
+<tt>;; </tt><p>
+<tt>;; Description: A simple logging facility</tt><p>
+<tt>;; </tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt></tt><p>
+<tt></tt><b>Packages</b><p>
+<b></b>This is placed in the log package, and uses the tables package.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Packages</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(eval-when (load eval compile)</tt><p>
+<tt>  (unless (find-package :log)</tt><p>
+<tt>    (make-package :log)))</tt><p>
+<tt></tt><p>
+<tt>(in-package :log)</tt><p>
+<tt>(use-package :tables)</tt><p>
+<tt></tt><p>
+<tt>(export '(reset-log set-logging record-log print-log with-logging))</tt><p>
+<tt></tt><p>
+<tt></tt><p>
+<tt></tt><b>Data structure for logs</b><p>
+<b></b>A log is a list of strings keyed off a symbolic form. *logging* defines
+whether logging should occur, and *log-keys* keeps a list of keys defined so
+far.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; A log is a list of statements keyed off a symbolic form.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(deftable log-of)</tt><p>
+<tt></tt><p>
+<tt>(defvar *logging* nil)</tt><p>
+<tt>(defvar *log-keys* nil)</tt><p>
+<tt></tt><p>
+<tt>(defun reset-log ()</tt><p>
+<tt>  (clear-table (log-of))</tt><p>
+<tt>  (setf *log-keys* nil)</tt><p>
+<tt>  *logging*)</tt><p>
+<tt></tt><p>
+<tt></tt>RECORD-LOG<p>
+Record-log works like format, and will place a statement in the log if logging
+is turned on.<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Turning logging off and on.</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun set-logging (&amp;optional (value t))</tt><p>
+<tt>  (setf *logging* value))</tt><p>
+<tt></tt><p>
+<tt>(defmacro with-logging (&amp;rest body)</tt><p>
+<tt>  '(let ((*logging* t))</tt><p>
+<tt>    (reset-log)</tt><p>
+<tt>    ,@body))</tt><p>
+<tt></tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Making records in the log</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun make-statement (string args)</tt><p>
+<tt>  (format nil "~?" string args))</tt><p>
+<tt></tt><p>
+<tt>(defun record-log (logname string &amp;rest args)</tt><p>
+<tt>  (when *logging* </tt><p>
+<tt>    (push (make-statement string args) (log-of logname))</tt><p>
+<tt>    (pushnew logname *log-keys* )</tt><p>
+<tt>    *logging*))</tt><p>
+<tt></tt><p>
+<tt></tt>PRINT-LOG<p>
+Prints the log, either for a particular entry, or all of the entries (in the
+order they were defined).<p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>;; Printing the log</tt><p>
+<tt>;;----------------------------------------------------------------------------</tt><p>
+<tt>(defun print-log (&amp;optional logname (stream *standard-output*))</tt><p>
+<tt>  (if logname</tt><p>
+<tt>    (loop for log-entry in (reverse (log-of logname))</tt><p>
+<tt>          doing</tt><p>
+<tt>          (format stream "~A~%" log-entry))</tt><p>
+<tt>    (loop for log-key in (reverse *log-keys*) doing</tt><p>
+<tt>          (print-log log-key stream)))</tt><p>
+<tt>  (values))</tt><p>
+<tt></tt><P><hr size=4>
+<A HREF="10 Appendix code-Contents.html"><IMG SRC="../images/contg.gif" ALT="Contents " border=0></A>
+</body></html>

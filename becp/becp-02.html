@@ -1,0 +1,319 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Evaluating Embedded Parsers</TITLE></HEAD>
+<center><b>Evaluating Embedded Parsers</b><p>
+<b></center></b><p>
+<p>
+An important part of building an artifact is evaluating it. An architect may
+design a lovely bridge, and an engineer may construct it using his or her best
+materials, but, in the end, the users of the bridge want some--more than
+some--assurance that the bridge will stand up to the loads it was designed and
+built to bear. Similarly, when we design and build parsers to embed into
+application programs, we want to evaluate them, to test whether they do what
+they are built to do. Parsers built into interactive programs are built to do
+two things: to translate accurately the intentions of a user as expressed in
+natural language, into internal representations that model those intentions;
+and to do so in a way that supports the simulation of a user in carrying on a
+conversation with the computer. Therefore, we will look for ways to measure
+accuracy and transparency. Further, we would like some assurance that the
+parser can be sized to fit the application--that the parser will scale up. In
+this chapter, we will look at specific measures, using the Casper customer
+service representative (CSR) tutor as an example<a name="fnB0"
+href="#fn0">[1]</a>.<p>
+<b>A model of embedded parsing</b><p>
+<b></b>In Casper, a novice customer service representative communicates with
+simulated customers. As the student communicates, a tutorial system intervenes.
+As with any such program, the number of interventions is limited--the tutor
+will be built to respond in certain situations, but not in others. So, a key
+feature of such systems is that there is a limited (even if large) number of
+responses the system can process. In general, we can model such an embedded
+parser (Figure  2.1 shows a diagram) as a selection process. <p>
+<p>
+<b>Model of an embedded parser</b><p>
+<b></b>An embedded parser is built to transform text that a user enters in a
+particular situation, for which the system has a set of possible responses. The
+system is built to turn that text into a representation or set of
+representations that the system can use to make the appropriate responses. <p>
+In the case of the Casper tutor, a user might be in the situation of
+troubleshooting a (simulated) customer's water quality problem; for example,
+trying to determine exactly what the problem is that the customer is
+experiencing. Among the tutor's possible responses is to intervene if the
+student is asking leading questions (for example, "Do you have black bits in
+the water?") and tell the student to ask non-leading questions ("Can you
+describe the water to me?"). Among the representations that the parser might
+produce are those for the questions "Do you have black bits in the water?" and
+"Can you describe the water to me?" <p>
+So, given this model of embedded parsing, to evaluate a parser embedded in an
+application program, we want to ask:<p>
+Does the parser produce the right representations? That is, is the parser
+accurate?<p>
+Does the parser promote the sense that a conversation is taking place? That is,
+is the parser transparent?<p>
+Is the parser capable of adequately handling the varieties of texts, users,
+situations and possible responses it might meet? That is, is the parser
+scalable?<p>
+<b>Measuring Accuracy</b><p>
+<b></b>To measure the accuracy of a parser presumes we know the answer to the
+question: What has the parser been built for? For example, parsers built as
+general, off-the-shelf tools such as the CLARE system (Alshawi et al. 1992) or
+the Alvey NL Tools (Briscoe, et al. 1987), might define accuracy as coverage:
+that is, how much of naturally occurring language the parser is likely to be
+able to process. A typical statement of coverage, perhaps, comes from a
+description of the natural language processing system in the Cyc project. "The
+Syntax module can properly handle about 75% of the sentences found in the news
+stories of a typical issue of the newspaper USA Today ... by `properly' here we
+mean that the output is as good as what our knowledge enterers independently
+come up with." (Guha &amp; Lenat 1994, p. 138). And this example is from a
+description of the Alvey NL Tools; its grammar is "in principle able to analyse
+96.8% of a corpus of 10,000 noun phrases taken from a variety of corpora
+(Carroll 1994, footnote 2)." Parsers might be built for more immediate tasks,
+such as text categorization or information extraction. For example, the Message
+Understanding Conferences (MUC) bring together a variety of research systems to
+compare their abilities to read articles (for example, about terrorist
+episodes) and fill in a template about the article such as who were the victims
+and the perpetrators (Jacobs &amp; Rau 1993; Soderland &amp; Lehnert 1994). <p>
+But our task is not syntactic coverage, information extraction or text
+categorization. Rather, we are describing parsers embedded into application
+programs, as modelled in Figure  2.1. There are three inputs to a parser: a
+text, a user and a situation. The output of the parser should be a set of
+representations that accurately model the intentions of the user in the
+situation, as expressed by the input text.<p>
+To measure the accuracy of a parser, we assume the existence of an oracle that
+can return just those representations that accurately model the intentions of
+the user in a situation as expressed by the text--assuming the representations
+exist that do so model the user's intentions. If we have such an oracle, we can
+compare the output of the parser with the output of the oracle. We will call
+the representations that an oracle would produce oracular representations, and
+the representations produced by the parser parsed-to representations. A
+representation that is both a parsed-to representation and an oracular
+representation is a relevant representation.<p>
+<b>Recall and Precision</b><p>
+<b></b>There are a variety of ways of comparing the output of the oracle and
+the output of the parser. Two of the most commonly used are recall and
+precision (Salton &amp; McGill 1983; Jacobs &amp; Rau 1993; Soderland &amp;
+Lehnert 1994). Recall is the ratio of relevant representations to oracular
+representations. We want parsers that have high recall--this means that the
+parser produces the representations that the idealized oracle produces
+(although it may also produce other representations that the oracle wouldn't).
+In equation form:<p>
+<p>
+<center>where P is the set of parsed-to representations and O is the set of
+oracular representations. <p>
+</center>Ideally, we want the parser to produce just those representations that
+the oracle would produce. Precision is a measure of this; it is the ratio of
+relevant representations to all of the representations produced by the parser.
+In equation form:<p>
+<p>
+<center>again, where P is the set of parsed-to representations and O is the set
+of oracular representations.<p>
+</center><b>Where does the oracle come from?</b><p>
+<b></b>An important question to ask is where the oracle comes from. Because the
+oracle is an idealized construct, we can only approximate one. One approach is
+to avoid approximating the oracle altogether, and to use information theoretic
+measures of the effect of different information sources on the probability that
+a given hypothesis, , is true (for example, Rosenfeld 1994). Another approach,
+exemplified by the MUC evaluations, is to approximate the oracle by enumerating
+the correct answers for a given sample of inputs, and assume that these results
+project to the general population of inputs (Jacobs &amp; Rau 1993). This is
+the approach we will take in this work. <p>
+Perfect and acceptable recall rates<p>
+In the model of embedded parsing given above, the output of the parser is a
+representation or set of representations. It may be that, for the purposes of
+the application program, it would be acceptable for an oracular representation
+to appear within a set of representations of a certain size. For example, in
+the Casper system, the student can pick from the top seven best results of the
+parser. As long as the oracular representation is within the top n results, we
+can call it a relevant representation. Figure  2.2 shows the results from the
+Casper parser from the text, "Describe the particles, please." The oracular
+match, "What kind of bits are in your water?" is shown in bold face. Because
+this sentence appears in the top seven results, we call this an acceptable
+match; because it is also the best match returned by the parser, we say it is a
+perfect match.<p>
+<b>Results from parsing "Describe the particles, please"</b><p>
+<b></b>With these definitions in mind, we can also define perfect recall and
+acceptable recall. Perfect recall is the recall ratio when we describe a
+representation as relevant if it is the best (or only) match produced by the
+parser. Acceptable recall is the recall ratio when the representation is
+relevant as long as it appears in the top n matches produced by the parser.<p>
+<b>Measuring transparency</b><p>
+<b></b>Recall and precision are measures of the accuracy of a parser. We would
+also like to measure how transparent a parser is. Following Heidegger, Winograd
+and Flores (1987) discuss the readiness to hand of tools. A tool is ready to
+hand if it becomes transparent in its use. That is, we don't notice a hammer
+when we're pounding a nail because we focus on the goal of getting the nail in
+the wood. If the hammering fails, we might then examine the hammer--perhaps the
+flat end has become worn, or there is some other problem. The hammer becomes
+unready to hand; while examining it, we cannot be pounding. Similarly, a parser
+is ready to hand, or transparent, when the user of the parser does not have to
+wonder about the tool and its workings, but can concentrate on achieving the
+communicate goals he or she has. Two characteristics of a parser that will
+affect transparency are speed and negotiation. These characteristics are
+defined below. <p>
+<b>Measuring speed</b><p>
+<b></b>Accuracy measurements affect transparency, but there are other reasons
+that a parser could become non-transparent. A parser will tend to become less
+transparent as the time it takes to return its results increases. The amount of
+time it takes for a parser to return its results for a specific interaction we
+will call the time to parse.<p>
+In the natural language parsing literature, time to parse is typically measured
+in one of two ways. In the first way, the algorithmic computational complexity
+of the parsing algorithms used are examined. The advantage of this approach is
+that a theoretical upper bound on the parse time can be given. Unfortunately,
+most parsing algorithms have upper bounds that are cubic to the length of the
+input string (that is, an estimate of how long it will take to parse a sentence
+of n words will be dominated by some function of n<sup>3</sup>). Empirically, though,
+parsers tend to do much better than this, and so even researchers who are of a
+theoretical bent are proposing empirical testing of different parsers (Slocum
+1981, Carroll 1994). For parsers in interactive programs, perhaps the best
+measure of parse time is perceived average wall time: that is, asking the users
+of the system whether, on average, the parser was fast enough in returning its
+results.</sup><p>
+<sup></sup><b>Measuring negotiation</b><p>
+<b></b>It is often the case that an interactive program will allow the user to
+commit to or to reject the results of a parse, and, if the user rejects the
+parse, to try again to produce an acceptable parse. This is analogous to a
+human conversation, in which one person says something, call it A, and the
+other person asks whether by A the first person meant B (a paraphrase of A).
+The first person can agree, or try again. We'll assume that the fewer number of
+turns the user needs to negotiate the meaning of the user's input, the more
+transparent the parser will be. Measuring how long it takes on average to come
+to an agreement we'll call negotiation length.<p>
+We have developed two measurements of negotiation length, both of which make
+use of the user's being able to make multiple attempts before committing to a
+result. One important fact is that a user must (unless he or she gives up)
+commit to some result at some time. The first measurement we call the first
+strike percentage. This measures the percentage of times the parser returns a
+result that is accepted by the user on the first attempt. We can also measure
+how many attempts it takes for a student to reach a result, and average this
+over all the attempts. This we'll call the average path length; the closer the
+average path length is to 1.0, the more transparent it is (an interface with a
+first strike rate of 100% would have an average path length of 1.0).    <p>
+<b>Measuring scale-up</b><p>
+<b></b>One of the most important questions to ask of any parsing technology,
+especially ones built on concepts and techniques in artificial intelligence, is
+whether it will scale up to large problems (Schank 1991). The question remains,
+how would we measure whether a parser scales? <p>
+There are two concerns related to scale up. One concern is with the development
+cost of scaling up: Is it possible to create the representations needed to
+support parsing? The other concern is with the complexity of the
+representations of the application program. Assuming that representations can
+be built for parsing, how well will the parser behave (for example, on recall
+measures) as the underlying complexity increases? <p>
+Practically, though, we may only need measure scale-up for a particular
+implementation of a parser in an application program. In this case, the
+complexity of the underlying representations is known. In terms of the model of
+embedded parsing given before, we know the range of situations and responses
+which the parser will encounter (although we probably do not know the range of
+texts and users the parser will encounter).<p>
+Then, measuring scale-up becomes a qualitative answer to the following
+questions:<p>
+Is the cost of creating the parser acceptable?<p>
+Are the other measures of accuracy and transparency acceptable for the entire
+range of situations and possible responses at a given complexity of the
+application program?<p>
+And so, determining whether a parser scales up will depend on whether we are
+asking whether the parser will work in other application programs and domains
+or whether the parser will work in a particular application program and domain.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>E</b><b>valuation measures for embedded parsers</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>To
+measure...</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Use...</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Comments</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Accuracy
+<BR></TD>
+<TD colspan=1 align="left">Recall
+<BR></TD>
+<TD colspan=1 align="left">Recall
+is the ratio of relevant results to oracular results produced by the parser.
+Perfect recall rate and acceptable recall rate measure the percentage of times
+a result is judged relevant only if it is the best match, or within the top n
+matches, respectively.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Precision
+<BR></TD>
+<TD colspan=1 align="left">Precision
+is the ratio of relevant results to all results produced by the parser.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Transparency
+<BR></TD>
+<TD colspan=1 align="left">Time
+to parse
+<BR></TD>
+<TD colspan=1 align="left">Perceived
+average wall time is a subjective judgement by a system's users that the parser
+returns its results quickly enough.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Amount
+of negotiation
+<BR></TD>
+<TD colspan=1 align="left">First
+strike percentage is the percentage that the user chooses the first result
+given by the parser. Average path length is the average number of interactions
+between the user and the parser before the user accepts a result.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Scale
+up
+<BR></TD>
+<TD colspan=1 align="left">Development
+cost
+<BR></TD>
+<TD colspan=1 align="left">Can
+the parser and its required representations be built cheaply enough?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Acceptable
+measures at a given size of the application program
+<BR></TD>
+<TD colspan=1 align="left">Are
+the measures of accuracy and transparency acceptable at a certain complexity of
+the program?
+<BR></TD></TR></TABLE><b>Summary
+</b><p>
+<b></b>The particular characteristics requirements and characteristics of
+embedded parsers lead us to propose several nuances to standard evaluation
+metrics, summarized in Table  2.1. In measuring accuracy, we need to develop a
+model of the relevance of the results of an interaction with the parser. This
+needs to take into effect not only the language input to the parser, but what a
+particular user is intending to say in a given situation. The output of the
+parser needs to be representations that the user can accept or reject as
+adequate models of the user's intentions. We can operationalize the accuracy of
+a parser by comparing the output of the parser to the output of an oracular
+parser that perfectly translates a user's intentions in a given situation, as
+expressed by some text, into just the right representations the user will
+recognize as modeling his or her intentions. We can measure how often and how
+well this is done with the measures of recall and precision<p>
+Another requirement of a parser in an interactive program is that it be
+transparent--that it appear invisible and not intrude onto the task the user is
+trying to accomplish within the application program. We require that embedded
+parsers be fast enough on average for a user not to notice the parser in
+action, and that it return the right results soon enough so that the user can
+continue on his or her tasks. We have proposed average perceived wall time to
+measure time to parse, and two measures of time to parse correctly: first
+strike percentage and average path length.<p>
+Finally, we require that our parsers scale up--that is, as the parsing
+requirements for applications grow, the parser must be able to handle these
+requirements.<p>
+As parsers are embedded in different application programs, different ways of
+measuring these characteristics will become possible or impossible. For
+example, a particular application may require that no negotiation take place
+between the user and the parser; if this is so, then the average path length
+measure cannot be measured. These evaluation metrics should be taken as general
+guidelines for creating specific measurements for parsers in specific contexts,
+and we will make use of them in the chapters that follow. <p>
+<a name="fn0" href="#fnB0">[1.]</a>Although the evaluation metrics are
+defined in this chapter, and we use Casper as an example, the actual evaluation
+of the parsers developed for Casper is described in Chapters 4 and 5.
+
+<P><hr size=4>
+</body></html>

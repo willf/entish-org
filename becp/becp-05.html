@@ -1,0 +1,928 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>Indexed Concept Parsing and the Casper Customer Service
+Representative Tutor</TITLE></HEAD>
+<center><b>Indexed Concept Parsing and the Casper Customer Service
+Representative Tutor</b><p>
+<b></center></b>The template-based parser using Direct Memory Access Parsing
+didn't work for the Casper Customer Service Representative Tutor. Is there
+another way? In this chapter, we describe an alternative, called indexed
+concept parsing, that does work. We start by discussing some of the problems
+with the first natural language interface built for Casper, and what a simpler
+(from the point of the user) interface could look like. Then, we describe the
+specifics of what indexed concept parsing is; and discuss how well it worked in
+Casper. We finish by contrasting indexed concept parsing to key word parsing
+and full conceptual parsing.<p>
+<b>The problem with template-based parsing in Casper</b><p>
+<b></b>There were two basic problems with the template-based parser built for
+the Casper Customer Service Representative (CSR) Tutor:<p>
+The template screen interface was too difficult to use,<p>
+Direct Memory Access Parsing would not work because the input text could not be
+effectively constrained.<p>
+Our ideal is to make the interface as transparent as possible, to make the
+conversation between the novice CSR and the simulated customer be as natural as
+possible. Our first attempt was a failure because the act of communicating via
+the action/domain buttons and template screens was too complicated; and, even
+when students succeeded in navigating the interface, the underlying domain
+knowledge was so disparate that parsing using DMAP usually proved untenable.<p>
+Our second attempt at building an interface, then, was based on two premises:<p>
+Make the interface as simple as possible,<p>
+Make the parser as robust as possible.<p>
+<b>The simpler interface for Casper: a type-in box</b><p>
+<b></b>Except for a spoken interface to Casper, the simplest design for an
+interface to the Casper tutor is a type-in box. The student:<p>
+Types a statement in the type-in box that corresponded to what he or she wanted
+to say,<p>
+Examines the result from the parser<p>
+Presses a confirmation button to make the statement, or starts over<a
+name="fnB0" href="#fn0">[1]</a>.<p>
+The system would parse just to that internal representation that best matched
+the intention of the student. Figure  5.1 shows an example type-in box.<p>
+<b>Communicating via a type-in box</b>
+<p>
+<img src="05 Box.GIF" alt="Figure 5.1. Type in box">
+<p>
+<b></b>Our system design allowed us to add an additional confirmation step.
+After parsing, the student would confirm that the best match or one of the
+closest matches expressed what he or she intended to say. Table  5.1 shows this
+having a choice point: the student can either accept the best match, or choose
+one of the next best matches.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=2 align="left"><p>
+<b>P</b><b>arsing from a type-in box, accepting the best result or choosing
+from the best matches </b>
+<BR></TD>
+</TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Step
+the student takes</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>What
+the student sees on the screen</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">The
+student enters text and presses the "Parse" button.
+<BR></TD>
+<TD colspan=1 align="left"><img src="05T1.GIF" alt="Figure 5.2. Type in box"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">The
+parser returns the best result, but the student requests more matches.
+<BR></TD>
+<TD colspan=1 align="left"><img src="05T2.GIF" alt="Figure 5.3. More matches"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">The
+student selects a choice from the best matches.
+<BR></TD>
+<TD colspan=1 align="left"><BR><img src="05T3.GIF" alt="Figure 5.2. Selecting a choice"></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">The
+student confirms choice by pressing the "Say this" button.
+<BR></TD>
+<TD colspan=1 align="left"><BR><img src="05T4.GIF" alt="Figure 5.2. Confirming choice"></TD></TR></TABLE>Interacting
+with the system, then, is a four step process. The student:<p>
+Types a statement in the type-in box that corresponded to what he or she wanted
+to say,<p>
+Examines the best result from the parser,<p>
+Accepts the best result, or chooses one of the next best results,<p>
+Presses a confirmation button to make the statement, or starts over.<p>
+The tutor then accepts the student's statement, and the conversation
+continues.<p>
+<b>The parser and case-based reasoning</b><p>
+<b></b>The parser's task has changed subtly with these new requirements. Rather
+than parse to the uniquely best statement (as in Creanimate), the parser is
+Casper can return a set of matches, ordered by how closely they match the
+student's intentions.<p>
+This task looks very much like a case-based reasoning task (Riesbeck &amp;
+Schank 1989; Kolodner 1994). Case-based reasoning (CBR) is a paradigm for
+inference and problem-solving that relies on stored cases (the "case base") to
+make new inferences or solve new problems. In Casper, there is a case base of
+approximately 200 CSR statements; the task is to match a student CSR's incoming
+text against the case base and find the best matching statements. Table  5.2
+describes the CBR algorithm abstractly (slightly modified from Jona &amp;
+Kolodner 1992), and the specific requirements in Casper.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>C</b><b>omparison of the Casper parsing task to the general case-based
+reasoning algorithm</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Step</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Case-based
+reasoning </b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Parsing
+in Casper</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">1.
+<BR></TD>
+<TD colspan=1 align="left">Accept
+and analyze problem.
+<BR></TD>
+<TD colspan=1 align="left">Accept
+and analyze student's statement.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">2.
+<BR></TD>
+<TD colspan=1 align="left">Retrieve
+partially matching cases in memory.
+<BR></TD>
+<TD colspan=1 align="left">Retrieve
+partially matching statements from memory.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">3.
+<BR></TD>
+<TD colspan=1 align="left">Select
+most relevant cases.
+<BR></TD>
+<TD colspan=1 align="left">Order
+statements by how closely they match analysis.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">4.
+<BR></TD>
+<TD colspan=1 align="left">Construct
+solution.
+<BR></TD>
+<TD colspan=1 align="left">Present
+best matches to student.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">5.
+<BR></TD>
+<TD colspan=1 align="left">Evaluate
+solution.
+<BR></TD>
+<TD colspan=1 align="left">Student
+selects a match, or tries again.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">6.
+<BR></TD>
+<TD colspan=1 align="left">Execute
+solution.
+<BR></TD>
+<TD colspan=1 align="left">Conversation
+continues.
+<BR></TD></TR></TABLE>Case-based
+reasoning has been proposed as a robust method for problem solving and
+reasoning in general. Perhaps, then, building a parser on case-based reasoning
+principles would result in a robust parser. There are two key issues that arise
+in every case-based reasoning system: the indexing problem and the matching
+problem--issues that are inextricably linked to one another. The indexing
+problem is the issue of assigning labels to stored cases and to the input case
+such that the right cases are retrieved when needed. The matching problem is
+the issue of calculating how well the indices of an incoming case match the
+indices on stored cases such that the best match results.<p>
+The robust parsing solution we have developed on case-based reasoning
+principles is called indexed concept parsing. The basic idea of indexed concept
+parsing is to assign indices (index concepts) to conceptual representations we
+want to find (or target concepts). Parsing consists of looking for occurrences
+of references to index concepts in an input text, then using these index
+concepts to match to cases in the case memory. In Casper, this means assigning
+index concepts to each internal CSR statement, which serves as the set of
+target concepts. A student's statement is examined for occurrences of
+references to these index concepts, and the best matching CSR statements are
+returned. In the next sections, we describe the specifics of how indexing and
+matching take place in indexed concept parsing, using the parser built for the
+Casper tutor as an example.<p>
+<b>Indexed concept parsing</b><p>
+<b></b>In this section, we will describe the data structures and algorithms
+behind indexed concept parsing. In the general case, we assume some internal
+conceptual representation system for an application program. Furthermore, we'll
+assume that some subset of the content is of interest to us as the "output" of
+the parser--that is, we want to find, from this subset, the best match between
+what a user intends by some string and some member of this subset. We want to
+be able to refer to one of these data structures; we'll call these
+representations target concepts. In the Casper system, we want to reference one
+of the CSR statements, so that the system will know, for example, that when a
+student types, "What do the bits look like?" this is the same as the CSR
+statement, "What kind of bits are in your water?"<p>
+The goal, then, is to map from the string a student might type into a system
+with some target concept in the set of target concepts. To do this, we'll add a
+layer of representation between input strings and the target concepts, which
+we'll call index concepts. Each target concept will be associated with one or
+more (non-empty) sets of index concepts. For example, we might tag, in the
+Casper system, the canonical form "Could you please describe the bits?" with
+the sets of index concepts {water-bits describe} and {water-bits appear
+similar}. Furthermore, we will arrange these concepts in an hierarchical (isa
+link) network, for example, to express that water-bits isa
+water-quality-problem. In this way, we can assign the set {duration
+water-quality-problem} of index concepts to the canonical form "How long have
+you had the problem?" and, should the student type:<p>
+Student:		How long have you had the bits?<p>
+we can recognize this as the CSR statement, "How long have you had the
+problem?"<p>
+ Note that these index concepts are not themselves strings; they are
+representations. Therefore, we need methods to map from strings to index
+concepts, and then index concepts to target concepts. But before the parsing
+and matching can take place, the index concepts need to be in place.<p>
+<b>The indexing phase</b><p>
+Before a case-based reasoning system can be used, indexes need to be assigned
+to cases. Similarly, in indexed concept parsing, index concepts need to be
+assigned to each potential target concept. Because the index concepts are an
+intermediate memory structure between input strings and target concepts, there
+must be a way to move from strings to indexed concepts. To accomplish this, we
+assign phrasal patterns to each index concept. A content specialist (knowledge
+engineer) is responsible for assigning index concepts to target concepts, and
+phrasal patterns to index concepts. In this section, we describe these two
+indexing steps.<p>
+<b>Assigning index concepts to target concepts</b><p>
+<b></b> First, each target concept is associated with one or more sets of index
+concepts; this is the indexing assignment phase. This task is carried out by a
+content specialist, perhaps aided by automated tools (see Chapter 8 for
+examples of these tools). Figure  5.2 shows a portion of the target concepts in
+Casper's conceptual memory, CSR statements and index concepts assigned to them.
+As part of this association, the system needs to track every target concept
+that each index concept is associated with; this will form the starting point
+for the parsing phase described below. In Chapter 7, we describe a more
+complete methodology for assigning index concepts and other parameters for
+indexed concept parsing.<p>
+After indexing, a static analysis is performed. The point of this phase is to
+determine how much information each index concept adds to the finding of a
+target concept. For example, in the Casper domain, many of the canonical forms
+are indexed with the concept water, but only one is indexed with the concept
+medical (for the canonical form "Do you need water for medical purposes?").
+medical carries more information than water. In parsing a sentence such as "Is
+your water needed because of medical needs?" the index medical should carry
+more weight than the index water, because there are fewer target concepts the
+index medical can refer to.<p>
+The static analysis phase, then, calculates the information values of each of
+the indices. The information value (Salton 1988) of an index concept is , where
+i is the number of times the index is assigned to target concepts, and n is the
+number of target concepts. This is a static phase because it only needs doing
+once after all of the indices are associated with target concepts. The static
+analysis phase can be carried out automatically as index concepts are assigned
+to target concepts. <p>
+<b>Assigning phrasal patterns to index concepts</b><p>
+Each index concept has associated with it a set of phrasal patterns. As in the
+phrasal patterns described in the chapter about Direct Memory Access Parsing
+(Chapter 3), a phrasal pattern is an ordered list of items which are words,
+references to conceptual representations, or attributes of conceptual
+representations. For example, we might associate with the index concept
+water-bit the phrasal patterns ("bit"), ("particle") and ("piece"), and the
+index concept fire-brigade the phrasal patterns ("fire brigade"), ("fire
+fighters"), and ("firemen"). Figure  5.2 shows some example simple phrasal
+patterns from Casper. More complicated phrasal patterns are possible; these are
+described in the next chapter, as well as in Chapter 7, where a more complete
+description of building an indexed concept parser is given.<p>
+<b>The parsing phase</b><p>
+<b></b>Once the indexing phase is complete, the parser can be used. Parsing
+takes place in two steps: from the input strings to index concepts, and from
+index concepts to target concepts.<p>
+<b>From strings to index concepts</b><p>
+<b></b> In the first step of parsing, the goal is to find all possible
+references to index concepts in the input text. The set of index concepts seen
+will be used, in the second parsing step, as a probe to the case memory of
+target concepts.<p>
+In the simplest case, we do a simple string match between any of the phrasal
+patterns and a user's input string; when we have a match, then we have seen an
+index concept. For example, suppose the student types:<p>
+Student:		Any fire fighters around?<p>
+This will match to the index concept fire-brigade, because of the match to
+"fire fighters" in the input string.<p>
+If the phrasal patterns contain references to concepts or attributes of
+concepts, then another matching algorithm will be needed, such as Direct Memory
+Access Parsing. In any case, the output of this step should be a set of index
+concepts referenced in the input text.<p>
+<b>From index concepts to target concepts</b><p>
+<b></b>Once a pool of index concepts has been collected, we can use the pool as
+a probe to the case memory of target concepts. First, we need to collect
+potential target concepts to match. One possibility is to calculate a match
+score for every target concept in memory. Another possibility, and the method
+we used in the Casper tutor, is to collect just those target concepts which
+have a member of the index concept pool (or an abstraction of the member) as a
+member of one of its associated index concept sets. This set of target concepts
+we'll call the target concept pool. In algorithmic form:<p>
+To collect a target concept pool from an index concept pool:<p>
+	let the target concept pool &lt;- {} <p>
+	for each index concept in the index concept pool do:<p>
+		for each abstraction<a name="fnB1" href="#fn1">[2]</a> of each index
+concept
+do:<p>
+			if the abstraction is associated with some target concept's index
+concept
+set<a name="fnB2" href="#fn2">[3]</a>, then add it to the target concept pool<p>
+	return the target concept pool<p>
+<p>
+<b>Appraiser functions</b><p>
+<b></b>Having collected a pool of potential target concepts, we want to sort
+the pool for the best matching target concepts. We do this by defining a set of
+appraisers, that is, functions which compare the index concept pool to a target
+concept and its index concept set and return a value for the goodness of match.
+Further, for each of the appraisers, we assign a weight that defines how
+important each appraiser will be in determining the final outcome<a name="fnB3"
+href="#fn3">[4]</a>. To calculate the match score, we calculate the value of
+each of the appraisers, times their weight, divided by the total weight.
+Algorithmically:<p>
+To calculate a match score between an index concept pool and a target
+concept:<p>
+	let the match score &lt;- 0.0<p>
+	for each appraisal function do:<p>
+		increment the match score by the value of the appraisal function called
+on
+the index concept pool and the target concept times the weight of the appraisal
+function<p>
+	let the match score &lt;-  match score / total weight of the appraisal functions<p>
+	return the match score <p>
+One can imagine a number of different methods to perform this match; here we
+will appraise the goodness of the match based on three basic metrics:<p>
+Index concepts predicted. How many of the index concepts associated with the
+target concept were seen in the input text?<p>
+Index concepts unpredicted. How many of the index concepts seen in the input
+text were not associated with the target concept?<p>
+Index concepts unseen. How many of the index concepts associated with the
+target concept were seen in the input text?<p>
+These metrics roughly define a Tverskian matching function (Tversky 1977), with
+the addition that we use the information values of the index concepts in
+calculating the match score. <p>
+Index concepts predicted appraiser between an index concept pool (P) and a
+target concept's associated index concept set (T)<a name="fnB4"
+href="#fn4">[5]</a>:<p>
+	<center> <p>
+</center>In this equation, we use a specialized definition of the intersection
+of P and T. Specifically, we say an index concept is an element of the
+intersection iff it is an element of P and an abstraction of some element of T
+(where an element is trivially an abstraction of itself). <p>
+The justification of this specialized definition is this: We want to say an
+item has been predicted if one of its specializations has been predicted (for
+example, if we predicted that water-quality-problem will be seen, then seeing
+water-bits will count for this, because water-bits is a specialization of
+water-quality-problem.<p>
+Index concepts unpredicted appraiser between an index concept pool (P) and a
+target concept's associated index concept set (T):<p>
+	<center> <p>
+</center><p>
+As in Equation  5.1, in this equation we use a specialized definition. In this
+case, we define a specialized definition for the set difference of P and T.
+Specifically, we say an index concept is an element of the set difference iff
+it is an element of P but not a specialization of some element of P (where an
+element is trivially an specialization of itself). The justification for this
+is the same as for the previous equation; we want to capture abstraction
+relationships. For example, if we see water-bits, and the predicted set
+contains water-quality-problem, we do not want this to lower the score as a
+result.<p>
+Finally, we show the appraiser for index concepts unseen.<p>
+Index concepts unseen: appraiser between an index concept pool (P) and a target
+concept's associated index concept set (T):<p>
+	<center> <p>
+</center><p>
+The definition of the set difference of T and P, in this case, is that an index
+concept is an element of the set difference iff it is an element of T but not
+an abstraction of some element of T (where an element is trivially an
+abstraction of itself). Again, the justification is that we want to capture
+abstraction relationships. For example, if we see water-bits we want this to
+count as seeing water-quality-problem.<p>
+In later chapters (Chapters 6 and 7) we will discuss other appraisal methods.
+<p>
+With the appraiser functions defined, we can now calculate the best N matches,
+where N is the acceptable set size.<p>
+To calculate the best N matches in the target concept pool:<p>
+	for each target concept in the target concept pool do:<p>
+		calculate the match score for the index concept pool and the target
+concept<p>
+	sort the target concept pool by the match scores of the target concepts<p>
+	return the top N target concepts<p>
+To put these algorithms together in order to do indexed concept parsing is now
+trivial:<p>
+To find the N best matches from a text input using indexed concept parsing:<p>
+	collect the index concept pool<p>
+	collect the target concept pool from the index concept pool<p>
+	calculate the best N matches from the target concept pool<p>
+	return the top N target concepts<p>
+In the next section, we describe an extended example of using indexed concept
+parsing.<p>
+<b>An extended example</b><p>
+<b></b>We'll now show an extended example, using a small subset of the data
+from the Casper domain. Table  5.3 shows the five target concepts, their
+canonical forms, and the index concepts associated with them. For simplicity,
+we assume there is only one index concept set associated with each target
+concept. In practice, though, we will need multiple sets to handle paraphrases
+such as "What do the bits look like?" for "Please describe the bits."
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>E</b><b>xample target concepts and index concepts</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Target
+concept</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Canonical
+form</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Index
+concepts</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-BITS-DESCRIPTION</tt>
+<BR></TD>
+<TD colspan=1 align="left">Please
+describe the bits.
+<BR></TD>
+<TD colspan=1 align="left"><tt>{M-WATER-BITS
+M-DESCRIPTION}</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-PROBLEM-DESCRIPTION</tt>
+<BR></TD>
+<TD colspan=1 align="left">Please
+describe the problem.
+<BR></TD>
+<TD colspan=1 align="left"><tt>{M-PROBLEM
+M-DESCRIPTION}</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-PROBLEM-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">How
+long have you had the problem?
+<BR></TD>
+<TD colspan=1 align="left"><tt>{M-PROBLEM
+M-DURATION}</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-BLACK-BITS</tt>
+<BR></TD>
+<TD colspan=1 align="left">Does
+your water contain black bits?
+<BR></TD>
+<TD colspan=1 align="left"><tt>{M-WATER
+M-CONTAIN M-BLACK  M-WATER-BITS}</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-BURST-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">How
+long has the burst been going on?
+<BR></TD>
+<TD colspan=1 align="left"><tt>{M-BURST
+M-DURATION}</tt>
+<BR></TD></TR></TABLE>Figure
+ 5.4 shows how the index concepts stand in the isa hierarchy. Note that,
+because this is an example, the hierarchy is shallow, and not filled out
+much.<p>
+<b>Example index concept hierarchy</b><p>
+<b></b>Table  5.4 combines both content information and information from the
+static analysis phase: it shows the phrasal patterns associated with each index
+concept, and the information value of each index.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>E</b><b>xample index concepts, phrasal patterns and information values </b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Index
+concept</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Phrasal
+patterns</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Information
+value</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-PROBLEM</tt>
+<BR></TD>
+<TD colspan=1 align="left">"problem"
+<BR></TD>
+<TD colspan=1 align="left"><tt>1.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-WATER-BITS</tt>
+<BR></TD>
+<TD colspan=1 align="left">"bits"
+"pieces" "particles"
+<BR></TD>
+<TD colspan=1 align="left"><tt>1.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-CONTAIN</tt>
+<BR></TD>
+<TD colspan=1 align="left">"contain"
+<BR></TD>
+<TD colspan=1 align="left"><tt>2.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">"how
+long"
+<BR></TD>
+<TD colspan=1 align="left"><tt>1.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-DESCRIPTION</tt>
+<BR></TD>
+<TD colspan=1 align="left">"describe"
+<BR></TD>
+<TD colspan=1 align="left"><tt>1.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-BLACK</tt>
+<BR></TD>
+<TD colspan=1 align="left">"black"
+<BR></TD>
+<TD colspan=1 align="left"><tt>2.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-WATER</tt>
+<BR></TD>
+<TD colspan=1 align="left">"water"
+<BR></TD>
+<TD colspan=1 align="left"><tt>2.32</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-BURST</tt>
+<BR></TD>
+<TD colspan=1 align="left">"burst"
+
+<BR></TD>
+<TD colspan=1 align="left"><tt>2.32</tt>
+<BR></TD></TR></TABLE>The
+information values are calculated as described above. For example, because
+m-problem is associated with two of the five target concepts, its information
+value is 1.32 (- log 2/5). <p>
+Let's examine how indexed concept parsing works on the following example:<p>
+Student:		How long have the black particles been bothering you?<p>
+The best match for this input text is ask-problem-duration, that is, "How long
+have you had the problem?" We obtain the following set of index concepts (the
+matching phrasal patterns are shown in Table  5.5): {m-duration m-black
+m-water-bits}.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>I</b><b>ndex concepts referenced in "How long have the black particles been
+bothering you?"</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Index
+concept</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>From
+phrasal pattern</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">"how
+long"
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-BLACK</tt>
+<BR></TD>
+<TD colspan=1 align="left">"black"
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>M-WATER-BITS</tt>
+<BR></TD>
+<TD colspan=1 align="left">"particles"
+<BR></TD></TR></TABLE>The
+pool of target concept candidates is the entire set of target concepts, because
+each target concept is associated with at least one of the index concepts in
+the index concept pool. Table  5.6 shows the calculation of total scores for
+these target concepts<a name="fnB5" href="#fn5">[6]</a>.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>C</b><b>alculation of match scores for "How long have the black particles
+been bothering you?" </b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Target
+Concept</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Score</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Explanation</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-PROBLEM-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">0.883
+<BR></TD>
+<TD colspan=1 align="left"><tt>Summed
+value of (M-BLACK) =&gt; 2.322</tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK M-DURATION) =&gt; 4.966</tt><p>
+<tt>Unpredicted raw score = 0.532 (1 - unpredicted / seen)</tt><p>
+<tt>UNPREDICTED-SCORE score = 0.133 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of NIL =&gt; 0.000</tt><p>
+<tt>Summed value of (M-PROBLEM M-DURATION) =&gt; 2.644</tt><p>
+<tt>Unseen raw score = 1.000 (1 - unseen / predicted)</tt><p>
+<tt>UNSEEN-SCORE score = 0.250 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-DURATION M-PROBLEM) =&gt; 2.644</tt><p>
+<tt>Summed value of (M-PROBLEM M-DURATION) =&gt; 2.644</tt><p>
+<tt>Predicted raw score = 1.000 (successfully predicted / predicted)</tt><p>
+<tt>PREDICTED-SCORE score = 0.500 (Raw score * 0.500 weighting)</tt><p>
+<tt></tt><p>
+<tt>Total score for target ASK-PROBLEM-DURATION  = 0.883</tt><p>
+<tt>Associated index concepts: (M-PROBLEM M-DURATION)</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-BLACK-BITS</tt>
+<BR></TD>
+<TD colspan=1 align="left">0.513
+<BR></TD>
+<TD colspan=1 align="left"><tt>Summed
+value of (M-DURATION) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK M-DURATION) =&gt; 4.966</tt><p>
+<tt>Unpredicted raw score = 0.734 (1 - unpredicted / seen)</tt><p>
+<tt>UNPREDICTED-SCORE score = 0.183 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-CONTAIN M-WATER) =&gt; 4.644</tt><p>
+<tt>Summed value of (M-WATER M-CONTAIN M-BLACK M-WATER-BITS) =&gt; 8.288</tt><p>
+<tt>Unseen raw score = 0.440 (1 - unseen / predicted)</tt><p>
+<tt>UNSEEN-SCORE score = 0.110 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK) =&gt; 3.644</tt><p>
+<tt>Summed value of (M-WATER M-CONTAIN M-BLACK M-WATER-BITS) =&gt; 8.288</tt><p>
+<tt>Predicted raw score = 0.440 (successfully predicted / predicted)</tt><p>
+<tt>PREDICTED-SCORE score = 0.220 (Raw score * 0.500 weighting)</tt><p>
+<tt></tt><p>
+<tt>Total score for target ASK-BLACK-BITS  = 0.513</tt><p>
+<tt>Associated index concepts: (M-WATER M-CONTAIN M-BLACK M-WATER-BITS)</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><p>
+<tt>ASK-BITS-DESCIRPTION</tt>
+<BR></TD>
+<TD colspan=1 align="left">0.442
+<BR></TD>
+<TD colspan=1 align="left"><tt>Summed
+value of (M-DURATION M-BLACK) =&gt; 3.644</tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK M-DURATION) =&gt; 4.966</tt><p>
+<tt>Unpredicted raw score = 0.266 (1 - unpredicted / seen)</tt><p>
+<tt>UNPREDICTED-SCORE score = 0.067 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-DESCRIPTION) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-DESCRIPTION M-WATER-BITS) =&gt; 2.644</tt><p>
+<tt>Unseen raw score = 0.500 (1 - unseen / predicted)</tt><p>
+<tt>UNSEEN-SCORE score = 0.125 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-WATER-BITS) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-DESCRIPTION M-WATER-BITS) =&gt; 2.644</tt><p>
+<tt>Predicted raw score = 0.500 (successfully predicted / predicted)</tt><p>
+<tt>PREDICTED-SCORE score = 0.250 (Raw score * 0.500 weighting)</tt><p>
+<tt></tt><p>
+<tt>Total score for target ASK-BITS-DESCRIPTION  = 0.442</tt><p>
+<tt>Associated index concepts: (M-DESCRIPTION M-WATER-BITS)</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-PROBLEM-DESCRIPTION</tt>
+<BR></TD>
+<TD colspan=1 align="left">0.442
+<BR></TD>
+<TD colspan=1 align="left"><tt>Summed
+value of (M-DURATION M-BLACK) =&gt; 3.644</tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK M-DURATION) =&gt; 4.966</tt><p>
+<tt>Unpredicted raw score = 0.266 (1 - unpredicted / seen)</tt><p>
+<tt>UNPREDICTED-SCORE score = 0.067 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-DESCRIPTION) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-DESCRIPTION M-PROBLEM) =&gt; 2.644</tt><p>
+<tt>Unseen raw score = 0.500 (1 - unseen / predicted)</tt><p>
+<tt>UNSEEN-SCORE score = 0.125 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-PROBLEM) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-DESCRIPTION M-PROBLEM) =&gt; 2.644</tt><p>
+<tt>Predicted raw score = 0.500 (successfully predicted / predicted)</tt><p>
+<tt>PREDICTED-SCORE score = 0.250 (Raw score * 0.500 weighting)</tt><p>
+<tt></tt><p>
+<tt>Total score for target ASK-PROBLEM-DESCRIPTION  = 0.442</tt><p>
+<tt>Associated index concepts: (M-DESCRIPTION M-PROBLEM)</tt>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><tt>ASK-BURST-DURATION</tt>
+<BR></TD>
+<TD colspan=1 align="left">0.339
+<BR></TD>
+<TD colspan=1 align="left"><tt>Summed
+value of (M-BLACK M-WATER-BITS) =&gt; 3.644</tt><p>
+<tt>Summed value of (M-WATER-BITS M-BLACK M-DURATION) =&gt; 4.966</tt><p>
+<tt>Unpredicted raw score = 0.266 (1 - unpredicted / seen)</tt><p>
+<tt>UNPREDICTED-SCORE score = 0.067 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-BURST) =&gt; 2.322</tt><p>
+<tt>Summed value of (M-BURST M-DURATION) =&gt; 3.644</tt><p>
+<tt>Unseen raw score = 0.363 (1 - unseen / predicted)</tt><p>
+<tt>UNSEEN-SCORE score = 0.091 (Raw score * 0.250 weighting)</tt><p>
+<tt></tt><p>
+<tt>Summed value of (M-DURATION) =&gt; 1.322</tt><p>
+<tt>Summed value of (M-BURST M-DURATION) =&gt; 3.644</tt><p>
+<tt>Predicted raw score = 0.363 (successfully predicted / predicted)</tt><p>
+<tt>PREDICTED-SCORE score = 0.181 (Raw score * 0.500 weighting)</tt><p>
+<tt></tt><p>
+<tt>Total score for target ASK-BURST-DURATION  = 0.339</tt><p>
+<tt>Associated index concepts: (M-BURST M-DURATION)</tt>
+<BR></TD></TR></TABLE>The
+best match is ask-problem-duration (score: 0.767). The closest match to "How
+long have the black bits been bothering you?" is "How long have you had the
+problem?" This is the desired outcome.<p>
+<b>Evaluation of indexed concept parsing in Casper</b><p>
+<b></b>In Chapter 2, we described measures for evaluating parsers embedded into
+application programs. We now describe the actual results of using these
+measures on the use of the parser in Casper. The following tables show the
+results of the beta testing of Casper on 12 customer service representative
+trainees who were engaged in up to six conversations with simulated customers.
+Table 5.7 contains descriptive statistics for the beta test of Casper.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>D</b><b>escriptive statistics for Casper</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Description</b>
+<BR></TD>
+<TD colspan=1 align="center"><b>Value</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of target concepts
+<BR></TD>
+<TD colspan=1 align="right">192
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of index concepts
+<BR></TD>
+<TD colspan=1 align="right">222
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of index concept sets
+<BR></TD>
+<TD colspan=1 align="right">261
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of phrasal patterns
+<BR></TD>
+<TD colspan=1 align="right">670
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Ave.
+number of phrasal patterns per index concept
+<BR></TD>
+<TD colspan=1 align="right">3.0
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Ave.
+number of index concept sets per target concept
+<BR></TD>
+<TD colspan=1 align="right">1.4
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Ave.
+number of phrases per index concept
+<BR></TD>
+<TD colspan=1 align="right">3.0
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of student inputs
+<BR></TD>
+<TD colspan=1 align="right">492
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Number
+of student inputs tagged with correct answers
+<BR></TD>
+<TD colspan=1 align="right">457
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Ave.
+number of correct answers per input
+<BR></TD>
+<TD colspan=1 align="right">1.1
+<BR></TD></TR></TABLE>Table
+ 5.8 shows accuracy measures for the parser. The acceptable recall rate was
+82.8% in the beta testing. The results of the beta testing were used to improve
+the parser, particularly in adding synonyms for indexed concepts,
+representations of different ways to achieve the same communicate, goal and
+handling anaphora; these improvements are discussed in the next chapter.
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>A</b><b>ccuracy measures in Casper (beta test)</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Accuracy
+measures</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>i</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>%</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Percentage
+of acceptable matches (set size = 7; best=100%)
+<BR></TD>
+<TD colspan=1 align="left">407
+<BR></TD>
+<TD colspan=1 align="left">82.8%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Percentage
+of perfect matches
+<BR></TD>
+<TD colspan=1 align="left">274
+<BR></TD>
+<TD colspan=1 align="left">60.2%
+<BR></TD></TR></TABLE>Table
+ 5.9 and Table 5.10 show transparency measures. Table 5.9 shows strike rate
+measures. Both the loose first strike rate (the strike rate when acceptable
+recall is used) and the strict first strike rate (the strike rate when perfect
+recall is used) were higher for the parser than the hierarchical menus--both
+giving evidence that the type-in box with the parser is preferable to the
+hierarchical menus. 
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>S</b><b>trike rate in Casper (beta test)</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Strike
+rate</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>n</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>i</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>%</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">First
+strike rate, hierarchical menus (best=100%)
+<BR></TD>
+<TD colspan=1 align="left">260
+<BR></TD>
+<TD colspan=1 align="left">179
+<BR></TD>
+<TD colspan=1 align="left">68.8%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">First
+strike rate, parser using acceptable recall as measure
+<BR></TD>
+<TD colspan=1 align="left">391
+<BR></TD>
+<TD colspan=1 align="left">322
+<BR></TD>
+<TD colspan=1 align="left">82.4%
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Strict
+first strike rate, parser using perfect recall as measure
+<BR></TD>
+<TD colspan=1 align="left">391
+<BR></TD>
+<TD colspan=1 align="left">270
+<BR></TD>
+<TD colspan=1 align="left">69.1%
+<BR></TD></TR></TABLE>Table
+ 5.10 shows average path length measures. It is interesting to compare the
+frequency with which the parser and the hierarchical menus were used on the
+first attempt. Many more interactions were started with the parser than with
+the menus (391 and 260, respectively); this concurs with user reports that they
+preferred to use the parser. The average path length for the parser is less
+than the average path length of the hierarchical menus. This indicates that the
+students were able to say what they wanted to say in fewer tries using the
+parser<a name="fnB6" href="#fn6">[7]</a>.  
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>P</b><b>ath length measures in Casper (beta test)</b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Average
+path length</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>n</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>length</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Average
+path length, hierarchical menus (best=1.00)
+<BR></TD>
+<TD colspan=1 align="left">260
+<BR></TD>
+<TD colspan=1 align="left">1.75
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Average
+path length, parser
+<BR></TD>
+<TD colspan=1 align="left">391
+<BR></TD>
+<TD colspan=1 align="left">1.28
+<BR></TD></TR></TABLE><b>Summary
+</b><p>
+<b></b>In this chapter, we have described a technique for parsing called
+indexed concept parsing, in which references to index concepts in input text
+are matched against index concepts associated with target concepts in
+conceptual memory. The technique was described in the context of building a
+parser for the Casper tutor, the first system to have such a parser. The
+results of testing the indexed concept parser in Casper indicated two positive
+results. First, indexed concept parsing provided a more accurate and
+transparent method of parsing than did the DMAP-based parser described in
+Chapter 3. Second, index concept parsing provided a more transparent interface
+than did the existing interface based on hierarchical menus, while still
+providing acceptable recall rates.<p>
+Despite our optimistic appraisal of indexed concept parsing, there are certain
+ways in which we can predict indexed concept parsing will fail. We saw in the
+beta test of the Casper tutor that in approximately 20% of the time, a student
+did not choose one of the parser's top suggestions, and the student either
+needed to type in something else, or use the hierarchical menus. Furthermore,
+in approximately 40% of the time, the match was less than perfect--that is, the
+top choice presented by the parser was not accepted by the student. We'd like
+to improve on these results; but, before we can do this, we need to analyze
+these failures. An analysis of these failures, and ways to overcome them, are
+described in the next chapter.<p>
+<a name="fn0" href="#fnB0">[1.]</a>As in the previous chapter, by "statement"
+we mean "statement or question."<p>
+<a name="fn1" href="#fnB1">[2.]</a>Note that "each abstraction" of an index
+concept includes the index concept itself.<p>
+<a name="fn2" href="#fnB2">[3.]</a>Whether or not an index concept is a
+member of some target concept's index concept set can be cached away as index
+concept sets are defined for target concepts.<p>
+<a name="fn3" href="#fnB3">[4.]</a>To make the weighting meaningful, we must
+place a constraint on the appraisers that they each return a value from the
+same range, say, for example, the interval (0,1).<p>
+<a name="fn4" href="#fnB4">[5.]</a>I(i) is the information value of i as
+defined in the previous section.<p>
+<a name="fn5" href="#fnB5">[6.]</a>The explanations for the scores are
+generated from the tracking facility described in the Appendix.<p>
+<a name="fn6" href="#fnB6">[7.]</a>The first use of an interface item--that
+is, either the hierarchical menus or the type-in box--formed the basis for the
+strike rate and path length measures in the Casper beta test.
+
+<P><hr size=4>
+</body></html>

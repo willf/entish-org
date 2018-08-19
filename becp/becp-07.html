@@ -1,0 +1,401 @@
+<HTML><HEAD>
+<!-- This document was created from RTF source by rtftohtml version 3.0.1 -->
+<TITLE>How to Build an Embedded Conceptual Parser Using Indexed Concept
+Parsing</TITLE></HEAD>
+<center><b>How to Build an Embedded Conceptual Parser Using Indexed Concept
+Parsing</b><p>
+<b></center></b><p>
+<p>
+In the previous two chapters, we described the development of indexed concept
+parsing in the context of the Casper customer service representative tutor. In
+this chapter, we describe the steps required for creating an indexed concept
+parser for application programs in general. Essentially, there are five major
+tasks in creating an index concept parser:<p>
+Gather background information,<p>
+Choose matching and appraiser functions,<p>
+Design the interface,<p>
+Create indices,<p>
+Evaluate and refine the parser.<p>
+We will examine each of these general tasks in turn. After describing the
+tasks, we describe the functional roles involved in carrying out these tasks
+(the roles of programmer, content specialist and interface designer), and how
+the tasks are ordered.<p>
+<b>Gather background information</b><p>
+<b></b>To build an embedded conceptual parser, we first need to gather
+background information about the application program, specifically its
+conceptual memory and ways its interface will affect the parsing task. Having
+gathered information about the application program, one needs to:<p>
+Identify the target concepts within the conceptual memory, <p>
+Identify the architecture of conceptual memory, and<p>
+Identify contextual supports provided by the application program.<p>
+We describe each of these in turn.<p>
+<b>Identify the target concepts</b><p>
+<b></b>We will need to know what are the target concepts of that memory. That
+is, we need to identify what specific conceptual representations are important
+to recognize. In Casper, these were the statements a customer service
+representative might make. <p>
+<b>Identify the architecture of conceptual memory</b><p>
+<b></b>We need to know the structure of the conceptual memory used by the
+application program because this affects the way we identify and construct both
+index and target concepts. Conceptual memories are typically structured as
+taxonomies and partonomies. In a taxonomy, concepts in memory are related to
+one another in an abstraction hierarchy (isa hierarchy). In a partonomy, a
+concept is related to another concept if the first is the value of some
+attribute (that is, is a part of) some other concept.<p>
+It is not always the case that the conceptual memory will have taxonomic or
+partonomic structure. In the applications we have seen, Creanimate's conceptual
+memory was organized into several taxonomies with partonomic structure. The
+concepts in Casper, on the other hand, were neither organized into taxonomies
+or partonomies. However, if the conceptual memory is organized taxonomically or
+partonomically, we may be able to use this structure in building or identifying
+index concepts (this is described in greater detail in Section  7.4). <p>
+Ideally, the index concepts will be defined in the same language as the target
+concepts. In order to create index concepts and use them in parsing, we need to
+know:<p>
+how to define a concept,<p>
+how to define an abstraction relationship between two concepts,<p>
+how to define a partonomic (attribute/value) relationship between two
+concepts,<p>
+how to determine whether one concept is an abstraction or specialization of
+another concept,<p>
+how to determine all of the abstractions of a concept, and<p>
+how to determine the value of an attribute of a concept. 
+<TABLE BORDER>
+<TR rowspan=2 align="left">
+<TD colspan=1 align="left"><p>
+<b>T</b><b>ypical Lisp forms for creating and accessing hierarchical and
+partonomic conceptual relations </b>
+<BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left"><BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><b>Type</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Function</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Form</b>
+<BR></TD>
+<TD colspan=1 align="left"><b>Comments</b>
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Creators
+<BR></TD>
+<TD colspan=1 align="left">Define
+a concept
+<BR></TD>
+<TD colspan=1 align="left"><tt>(DEF-FRAME
+NAME)</tt>
+<BR></TD>
+<TD colspan=1 align="left">Creates
+a concept named name.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Define
+an abstraction relationship
+<BR></TD>
+<TD colspan=1 align="left"><tt>(DEFABST
+ABST SPEC)</tt>
+<BR></TD>
+<TD colspan=1 align="left">Declares
+abst to be an abstraction of spec
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Define
+an attribute/value relationship
+<BR></TD>
+<TD colspan=1 align="left"><tt>(DEFSLOT
+NAME ATTR VALUE)</tt>
+<BR></TD>
+<TD colspan=1 align="left">Declares
+value to be the attribute attr of concept name.
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left">Accessors
+<BR></TD>
+<TD colspan=1 align="left">Determine
+whether there is an abstraction relationship between two concepts
+<BR></TD>
+<TD colspan=1 align="left"><tt>(ABSTP
+ABST SPEC)(SPECP SPEC ABST)</tt>
+<BR></TD>
+<TD colspan=1 align="left">Is
+abst an abstraction (specialization) of spec?
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Determine
+all of the abstractions of a concept 
+<BR></TD>
+<TD colspan=1 align="left"><tt>(ALL-ABSTRACTIONS
+NAME)</tt>
+<BR></TD>
+<TD colspan=1 align="left">Returns
+all of the abstractions of name (including name)
+<BR></TD></TR><TR rowspan=1 align="left">
+<TD colspan=1 align="left"><BR></TD>
+<TD colspan=1 align="left">Determine
+the value of an attribute of a concept
+<BR></TD>
+<TD colspan=1 align="left"><tt>(ATTRIBUTE-VALUE
+NAME ATTR)</tt>
+<BR></TD>
+<TD colspan=1 align="left">What
+is the value of attr in name?
+<BR></TD></TR></TABLE>If
+the indexed concept parser is to take advantage of abstraction relationships
+among index concepts, then the abstraction creation and access functions must
+be available. If the indexed concept parser is to take advantage of partonomic
+relationships among index concepts and target concepts, then the partonomic
+creation and access functions must be available. Table  7.1 shows typical Lisp
+forms for defining these functions. The forms used are consistent with the
+frame system code found in the Appendix<a name="fnB0" href="#fn0">[1]</a>. It
+is possible that the conceptual memory does not have these functions already
+defined, because they are not needed for the application program's processing
+of target concepts. As these functions are required for creating and accessing
+indexed concepts, however, they will need to be built.<p>
+<b>Identify contextual clues provided by the application program</b><p>
+<b></b>As someone uses an application program, typically the situation he or
+she is in will affect the task of the parser, providing contextual clues to
+constrain or support the task of parsing. These clues can come from any number
+of different sources, but they will primarily affect how we process target
+concepts and build phrasal patterns. Two types of contextual clues are
+expectations on target concepts, and clues about acceptable phrasal patterns.<p>
+Expectations on target concepts. The most common (and perhaps most useful)
+contextual clue will be expectations on target concepts. Typically, in a
+particular situation, only certain target concepts will produce meaningful
+responses from the application program. Informing the parser about which target
+concepts are to be expected in a particular situation can increase the parser's
+precision. This can be done by creating an appraiser (See Section  7.2.3) based
+on these expectations. <p>
+Clues for phrasal patterns. Often, the interface of the application program
+will suggest to the user certain phrasal patterns the parser needs to
+recognize. This can happen in a number of ways. For example, in the Creanimate
+program, the prompted templates set expectations for the linguistic forms a
+student could type. Similarly, in the initial version of the Casper parser, the
+text of the templates was used as part of the phrasal patterns attached to
+target concepts. <p>
+In addition to the text that appears in templates, text and graphics elsewhere
+in the application interface can affect the phrasal patterns required. For
+example, in the Casper tutor, students were provided with a "water map" that
+showed how the water company processed and delivered water to customers (See
+Figure  7.1). The primary goal of the water map was to act as a pedagogical aid
+to students as they developed internal models of solving problems about water
+quality. But the pictures and text on the water map also affect what the parser
+must recognize. For example, a British equivalent of "fire fighters" is "the
+fire brigade," and so they are described on the water map. But even North
+American users of Casper were likely to use "fire brigade" to refer to fire
+fighters, because this expression appears on the water map. Therefore, "fire
+brigade" was a phrasal pattern that needed to be added to the index concept for
+fire fighters, even for a North American audience.
+<IMG SRC="becp-07-01.gif"><p>
+It is always useful for a designer of an embedded program to understand the
+application into which it will be embedded. For building an indexed concept
+parser, there is a special need to understand the conceptual memory underlying
+the application program, and how the interactions which a user has with the
+application program will affect parsing.<p>
+<b>Choose matching and appraiser functions</b><p>
+<b></b>Having investigated the conceptual representations the application
+expects and affords, one should have a good foundation for the next stages in
+creating an indexed concept parser. The central task will be to index the
+target concepts. But before indexing begins, it is important to select
+matching, text transducing and appraising functions. <p>
+<b>Choose a matching function</b><p>
+<b></b>When an indexed concept parser processes text, it proceeds in two
+stages. First, the parser looks for references to index concepts in the input
+text. Then, the set of index concepts found is matched against target concepts
+in memory. How the parser finds references to index concepts in the input text
+can vary; the two matchers we have described in previous chapters rely on
+either a simple search technique, or Direct Memory Access Parsing.<p>
+A simple search technique may be enough for finding references to index
+concepts in input text. For example, the following Common Lisp function will
+determine whether a phrasal pattern can be found in an input text:<p>
+<tt>(defun phrase-match-p (phrasal-pattern words)</tt><p>
+<tt>  (search phrasal-pattern words))</tt><p>
+<tt></tt>This assumes the input text has been converted into symbols (see the
+next section on text transducing functions), and that phrasal patterns are
+defined as lists of symbols.<p>
+Finding references to index concepts in the input text can also be done using
+Direct Memory Access Parsing. DMAP can collect references to index concepts and
+pass them on to the next stage of indexed concept parsing. A DMAP-style parser
+is required if the phrasal patterns to index concepts are structured (that is,
+have references to the partonomic or taxonomic structure of an index concept).
+Although a DMAP-style parser is required for recognizing index concepts via
+structured phrasal patterns, DMAP-style parsers will work in the simpler case
+as well, when the phrasal patterns do not have structure.<p>
+<b>Choose text transducing functions</b><p>
+<b></b>Often, the input text will need to be converted into another form before
+the parsing techniques can be used. This may be simply converting input strings
+into symbolic form. It may mean using stemming techniques to supply the parser
+with root forms of words, rather than the words themselves. Before adding
+phrasal patterns to index concepts, it is important to understand exactly what
+requirements there will be on the patterns. If the parser is built to look for
+symbolic roots as phrasal patterns, then the text needs to be converted into a
+list of symbolic roots.<p>
+<b>Choose appraisal functions</b><p>
+<b></b>In the first stage of indexed concept parsing, the matcher collects
+references to index concepts in the input text. In the second stage, these
+index concepts are matched against the index concepts associated with target
+concepts. The goodness of match is calculated with user-defined appraisal
+functions, as described in Chapter 5. In the previous chapters, we described
+four criteria with which to judge the match between an input text and a target
+concept:<p>
+Index concepts predicted. How many of the index concepts associated with the
+target concept were seen in the input text?<p>
+Index concepts unpredicted. How many of the index concepts seen in the input
+text were not associated with the target concept?<p>
+Index concepts unseen. How many of the index concepts associated with the
+target concept were seen in the input text?<p>
+Expectations. Was this target concept expected in the current situation?<p>
+ In calculating the match score between an input text and a target concept,
+points are added for the index concepts predicted, and points are subtracted
+for index concepts unpredicted and index concepts unseen. How many points are
+added or subtracted needs to be specified to the index concept parser. Some
+different possibilities are:<p>
+Add one point for each index concept seen, and subtract one point for each
+index concept unpredicted or unseen.<p>
+Add one point for each index concept seen, and ignore unpredicted or unseen
+index concepts.<p>
+Add the information value<a name="fnB1" href="#fn1">[2]</a> for each index
+concept seen, and subtract the information value for each unpredicted or unseen
+index concept.<p>
+Which possibility to choose will depend on characteristics of the
+representations used and what type of statements the users of the application
+will create. The last scoring method, the default given in the appendix, has
+the characteristics:<p>
+In providing positive evidence (index concepts seen), index concepts with high
+information value provide exponentially more weight than index concepts with
+low information value, and<p>
+Negative evidence (index concepts not seen or not predicted) is considered, but
+only to the extent of the information value of the index concepts involved.<p>
+Because of the weighting mechanism described in the next section, each of the
+appraisal functions must return a value between 0.0 and 1.0, inclusive. In the
+Appendix, appraisal functions that calculate matches based on index concepts
+seen, index concepts not seen, and index concepts not predicted are given. As
+we saw in Chapter 6, however, an appraisal function based on expectations for
+target concepts can greatly improve the recall and precision of an indexed
+concept parser. <p>
+<b>Set the weights for the appraisal functions</b><p>
+<b></b>The four appraisal functions described in the previous section can be
+weighted to bias the matching towards one or more of the criteria. This is done
+through a voting mechanism: Each criterion defined is assigned one or more
+votes. Two common strategies are:<p>
+Bias the parser towards target concepts that are expected.<p>
+Bias the parser towards positive evidence.<p>
+An example setting to execute these strategies would be giving the expectation
+criterion five votes, the index concepts predicted criterion three votes, and
+the other criteria one vote each. This provides a strong bias towards expected
+target concepts and a weaker bias towards the positive evidence of index
+concepts seen<a name="fnB2" href="#fn2">[3]</a>.<p>
+<b>Design the parser interface </b><p>
+<b></b>Another step is the design of the human-computer interface to the
+embedded parser. A typical interaction with an embedded indexed concept parser
+in an interactive parser will have the following steps:<p>
+The user enters text into a type-in box.<p>
+The user presses a "Parse this" button (which may, of course, say something
+else, or be activated when the Return or Enter key is pressed).<p>
+The indexed concept parser parses the input, and presents the best matches to
+the user.<p>
+The user commits to one of the best matches, or returns to step 1. <p>
+The specifics of the "look and feel" of the interface will depend on a number
+of requirements, and it is beyond the scope of this dissertation to discuss all
+of these. However, certain design choices will impinge on the parsing, and
+these will be of particular concern. These choices include the use of template
+screens and the acceptable set size.<p>
+<b>Template Screens</b><p>
+<b></b>In previous chapters, we described the use of templates and template
+screens. Templates are prompted, fill-in-the-blank interface items that suggest
+to the user the types of input that will be parsable. In Chapter 4, we
+described a complicated template screen mechanism that did not work very well,
+and it was our desire to move away from prompted templates that suggested the
+technique of indexed concept parsing. However, if it is possible to create
+template screens, they can affect parsing positively, by providing clues to the
+user as to what is expected. The text of the prompts and that syntactic
+requirements of what is to be entered into the blank will affect the phrasal
+patterns that are defined for index concepts. It may even suggest (as in the
+Creanimate case) that more direct parsing methods, such as DMAP, can be used.<p>
+<b>Choose the acceptable set size</b><p>
+<b></b>The acceptable set size is the number of best-matched target concepts
+which the indexed concept parser should return. In the Casper parser, the
+acceptable set size was seven. The best match was given as the default response
+for the user to select, and additional target concepts were selectable from a
+separate user menu.<p>
+If the acceptable set size is one--that is, the parser should return only the
+best match--one should be aware that there is likely to be a significantly
+larger number of parsing failures. In the analyses of the Casper parser given
+in the previous chapter, there are 10 to 20% differences between perfect and
+acceptable recall rates.<p>
+<b>Index the target concepts</b><p>
+<b></b>Indexing the target concepts of an application program means building
+representations for index concepts and phrasal patterns. The basic methodology
+is this:<p>
+For each target concept, identify sets of index concepts.<p>
+For each index concept, identify phrasal patterns.<p>
+<b>Index each target concept with sets of index concepts</b><p>
+<b></b>To be found in the matching phase, each target concept must have
+associated with it at least one set of index concepts. It may be helpful to
+think of each set of index concepts applying to a paraphrase of the target
+concept. For example, in the Casper tutor, in which customer service
+representative statements were the target concepts, the following target
+concept:<p>
+ASK-NEIGHBOURS-AFFECTED Are your neighbours also affected? <p>
+has the following set of index concepts attached to it:<p>
+{NEIGHBOURS AFFECTED}<p>
+But the following set of index concepts is also attached to this target
+concept:<p>
+{NEIGHBOURS EXPERIENCE SIMILAR PROBLEM}<p>
+This set of index concepts was created to recognize input statements of the
+type, "Are your neighbours experiencing similar problems?" which is a
+paraphrase for "Are your neighbours affected?" seen in student inputs. <p>
+<b>Index each index concept with phrasal patterns</b><p>
+<b></b>Each index concept needs at least one phrasal pattern attached to it, or
+it will not be recognized. Multiple phrasal patterns can be associated with
+each index concept. We have described three different types of phrasal patterns
+in this work, each a linearly ordered set:<p>
+sets of words,<p>
+sets of word roots,<p>
+sets of word roots in combination with structural references.<p>
+As we described in Section  7.2, what the phrasal patterns consist of will
+depend on the matching function we use in the first stage of indexed concept
+parsing as well as the text transducing functions we apply to the input text.<p>
+<b>Evaluate and refine the parser</b><p>
+Having created an indexed concept parser for an application using the steps
+described previously, the next step is to evaluate it. Of course, we have
+described doing indexing in an iterative manner, so some of this evaluation can
+take place as the indexing occurs. But in the end, the parser needs to be
+evaluated using a real target population. How this evaluation takes place will
+vary from project to project, but evaluation principles are described in
+Chapter 2 of this dissertation, and descriptions of specific evaluation methods
+used are described in the chapters on the Creanimate and Casper parsers.<p>
+<b>Who does what, when?</b><p>
+<b></b>Building an indexed concept parser requires three basic function
+roles--a programmer, a content specialist (knowledge engineer), and an
+interface designer. Of course, combinations of these roles can be carried out
+by the same person; for example, the programmer may act as the content
+specialist as well. The programmer has overall responsibility for creating the
+software that implements the indexed concept parser. The content specialist is
+especially responsible for creating index concepts and phrasal patterns. The
+interface designer is responsible for designing the parser's human-computer
+interface. Figure  7.2 lays out in detail the responsibilities of these roles.
+This figure also shows the dependencies among the tasks described in this
+chapter, and therefore show how the steps are to be sequenced.<p>
+<b>Summary</b><p>
+<b></b>This chapter has described the various tasks involved in creating an
+indexed concept parser. After gathering background information about the
+application (especially identify the target concepts and architecture of the
+conceptual memory), the specific parameters of the parser are defined
+(especially deciding on a matching function and appraisers). Then, the target
+concepts are indexed, and phrasal patterns assigned to index concepts. Finally,
+the parser is tested and refined.<p>
+In the next chapter, we exemplify this methodology by describing how an indexed
+concept parser was added to the TransAsk military logistics advisor.<p>
+<a name="fn0" href="#fnB0">[1.]</a>With the exception that the version of
+DEF-FRAME in the Appendix defines concepts, abstraction relationships and
+attribute/value relationships with one form.<p>
+<a name="fn1" href="#fnB1">[2.]</a>As stated in Chapter 5, the information
+value of an index concept is , where r is the number of times the index concept
+is assigned to target concepts, and n is the number of index concepts.<p>
+<a name="fn2" href="#fnB2">[3.]</a>Note that by the algorithm given for
+indexed concept parsing in Chapter 5, a target concept is not scored unless at
+least one index concept associated with the concept is seen in the input. This
+means that the bias towards expected target concepts does not come into play
+unless one of its associated indexed concepts is seen.
+
+<P><hr size=4>
+</body></html>
