@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; utf-8">
+  <link type="text/css" rel="stylesheet" href="../css/mission.css">
+
+<script language="JavaScript" type="text/javascript" src="../lib/behaviour.js">
+</script><!-- panning and zooming -->
+
+<script language="JavaScript" type="text/javascript" src="../lib/gsv.js">
+</script><!-- toolman scripts -->
+
+<script language="JavaScript" type="text/javascript" src="../lib/org/tool-man/core.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/org/tool-man/events.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/org/tool-man/css.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/org/tool-man/coordinates.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/org/tool-man/drag.js">
+</script><!-- critical target/mission definition code -->
+
+<script language="JavaScript" type="text/javascript" src="../lib/gov/nasa/apex/ajax.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/gov/nasa/apex/mapinfo.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/gov/nasa/apex/targetinfo.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/gov/nasa/apex/target.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../lib/gov/nasa/apex/closable.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../js/behaviour_rules.js">
+</script>
+<script language="JavaScript" type="text/javascript" src="../js/onload.js">
+</script>
+
+  <title>Mission Planning Interface</title>
+</head>
+
+<body>
+  <div class="imageViewer base_layer" id="map">
+    <div class="well"></div>
+
+    <div class="surface"></div>
+
+    <div class="map_title closable draggable info_layer" id="map_title"><p id="map_title_text"></p></div>
+
+    <div class="map_notes closable draggable info_layer" id="map_notes"><p id="map_notes_text"></p></div>
+
+    <p class="status">&nbsp;</p>
+  </div>
+
+  <div class="zoom_control">
+    <p class="zoom"><img class="up" src="../images/zoom_in.png" id="zoom_up" title="Zoom up" name="zoom_up"><img class="up" src="../images/zoom_out.png" id="zoom_down" title="Zoom down" name="zoom_down"</p>
+  </div>
+
+  <div id="target_panel" class="panel action_layer closable">
+    <div id="target_handle" class="action_layer">&nbsp;</div>
+    <fieldset class="target">
+      <legend class="target">Drag target to add</legend>
+
+      <div class="tsource info_layer" id="source_location">
+        <img name="source_image" id="source_image" class="tsource action_layer" src="../images/markers/circle_gray.png" alt="Target">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Target Values</legend>
+
+      <div class="pselector action_layer">
+        <label id="name_label" for="name_input">Name:</label> <input class="value-input" name="target_name" id="name_input" size=
+        "18" value="" maxlength="18" onkeypress="return tabOnEnter(this,event);">
+      </div>
+
+      <div class="pselector action_layer">
+        <label id="utm_label" for="utm_easting_input">Easting/Northing UTM</label><input class="value-input" name="utm_easting_input" id="utm_easting_input" size=
+		"7" value="" maxlength="7" onkeypress="return tabOnEnter(this,event);">
+	 <input class="value-input" name="utm_northing_input" id="utm_northing_input" size=
+		"7" value="" maxlength="7" onkeypress="return tabOnEnter(this,event);">
+      </div>
+ <div class="pselector action_layer">
+        <label for="utm_height_input">Height: </label>
+	 <input class="value-input" name="utm_height_input" id="utm_height_input" size=
+		"7" value="" maxlength="7" onkeypress="return tabOnEnter(this,event);">
+	 <img src="../images/up.png" alt="up" title="increase UTM height" id="utm_height_up" class="utm_height_control">
+         <img src="../images/down.png" alt="down" title="decrease UTM height"  id="utm_height_down" class="utm_height_control">
+      </div>
+      <div class="pselector action_layer">
+        <label id="condition_label" for="condition_input">Detect:</label> <input class="value-input" name="condition" id=
+        "condition_input" size="18" value="" onkeypress="return tabOnEnter(this,event);">
+      </div>
+
+      <div class="pselector action_layer">
+        <label id="target_value_label" for="target_value">Value:</label> <input class="value-input" name="target_value" id=
+        "value_input" size="3" maxlength="3" onkeypress="return tabOnEnter(this,event);"> (0-100)
+      </div>
+
+      <div class="pselector action_layer">
+        <label id="probability_label" for="probability_input">Probability (%):</label> <input class="value-input" name=
+        "target_probability" id="probability_input" size="3" maxlength="3" onkeypress="return tabOnEnter(this,event);"> 
+         (0-100) per <select size="1" name="time_unit" id="time_unit_input">
+          <option value="none" selected>
+            Please choose...
+          </option>
+
+          <option value="1">
+            second
+          </option>
+
+          <option value="60">
+            minute
+          </option>
+
+          <option value="3600">
+            hour
+          </option>
+
+          <option value="86400">
+            day (24 hours)
+          </option>
+
+          <option value="604800">
+            week (7 days)
+          </option>
+
+          <option value="254038680">
+            year (365.25 days)
+          </option>
+        </select>
+      </div>
+
+      <div class="pselector action_layer">
+        <label id="target_cost_accrual_label" for="cost_accrual_input">Cost accrual rate:</label> <input class="value-input" name=
+        "target_cost_accrual" id="cost_accrual_input" size="3" maxlength="3" onkeypress="return tabOnEnter(this,event);"> (0-100)
+      </div>
+
+      <div class="pselector action_layer">
+        <label id="maneuver_label" for="maneuver_input">Maneuver:</label> <select size="1" name="maneuver" id="maneuver_input">
+          <option value="none" selected>
+            Please choose...
+          </option>
+
+          <option value="pause-and-stare">
+            Pause and Stare
+          </option>
+
+          <option value="overfly">
+            Overfly
+          </option>
+
+          <option value="flyby">
+            Flyby
+          </option>
+
+          <option value="up-and-over-2">
+            Up and over 2
+          </option>
+
+          <option value="pirouette">
+            Pirouette
+          </option>
+
+          <option value="up-and-over-3">
+            Up and over 3
+          </option>
+
+          <option value="scan">
+            Scan
+          </option>
+
+          <option value="area-sweep">
+            Area sweep
+          </option>
+
+          <option value="area-spiral">
+            Area spiral
+          </option>
+        </select>
+      </div>
+      <div class="pselector action_layer"  style="display:none">
+        <label id="sensing_label" for="sensing_input">At target sensing:</label> <select size="1" name="sensing" id=
+        "sensing_input">
+          <option value="none" selected>
+            Please choose...
+          </option>
+
+          <option value="still-image">
+            Still Image
+          </option>
+
+          <option value="video:pointing">
+            Video: pointing
+          </option>
+
+          <option value="video:strafing">
+            Video: strafing
+          </option>
+
+          <option value="video:coodinated">
+            Video: coordinated
+          </option>
+
+          <option value="lidar-map">
+            LIDAR map
+          </option>
+        </select>
+      </div>
+
+      <div class="pselector action_layer" style="display:none">
+        <label id="data_handling_label" for="data_handling_input">At target data handling:</label> <select multiple size="3" name=
+        "data_handling" id="data_handling_input">
+          <option value="store">
+            Store
+          </option>
+
+          <option value="xmit">
+            Transmit
+          </option>
+
+          <option value="auto-analysis">
+            Auto-analysis
+          </option>
+
+          <option value="assisted-analysis">
+            Assisted analysis
+          </option>
+        </select>
+      </div><br>
+      <!-- grr, need this with floats -->
+    </fieldset>
+
+    <div>
+      <button type="button" id="clear_button">Clear</button> <button type="button" value="send" id="send_button">Send</button>
+    </div>
+  </div>
+  
+
+ <div id="map_info_panel" class="panel action_layer closable">
+   <div id="map_info_handle" class="action_layer">&nbsp;</div>
+   <fieldset>
+      <legend>Map Parameters</legend>
+      <div class="pselector action_layer">
+	<label id="map_select_label" for="map_select_input">Map to use:</label>
+	<select size="1" name="map_selection" id="map_selection_input"></select>
+      </div>
+   
+      <p>Note: The Map Info parameters are stored in the
+	file <span id="map_info_text" class=
+		   "code">../xml/map_definition.xml</span>.</p>
+   
+      <div class="pselector action_layer">
+	<label id="target_select_label" for="target_select_input">Stored targets to load:</label>
+	<select size="1" name="target_selection" id="target_selection_input"></select>
+      </div>
+
+      <p>Note: The Target sets are stored in the file
+	<span id="target_info_text" class=
+              "code">../xml/target_definition.xml</span>.</p>
+   </fieldset>
+ </div>
+ 
+ <div id="targetsink">&nbsp;</div>
+<script type="text/javascript">
+Behaviour.addLoadEvent(do_onload);
+</script>
+</body>
+</html>

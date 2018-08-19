@@ -1,0 +1,132 @@
+Behaviour.register({
+    /* zooming rules */
+
+    // BUG: resizing doesn't work.
+//     'body' : 
+//     function (el) {
+//       //alert('creating resize ...' + window);
+//       window.onresize = function () {
+// 	//alert('resizing...');
+// 	var md = document.missionDef;
+// 	//alert('md is: ' + md);
+// 	if (md) {
+// 	  var mi = md.currentMapInfo();
+// 	  var mapel = md.imageViewer();
+// 	  //alert ('mapzooming is: ' + mi.mapZooming);
+// 	  if ( mi.mapZooming ) {
+// 	    resizeViewer(mapel);
+// 	    //alert('done resizing');
+// 	  }
+// 	}
+//       }
+//     },
+
+    '#zoom_up' : 
+    function(el) {
+      el.onclick = 
+	function() {
+	var map  = document.getElementById("map");
+	if (map) {
+          zoomImageUp(map, undefined);
+	}
+	return false;
+      }
+    },
+      
+      '#zoom_down' : 
+    function(el) {
+      el.onclick = 
+	function() {
+	var map = document.getElementById("map");
+	if (map) {
+	  zoomImageDown(map, undefined);
+	}
+	return false;
+      }
+    },
+
+      '#zoom_dump' : 
+    function(el) {
+      el.onclick = 
+	function() {
+	var map = document.getElementById("map");
+	if (map) {
+	  dumpInfo(el.parentNode.parentNode);
+	}
+	return false;
+      }
+    },
+
+      '.draggable' :
+    function (el) {
+      ToolMan.drag().createSimpleGroup(el);
+    },
+
+      '#target_handle' :
+    function(el) {
+      var target = document.getElementById("target_panel");
+      if (target) {
+	var group = ToolMan.drag().createSimpleGroup(target,el);
+	var fn = function () {document.missionDef.repositionSourceTarget();};
+	group.register("dragmove",fn);
+	group.register("dragend",fn);
+      }
+    },
+
+      '#map_info_handle' :
+    function(el) {
+      var target = document.getElementById("map_info_panel");
+      if (target) {
+	var group = ToolMan.drag().createSimpleGroup(target,el);
+      }
+    },
+
+      '#utm_height_up' :
+
+    function(el) {
+      el.onclick = function () { 
+	var utm_i = document.getElementById("utm_height_input");
+	if (utm_i) {
+	  var miss =  document.missionDef; 
+	   var v = utm_i.value;
+	   if (miss && v) {
+	     utm_i.value = parseFloat(utm_i.value) + 5;
+	     var target = miss.currentTarget() || miss.currentSourceTarget();
+	     var attr = 'utm_height';
+	     miss.setTargetAttributeValue(target,attr,utm_i.value);
+	   }
+	 };
+       }
+    },
+
+      '#utm_height_down' :
+
+    function(el) {
+      el.onclick = function () { 
+	var utm_i = document.getElementById("utm_height_input");
+	if (utm_i) {
+	  var miss =  document.missionDef; 
+	   var v = utm_i.value;
+	   if (miss && v) {
+	     utm_i.value = parseFloat(utm_i.value) - 5;
+	     var target = miss.currentTarget() || miss.currentSourceTarget();
+	     var attr = 'utm_height';
+	     miss.setTargetAttributeValue(target,attr,utm_i.value);
+	   }
+	 };
+       }
+    },
+
+      '#send_button' :
+    function (el) {
+      el.onclick = function () {
+	var miss =  document.missionDef;
+	if (miss) {
+	  alert(miss.targetsToXML());
+	}
+      }
+    }
+
+
+  });
+
