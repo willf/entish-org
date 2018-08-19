@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>2004 Sacred Harp Singings (Denson Book)</title>
+    <script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAVqfVBXTIff8sHFOGeGDwORRSb5xKe_-14XFBt6tYPA0NTWVhXRT7BtNjKXfKaz7o8j4uS-Z3InB_8Q" type="text/javascript"></script>
+  </head>
+<center>
+<h3>Sacred Harp Singings, 2004</h3>
+  <body>
+    <div id="map" style="width: 640px; height: 500px"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+
+// Center the map on Arab, Alabama
+var map = new GMap(document.getElementById("map"));
+map.addControl(new GSmallMapControl());
+map.addControl(new GMapTypeControl());
+map.centerAndZoom(new GPoint(-98, 39), 13); // around us center
+
+
+// Create a point from a lat,lng with marker text
+
+function mark(lat,lng,text) 
+{
+ var pt = new GPoint(lat,lng);
+ var mk = new GMarker(pt);
+ var html = text;
+  GEvent.addListener(mk, "click", function() {
+    mk.openInfoWindowHtml(html);
+  });
+ map.addOverlay(mk);
+}
+
+mark(-79.62, 43.65, "Toronto, Ontario");
+mark(-71.41, 45.26, "Waterville, Quebec");
+mark(-85.826664, 33.663003, "Anniston, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Ashland, Alabama");
+mark(-86.098413, 34.009818, "Attalla, Alabama");
+mark(-85.480823, 32.597684, "Auburn, Alabama");
+mark(-87.777183, 30.883446, "Bay Minette, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.554768, 33.978461, "Blount County, Alabama");
+mark(-86.588778, 34.081911, "Blountsville, Alabama");
+mark(-87.285406, 33.819888, "Boldo, Alabama");
+mark(-87.285406, 33.819888, "Boldo, Alabama");
+mark(-85.288745, 32.891233, "Chambers County, Alabama");
+mark(-85.62193, 34.184158, "Cherokee County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+
+
+    
+    //]]>
+    </script>
+</center>
+  </body>
+</html>
+

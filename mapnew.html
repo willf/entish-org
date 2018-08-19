@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>2004 Sacred Harp Singings (Denson Book)</title>
+    <script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAVqfVBXTIff8sHFOGeGDwORRSb5xKe_-14XFBt6tYPA0NTWVhXRT7BtNjKXfKaz7o8j4uS-Z3InB_8Q" type="text/javascript"></script>
+  </head>
+<center>
+<h3>Sacred Harp Singings, 2004</h3>
+  <body>
+    <div id="map" style="width: 640px; height: 500px"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+
+GMap.prototype.addOverlays=function(a){
+        var b=this;
+        for (i=0;i<a.length;i++) {
+                try {
+                        this.overlays.push(a[i]);
+                        a[i].initialize(this);
+                        a[i].redraw(true);
+                } catch(ex) {
+                        alert('err: ' + i + ', ' + ex.toString());
+                }
+        }
+        this.reOrderOverlays();
+
+};
+
+// Center the map on Arab, Alabama
+var map = new GMap(document.getElementById("map"));
+map.addControl(new GSmallMapControl());
+map.addControl(new GMapTypeControl());
+map.centerAndZoom(new GPoint(-98, 39), 13); // around us center
+var marker_cnt = 0;
+var markers = [];
+
+// Create a point from a lat,lng with marker text
+
+function mark(lat,lng,text) 
+{
+ var pt = new GPoint(lat,lng);
+ var mk = new GMarker(pt);
+ var html = text;
+  GEvent.addListener(mk, "click", function() {
+    mk.openInfoWindowHtml(html);
+  });
+  markers[marker_cnt++] = mk;
+}
+
+mark(-79.62, 43.65, "Toronto, Ontario");
+mark(-71.41, 45.26, "Waterville, Quebec");
+mark(-85.826664, 33.663003, "Anniston, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Arab, Alabama");
+mark(-86.498613, 34.327863, "Ashland, Alabama");
+mark(-86.098413, 34.009818, "Attalla, Alabama");
+mark(-85.480823, 32.597684, "Auburn, Alabama");
+mark(-87.777183, 30.883446, "Bay Minette, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.81274, 33.524755, "Birmingham, Alabama");
+mark(-86.554768, 33.978461, "Blount County, Alabama");
+mark(-86.588778, 34.081911, "Blountsville, Alabama");
+mark(-87.285406, 33.819888, "Boldo, Alabama");
+mark(-87.285406, 33.819888, "Boldo, Alabama");
+mark(-85.288745, 32.891233, "Chambers County, Alabama");
+mark(-85.62193, 34.184158, "Cherokee County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.511937, 33.647948, "Cleburne County, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+mark(-85.861523, 34.265432, "Collinsville, Alabama");
+mark(-86.82805, 33.527872, "Corner, Alabama");
+mark(-86.82805, 33.527872, "Corner, Alabama");
+mark(-86.844996, 34.177508, "Cullman, Alabama");
+mark(-86.844996, 34.177508, "Cullman, Alabama");
+mark(-86.830179, 34.155603, "Cullman County, Alabama");
+mark(-86.830179, 34.155603, "Cullman County, Alabama");
+mark(-86.830179, 34.155603, "Cullman County, Alabama");
+mark(-85.764288, 32.832059, "Dadeville, Alabama");
+mark(-85.639164, 33.055251, "Daviston, Alabama");
+mark(-85.639164, 33.055251, "Daviston, Alabama");
+mark(-87.40439, 34.151642, "Double Springs, Alabama");
+mark(-87.40439, 34.151642, "Double Springs, Alabama");
+mark(-87.40439, 34.151642, "Double Springs, Alabama");
+mark(-86.319967, 34.171631, "Douglas, Alabama");
+mark(-85.915563, 34.607639, "Dutton, Alabama");
+mark(-85.915563, 34.607639, "Dutton, Alabama");
+mark(-87.832358, 33.692068, "Fayette, Alabama");
+mark(-87.832358, 33.692068, "Fayette, Alabama");
+mark(-87.751725, 33.747077, "Fayette County, Alabama");
+mark(-87.751725, 33.747077, "Fayette County, Alabama");
+mark(-85.431759, 33.731103, "Fruithurst, Alabama");
+mark(-86.053043, 33.059988, "Goodwater, Alabama");
+mark(-86.053043, 33.059988, "Goodwater, Alabama");
+mark(-87.903729, 33.321461, "Gordo, Alabama");
+mark(-86.91892, 34.507018, "Gum Pond, Alabama");
+mark(-87.618978, 34.230131, "Haleyville, Alabama");
+mark(-87.618978, 34.230131, "Haleyville, Alabama");
+mark(-85.582701, 33.643754, "Heflin, Alabama");
+mark(-85.582701, 33.643754, "Heflin, Alabama");
+mark(-85.742921, 34.6337, "Henagar, Alabama");
+mark(-85.742921, 34.6337, "Henagar, Alabama");
+mark(-85.742921, 34.6337, "Henagar, Alabama");
+mark(-86.596296, 34.712341, "Huntsville, Alabama");
+mark(-85.673983, 34.703941, "Ider, Alabama");
+mark(-85.673983, 34.703941, "Ider, Alabama");
+mark(-85.673983, 34.703941, "Ider, Alabama");
+mark(-85.673983, 34.703941, "Ider, Alabama");
+mark(-85.673983, 34.703941, "Ider, Alabama");
+mark(-85.760467, 33.815766, "Jacksonville, Alabama");
+mark(-85.760467, 33.815766, "Jacksonville, Alabama");
+mark(-86.82805, 33.527872, "Jefferson County, Alabama");
+mark(-86.82805, 33.527872, "Jefferson County, Alabama");
+mark(-86.82805, 33.527872, "Jefferson County, Alabama");
+mark(-87.540827, 34.040688, "Lynn, Alabama");
+mark(-87.540827, 34.040688, "Lynn, Alabama");
+mark(-87.540827, 34.040688, "Lynn Park, Alabama");
+mark(-86.279118, 32.361538, "Montgomery, Alabama");
+mark(-86.91892, 34.507018, "Morgan County, Alabama");
+mark(-86.91892, 34.507018, "Morgan County, Alabama");
+mark(-85.511937, 33.647948, "Muscadine, Alabama");
+mark(-85.511937, 33.647948, "Muscadine, Alabama");
+mark(-87.604523, 34.091713, "Natural Bridge, Alabama");
+mark(-87.604523, 34.091713, "Natural Bridge, Alabama");
+mark(-87.487814, 33.988571, "Nauvoo, Alabama");
+mark(-87.487814, 33.988571, "Nauvoo, Alabama");
+mark(-87.487814, 33.988571, "Nauvoo, Alabama");
+mark(-87.487814, 33.988571, "Nauvoo, Alabama");
+mark(-87.903729, 33.321461, "Gordo, Alabama");
+mark(-86.478774, 33.942303, "Oneonta, Alabama");
+mark(-86.478774, 33.942303, "Oneonta, Alabama");
+mark(-86.254661, 31.283083, "Opp, Alabama");
+mark(-85.838881, 33.597105, "Oxford, Alabama");
+mark(-85.445563, 33.262424, "Randolph County, Alabama");
+mark(-85.988114, 34.578155, "Section, Alabama");
+mark(-87.086127, 33.823108, "Sipsey, Alabama");
+mark(-86.251068, 33.17836, "Sylacauga, Alabama");
+mark(-87.534607, 33.20654, "Tuscaloosa, Alabama");
+mark(-87.285406, 33.819888, "Walker County, Alabama");
+mark(-87.285406, 33.819888, "Walker County, Alabama");
+mark(-87.285406, 33.819888, "Walker County, Alabama");
+mark(-87.285406, 33.819888, "Walker County, Alabama");
+mark(-87.285406, 33.819888, "Walker County, Alabama");
+mark(-87.80799, 33.928258, "Winfield, Alabama");
+mark(-87.80799, 33.928258, "Winfield, Alabama");
+mark(-87.80799, 33.928258, "Winfield, Alabama");
+mark(-87.418848, 34.151249, "Winston County, Alabama");
+mark(-87.418848, 34.151249, "Winston County, Alabama");
+mark(-87.418848, 34.151249, "Winston County, Alabama");
+mark(-94.14592, 36.181426, "Springdale, Arkansas");
+mark(-119.631845, 34.433687, "Montecito, California");
+mark(-117.038479, 32.969895, "Poway, California");
+mark(-117.038479, 32.969895, "Poway, California");
+mark(-118.375984, 34.086159, "San Pedro, California");
+mark(-122.026252, 36.97205, "Santa Cruz, California");
+mark(-85.66448, 30.174451, "Panama City, Florida");
+mark(-84.281086, 34.073318, "Alpharetta, Georgia");
+mark(-84.281086, 34.073318, "Alpharetta, Georgia");
+mark(-84.281086, 34.073318, "Alpharetta, Georgia");
+mark(-83.383245, 33.955464, "Athens, Georgia");
+mark(-84.403176, 33.759506, "Atlanta, Georgia");
+mark(-85.147213, 33.715933, "Bremen, Georgia");
+mark(-85.147213, 33.715933, "Bremen, Georgia");
+mark(-84.942584, 34.499898, "Calhoun, Georgia");
+mark(-85.076704, 33.580912, "Carrollton, Georgia");
+mark(-85.076704, 33.580912, "Carrollton, Georgia");
+mark(-85.076704, 33.580912, "Carrollton, Georgia");
+mark(-85.076704, 33.580912, "Carrollton, Georgia");
+mark(-85.076704, 33.580912, "Carrollton, Georgia");
+mark(-83.777277, 31.964178, "Cordele, Georgia");
+mark(-83.858729, 33.599243, "Covington, Georgia");
+mark(-84.297732, 33.771355, "Decatur, Georgia");
+mark(-84.297732, 33.771355, "Decatur, Georgia");
+mark(-84.297732, 33.771355, "Decatur, Georgia");
+mark(-84.317694, 33.942751, "Dunwoody, Georgia");
+mark(-84.317694, 33.942751, "Dunwoody, Georgia");
+mark(-82.133891, 31.18272, "Hoboken, Georgia");
+mark(-83.977831, 32.709958, "Knoxville, Georgia");
+mark(-83.651672, 32.834839, "Macon, Georgia");
+mark(-83.651672, 32.834839, "Macon, Georgia");
+mark(-85.179868, 33.631113, "Mt. Zion, Georgia");
+mark(-85.131219, 33.456731, "Roopville, Georgia");
+mark(-85.131219, 33.456731, "Roopville, Georgia");
+mark(-84.171413, 33.805255, "Stone Mountain, Georgia");
+mark(-85.287911, 33.74373, "Tallapoosa, Georgia");
+mark(-85.287911, 33.74373, "Tallapoosa, Georgia");
+mark(-85.287911, 33.74373, "Tallapoosa, Georgia");
+mark(-85.287911, 33.74373, "Tallapoosa, Georgia");
+mark(-84.919982, 33.731909, "Villa Rica, Georgia");
+mark(-87.679365, 41.840675, "Chicago, Illinois");
+mark(-87.679365, 41.840675, "Chicago, Illinois");
+mark(-87.679365, 41.840675, "Chicago, Illinois");
+mark(-87.679365, 41.840675, "Chicago, Illinois");
+mark(-88.944228, 39.851636, "Decatur, Illinois");
+mark(-86.529045, 39.162147, "Bloomington, Indiana");
+mark(-85.836686, 41.582066, "Goshen, Indiana");
+mark(-87.389762, 39.469586, "Terre Haute, Indiana");
+mark(-90.556325, 42.153859, "Emeline, Iowa");
+mark(-86.261098, 37.191169, "Brownsboro, Kentucky");
+mark(-84.730909, 38.054651, "Versailles, Kentucky");
+mark(-90.059011, 29.972754, "New Orleans, Louisiana");
+mark(-90.059011, 29.972754, "New Orleans, Louisiana");
+mark(-69.532547, 44.033409, "Damariscotta, Maine");
+mark(-71.089115, 42.321597, "Boston, Massachusetts");
+mark(-72.657677, 42.327389, "Northampton, Massachusetts");
+mark(-72.573941, 42.587072, "Sunderland, Massachusetts");
+mark(-85.583902, 42.279207, "Kalamazoo, Michigan");
+mark(-83.378689, 42.278188, "Wayne, Michigan");
+mark(-93.268198, 44.964465, "Minneapolis, Minnesota");
+mark(-93.502529, 44.786913, "Shakopee, Minnesota");
+mark(-89.559403, 31.642276, "Collins, Mississippi");
+mark(-88.372761, 34.277717, "Itawamba County, Mississippi");
+mark(-89.526242, 34.359837, "Oxford, Mississippi");
+mark(-89.517949, 32.392083, "Scott County, Mississippi");
+mark(-92.333779, 38.948351, "Columbia, Missouri");
+mark(-91.136528, 38.765482, "Pinckney, Missouri");
+mark(-96.01299, 41.260482, "Omaha, Nebraska");
+mark(-74.211989, 40.822249, "Montclair, New Jersey");
+mark(-106.609991, 35.110703, "Albuquerque, New Mexico");
+mark(-74.033487, 42.705326, "Altamont, New York");
+mark(-75.18871, 43.274087, "Barneveld, New York");
+mark(-77.443015, 43.099433, "Fairport, New York");
+mark(-73.929145, 42.64966, "Voorheesville, New York");
+mark(-75.376538, 42.931591, "Waterville, New York");
+mark(-78.800208, 35.778919, "Cary, North Carolina");
+mark(-84.417006, 39.836153, "Brookville, Ohio");
+mark(-84.503088, 39.13616, "Cincinnati, Ohio");
+mark(-82.216702, 41.28835, "Oberlin, Ohio");
+mark(-84.746552, 39.507452, "Oxford, Ohio");
+mark(-123.110345, 44.057663, "Eugene, Oregon");
+mark(-122.640155, 45.52304, "Portland, Oregon");
+mark(-75.914242, 40.377743, "Berks County, Pennsylvania");
+mark(-75.350636, 39.912978, "Chadds Ford, Pennsylvania");
+mark(-75.968137, 40.443893, "Leesport, Pennsylvania");
+mark(-71.422132, 41.82355, "Providence, Rhode Island");
+mark(-82.385428, 34.844313, "Greenville, South Carolina");
+mark(-81.927603, 34.946771, "Spartanburg, South Carolina");
+mark(-87.375807, 35.205257, "Five Points, Tennessee");
+mark(-86.762141, 36.154838, "Nashville, Tennessee");
+mark(-86.762141, 36.154838, "Nashville, Tennessee");
+mark(-85.176996, 35.258538, "Soddy Daisy, Tennessee");
+mark(-96.397004, 30.161901, "Brenham, Texas");
+mark(-96.314464, 30.601433, "College Station, Texas");
+mark(-96.787166, 32.799528, "Dallas, Texas");
+mark(-97.33379, 32.738881, "Fort Worth, Texas");
+mark(-94.802732, 32.153938, "Henderson, Texas");
+mark(-94.802732, 32.153938, "Henderson, Texas");
+mark(-95.912623, 30.950915, "Madisonville, Texas");
+mark(-97.668672, 29.815078, "McMahan, Texas");
+mark(-95.297019, 32.334795, "New Harmony, Texas");
+mark(-97.15593, 31.551516, "Waco, Texas");
+mark(-111.892622, 40.7547, "Salt Lake City, Utah");
+mark(-72.564186, 42.856099, "Brattleboro, Vermont");
+mark(-72.058218, 44.0811, "Newbury, Vermont");
+mark(-71.980352, 44.642374, "West Burke, Vermont");
+mark(-77.982395, 39.150973, "Berryville, Virginia");
+mark(-78.486474, 38.034506, "Charlottesville, Virginia");
+mark(-77.283249, 39.001609, "Great Falls, Virginia");
+mark(-77.461507, 37.538346, "Richmond, Virginia");
+mark(-122.333144, 47.626353, "Seattle, Washington");
+mark(-90.131161, 42.963373, "Dodgeville, Wisconsin");
+
+map.addOverlays(markers);
+    
+    //]]>
+    </script>
+</center>
+  </body>
+</html>
+

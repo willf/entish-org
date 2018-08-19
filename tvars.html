@@ -1,0 +1,50 @@
+<html>
+<head><title>Possible forms for indexical variables</title>
+</head>
+<body>
+<h3>Possible forms for indexical variables</h3>
+<p>
+
+Indexical variables are really function calls; when the variable
+'evaluator' sees an indexical variable, it calls the function by the
+same name (with a task as its parameter). Remember that
+currently <b>?var</b> refers to a 'standard' variable, and
+that <b>&lt;?var&gt;</b> refers to a variable that should be bound at
+its time of access. The question is: how should indexical variables be notated? I think this list contains the total set of reasonable possibilities. Which do you think is clearest? <b>this-task</b> is the current task;  <b>now</b> is the current time; <b>self</b> is the agent of the current task; <b>tot</b> is time on task; <b>met</b> is mission elapsed time (time since application start).
+
+</p>
+<table>
+<tr><td colspan="2"><i>Paired delimiters</i></td></tr>
+<tr><td>{this-task}<br />{now}<br />{self}<br />{tot}<br />{met}<br /></td><td>{?this-task}<br />{?now}<br />{?self}<br />{?tot}<br />{?met}<br /></td></tr>
+<tr><td>[this-task]<br />[now]<br />[self]<br />[tot]<br />[met]<br /></td><td>[?this-task]<br />[?now]<br />[?self]<br />[?tot]<br />[?met]<br /></td></tr>
+<tr><td>&gt;this-task&lt;<br />&gt;now&lt;<br />&gt;self&lt;<br />&gt;tot&lt;<br />&gt;met&lt;<br /></td><td>&gt;?this-task&lt;<br />&gt;?now&lt;<br />&gt;?self&lt;<br />&gt;?tot&lt;<br />&gt;?met&lt;<br /></td></tr>
+<tr><td>\this-task/<br />\now/<br />\self/<br />\tot/<br />\met/<br /></td><td>\?this-task/<br />\?now/<br />\?self/<br />\?tot/<br />\?met/<br /></td></tr>
+<tr><td>/this-task\<br />/now\<br />/self\<br />/tot\<br />/met\<br /></td><td>/?this-task\<br />/?now\<br />/?self\<br />/?tot\<br />/?met\<br /></td></tr>
+<tr><td>`this-task'<br />`now'<br />`self'<br />`tot'<br />`met'<br /></td><td>`?this-task'<br />`?now'<br />`?self'<br />`?tot'<br />`?met'<br /></td></tr>
+<tr><td colspan="2"><i>Delimiters the same on either side</i></td></tr>
+<tr><td>!this-task!<br />!now!<br />!self!<br />!tot!<br />!met!<br /></td><td>!?this-task!<br />!?now!<br />!?self!<br />!?tot!<br />!?met!<br /></td></tr>
+<tr><td>"this-task"<br />"now"<br />"self"<br />"tot"<br />"met"<br /></td><td>"?this-task"<br />"?now"<br />"?self"<br />"?tot"<br />"?met"<br /></td></tr>
+<tr><td>#this-task#<br />#now#<br />#self#<br />#tot#<br />#met#<br /></td><td>#?this-task#<br />#?now#<br />#?self#<br />#?tot#<br />#?met#<br /></td></tr>
+<tr><td>$this-task$<br />$now$<br />$self$<br />$tot$<br />$met$<br /></td><td>$?this-task$<br />$?now$<br />$?self$<br />$?tot$<br />$?met$<br /></td></tr>
+<tr><td>%this-task%<br />%now%<br />%self%<br />%tot%<br />%met%<br /></td><td>%?this-task%<br />%?now%<br />%?self%<br />%?tot%<br />%?met%<br /></td></tr>
+<tr><td>&this-task&<br />&now&<br />&self&<br />&tot&<br />&met&<br /></td><td>&?this-task&<br />&?now&<br />&?self&<br />&?tot&<br />&?met&<br /></td></tr>
+<tr><td>'this-task'<br />'now'<br />'self'<br />'tot'<br />'met'<br /></td><td>'?this-task'<br />'?now'<br />'?self'<br />'?tot'<br />'?met'<br /></td></tr>
+<tr><td>*this-task*<br />*now*<br />*self*<br />*tot*<br />*met*<br /></td><td>*?this-task*<br />*?now*<br />*?self*<br />*?tot*<br />*?met*<br /></td></tr>
+<tr><td>+this-task+<br />+now+<br />+self+<br />+tot+<br />+met+<br /></td><td>+?this-task+<br />+?now+<br />+?self+<br />+?tot+<br />+?met+<br /></td></tr>
+<tr><td>,this-task,<br />,now,<br />,self,<br />,tot,<br />,met,<br /></td><td>,?this-task,<br />,?now,<br />,?self,<br />,?tot,<br />,?met,<br /></td></tr>
+<tr><td>-this-task-<br />-now-<br />-self-<br />-tot-<br />-met-<br /></td><td>-?this-task-<br />-?now-<br />-?self-<br />-?tot-<br />-?met-<br /></td></tr>
+<tr><td>.this-task.<br />.now.<br />.self.<br />.tot.<br />.met.<br /></td><td>.?this-task.<br />.?now.<br />.?self.<br />.?tot.<br />.?met.<br /></td></tr>
+<tr><td>/this-task/<br />/now/<br />/self/<br />/tot/<br />/met/<br /></td><td>/?this-task/<br />/?now/<br />/?self/<br />/?tot/<br />/?met/<br /></td></tr>
+<tr><td>:this-task:<br />:now:<br />:self:<br />:tot:<br />:met:<br /></td><td>:?this-task:<br />:?now:<br />:?self:<br />:?tot:<br />:?met:<br /></td></tr>
+<tr><td>;this-task;<br />;now;<br />;self;<br />;tot;<br />;met;<br /></td><td>;?this-task;<br />;?now;<br />;?self;<br />;?tot;<br />;?met;<br /></td></tr>
+<tr><td><this-task<<br /><now<<br /><self<<br /><tot<<br /><met<<br /></td><td><?this-task<<br /><?now<<br /><?self<<br /><?tot<<br /><?met<<br /></td></tr>
+<tr><td>=this-task=<br />=now=<br />=self=<br />=tot=<br />=met=<br /></td><td>=?this-task=<br />=?now=<br />=?self=<br />=?tot=<br />=?met=<br /></td></tr>
+<tr><td>@this-task@<br />@now@<br />@self@<br />@tot@<br />@met@<br /></td><td>@?this-task@<br />@?now@<br />@?self@<br />@?tot@<br />@?met@<br /></td></tr>
+<tr><td>\this-task\<br />\now\<br />\self\<br />\tot\<br />\met\<br /></td><td>\?this-task\<br />\?now\<br />\?self\<br />\?tot\<br />\?met\<br /></td></tr>
+<tr><td>^this-task^<br />^now^<br />^self^<br />^tot^<br />^met^<br /></td><td>^?this-task^<br />^?now^<br />^?self^<br />^?tot^<br />^?met^<br /></td></tr>
+<tr><td>_this-task_<br />_now_<br />_self_<br />_tot_<br />_met_<br /></td><td>_?this-task_<br />_?now_<br />_?self_<br />_?tot_<br />_?met_<br /></td></tr>
+<tr><td>`this-task`<br />`now`<br />`self`<br />`tot`<br />`met`<br /></td><td>`?this-task`<br />`?now`<br />`?self`<br />`?tot`<br />`?met`<br /></td></tr>
+<tr><td>~this-task~<br />~now~<br />~self~<br />~tot~<br />~met~<br /></td><td>~?this-task~<br />~?now~<br />~?self~<br />~?tot~<br />~?met~<br /></td></tr>
+</table>
+</body>
+</html>
