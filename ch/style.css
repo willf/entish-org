@@ -1,0 +1,48 @@
+/* css document */
+/* links */
+body { 
+  background-color: #e6e6f4;
+  font-size: 12px;
+  font-family: verdana, arial, helvetica;
+ }
+A:link	{
+ color:#005500; /* 009900;  */
+text-decoration: none;;
+	}
+A:hover	{
+color:#257547;
+text-decoration: underline;
+	}
+A:active	{
+color:#257547;
+text-decoration: underline;
+	}
+A:visited	{
+color:#257547; 
+text-decoration:none;
+	}
+
+h1 { 
+  color: #005500; /* 009900; */
+  font-weight: bold; 
+  font-size: 16pt;
+  line-height: 14pt; 
+  font-family: arial; 
+  font-variant: normal;
+  font-style: normal;
+  text-align: center; 
+}
+
+h2 { 
+  color: #005500;
+  font-weight: bold; 
+  font-size: 14pt;
+  font-family: arial; 
+  font-variant: normal;
+  font-style: normal;
+  text-align: center;
+}
+
+p { 
+text-align: center;
+ }
