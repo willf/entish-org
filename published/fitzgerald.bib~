@@ -1,0 +1,10 @@
+@inproceedings{ fitzgerald94evaluating,
+    author = "Will Fitzgerald and Christopher K. Riesbeck",
+    title = "Evaluating Embedded Parsers",
+    booktitle = "Knowledge Representation for Natural Language Processing in Implemented Systems; Papers from the 1994 {AAAI} Fall Symposium. New Orleans, {LA}, 1--4 Nov 1994",
+    publisher = "AAAI Press",
+    address = "Menlo Park, CA",
+    pages = "31--37",
+    year = "1994",
+    url = "citeseer.nj.nec.com/101280.html" } 
+
