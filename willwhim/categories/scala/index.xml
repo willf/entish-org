@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Will&#39;s Whims</title>
+    <link>http://example.org/categories/scala/</link>
+    <description>Recent content in Scala on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 May 2014 15:29:28 +0000</lastBuildDate><atom:link href="http://example.org/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using lazy vals in a state object</title>
+      <link>http://example.org/2014/05/28/using-lazy-vals-state-object/</link>
+      <pubDate>Wed, 28 May 2014 15:29:28 +0000</pubDate>
+      
+      <guid>http://example.org/2014/05/28/using-lazy-vals-state-object/</guid>
+      <description>I was writing some Scala code which had a long series of somewhat complicated and expensive calculations to make, and in many cases I wanted to log the intermediate calculations. The first version of this code was quite complicated looking, because the calculations of the intermediate values and the logging statements were all intermixed.
+But then I realized that I could create a separate object which maintained the state, and which performed the calculations, too.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day: Using Streams and a Fast Memoization Method</title>
+      <link>http://example.org/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/</link>
+      <pubDate>Sat, 13 Apr 2013 21:34:31 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/</guid>
+      <description>Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day: Fibonacci(n) in O(lg(n)) steps</title>
+      <link>http://example.org/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/</link>
+      <pubDate>Tue, 02 Apr 2013 13:30:28 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/</guid>
+      <description>I am taking Martin Odensky’s Functional Programming in Scala class, and discovered (or rediscovered) that the Fibonacci function is discussed in SICP (Structure and Interpretation of Computer Programs, the book that Odensky seems to be basing much of his Functional Programming in Scala course on).
+Even more interesting is that a Fibonacci function which runs in O(lg(n)) steps is presented — that is, it takes about lg(n) steps to compute the _n_th Fibonacci number, instead of n steps.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day</title>
+      <link>http://example.org/2013/03/21/a-fibonacci-a-day-overview/</link>
+      <pubDate>Thu, 21 Mar 2013 16:20:01 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/21/a-fibonacci-a-day-overview/</guid>
+      <description>The goal of this series was to come up with a general, efficient fibonacci function that goes beyond the typical computer science introduction. The version we developed is fast, efficient with respect to memory, and general. I’d be glad to hear comments.
+The Series:
+ A Fibonacci A Day — Introduction A Fibonacci A Day — Recursive Version A Fibonacci A Day — Special Pi Day Post A Fibonacci A Day — Iterative Version A Fibonacci A Day — Out of Bounds A Fibonacci A Day — Speedy Recursion A Fibonacci A Day — Golden Ration Version A Fibonacci A Day — Memoization A Fibonacci A Day — Benchmarking A Fibonacci A Day — Extending to Negative Numbers A Fibonacci A Day — Fibonacci in O(lg(n)) Steps A Fibonacci A Day — Using Streams and a Fast Memoization Method   </description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Extending to Negative Numbers</title>
+      <link>http://example.org/2013/03/21/a-fibonacci-a-day-extending-to-negative-numbers/</link>
+      <pubDate>Thu, 21 Mar 2013 12:00:59 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/21/a-fibonacci-a-day-extending-to-negative-numbers/</guid>
+      <description>We are now confident that the fast recursive version is the best of the algorithms we have explored — it is fast, and can handle large values of the Fibonacci function.
+I haven’t been happy, though, with returning a negative -1 when the function is called with a negative number — this feels like a kind of silent error we were trying to avoid in going to BigInts. Fortunately, it turns out that there is a natural extension of the Fibonacci sequence to negative numbers.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Benchmarking</title>
+      <link>http://example.org/2013/03/20/a-fibonacci-a-day-benchmarking/</link>
+      <pubDate>Wed, 20 Mar 2013 10:30:54 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/20/a-fibonacci-a-day-benchmarking/</guid>
+      <description>The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Memoization</title>
+      <link>http://example.org/2013/03/20/a-fibonacci-a-day-memoization/</link>
+      <pubDate>Wed, 20 Mar 2013 10:00:17 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/20/a-fibonacci-a-day-memoization/</guid>
+      <description>Although the iterative recursive version is stateless, it looks different from the standard mathematical definition. The recursive version is a very close mapping, but it’s extremely inefficient. One way to overcome the inefficiencies is to dynamically record (or memoize) previous calculations of F(n). The idea is simple — if we already know the values of F(n – 1) and F(n – 2), we can simply add them without having to do the difficult steps in recreating them.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Golden Ratio version</title>
+      <link>http://example.org/2013/03/19/a-fibonacci-a-day-golden-ratio-version/</link>
+      <pubDate>Tue, 19 Mar 2013 13:00:02 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/19/a-fibonacci-a-day-golden-ratio-version/</guid>
+      <description>The Fibonacci sequence has a very strong connection to the Golden Ratio (φ, or Phi). φ is defined as (√5 + 1)/2, or approximately 1.618, and has lots of special properties. Ron Knott has a web page with over 300 Fibonacci and φ formulas. One of these is this direct formula: F(n) = round(φn/√5), where the rounding function does rounding to the nearest whole number.
+This gives us a quite an efficient function:</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Speedy Recursion</title>
+      <link>http://example.org/2013/03/18/a-fibonacci-a-day-speedy-recursion/</link>
+      <pubDate>Mon, 18 Mar 2013 13:00:02 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/18/a-fibonacci-a-day-speedy-recursion/</guid>
+      <description>We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Out of Bounds</title>
+      <link>http://example.org/2013/03/17/a-fibonacci-a-day-out-of-bounds/</link>
+      <pubDate>Sun, 17 Mar 2013 13:00:09 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/17/a-fibonacci-a-day-out-of-bounds/</guid>
+      <description>Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Iterative version</title>
+      <link>http://example.org/2013/03/15/a-fibonacci-a-day-iterative-version/</link>
+      <pubDate>Fri, 15 Mar 2013 13:00:43 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/15/a-fibonacci-a-day-iterative-version/</guid>
+      <description>Yesterday’s Fibonacci function was recursive, but we saw that it was extremely inefficient. Recursive functions typically break down a problem into smaller pieces, solve the smaller pieces, then combine the results into a final result, where “breaking down” a problem is done by the recursive function calling itself on a smaller version of itself. But, as we saw, it’s possible that the number of times this may happen has to be controlled, or gross inefficiencies may occur; this sometimes gives recursion a bad name.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Recursive version</title>
+      <link>http://example.org/2013/03/14/a-fibonacci-a-day-recursive-version/</link>
+      <pubDate>Thu, 14 Mar 2013 13:00:35 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/14/a-fibonacci-a-day-recursive-version/</guid>
+      <description>The definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+This naturally leads to the following recursive function (here, as in all of the versions of A Fibonacci A Day, in Scala):
+Note that because we are in the world of Scala, we have to declare that we are writing a function on Ints (that is, the Java/Scala representation of 32-bit signed numbers).</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day Introduction</title>
+      <link>http://example.org/2013/03/13/a-fibonacci-a-day-introduction/</link>
+      <pubDate>Thu, 14 Mar 2013 01:20:40 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/13/a-fibonacci-a-day-introduction/</guid>
+      <description>The Fibonacci sequence is the sequence of numbers 0,1,1,2,3,5,8, … such that the nth number in the sequence is the sum of the previous two numbers; and the the first two numbers are defined to be 0 and 1.
+The Fibonacci function is a function which returns the nth number in the Fibonacci sequence. It’s kind of a famous function in computer science when people are first learning about recursive functions.</description>
+    </item>
+    
+    <item>
+      <title>Refactoring without Monoids or Endomorphisms</title>
+      <link>http://example.org/2013/03/04/refactoring-without-monoids-or-endomorphisms/</link>
+      <pubDate>Mon, 04 Mar 2013 16:45:44 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/04/refactoring-without-monoids-or-endomorphisms/</guid>
+      <description>Debasish Ghosh wrote an interesting post, An exercise in Refactoring – Playing around with Monoids and Endomorphisms, in which he describes refactoring some imperative code and writing it in a more functional style. I especially like his clear description on what monoids and endomorphisms are. I suspect the main point of his article is to describe these things, and how them might be useful, and I think he succeeds, at least in the first part.</description>
+    </item>
+    
+    <item>
+      <title>Using IntelliJ with Twitter’s Scalding</title>
+      <link>http://example.org/2013/02/28/using-intellij-with-twitters-scalding/</link>
+      <pubDate>Thu, 28 Feb 2013 20:47:15 +0000</pubDate>
+      
+      <guid>http://example.org/2013/02/28/using-intellij-with-twitters-scalding/</guid>
+      <description>It would be nice to have an IDE while writing Scalding code, to do syntax checking and method suggestion. I was able to get sbt, Scalding, and IntelliJ to work reasonably nicely together. Here are some notes on this, so you can too.
+Build file Add the following to your sbt build file (of course, you may want to add additional dependencies or initial commands):
+Plugins You’ll also want to use the excellent sbt- plugin, so add this to projects/plugins.</description>
+    </item>
+    
+    <item>
+      <title>Why Scala is an acceptable Lisp</title>
+      <link>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</link>
+      <pubDate>Fri, 22 Feb 2013 14:29:27 +0000</pubDate>
+      
+      <guid>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</guid>
+      <description>It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.</description>
+    </item>
+    
+    <item>
+      <title>10 PRINT CHR$ (205.5 &#43; RND (1)); : GOTO 10</title>
+      <link>http://example.org/2012/12/01/10-print-chr-205-5-rnd-1-goto-10/</link>
+      <pubDate>Sat, 01 Dec 2012 22:08:35 +0000</pubDate>
+      
+      <guid>http://example.org/2012/12/01/10-print-chr-205-5-rnd-1-goto-10/</guid>
+      <description>Slate has a review of a new book with the obscure title 10 PRINT CHR$ (205.5 + RND (1)); : GOTO 10, and this brings back such memories of typing in games from Basic Computer Games. The Basic program above prints (forever) as seen in this clip: http://www.youtube.com/watch?v=m9joBLOZVEo.
+The magic here is that the computer is printing either a left or a right angled line character over and over; this looks like a maze.</description>
+    </item>
+    
+    <item>
+      <title>Dispatch library for Scala: Promises and Either</title>
+      <link>http://example.org/2012/08/30/dispatch-library-for-scala-promises-and-either/</link>
+      <pubDate>Fri, 31 Aug 2012 03:32:07 +0000</pubDate>
+      
+      <guid>http://example.org/2012/08/30/dispatch-library-for-scala-promises-and-either/</guid>
+      <description>I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0.</description>
+    </item>
+    
+    <item>
+      <title>Simple Scala pmap (parallel map)</title>
+      <link>http://example.org/2012/07/30/simple-scala-pmap-parallel-map/</link>
+      <pubDate>Mon, 30 Jul 2012 21:25:49 +0000</pubDate>
+      
+      <guid>http://example.org/2012/07/30/simple-scala-pmap-parallel-map/</guid>
+      <description>I was wondering whether Scala had a parallel map function built in — it didn’t seem like it did.
+Edit: But it does; see Erik Post’s comment below.
+But, if you have a sequence of functions, for example:
+val fns = List(() =&amp;gt; &amp;quot;hello&amp;quot;, () =&amp;gt; &amp;quot;goodbye&amp;quot;, () =&amp;gt; &amp;quot;good to see you&amp;quot;)
+You can create a sequence of futures on it (thus, running them in parallel): import scala.actors.Futures._ val futures = fns.</description>
+    </item>
+    
+    <item>
+      <title>Scala partial functions, map, and filter</title>
+      <link>http://example.org/2012/06/30/scala-partial-functions-map-and-filter/</link>
+      <pubDate>Sat, 30 Jun 2012 02:13:33 +0000</pubDate>
+      
+      <guid>http://example.org/2012/06/30/scala-partial-functions-map-and-filter/</guid>
+      <description>Yesterday, I was writing some code that needed to (1) go over a collection of stored database objects, conditionally convert some of these to another version of themselves, and filter out some of them. For some reason, I got myself tripped up on some very basic things, and so here are some notes for myself and perhaps for others. (There were some other things going on, for one, support website pagination, but I won’t discuss that here).</description>
+    </item>
+    
+    <item>
+      <title>Scala filters</title>
+      <link>http://example.org/2012/03/08/scala-filters/</link>
+      <pubDate>Thu, 08 Mar 2012 23:19:46 +0000</pubDate>
+      
+      <guid>http://example.org/2012/03/08/scala-filters/</guid>
+      <description>A random Scala note.
+Today, I wanted to apply a list of filters to each item in a list, and return just those that pass each of the filters.
+For example, given a range of integers, return just those that are divisible by 2 and by 3.
+Let’s start by defining a boolean function divides:
+Note that divides(2,_:Int) defines the (partial) function for division by 2.
+So we can create our filters so:</description>
+    </item>
+    
+    <item>
+      <title>Useful Scala introduction</title>
+      <link>http://example.org/2011/12/23/useful-scala-introduction/</link>
+      <pubDate>Fri, 23 Dec 2011 20:41:49 +0000</pubDate>
+      
+      <guid>http://example.org/2011/12/23/useful-scala-introduction/</guid>
+      <description>Part 1: the Scala REPL, expressions, variables, basic types, simple functions, saving and running programs, comments Part 2: Tuples, Lists, methods on Lists and Strings Part 3: Conditional execution with if-else blocks and matching Part 4: Iterating, mapping, filtering and counting Part 5: Regular expressions and matching with them Part 6: Regular expression matching and substitution with the Regex API Part 7: Maps, Sets, groupBy, Options, flatten, flatMap Part 8: Word counting, scala.</description>
+    </item>
+    
+  </channel>
+</rss>

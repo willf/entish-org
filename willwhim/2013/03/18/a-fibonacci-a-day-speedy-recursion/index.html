@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A Fibonacci A Day — Speedy Recursion | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="A Fibonacci A Day — Speedy Recursion" />
+<meta property="og:description" content="We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2013/03/18/a-fibonacci-a-day-speedy-recursion/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2013-03-18T13:00:02+00:00" />
+<meta property="article:modified_time" content="2013-03-18T13:00:02+00:00" />
+
+<meta itemprop="name" content="A Fibonacci A Day — Speedy Recursion">
+<meta itemprop="description" content="We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values."><meta itemprop="datePublished" content="2013-03-18T13:00:02+00:00" />
+<meta itemprop="dateModified" content="2013-03-18T13:00:02+00:00" />
+<meta itemprop="wordCount" content="158">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A Fibonacci A Day — Speedy Recursion"/>
+<meta name="twitter:description" content="We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) &#43; F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A Fibonacci A Day — Speedy Recursion</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-03-18T13:00:02Z">March 18, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><a href="http://www.flickr.com/photos/cleber/8282670491/" title="Stairs at Sagrada Familia, Barcelona by cleber"><!-- raw HTML omitted --></a></p>
+<p>We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?</p>
+<p>Yes, in fact.  Recall that the definition of the Fibonacci function, F(n) is:</p>
+<p>F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)</p>
+<p>What’s important to note is that the recursive step of the Fibonacci formula has <em>two</em> values that need to be accumulated. In the <a href="http://willwhim.wpengine.com/2013/03/15/a-fibonacci-a-day-iterative-version/" title="A Fibonacci A Day — Iterative version">iterative version</a>, the two temporary variables <em>u</em> and <em>v</em> are used to accumulate these values. Consider this recursive version instead:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>As before, we handle the negative, 0, and 1 cases. But the the other cases are handled by the <em>recurse</em> subfunction. We pass a counter (<em>i</em>_), _and the two accumulators (<em>u</em> and <em>v</em>). This function should be recognized as a <a href="http://en.wikipedia.org/wiki/Tail_call">tail recursive</a> function, and thus it should be just as efficient as the iterative version. And, note, whereas before we have three mutable variables; now we had none.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

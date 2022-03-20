@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Scala | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+      <link href="/categories/scala/index.xml" rel="alternate" type="application/rss+xml" title="Will&#39;s Whims" />
+      <link href="/categories/scala/index.xml" rel="feed" type="application/rss+xml" title="Will&#39;s Whims" />
+      
+    
+    
+    <meta property="og:title" content="Scala" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/categories/scala/" />
+
+<meta itemprop="name" content="Scala">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Scala"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Scala
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Scala”</p>
+    </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        May 28, 2014
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2014/05/28/using-lazy-vals-state-object/" class="link black dim">
+        Using lazy vals in a state object
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I was writing some Scala code which had a long series of somewhat complicated and expensive calculations to make, and in many cases I wanted to log the intermediate calculations. The first version of this code was quite complicated looking, because the calculations of the intermediate values and the logging statements were all intermixed.
+But then I realized that I could create a separate object which maintained the state, and which performed the calculations, too.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 13, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/" class="link black dim">
+        A Fibonacci A Day: Using Streams and a Fast Memoization Method
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        April 2, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/" class="link black dim">
+        A Fibonacci A Day: Fibonacci(n) in O(lg(n)) steps
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I am taking Martin Odensky’s Functional Programming in Scala class, and discovered (or rediscovered) that the Fibonacci function is discussed in SICP (Structure and Interpretation of Computer Programs, the book that Odensky seems to be basing much of his Functional Programming in Scala course on).
+Even more interesting is that a Fibonacci function which runs in O(lg(n)) steps is presented — that is, it takes about lg(n) steps to compute the _n_th Fibonacci number, instead of n steps.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 21, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/21/a-fibonacci-a-day-overview/" class="link black dim">
+        A Fibonacci A Day
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The goal of this series was to come up with a general, efficient fibonacci function that goes beyond the typical computer science introduction. The version we developed is fast, efficient with respect to memory, and general. I’d be glad to hear comments.
+The Series:
+ A Fibonacci A Day — Introduction A Fibonacci A Day — Recursive Version A Fibonacci A Day — Special Pi Day Post A Fibonacci A Day — Iterative Version A Fibonacci A Day — Out of Bounds A Fibonacci A Day — Speedy Recursion A Fibonacci A Day — Golden Ration Version A Fibonacci A Day — Memoization A Fibonacci A Day — Benchmarking A Fibonacci A Day — Extending to Negative Numbers A Fibonacci A Day — Fibonacci in O(lg(n)) Steps A Fibonacci A Day — Using Streams and a Fast Memoization Method   
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 21, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/21/a-fibonacci-a-day-extending-to-negative-numbers/" class="link black dim">
+        A Fibonacci A Day — Extending to Negative Numbers
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      We are now confident that the fast recursive version is the best of the algorithms we have explored — it is fast, and can handle large values of the Fibonacci function.
+I haven’t been happy, though, with returning a negative -1 when the function is called with a negative number — this feels like a kind of silent error we were trying to avoid in going to BigInts. Fortunately, it turns out that there is a natural extension of the Fibonacci sequence to negative numbers.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 20, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/20/a-fibonacci-a-day-benchmarking/" class="link black dim">
+        A Fibonacci A Day — Benchmarking
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 20, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/20/a-fibonacci-a-day-memoization/" class="link black dim">
+        A Fibonacci A Day — Memoization
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Although the iterative recursive version is stateless, it looks different from the standard mathematical definition. The recursive version is a very close mapping, but it’s extremely inefficient. One way to overcome the inefficiencies is to dynamically record (or memoize) previous calculations of F(n). The idea is simple — if we already know the values of F(n – 1) and F(n – 2), we can simply add them without having to do the difficult steps in recreating them.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 19, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/19/a-fibonacci-a-day-golden-ratio-version/" class="link black dim">
+        A Fibonacci A Day — Golden Ratio version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The Fibonacci sequence has a very strong connection to the Golden Ratio (φ, or Phi). φ is defined as (√5 + 1)/2, or approximately 1.618, and has lots of special properties. Ron Knott has a web page with over 300 Fibonacci and φ formulas. One of these is this direct formula: F(n) = round(φn/√5), where the rounding function does rounding to the nearest whole number.
+This gives us a quite an efficient function:
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 18, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/18/a-fibonacci-a-day-speedy-recursion/" class="link black dim">
+        A Fibonacci A Day — Speedy Recursion
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 17, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/17/a-fibonacci-a-day-out-of-bounds/" class="link black dim">
+        A Fibonacci A Day — Out of Bounds
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 15, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/15/a-fibonacci-a-day-iterative-version/" class="link black dim">
+        A Fibonacci A Day — Iterative version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Yesterday’s Fibonacci function was recursive, but we saw that it was extremely inefficient. Recursive functions typically break down a problem into smaller pieces, solve the smaller pieces, then combine the results into a final result, where “breaking down” a problem is done by the recursive function calling itself on a smaller version of itself. But, as we saw, it’s possible that the number of times this may happen has to be controlled, or gross inefficiencies may occur; this sometimes gives recursion a bad name.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 14, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/14/a-fibonacci-a-day-recursive-version/" class="link black dim">
+        A Fibonacci A Day — Recursive version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+This naturally leads to the following recursive function (here, as in all of the versions of A Fibonacci A Day, in Scala):
+Note that because we are in the world of Scala, we have to declare that we are writing a function on Ints (that is, the Java/Scala representation of 32-bit signed numbers).
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 14, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/13/a-fibonacci-a-day-introduction/" class="link black dim">
+        A Fibonacci A Day Introduction
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The Fibonacci sequence is the sequence of numbers 0,1,1,2,3,5,8, … such that the nth number in the sequence is the sum of the previous two numbers; and the the first two numbers are defined to be 0 and 1.
+The Fibonacci function is a function which returns the nth number in the Fibonacci sequence. It’s kind of a famous function in computer science when people are first learning about recursive functions.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 4, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/04/refactoring-without-monoids-or-endomorphisms/" class="link black dim">
+        Refactoring without Monoids or Endomorphisms
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Debasish Ghosh wrote an interesting post, An exercise in Refactoring – Playing around with Monoids and Endomorphisms, in which he describes refactoring some imperative code and writing it in a more functional style. I especially like his clear description on what monoids and endomorphisms are. I suspect the main point of his article is to describe these things, and how them might be useful, and I think he succeeds, at least in the first part.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 28, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/02/28/using-intellij-with-twitters-scalding/" class="link black dim">
+        Using IntelliJ with Twitter’s Scalding
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      It would be nice to have an IDE while writing Scalding code, to do syntax checking and method suggestion. I was able to get sbt, Scalding, and IntelliJ to work reasonably nicely together. Here are some notes on this, so you can too.
+Build file Add the following to your sbt build file (of course, you may want to add additional dependencies or initial commands):
+Plugins You’ll also want to use the excellent sbt- plugin, so add this to projects/plugins.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 22, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/02/22/why-scala-is-an-acceptable-lisp/" class="link black dim">
+        Why Scala is an acceptable Lisp
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 1, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/12/01/10-print-chr-205-5-rnd-1-goto-10/" class="link black dim">
+        10 PRINT CHR$ (205.5 &#43; RND (1)); : GOTO 10
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Slate has a review of a new book with the obscure title 10 PRINT CHR$ (205.5 + RND (1)); : GOTO 10, and this brings back such memories of typing in games from Basic Computer Games. The Basic program above prints (forever) as seen in this clip: http://www.youtube.com/watch?v=m9joBLOZVEo.
+The magic here is that the computer is printing either a left or a right angled line character over and over; this looks like a maze.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 31, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/08/30/dispatch-library-for-scala-promises-and-either/" class="link black dim">
+        Dispatch library for Scala: Promises and Either
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        July 30, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/07/30/simple-scala-pmap-parallel-map/" class="link black dim">
+        Simple Scala pmap (parallel map)
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I was wondering whether Scala had a parallel map function built in — it didn’t seem like it did.
+Edit: But it does; see Erik Post’s comment below.
+But, if you have a sequence of functions, for example:
+val fns = List(() =&gt; &quot;hello&quot;, () =&gt; &quot;goodbye&quot;, () =&gt; &quot;good to see you&quot;)
+You can create a sequence of futures on it (thus, running them in parallel): import scala.actors.Futures._ val futures = fns.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 30, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/06/30/scala-partial-functions-map-and-filter/" class="link black dim">
+        Scala partial functions, map, and filter
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Yesterday, I was writing some code that needed to (1) go over a collection of stored database objects, conditionally convert some of these to another version of themselves, and filter out some of them. For some reason, I got myself tripped up on some very basic things, and so here are some notes for myself and perhaps for others. (There were some other things going on, for one, support website pagination, but I won’t discuss that here).
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 8, 2012
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2012/03/08/scala-filters/" class="link black dim">
+        Scala filters
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      A random Scala note.
+Today, I wanted to apply a list of filters to each item in a list, and return just those that pass each of the filters.
+For example, given a range of integers, return just those that are divisible by 2 and by 3.
+Let’s start by defining a boolean function divides:
+Note that divides(2,_:Int) defines the (partial) function for division by 2.
+So we can create our filters so:
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 23, 2011
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2011/12/23/useful-scala-introduction/" class="link black dim">
+        Useful Scala introduction
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Part 1: the Scala REPL, expressions, variables, basic types, simple functions, saving and running programs, comments Part 2: Tuples, Lists, methods on Lists and Strings Part 3: Conditional execution with if-else blocks and matching Part 4: Iterating, mapping, filtering and counting Part 5: Regular expressions and matching with them Part 6: Regular expression matching and substitution with the Regex API Part 7: Maps, Sets, groupBy, Options, flatten, flatMap Part 8: Word counting, scala.
+    </div>
+  </div>
+
+        </div>
+      
+    </section>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

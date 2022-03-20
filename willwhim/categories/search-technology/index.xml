@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Search technology on Will&#39;s Whims</title>
+    <link>http://example.org/categories/search-technology/</link>
+    <description>Recent content in Search technology on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Jun 2015 15:53:06 +0000</lastBuildDate><atom:link href="http://example.org/categories/search-technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch 1.6 upserts and partial updates</title>
+      <link>http://example.org/2015/06/18/elasticsearch-1-6-upserts-and-partial-updates/</link>
+      <pubDate>Thu, 18 Jun 2015 15:53:06 +0000</pubDate>
+      
+      <guid>http://example.org/2015/06/18/elasticsearch-1-6-upserts-and-partial-updates/</guid>
+      <description>To partially update an Elasticsearch document in 1.6, you’ll need to create a script for the partial update, and potentially use an upsert.
+For example, you want to add tags to a blog post
+here’s an example of a document created directly:
+POST /website/blog/1/_update { “doc” : { “tags” : [ “testing” ], “views”: 0 } }
+but if we want to add a tag without changing the view, you need to create a script in config/scripts</description>
+    </item>
+    
+    <item>
+      <title>Dynamic typing and testing</title>
+      <link>http://example.org/2011/07/07/dynamic-typing-and-testing/</link>
+      <pubDate>Thu, 07 Jul 2011 03:27:05 +0000</pubDate>
+      
+      <guid>http://example.org/2011/07/07/dynamic-typing-and-testing/</guid>
+      <description>As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems.</description>
+    </item>
+    
+    <item>
+      <title>What is missing? Watson, AI and search technology</title>
+      <link>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</link>
+      <pubDate>Wed, 16 Feb 2011 14:14:37 +0000</pubDate>
+      
+      <guid>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</guid>
+      <description>All geekdom, and much that is outside our realm, is abuzz with news and discussion of the contest by IBM’s Jeopardy-playing computer, Watson, vs Ken Jennings and Brad Rutter. In last night’s game (the second half of a game started on Monday, Watson won decisively, answering many, many more questions than Jennings and Rutter combined. At the end of the first half, Rutter and Watson were tied. Lots of famous (and formerly famous) artificial intelligence researchers have weighed in on what this means for AI.</description>
+    </item>
+    
+    <item>
+      <title>Is Bing cheating at search? Redux: It’s all in the clicks</title>
+      <link>http://example.org/2011/02/04/is-bing-cheating-at-search-redux-its-all-in-the-clicks/</link>
+      <pubDate>Fri, 04 Feb 2011 02:55:12 +0000</pubDate>
+      
+      <guid>http://example.org/2011/02/04/is-bing-cheating-at-search-redux-its-all-in-the-clicks/</guid>
+      <description>[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]
+Matt Cutts has a thoughtful follow-up articleon the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy.</description>
+    </item>
+    
+    <item>
+      <title>Is Bing cheating at search?</title>
+      <link>http://example.org/2011/02/02/is-bing-cheating-at-search/</link>
+      <pubDate>Wed, 02 Feb 2011 02:48:17 +0000</pubDate>
+      
+      <guid>http://example.org/2011/02/02/is-bing-cheating-at-search/</guid>
+      <description>Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing; I am writing this on my own time and behalf.
+Google has accused Bing of cheating, of copying Google’s results (Danny Sullivan’s article which broke the news; Google’s official blog post with the accusation). Basically, Google set up a honeypot of synthetic (that is, unique, non-word) search keys which their results led to specifically selected (i.</description>
+    </item>
+    
+    <item>
+      <title>Some Bing N-gram notes on tokenization</title>
+      <link>http://example.org/2010/10/26/some-bing-n-gram-notes-on-tokenization/</link>
+      <pubDate>Tue, 26 Oct 2010 20:23:10 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/26/some-bing-n-gram-notes-on-tokenization/</guid>
+      <description>Brendan O’Connor asked me on Twitter what I knew about Bing N-gram tokenization conventions, and I said I would ask someone who knew. The N-gram team plans a future blog post on this, but here’s some things I was told that I could share (and I quote):
+Here are a few things we can share right now:
+ Segment boundaries use the special symbols and , thus P(“hello there ”) !</description>
+    </item>
+    
+    <item>
+      <title>New Bing NGram data</title>
+      <link>http://example.org/2010/10/26/new-bing-ngram-data/</link>
+      <pubDate>Tue, 26 Oct 2010 16:27:12 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/26/new-bing-ngram-data/</guid>
+      <description>Bing (my employer, but here a different area) has announced new publicly available NGram data, current to April 2010. It includes 1 through 5-grams for title, anchor and body streams (that is, HTML page titles, text in anchor links, and overall HTML body text).</description>
+    </item>
+    
+    <item>
+      <title>Computational lexicography on the cheap using Twitter</title>
+      <link>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</link>
+      <pubDate>Mon, 11 Oct 2010 19:31:36 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</guid>
+      <description>Let’s say you want to investigate the use of “tweet” as a verb (see “Tweet this” at Language Log), and you want to collect, oh, 10,000 examples or so and do some concordance work, for example:
+This is simple to do with a bash command line, perl, Ruby, the Tweetstream gem, and a spreadsheet program (or just plain old grep).
+To download 10,000 tweets containing “tweet,” “tweets”, or “tweeting” and save them in a file called “tweet.</description>
+    </item>
+    
+    <item>
+      <title>Nip it in the butt</title>
+      <link>http://example.org/2010/09/20/nip-it-in-the-butt/</link>
+      <pubDate>Mon, 20 Sep 2010 04:09:52 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/20/nip-it-in-the-butt/</guid>
+      <description>I’ve seen two references to “nip it in the butt” for “nip it in the bud” recently, which reminded me of the “avoid like the plaque” post.
+It’s a little harder to get statistics for this based on the public Bing data, which only goes to four tokens. But here are the most common following words for “nip in the ___”:
+bud:46.79%, air:45.60%, h: 2.53%, butt: 1.05%, taste: 0.95%, form: 0.</description>
+    </item>
+    
+    <item>
+      <title>Avoid like the plaque</title>
+      <link>http://example.org/2010/09/14/avoid-like-the-plaque/</link>
+      <pubDate>Tue, 14 Sep 2010 16:37:32 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/14/avoid-like-the-plaque/</guid>
+      <description>I noticed that the expression “avoid like the plaque” showing up in some search results I was doing. This is “plaque” with-a-queue, not “plague”-with-a-gee. This seems like an odd misspelling to me, and I was curious how often this occurs. The Bing Ngram data gives us the tools: given “avoid like the”, the word “plague” occurs 98.68% of the time (in the web body data). The word “plaque” is the second most common word, occurring 0.</description>
+    </item>
+    
+    <item>
+      <title>Using Ngram data for segmentation</title>
+      <link>http://example.org/2010/09/08/using-ngram-data-for-segmentation/</link>
+      <pubDate>Wed, 08 Sep 2010 05:59:39 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/08/using-ngram-data-for-segmentation/</guid>
+      <description>I’ve updated the Microsoft NGram Ruby library to provide an example use: segmenting Twitter hashtags. Twitter hashtags have been used for some time to tag tweets according to users’ choice and whimsy. Coincidentally, my daytime boss has just conducted an interview with William Morgan–formerly of Powerset, but now at Twitter–about hash tags, in case you want to come up to speed on what they are. It’s a fun read in any case, including the origin story of hash tags.</description>
+    </item>
+    
+    <item>
+      <title>Ruby project to access Microsoft Ngram data</title>
+      <link>http://example.org/2010/09/03/ruby-project-to-access-microsoft-ngram-data/</link>
+      <pubDate>Fri, 03 Sep 2010 06:55:44 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/03/ruby-project-to-access-microsoft-ngram-data/</guid>
+      <description>I am pleased to announce the availability of a Ruby library to access the Microsoft Ngram data. This data currently includes 1,2,3,4 gram data for anchor text, 1,2,3 gram data for body text, 1,2,3,4 gram data for page titles, and 1,2,3 gram data for queries, collected in June 2009. See the Bing/MSR Ngram data page for general information. Although I am a Microsoft employee, this software is provided by me, not Microsoft.</description>
+    </item>
+    
+    <item>
+      <title>Alumin(i)um</title>
+      <link>http://example.org/2010/08/09/aluminium/</link>
+      <pubDate>Mon, 09 Aug 2010 17:07:25 +0000</pubDate>
+      
+      <guid>http://example.org/2010/08/09/aluminium/</guid>
+      <description>I enjoyed reading the Wikipedia page about its “lamest edit wars.” One of these edit wars was whether the article on what Americans call “aluminum” and what Brits call “aluminium” should have, as its fundamental title, “Aluminum,” or “Aluminium.” And, one of the arguments presented in favo(u)r of “Aluminum” was that more Google hits are available for the US spelling than the UK spelling. “Ghits” is notoriously unreliable (as are Bing hits and the other search engines), since the number of search results reported are subject to lots of factors, not of which is tied directly to actual number of documents returned.</description>
+    </item>
+    
+    <item>
+      <title>“buy a house, sell a home?” redux</title>
+      <link>http://example.org/2010/02/09/buy-a-house-sell-a-home-redux/</link>
+      <pubDate>Tue, 09 Feb 2010 02:38:24 +0000</pubDate>
+      
+      <guid>http://example.org/2010/02/09/buy-a-house-sell-a-home-redux/</guid>
+      <description>A while ago, I wrote about whether there was evidence that people tend to “buy a home and sell a house,” and used Google’s n-gram data (based on web documents) to suggest this wasn’t the case. I happened to come across this post today, and wondered whether some of the query streams I have access to now might say something to this. I looked at our frequently “sell” or “buy” co-occur with “house” or “home” in a stream of about 36 million queries.</description>
+    </item>
+    
+    <item>
+      <title>Google’s Superbowl ad</title>
+      <link>http://example.org/2010/02/08/googles-superbowl-ad/</link>
+      <pubDate>Mon, 08 Feb 2010 22:08:12 +0000</pubDate>
+      
+      <guid>http://example.org/2010/02/08/googles-superbowl-ad/</guid>
+      <description>I really enjoyed Google’s Superbowl ad, in which a love story is told as a series of search queries:
+ study abroad paris france cafes near the louve (sic) translate tu es très mignon impress a french girl chocolate shops paris france what are truffles who is truffaut long distance relationship advice jobs in paris AA120 churches in paris how to assemble a crib  I was curious how Google would do “in real life” on these queries, as well as how Bing (my employer) does.</description>
+    </item>
+    
+    <item>
+      <title>100 most common English words</title>
+      <link>http://example.org/2008/08/06/100-most-common-english-words/</link>
+      <pubDate>Wed, 06 Aug 2008 19:58:00 +0000</pubDate>
+      
+      <guid>http://example.org/2008/08/06/100-most-common-english-words/</guid>
+      <description>&lt;p&gt;First, take &lt;a href=&#34;http://codebox.no-ip.net/controller?page=misc.QuizCommonWords&#34;&gt;this fun quiz&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And then …&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Thoughts on the Microsoft acquisition</title>
+      <link>http://example.org/2008/07/01/thoughts-on-the-microsoft-acquisition/</link>
+      <pubDate>Wed, 02 Jul 2008 03:33:43 +0000</pubDate>
+      
+      <guid>http://example.org/2008/07/01/thoughts-on-the-microsoft-acquisition/</guid>
+      <description>(The usual disclaimers: my opinion only, not my current or future employers)
+When Powerset began a couple of years ago, a lot of commentators called us — and still do call us — a would be Google killer. This, despite repeated comments by senior staff that this wasn’t what we were about. As a company, Google is hard to beat. Our goal was audacious, but not that audacious. Our goal was to build a better search experience: to use natural language technology to provide better search results, both by having a better understanding of web documents as well as user queries.</description>
+    </item>
+    
+    <item>
+      <title>Who acquired Powerset?</title>
+      <link>http://example.org/2008/07/01/who-acquired-powerset/</link>
+      <pubDate>Tue, 01 Jul 2008 19:27:47 +0000</pubDate>
+      
+      <guid>http://example.org/2008/07/01/who-acquired-powerset/</guid>
+      <description>microsoft acquires powerset</description>
+    </item>
+    
+    <item>
+      <title>You ain’t seen nothing yet</title>
+      <link>http://example.org/2008/05/12/you-aint-seen-nothing-yet/</link>
+      <pubDate>Mon, 12 May 2008 15:20:18 +0000</pubDate>
+      
+      <guid>http://example.org/2008/05/12/you-aint-seen-nothing-yet/</guid>
+      <description>Who invented the wireless telephone?
+It’s been 100 years since “American inventor and Kentucky melon farmer” Nathan B. Stubblefield received the patent for the first wireless cell phone (UK Telegraph article, via Mirabilis).
+Today, the company I work for, Powerset, launched its search product for general public use at powerset.com. It’s a really cool search and browsing engine for Wikipedia, with lots of information gleaned from the Freebase project as well.</description>
+    </item>
+    
+    <item>
+      <title>Powerset is here!</title>
+      <link>http://example.org/2008/05/11/powerset-is-here/</link>
+      <pubDate>Mon, 12 May 2008 03:50:50 +0000</pubDate>
+      
+      <guid>http://example.org/2008/05/11/powerset-is-here/</guid>
+      <description>Powerset’s search for Wikipedia is now live!</description>
+    </item>
+    
+    <item>
+      <title>Powerset is coming soon</title>
+      <link>http://example.org/2008/05/11/powerset-is-coming-soon/</link>
+      <pubDate>Mon, 12 May 2008 02:27:16 +0000</pubDate>
+      
+      <guid>http://example.org/2008/05/11/powerset-is-coming-soon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Powerstache!</title>
+      <link>http://example.org/2008/04/05/powerstache/</link>
+      <pubDate>Sat, 05 Apr 2008 15:54:36 +0000</pubDate>
+      
+      <guid>http://example.org/2008/04/05/powerstache/</guid>
+      <description>My co-minions at Powerset have been growing (or faking growing) facial hair in the run up to our beta launch. And, of course, it has its own blog: Powerstache.com. It’s even made the LA Times, and Michael Arrington’s initial take on our beta product even mentions it.
+Chris pretty much wins, though.</description>
+    </item>
+    
+    <item>
+      <title>Wikiconspiracy</title>
+      <link>http://example.org/2007/10/23/wikiconspiracy/</link>
+      <pubDate>Tue, 23 Oct 2007 21:41:42 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/23/wikiconspiracy/</guid>
+      <description>I was reviewing a Wiki project, Wikicompany.org, today. Its stated mission is be a “free, worldwide business directory that anyone can edit,” in the same spirit as Wikipedia. I thought it might be a good resource for company names and facts.
+But then I noticed that the vast majority of edits in the past sixty days are about the vast conspiracy behind 9/11 and the new world order. The original 9/11 start page says it’s being done by “the Dutch cooperation to find out the truth behind the events relating to 9/11/2001.</description>
+    </item>
+    
+    <item>
+      <title>New Google translation software</title>
+      <link>http://example.org/2007/10/23/new-google-translation-software/</link>
+      <pubDate>Tue, 23 Oct 2007 15:23:36 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/23/new-google-translation-software/</guid>
+      <description>Google is now using their internal translation software for all language pairs, and my very, very brief look at their results look good. This is very idiomatic, for example:
+ I was amused by calculating the number of video tags football (soccer) and rugby on Dailymotion (English pages). No doubt, soccer is more popular than rugby! The original French (from Jean Véronis’s blog):
+  Je me suis amusé à calculer le nombre de vidéos portant les tags foot (ou football) et rugby sur Dailymotion (pages françaises).</description>
+    </item>
+    
+    <item>
+      <title>Powerset and Hadoop</title>
+      <link>http://example.org/2007/10/18/powerset-and-hadoop/</link>
+      <pubDate>Thu, 18 Oct 2007 04:23:26 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/18/powerset-and-hadoop/</guid>
+      <description>Cool.
+Over at the Powerset blog, Jim Kellerman is talking about Powerset’s use of Hadoop and development of HBase, an open-source replacement for Google’s BigTable.
+If you have any idea what ‘Hadoop’ or ‘BigTable’ or ‘HBase’ are, it’s worth checking out.</description>
+    </item>
+    
+    <item>
+      <title>What’s the opposite of ‘hype’?</title>
+      <link>http://example.org/2007/09/26/whats-the-opposite-of-hype/</link>
+      <pubDate>Wed, 26 Sep 2007 17:10:00 +0000</pubDate>
+      
+      <guid>http://example.org/2007/09/26/whats-the-opposite-of-hype/</guid>
+      <description>There must be an antonym for ‘hype.’ To hype something is to engage in hyperbole about it: Apple products have generated their share of hype. (For example: Steve Jobs said, “We made the buttons on the screen look so good you’ll want to lick them.”) I don’t mean ‘anti-hype’ in the sense of telling the approximate truth about something, desengaño or dis-illusionment. But after the IPhone announcement, Steve Ballmer said, “There’s no chance that the iPhone is going to get any significant market share.</description>
+    </item>
+    
+    <item>
+      <title>I am Thesaurus!</title>
+      <link>http://example.org/2007/08/06/i-am-thesaurus/</link>
+      <pubDate>Mon, 06 Aug 2007 23:34:55 +0000</pubDate>
+      
+      <guid>http://example.org/2007/08/06/i-am-thesaurus/</guid>
+      <description>Synonyms and antonyms and matching terms and words that share a meaning. All these alternate words to choose or substitute why write ‘crying’ when you could write ‘weeping’ or ‘shedding a tear or two,’ ‘blubbering’, ‘wailing,’ ‘choking up and balling,’ ‘sobbing both your eyes out,’ ‘turning on the waterworks.’ I am the Roget I’m Dr. Roget I am Thesaurus Synon-ny-nyms!
+Vocabulary dictionary wordy little Frenchman that I am. See how many phrases the Beatles could have made if they’d asked me.</description>
+    </item>
+    
+    <item>
+      <title>Interview with Steve Newcomb at Folksonomy</title>
+      <link>http://example.org/2007/08/02/interview-with-steve-newcomb-at-folksonomy/</link>
+      <pubDate>Thu, 02 Aug 2007 13:28:58 +0000</pubDate>
+      
+      <guid>http://example.org/2007/08/02/interview-with-steve-newcomb-at-folksonomy/</guid>
+      <description>There’s a great interview by Sian Liu with Steve Newcomb, Powerset’s COO (and ultimately my boss). He describes life and work at Powerset, some of the risks, the culture of openness at Powerset, and why we don’t see Google as the enemy. Granted, it’s not a hard-hitting interview (Liu even says “I am looking forward to … exploring long-term career opportunties in Powerset,” which blunts one’s objectivity), but it gives a good picture of what Powerset is like.</description>
+    </item>
+    
+    <item>
+      <title>Google web translation dictionary</title>
+      <link>http://example.org/2007/06/25/google-web-translation-dictionary/</link>
+      <pubDate>Tue, 26 Jun 2007 01:34:01 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/25/google-web-translation-dictionary/</guid>
+      <description>This is nice: in addition to automated translation, Google has now added translation dictionaries, for English to Spanish, French, Italian, German and Korean, and back again.They seem a bit dated: no translations for “weblog” or “telecommute” or even “google.” But it does have “computer virus.”</description>
+    </item>
+    
+    <item>
+      <title>Opposite of perquisite</title>
+      <link>http://example.org/2007/06/07/opposite-of-perquisite/</link>
+      <pubDate>Thu, 07 Jun 2007 20:53:33 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/07/opposite-of-perquisite/</guid>
+      <description>I’ve glad Marti Hearst is writing for the Powerset blog from time to time. She’s written a nice post about antonyms (‘Opposites attract’), pairs of words which are ‘opposite’ in meaning.
+I also enjoy reading The Atlantic’s Word Fugitive column, in which people are asked to come up with new (almost always humorous) terms for things and events. For example, “the moment of undignified vulnerability that people in airport security lines feel when they have to take off their shoes.</description>
+    </item>
+    
+    <item>
+      <title>Powerlabs coming soon redux ….</title>
+      <link>http://example.org/2007/06/07/powerlabs-coming-soon-redux/</link>
+      <pubDate>Thu, 07 Jun 2007 14:01:23 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/07/powerlabs-coming-soon-redux/</guid>
+      <description>It looks like Powerset (my company) is officially signing people up for Powerlabs, which is set to open in September, according to a message sent from our COO, Steve Newcomb, to his linkedin buddies.
+ Powerlabs won’t be fully operational until September, but we will need beta testers. If you want the chance to be the first to get the scoop on Powerset, sign up now. Hint: Tell us if you blog and we will send you early announcements.</description>
+    </item>
+    
+    <item>
+      <title>“Google keeps tweaking its search engine”</title>
+      <link>http://example.org/2007/06/03/google-keeps-tweaking-its-search-engine/</link>
+      <pubDate>Sun, 03 Jun 2007 18:07:39 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/03/google-keeps-tweaking-its-search-engine/</guid>
+      <description>NY Times article:
+Google keeps tweaking its search engine.
+Fav quote:
+ [H]owever easy it is to wax poetic about the modern-day miracle of Google, the site is also among the world’s biggest teases. Millions of times a day, users click away from Google, disappointed that they couldn’t find the hotel, the recipe or the background of that hot guy. Google often finds what users want, but it doesn’t always.</description>
+    </item>
+    
+    <item>
+      <title>Powerlabs coming soon ….</title>
+      <link>http://example.org/2007/05/24/powerlabs-coming-soon/</link>
+      <pubDate>Thu, 24 May 2007 18:24:56 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/24/powerlabs-coming-soon/</guid>
+      <description>Powerlabs coming soon! See the our Powerset home page.</description>
+    </item>
+    
+    <item>
+      <title>Actually, a little more robot overlordship than I’m currently experiencing would be nice</title>
+      <link>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</link>
+      <pubDate>Thu, 17 May 2007 05:16:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</guid>
+      <description>Sitting down to dinner, I said something like today I wrote a program that wrote a program, and its running righ now. Daughter and wife looked slightly alarmed, and dear wife asked if there were any chance that I was working myself out of a job. I said I didn’t think there was much chance that the coming robot wars were about to begin. Getting back to my computer later, I saw this on the console:</description>
+    </item>
+    
+    <item>
+      <title>The most ambiguous place name in the US is …</title>
+      <link>http://example.org/2007/05/10/the-most-ambiguous-name-in-the-us-is/</link>
+      <pubDate>Thu, 10 May 2007 19:56:43 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/10/the-most-ambiguous-name-in-the-us-is/</guid>
+      <description>The most ambiguous place name in the US is Lake Winnipesaukee (map) with 163 official alternatives (according to the USGS and its US Board on Geographic Names), followed by Okefenokee Swamp (105), the Mississippi River (103) and the Potomac River (93).
+(Lukas is right, I mean ‘place with the most ways to say it’.)</description>
+    </item>
+    
+    <item>
+      <title>Freebase.com invitation</title>
+      <link>http://example.org/2007/05/09/freebasecom-invitation/</link>
+      <pubDate>Wed, 09 May 2007 18:16:50 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/09/freebasecom-invitation/</guid>
+      <description>I’ve got five freebase.com developer invitations; if you’re interested, and are a ‘data fanatic,’ then get in touch with me.</description>
+    </item>
+    
+    <item>
+      <title>Quotes on names (2)</title>
+      <link>http://example.org/2007/05/05/quotes-on-names-2/</link>
+      <pubDate>Sat, 05 May 2007 14:30:22 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/05/quotes-on-names-2/</guid>
+      <description> The uniqueness and immense pragmatic convenience of proper names in our language lie precisely in the fact that they enable us to refer publicly to objects without being forced to raise issues and come to agreement on what descriptive characteristics exactly constitute the identity of the object. They function not as descriptions, but as pegs on which to hang descriptions (Searle).
+ </description>
+    </item>
+    
+    <item>
+      <title>Quotes on names (1)</title>
+      <link>http://example.org/2007/05/04/quotes-on-names-1/</link>
+      <pubDate>Fri, 04 May 2007 07:07:33 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/04/quotes-on-names-1/</guid>
+      <description> When Mr N.N. dies, one says that the bearer of the name dies, not that the meaning dies. — Wittgenstein, Philosophical Investigations
+ </description>
+    </item>
+    
+    <item>
+      <title>Future of Search conference</title>
+      <link>http://example.org/2007/04/30/future-of-search-conference/</link>
+      <pubDate>Mon, 30 Apr 2007 12:29:39 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/30/future-of-search-conference/</guid>
+      <description>The Future of Search conference coming up on May 4 looks interesting, with lots of heavy hitters from Google, Yahoo and Microsoft and other companies; Powerset’s CEO, Barney Pell is on the list.</description>
+    </item>
+    
+    <item>
+      <title>WordNet, saints and Robin Hood</title>
+      <link>http://example.org/2007/04/28/wordnet-saints-and-robin-hood/</link>
+      <pubDate>Sat, 28 Apr 2007 21:06:29 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/28/wordnet-saints-and-robin-hood/</guid>
+      <description>Why are you reading this, when you should be reading Natalia’s ball-peen hammer to the head?
+One of the many things that it takes for a computer to “understand” text (as we are trying to do at Powerset) is for it recognize names and what they refer to. So for example, in the sentence “Maid Marian is the female companion to the legendary figure Robin Hood.”, a computer needs to see the names Maid Marian and Robin Hood are present, and have some kind of internal representation of Ms.</description>
+    </item>
+    
+    <item>
+      <title>Semantic Parser, best in show</title>
+      <link>http://example.org/2007/04/27/semantic-parser-best-in-show/</link>
+      <pubDate>Fri, 27 Apr 2007 04:17:35 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/27/semantic-parser-best-in-show/</guid>
+      <description>I got an email today from Larry Hunter at University of Colorado School of Medicine, who writes to say that a DMAP-based parser was the “international world-champion” in the The BioCreAtIvE (Critical Assessment of Information Extraction systems in Biology) data text mining challenge. The chart above are the results from the Protein-Protein Interaction Task.
+My colleague at Powerset, Jim Firby and I worked on some of the semantic parsing technology used by the Colorado group.</description>
+    </item>
+    
+    <item>
+      <title>Onomastical poem</title>
+      <link>http://example.org/2007/02/28/onomastical-poem/</link>
+      <pubDate>Wed, 28 Feb 2007 17:26:10 +0000</pubDate>
+      
+      <guid>http://example.org/2007/02/28/onomastical-poem/</guid>
+      <description>How do all things with names combine? Words are but nests, the meanings are the birds, Body the bed through which the spirit-river flows. The surface of this mental watercourse Is not without its chaff of good and bad repute: It flows, but you would say it stagnates; It moves but you would say it stays; From place to place were there no motion Whence these renewed supplies of floating chaff?</description>
+    </item>
+    
+    <item>
+      <title>Powerset in NY Times, Venturebeat</title>
+      <link>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</link>
+      <pubDate>Fri, 09 Feb 2007 14:00:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</guid>
+      <description>The company I work for, Powerset, is being written up in the New York Times and Venturebeat, both reporting on a deal between Powerset and PARC. The New York Times article (behind a registration wall, alack) mostly follows the storied arc of the Palo Alto Research Center, where the graphical user interface and ethernet were born but capitalized on more by rivals rather than its original owner, Xerox. Our CEO, Barney Pell is quoted:</description>
+    </item>
+    
+    <item>
+      <title>A Google Poem</title>
+      <link>http://example.org/2007/02/05/a-google-poem/</link>
+      <pubDate>Tue, 06 Feb 2007 03:07:10 +0000</pubDate>
+      
+      <guid>http://example.org/2007/02/05/a-google-poem/</guid>
+      <description>This is a kind of found poem Google wrote for me. It’s the ‘common words’ list from kmenno.org, the site for the Kalamazoo Mennonite Fellowship:
+mennonite kalamazoo fellowship worship prayer song usa church confession god hymn lectionary opportunties readings songs affiliated community exploring focus forming gather gathered helpful introductions january jesus kmenno life listen love normal opening passages peace revised silence sip soup sundays supper welcome word</description>
+    </item>
+    
+    <item>
+      <title>The new digs</title>
+      <link>http://example.org/2006/12/29/the-new-digs/</link>
+      <pubDate>Sat, 30 Dec 2006 02:51:41 +0000</pubDate>
+      
+      <guid>http://example.org/2006/12/29/the-new-digs/</guid>
+      <description>Powerset’s new office in San Francisco. (I’m still in Michigan and haven’t seen it yet, but I hear it’s nice).</description>
+    </item>
+    
+    <item>
+      <title>Welcome, Tim Converse</title>
+      <link>http://example.org/2006/12/24/welcome-tim-converse/</link>
+      <pubDate>Sun, 24 Dec 2006 07:20:32 +0000</pubDate>
+      
+      <guid>http://example.org/2006/12/24/welcome-tim-converse/</guid>
+      <description>Since the news is out about where Tim is going after he leaves Yahoo!, I’d like to welcome Tim Converse to Powerset. I’m looking forward to working with Tim again. We’ve had interesting working relationships in the past:
+ He worked for me writing code to parse RAP System execution code under C++, I worked for him (and Joyce Park) doing webdev using Dynamorph, an unlamented language that preceded JSP and PHP and Ruby on Rails.</description>
+    </item>
+    
+    <item>
+      <title>The new Google is … Powerset?</title>
+      <link>http://example.org/2006/11/27/the-new-google-is-powerset/</link>
+      <pubDate>Mon, 27 Nov 2006 23:54:50 +0000</pubDate>
+      
+      <guid>http://example.org/2006/11/27/the-new-google-is-powerset/</guid>
+      <description>Gulp.
+David Smith at The Guardian hypes web 2.0 (or web 3.0) and writes “The new Google is … Powerset.”
+Calm down, everyone. Read what Barney Pell (Powerset CEO), Lorenzo Thione (Product Architect) and Steve Newcomb (COO) are saying on their blogs, especially Barney’s comments on Google and Powerset in the Sunday Times:
+ Search is in its early days, and natural language is the future of search. But it’s both difficult to enable natural language search at all, and to do it on a scale like Google is a harder matter still.</description>
+    </item>
+    
+    <item>
+      <title>Powerset announces Series A round</title>
+      <link>http://example.org/2006/11/07/powerset-announces-series-a-round/</link>
+      <pubDate>Tue, 07 Nov 2006 13:32:34 +0000</pubDate>
+      
+      <guid>http://example.org/2006/11/07/powerset-announces-series-a-round/</guid>
+      <description>Cool, the news is officially out: Powerset has raised $12.5 M in series A financing (our press release). Bambi Francisco wrote a story for MarketWatch, and did an interview with our CEO, Barney Pell. Great lead to Francisco’s story:
+ So they must be crazy, have a high threshold for pain, or are certain to deliver a brilliant product, right? Update: And it feels even more real when it makes the New York Times (a Times blog, but still).</description>
+    </item>
+    
+    <item>
+      <title>Company blogs</title>
+      <link>http://example.org/2006/11/05/company-blogs/</link>
+      <pubDate>Sun, 05 Nov 2006 06:55:07 +0000</pubDate>
+      
+      <guid>http://example.org/2006/11/05/company-blogs/</guid>
+      <description>Our company did a slight remake of our website, with perhaps the most interesting thing: a list of our Angel round investors mentioned on our newly minted company blog.
+What’s that you say, a company can’t have a blog? That there’s no difference between a company blog and a press release? Silly you: Press releases talk about the company in the third person, have an about section, and a media contact.</description>
+    </item>
+    
+    <item>
+      <title>The Powerset Blogstorm</title>
+      <link>http://example.org/2006/10/12/we-way-cool/</link>
+      <pubDate>Thu, 12 Oct 2006 12:00:36 +0000</pubDate>
+      
+      <guid>http://example.org/2006/10/12/we-way-cool/</guid>
+      <description>We way cool. We loved school. We
+Work late. We Code straight. We
+Plugged in. We Bloggin. We
+Balloon. We Show soon.
+(with apologies to G. Brooks).</description>
+    </item>
+    
+    <item>
+      <title>A Powerset reveal</title>
+      <link>http://example.org/2006/10/05/a-powerset-reveal/</link>
+      <pubDate>Thu, 05 Oct 2006 11:36:18 +0000</pubDate>
+      
+      <guid>http://example.org/2006/10/05/a-powerset-reveal/</guid>
+      <description>An article in Ventureblog about Powerset, the company I work for, has kicked up a minor storm in the blogosphere about Powerset and the very idea of natural language search. I’d just like to point people to a weblog post by Barney Pell, our CEO, on Powerset and Natural Language Search. For those who might wonder why I’m working for Powerset, Barney’s vision explains it well:
+ Seen in this light, there is enormous room for fundamental innovation in search, as the game has only just begun.</description>
+    </item>
+    
+    <item>
+      <title>Powar(&#43;) law</title>
+      <link>http://example.org/2006/09/20/powar-law/</link>
+      <pubDate>Wed, 20 Sep 2006 18:58:13 +0000</pubDate>
+      
+      <guid>http://example.org/2006/09/20/powar-law/</guid>
+      <description>This just in: Results from International Talk Like a Pirate Day.</description>
+    </item>
+    
+    <item>
+      <title>First Powerset writeup?</title>
+      <link>http://example.org/2006/08/18/first-powerset-writeup/</link>
+      <pubDate>Fri, 18 Aug 2006 20:12:50 +0000</pubDate>
+      
+      <guid>http://example.org/2006/08/18/first-powerset-writeup/</guid>
+      <description>I think this is the first writeup of the company I work for, Powerset, that I’ve seen: Spying an intelligent search engine. Barney Pell, our CEO, is interviewed.
+ Search engines try to train us to become good keyword searchers. We dumb down our intelligence so it will be natural for the computer,” said Pell, whose company, Powerset, is based in Palo Alto, Calif. “The big shift that will happen in society is that instead of moving human expressions and interactions into what’s easy for the computer, we’ll move computers’ abilities to handle expressions that are natural for the human,” he said.</description>
+    </item>
+    
+    <item>
+      <title>Page duplicates on the web</title>
+      <link>http://example.org/2006/07/04/page-duplicates-on-the-web/</link>
+      <pubDate>Wed, 05 Jul 2006 01:13:15 +0000</pubDate>
+      
+      <guid>http://example.org/2006/07/04/page-duplicates-on-the-web/</guid>
+      <description>The always interesting Jean Veronis posts about page duplicates in English and French.
+He investigates how many pages are returned for a search for the new word “ségolisme” (for which he can control at bit for precision numbers), and how many of these are duplicates due to RSS feeds, etc. A money quote:
+ So, what are all these pages that Google considers to be similar? On closer inspection we can see that they are mainly RSS versions of the same page, archived pages (a blog often presents the same post in an individual version and also in a weekly or monthly archive), versions of posts both with and without comments, and links such as “trackback” or “new comments”, which are also commonplace on blogs.</description>
+    </item>
+    
+  </channel>
+</rss>

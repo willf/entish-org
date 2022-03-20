@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Producing n hash functions by hashing only once | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Producing n hash functions by hashing only once" />
+<meta property="og:description" content="To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2011/09/03/producing-n-hash-functions-by-hashing-only-once/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-09-03T06:52:38+00:00" />
+<meta property="article:modified_time" content="2011-09-03T06:52:38+00:00" />
+
+<meta itemprop="name" content="Producing n hash functions by hashing only once">
+<meta itemprop="description" content="To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread."><meta itemprop="datePublished" content="2011-09-03T06:52:38+00:00" />
+<meta itemprop="dateModified" content="2011-09-03T06:52:38+00:00" />
+<meta itemprop="wordCount" content="277">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Producing n hash functions by hashing only once"/>
+<meta name="twitter:description" content="To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Producing n hash functions by hashing only once</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-09-03T06:52:38Z">September 3, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread.</p>
+<p>There’s a <a href="http://bit.ly/rgYdK3">good paper</a> that reminds us that you can easily simulate <em>n</em> hash functions by having just <em>two</em> hash functions around. This can be as simple as this function to create the _i_th hash of a key, given the results <em>a</em> and <em>b</em> of hashing a key with these two functions:</p>
+<blockquote>
+<p>hash(i) = (a + b * i ) % m
+where <em>m</em> is the maximum value of the hash (for example, the number of buckets in a bloom filter).</p>
+</blockquote>
+<p><strong>But here’s a good trick not really worth a paper–but it’s still a good trick. Typically, it’s totally reasonable to limit the size to under the maximum size of an unsigned 32-bit number. These days, at least, it’s probably <em>cheaper</em> to calculate a base hash function on unsigned 64-bit numbers. So, you can take the upper half and the lower half of the 64-bit hashed value and return them as <em>two</em> 32 bit numbers.</strong></p>
+<p>Voila! Double hashing with one hash function. And using <a href="http://en.wikipedia.org/wiki/Fowler-Noll-Vo_hash_function">FNV</a> means you have a very cheap hash function to start with, so really this can be very, very fast.</p>
+<p>I implemented this in my <a href="https://github.com/willf/bloom">bloom filter code for go</a>.</p>
+<p>For <a href="https://twitter.com/#!/mojombo/status/109838512337059840">@mojombo</a>.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

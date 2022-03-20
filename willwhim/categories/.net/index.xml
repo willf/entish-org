@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>.NET on Will&#39;s Whims</title>
+    <link>http://example.org/categories/.net/</link>
+    <description>Recent content in .NET on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Jun 2011 14:35:14 +0000</lastBuildDate><atom:link href="http://example.org/categories/.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>F# One liners to impress your friends</title>
+      <link>http://example.org/2011/06/02/fsharp-one-liners-to-impress-your-friends/</link>
+      <pubDate>Thu, 02 Jun 2011 14:35:14 +0000</pubDate>
+      
+      <guid>http://example.org/2011/06/02/fsharp-one-liners-to-impress-your-friends/</guid>
+      <description>In the spirit of 10 Scale One Liners to impress your friends, here are some F# one liners:
+  Multiply each item in a list by 2. This is simple to do; F# has map: `In the spirit of 10 Scale One Liners to impress your friends, here are some F# one liners:
+  Multiply each item in a list by 2. This is simple to do; F# has map:`</description>
+    </item>
+    
+    <item>
+      <title>F# no parameter functions</title>
+      <link>http://example.org/2011/03/31/f-no-parameter-functions/</link>
+      <pubDate>Thu, 31 Mar 2011 15:21:03 +0000</pubDate>
+      
+      <guid>http://example.org/2011/03/31/f-no-parameter-functions/</guid>
+      <description>Notes to myself: F# version
+Whenever writing or using a no parameter function, give it an empty parameter list.
+not:
+or
+The last example will create a (global) non-function variable which evaluates to the result of the do_something function at load/compile time; probably not what is wanted.
+Just wasted about 4 hours on this (since it was taking a long time, and consumed all the resources on my machine, it was difficulter to debug).</description>
+    </item>
+    
+    <item>
+      <title>C# Lambdas are almost like C# compile-time macros</title>
+      <link>http://example.org/2010/09/13/c-lambdas-are-almost-like-c-compile-time-macros/</link>
+      <pubDate>Mon, 13 Sep 2010 21:32:13 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/13/c-lambdas-are-almost-like-c-compile-time-macros/</guid>
+      <description>I was writing some instrumentation code in C# today that looked like this:
+MeasureOn(&amp;quot;SomeFeature&amp;quot;); ComputeSomeFeature(); MeasureOff(&amp;quot;SomeFeature&amp;quot;); MeasureOn(&amp;quot;AnotherFeature&amp;quot;); ComputeAnotherFeature(); MeasureOff(&amp;quot;AnotherFeature&amp;quot;);
+If I were using a language with (compile-time) code macros (like Clojure, Scheme or Lisp), I’d prefer to write something like:
+Measuring(&amp;quot;SomeFeature&amp;quot;){ComputeSomeFeature();} Measuring(&amp;quot;AnotherFeature&amp;quot;){ComputeAnotherFeature();}
+But C# doesn’t have such a basic and useful thing, by design (bad design, I think, but still by design).
+But C# does have first-class anonymous functions, so it’s possible to write methods that take one of these as a parameter.</description>
+    </item>
+    
+  </channel>
+</rss>

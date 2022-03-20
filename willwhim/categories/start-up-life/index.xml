@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Start up life on Will&#39;s Whims</title>
+    <link>http://example.org/categories/start-up-life/</link>
+    <description>Recent content in Start up life on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Oct 2013 04:34:51 +0000</lastBuildDate><atom:link href="http://example.org/categories/start-up-life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metrics and Hiring, some comments on diversity</title>
+      <link>http://example.org/2013/10/30/metrics-hiring-comments-diversity/</link>
+      <pubDate>Wed, 30 Oct 2013 04:34:51 +0000</pubDate>
+      
+      <guid>http://example.org/2013/10/30/metrics-hiring-comments-diversity/</guid>
+      <description>Lukas Biewald, the CEO of CrowdFlower, posted an essay called Metrics and Hiring. In it, he does something I haven’t seen anyone else do, which is to dive into his own data looking for indicators of success of people he has hired. He found that referral quality and school quality were the two most predictive indicators. Lukas does not break down his data by gender or age or other demographic classes.</description>
+    </item>
+    
+  </channel>
+</rss>

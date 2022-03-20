@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Misc. and uncategorized on Will&#39;s Whims</title>
+    <link>http://example.org/categories/misc.-and-uncategorized/</link>
+    <description>Recent content in Misc. and uncategorized on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Mar 2014 14:24:34 +0000</lastBuildDate><atom:link href="http://example.org/categories/misc.-and-uncategorized/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test of Getty Images embedding</title>
+      <link>http://example.org/2014/03/06/test-getty-images-embedding/</link>
+      <pubDate>Thu, 06 Mar 2014 14:24:34 +0000</pubDate>
+      
+      <guid>http://example.org/2014/03/06/test-getty-images-embedding/</guid>
+      <description>Getty Labs is now allowing free licensing for many of its images. This is a test.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>How to do sentiment analysis: machine learning, oversimplified | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="What is sentiment analysis?
+Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="How to do sentiment analysis: machine learning, oversimplified" />
+<meta property="og:description" content="What is sentiment analysis?
+Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2015/04/30/how-to-do-sentiment-analysis-machine-learning-oversimplified/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-05-01T01:12:36+00:00" />
+<meta property="article:modified_time" content="2015-05-01T01:12:36+00:00" />
+
+<meta itemprop="name" content="How to do sentiment analysis: machine learning, oversimplified">
+<meta itemprop="description" content="What is sentiment analysis?
+Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is."><meta itemprop="datePublished" content="2015-05-01T01:12:36+00:00" />
+<meta itemprop="dateModified" content="2015-05-01T01:12:36+00:00" />
+<meta itemprop="wordCount" content="684">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to do sentiment analysis: machine learning, oversimplified"/>
+<meta name="twitter:description" content="What is sentiment analysis?
+Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">How to do sentiment analysis: machine learning, oversimplified</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-05-01T01:12:36Z">May 1, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><strong>What is sentiment analysis?</strong></p>
+<p>Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is.</p>
+<p><strong>Machine learned approaches to sentiment analysis</strong></p>
+<p>If the goal is to confidently predict whether an opinion is positive or negative, then sentiment analysis is a binary classification problem. If the goal is to predict whether an opinion is positive, negative, or neutral, then it is a multiclass classification problem. If the goal is to predict how positive or negative the opinion is, it is a regression problem.</p>
+<p><strong>Sentiment analysis as a classification problem</strong></p>
+<p>Any binary or multiclass classification technique will probably do a reasonable job of sentiment analysis, given enough data and features. It is probably better to treat sentiment analysis as a multiclass classification problem because a lot of text, even text that is supposed to hold opinions, can be relatively neutral, and not having a neutral class will result in in modeling errors. Consider “McDonald’s food is horrible,” “McDonald’s food is amazing,” and “McDonald’s food is neither good nor bad.” Trying to shoehorn that last statement into either positive or negative is problematic. Still, it could be that “negative” means “not positive,” and so a binary classification might be just fine. McDonald’s would surely be unhappy with a “neither good or bad” opinion.</p>
+<p>The simplest sentiment analysis technique uses word lists annotated with valences (measurements of positive/neutral/negative). For example, the researchers Peter Sheridan Dodds, Kameron Decker Harris, Isabel M. Kloumann, Catherine A. Bliss, and Christopher M. Danforth collected valence values for over 10,000 English words based on crowdsourcing. Simply averaging the valences over a text (treating unknown text as neutral) and using cutoff numbers, provides a reasonable first model. I created such a system, called a sentimenticon, callable from Python. It is available at <a href="http://github.com/willf/sentimenticon"><a href="http://github.com/willf/sentimenticon">http://github.com/willf/sentimenticon</a></a>. This code weighs words from +1.0 to -1.0, so reasonable cutoffs are +0.5 and -0.5.</p>
+<p>Beyond this, any high-feature model will do, I suspect, for most practical purposes. My first take at models like this is to use maximum entropy/log-linear models, because they are relatively resistant to non-independence among features, and usually train quickly, and are relatively easy to debug.</p>
+<p>Recently, the deep learning revolution has begun to address sentiment analysis. For example, NLP researchers at Stanford have applied “Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank.” In particular, they are interested in how sentiment valences are composed within a text. (See their website: <a href="http://nlp.stanford.edu/sentiment">http://nlp.stanford.edu/sentiment</a>). But this might be more architecture than a ordinary working data scientist cares about. On the other hand, it can handle more nuanced opinions such as “There are slow and repetitive parts, but it has just enough spice to keep it interesting.” (their example). It can also handle negating positive polarities (e.g., “This movie is not good.”) which are sometimes a problem for bag-of-words models (but maybe not as much a problem for bag-of-ngram models).</p>
+<p><strong>Sentiment analysis as a regression problem</strong></p>
+<p>A simple method has already been suggested, which is to use a sentimenticon, and take an average over text, treating unknown words as neutral. This can be adequate for many uses. Otherwise, other regression models will be required.</p>
+<p>It is likely, however, that measured sentiments of a text has a roughly sigmoid shape; this is certainly true of individual words (see the distribution of the crowdsourced words below). That is to say, some few texts will be very, very positive, or very, very negative, with most texts evenly distributed; for example: Obama RULES!!!! vs. Obama SUX!!!!! vs. most people’s more or less positive/negative opinion. So, logistic regression models are likely good fits.</p>
+<p><a href="http://willwhim.wpengine.com/wp-content/uploads/2015/04/sigmoid_sentiment.png"><!-- raw HTML omitted --></a></p>
+<p><strong>References</strong></p>
+<p>Richard Socher, Alex Perelygin, Jean Wu,Jason Chuang, Christopher Manning,Andrew Ng and Christopher Potts, 2013. Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank, Conference on Empirical Methods in Natural Language Processing (EMNLP 2013). <a href="http://nlp.stanford.edu/sentiment"><a href="http://nlp.stanford.edu/sentiment">http://nlp.stanford.edu/sentiment</a></a></p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Computational Social Science on the cheap using Twitter | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church).">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Computational Social Science on the cheap using Twitter" />
+<meta property="og:description" content="This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2011/11/23/computational-social-science-on-the-cheap-using-twitter/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-11-23T05:37:37+00:00" />
+<meta property="article:modified_time" content="2011-11-23T05:37:37+00:00" />
+
+<meta itemprop="name" content="Computational Social Science on the cheap using Twitter">
+<meta itemprop="description" content="This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church)."><meta itemprop="datePublished" content="2011-11-23T05:37:37+00:00" />
+<meta itemprop="dateModified" content="2011-11-23T05:37:37+00:00" />
+<meta itemprop="wordCount" content="787">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Computational Social Science on the cheap using Twitter"/>
+<meta name="twitter:description" content="This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church)."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Computational Social Science on the cheap using Twitter</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-11-23T05:37:37Z">November 23, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>This is a followup to my post <a href="http://willwhim.wordpress.com/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/">Computational lexicography on the cheap using Twitter</a>, but more especially in response to <a href="http://socialmediacollective.org/2011/10/06/using-off-the-shelf-software-for-basic-twitter-analysis/">Using off-the-shelf software for basic Twitter analysis</a>.</p>
+<p>The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.</p>
+<p>But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in <a href="http://www.stanford.edu/class/cs224n/handouts/kwc-unix-for-poets.pdf">Unix for Poets,</a> by Ken Church). In fact, several simple   commands—commands I use everyday—are powerful enough to do the kind of analyses they discuss.</p>
+<p><strong>Getting the data.</strong></p>
+<p>(You can skip over this if you have data already!)</p>
+<p>Interestingly, they do <em>not</em> show how to get the tweets to begin with. My <a href="http://willwhim.wordpress.com/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/">previous post</a> discusses this, but it might be useful to show a simple Ruby program that collects Tweet data, especially since the method has changed slightly since my post. The biggest hurdle is setting up authentication to access Twitter’s data—discussed in full, <a href="https://dev.twitter.com/docs/auth/oauth-landing">here</a>, but the crucial thing is that you have to register as a Twitter developer, register a Twitter application, and get special tokens. You create an application at the Twitter <a href="https://dev.twitter.com/apps">apps</a> page; from that same location you generate the special tokens.</p>
+<p>Here’s the Ruby script (also listed <!-- raw HTML omitted -->here<!-- raw HTML omitted -->).</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>With the proper keys and secrets, this gist wlll allow you to track keywords over time, and print out, in a tab-separated format, the tweet id, the text of the tweet, the date, andthe time it was published (in UTC, or Greenwich, time). You could add additional columns, as described (by example) in the Twitter API.</p>
+<p>The example here tracks mentions of football, baseball, soccer, and cricket, but obviously, these could be other keywords. Running this using this command:</p>
+<!-- raw HTML omitted -->
+<p>will place tweets in the file ‘nsports.tsv’.</p>
+<p><strong>Basic statistics</strong></p>
+<p>Counting the number of football, baseball, etc. mentions is easy:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>As well as getting the number of lines in the file:</p>
+<!-- raw HTML omitted -->
+<p>The second analysis was to count who is retweeted the most, done by counting the username after the  standard Twitter “RT ” (eg “rt @willf good stuff!”). The following pipeline of commands accomplishes this simply enough:</p>
+<!-- raw HTML omitted -->
+<p>(This may be easier to copy from <!-- raw HTML omitted -->here<!-- raw HTML omitted -->). Each of these is a separate command, and the pipe symbol (|), indicates that the output from one command goes on to the next. Here’s what these commands do:</p>
+<ol>
+<li>egrep -io “rt +@w+” nsports.tsv — searches through the tweets for the pattern RT space @ name, where there is one or more spaces, and one or more ‘word’ characters. It only prints the matching parts (-o), and ignores differences in case (-i).</li>
+<li>perl -pe “s/ +/ /g” — I noticed that from time to time, there is more than one space after the ‘RT’, so this substitutes one or more spaces with exactly one space.</li>
+<li>cut -f2 -d  — Each line looks like “RT @name”, now, and this command ‘cuts’ the second field out of each line, with a delimiter of a space. This results in each line looking like ‘@name’.</li>
+<li>sort | uniq -c | sort -rn — this is three commands, but I type them so frequently, it seems like one to me. It sorts the text, so they can be counted with the uniq command, which produces two columns : the count and the name; we reverse sort (-r) on the first numeric field (-n)</li>
+<li>head — this shows the top ten lines from a file.</li>
+</ol>
+<p>This command pipeline should have no problem handling 475k lines.</p>
+<p>The third analysis was to put the data in a format that can be used by Excel to create a graph, with counts by day. Because we have printed the date and time in separate columns, with the date in column 3. So, we can simply do the cut, sort, uniq series:</p>
+<!-- raw HTML omitted -->
+<p>This will put the data into a format that Excel can read.</p>
+<p>Finally, the authors show how to create Wordle word graphs overall, and for the categories. I’m not a big fan of these as a data exploration tool, but notice you can use cut -f2 to get the text to paste into Wordle.</p>
+<p>So, this is computational social science on the cheap using Twitter, using some basic Unix commands (cat, cut, sort, uniq, grep), with one tiny, tiny call to Perl. You can do this too–and it’s easier to learn than MySQL and SQL! Plus, you can easily read the text files that are created. All of this was done on a standard Mac, but any Unix machine, or Windows machine with the <!-- raw HTML omitted -->Cygwin<!-- raw HTML omitted --> tools installed, can do this as well.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

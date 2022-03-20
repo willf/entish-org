@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A Fibonacci A Day — Out of Bounds | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="A Fibonacci A Day — Out of Bounds" />
+<meta property="og:description" content="Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2013/03/17/a-fibonacci-a-day-out-of-bounds/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2013-03-17T13:00:09+00:00" />
+<meta property="article:modified_time" content="2013-03-17T13:00:09+00:00" />
+
+<meta itemprop="name" content="A Fibonacci A Day — Out of Bounds">
+<meta itemprop="description" content="Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct."><meta itemprop="datePublished" content="2013-03-17T13:00:09+00:00" />
+<meta itemprop="dateModified" content="2013-03-17T13:00:09+00:00" />
+<meta itemprop="wordCount" content="217">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A Fibonacci A Day — Out of Bounds"/>
+<meta name="twitter:description" content="Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A Fibonacci A Day — Out of Bounds</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-03-17T13:00:09Z">March 17, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><a href="http://willwhim.wpengine.com/2013/03/15/a-fibonacci-a-day-iterative-version/" title="A Fibonacci A Day — Iterative version">Yesterday’s</a> iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>As it turns out, Scala’s Int and Long types are always <em>signed</em>, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct. Nothing in the Scala type system prevents this. The Int version of the fibonacci function is good up to 46, the Long version is good up to about 164, and a Double version up to about 1476.</p>
+<p>Fortunately, Scala provides a BigInt that will grow as big as memory available, so we can simply rewrite the iterative version to use BigInts.</p>
+<p>The other, minor problem, is that we don’t handle the case of passing negative numbers to our fibonacci function — this is not defined (at least as we described it informally). We can either ‘throw an error,’ or return a negative number to indicate the number is out of domain.</p>
+<p>Here’s the revised, BigInt version.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>And here is F(1000): 43,466,557,686,937,456,435,688,527,675,040,625,802,564,660,517,371,780,402,481,729,089,536,555,417,949,051,890,403,879,840,079,255,169,295,922,593,080,322,634,775,209,689,623,239,873,322,471,161,642,996,440,906,533,187,938,298,969,649,928,516,003,704,476,137,795,166,849,228,875</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

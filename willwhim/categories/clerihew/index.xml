@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clerihew on Will&#39;s Whims</title>
+    <link>http://example.org/categories/clerihew/</link>
+    <description>Recent content in clerihew on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Apr 2011 19:13:36 +0000</lastBuildDate><atom:link href="http://example.org/categories/clerihew/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>David Fetcho</title>
+      <link>http://example.org/2011/04/02/david-fetcho/</link>
+      <pubDate>Sat, 02 Apr 2011 19:13:36 +0000</pubDate>
+      
+      <guid>http://example.org/2011/04/02/david-fetcho/</guid>
+      <description>David Fetcho’s no small quelquechose— A modern day Erasmus and occasional Bacchus.</description>
+    </item>
+    
+    <item>
+      <title>Idy Kiser</title>
+      <link>http://example.org/2011/03/11/idy-kiser/</link>
+      <pubDate>Fri, 11 Mar 2011 12:37:53 +0000</pubDate>
+      
+      <guid>http://example.org/2011/03/11/idy-kiser/</guid>
+      <description>Idy Clare Kiser Is a kind, wise advisor. Pay attention. She takes her place “Seventy-seven-on-the-top. The Child of Grace.”</description>
+    </item>
+    
+    <item>
+      <title>Chris Biemann</title>
+      <link>http://example.org/2010/10/29/chris-biemann/</link>
+      <pubDate>Fri, 29 Oct 2010 12:25:41 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/29/chris-biemann/</guid>
+      <description>Herr Doktor Biemann’s own graphical models are ausgezeichnet, If you are surmising that yours will do better Likeyanknowjus forgeddaboudit.
+ </description>
+    </item>
+    
+    <item>
+      <title>Robert Voyer</title>
+      <link>http://example.org/2010/01/28/robert-voyer/</link>
+      <pubDate>Thu, 28 Jan 2010 15:58:00 +0000</pubDate>
+      
+      <guid>http://example.org/2010/01/28/robert-voyer/</guid>
+      <description>Robert Voyer Shouldn’t be left to wait out in the foyer. (He probably shouts an “¡Olé!” If you pronounced it /fwä-ˌyā/)</description>
+    </item>
+    
+    <item>
+      <title>Alexander C. Lipsey</title>
+      <link>http://example.org/2009/11/06/alexander-c-lipsey/</link>
+      <pubDate>Fri, 06 Nov 2009 18:39:30 +0000</pubDate>
+      
+      <guid>http://example.org/2009/11/06/alexander-c-lipsey/</guid>
+      <description>Alexander C. Lipsey? No, I’ve never seen him tipsy. He’s by no means a drudge– But he is sober as a judge.</description>
+    </item>
+    
+    <item>
+      <title>David Fayram, Vicky Willis</title>
+      <link>http://example.org/2009/11/06/david-fayram-vicky-willis/</link>
+      <pubDate>Fri, 06 Nov 2009 05:08:30 +0000</pubDate>
+      
+      <guid>http://example.org/2009/11/06/david-fayram-vicky-willis/</guid>
+      <description>David Fayram — You might want to beware him. His opinions are fearless; His abilities, peerless.
+Vicky Robbins, née Willis, She was kind when I met her, and she still is. She’s clever as beans And she says what she means.</description>
+    </item>
+    
+    <item>
+      <title>Hal Eisen</title>
+      <link>http://example.org/2009/11/04/hal-eisen/</link>
+      <pubDate>Wed, 04 Nov 2009 17:52:36 +0000</pubDate>
+      
+      <guid>http://example.org/2009/11/04/hal-eisen/</guid>
+      <description>Hal Eisen sail’d to the horizon. He’d rather suffer beri-beri than write code that’s proprietary.</description>
+    </item>
+    
+  </channel>
+</rss>

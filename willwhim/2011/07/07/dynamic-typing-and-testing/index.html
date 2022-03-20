@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Dynamic typing and testing | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Dynamic typing and testing" />
+<meta property="og:description" content="As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2011/07/07/dynamic-typing-and-testing/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-07-07T03:27:05+00:00" />
+<meta property="article:modified_time" content="2011-07-07T03:27:05+00:00" />
+
+<meta itemprop="name" content="Dynamic typing and testing">
+<meta itemprop="description" content="As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems."><meta itemprop="datePublished" content="2011-07-07T03:27:05+00:00" />
+<meta itemprop="dateModified" content="2011-07-07T03:27:05+00:00" />
+<meta itemprop="wordCount" content="332">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dynamic typing and testing"/>
+<meta name="twitter:description" content="As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Dynamic typing and testing</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-07-07T03:27:05Z">July 7, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [<a href="https://github.com/willf/inverted_index_simple">https://github.com/willf/inverted_index_simple</a>]<a href="https://github.com/willf/inverted_index_simple">1</a>–not that I think you’ll write the next major search engine with this bit of code…</p>
+<p>What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems. For example, in the method query_and (which returns the set intersection of all documents containing query terms), I originally wrote:</p>
+<p><code>def query_and tokens return Set.new if tokens.size == 0 sets = tokens.map{|token| query_token token} sets[1..-1].inject(sets[0]){|reduction, x| &lt;strong&gt;redution&lt;/strong&gt; &amp; x} end</code></p>
+<p>The third line is only tested if there are at least three query terms, so it was important to write such a test. But what surprised me is that the error was not in the logic, but the literal typing–I misspelled “reduction” the second time.</p>
+<p>Similarly, I think I wrote a version of the function that had</p>
+<p>sets = tokens.map{|token| query_token <strong>tokens</strong>}</p>
+<p>where I typed ‘tokens’ instead of ‘token’ by mistake.</p>
+<p>With a statically typed language, neither of these errors are likely to make it past the static compiler. The Go language, for example, won’t even let you declare variables unless you use them–something which drives me mad, but is probably the right thing to do. (It would have caught the second error, even if ‘token’ and ‘tokens’ happened to be of the same type.)</p>
+<p>The great loss of strict static typing comes when it is difficult to write ‘generic’ code (stacks, and queues, for example, of anything); most modern languages provide some sort of facility for this (and we’re still waiting for Go to provide this). The other great loss is when it really makes sense to have union types: functions that work on lists of ints, in addition to ints.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

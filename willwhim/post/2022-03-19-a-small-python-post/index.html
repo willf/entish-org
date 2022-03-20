@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A Small Python Post | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Solving a small Python program Pythonically">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="A Small Python Post" />
+<meta property="og:description" content="Solving a small Python program Pythonically" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/post/2022-03-19-a-small-python-post/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-03-19T18:55:25-04:00" />
+<meta property="article:modified_time" content="2022-03-19T18:55:25-04:00" />
+
+<meta itemprop="name" content="A Small Python Post">
+<meta itemprop="description" content="Solving a small Python program Pythonically"><meta itemprop="datePublished" content="2022-03-19T18:55:25-04:00" />
+<meta itemprop="dateModified" content="2022-03-19T18:55:25-04:00" />
+<meta itemprop="wordCount" content="476">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A Small Python Post"/>
+<meta name="twitter:description" content="Solving a small Python program Pythonically"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A Small Python Post</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              Will Fitzgerald
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-03-19T18:55:25-04:00">March 19, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Carlton Gibson posed the following <a href="https://twitter.com/carltongibson/status/1504452107910488076">small Python question</a>:</p>
+<blockquote>
+<p>I&rsquo;ve got a Python list of booleans: [True, False, False, &hellip;]</p>
+<p>I need to reduce it to a single boolean: True if all items are True, or all are False, False otherwise.</p>
+<p>I&rsquo;ve got a loop. But what have you got?</p>
+<p>all_the_same = …</p>
+<p>Go! 😜</p>
+</blockquote>
+<p>I think there are a couple edge cases that need to be covered that are not quite in the short requirements above. First, what should be the behavior if the list is empty? Second, can it handle long lists, such as <code>[False] * 10_000_000</code>?</p>
+<p>I&rsquo;ll consider the empty case to be <code>True</code>, and it also important to handle the long list case in no more than linear time (worst case).</p>
+<p>A common answer was to use Python sets to solve the problem, for example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_the_same</span>(items):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> len(set(items)) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>This doesn&rsquo;t handle the empty case (if you decide it should return <code>True</code>), but that&rsquo;s easy to fix:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_the_same</span>(items):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> len(set(items)) <span style="color:#f92672">in</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><p>Another semantically reasonable was to write:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_the_same</span>(items):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> all(items) <span style="color:#f92672">or</span> <span style="color:#f92672">not</span> any(items)
+</span></span></code></pre></div><p>This handles the empty case as I expect (because <code>all([])</code> is <code>True</code>). But although technically linear, it has to go through the list twice.</p>
+<p>As it turns out, the Python module <code>more_itertools</code> has a function <code>all_equal</code> which does what we want exactly. We could use that, or &lsquo;steal&rsquo; its definition:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> itertools <span style="color:#f92672">import</span> groupby
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_the_same</span>(items):
+</span></span><span style="display:flex;"><span>  g <span style="color:#f92672">=</span> groupby(items)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> next(g, <span style="color:#66d9ef">True</span>) <span style="color:#f92672">and</span> <span style="color:#f92672">not</span> next(g, <span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><p>But that&rsquo;s somewhat obscure.</p>
+<p>Someone pointed out (I&rsquo;ve lost the tweet), that this is essentially connected to the idea <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or</a>, or XOR, but on lists instead of bits. That seems exactly correct, and I think decorating the types makes sense. It also suggests to me that (since XOR requires two parameters, that the empty list should throw an error for this function).</p>
+<p>Since we are dealing with lists not bits, <em>and</em> we are using the list a pair of items at a time, using the <code>reduce</code> function seems the most Pythonic way of writing this function. Here, with typing decorators:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Iterable
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> reduce
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_xor</span>(items: Iterable[bool]) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> reduce(<span style="color:#66d9ef">lambda</span> x,y: x<span style="color:#f92672">^</span>y, items)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_same</span>(items: Iterable[bool]) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> list_xor(items)
+</span></span></code></pre></div><p>Unfortuately, this doesn&rsquo;t short-circuit in the case of something like <code>all_same([False] + [True]*10_000_000)</code>!</p>
+<p>So, how about this? We use <code>all</code> over the zip of the list plus the list[1:]?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_same</span>(items: Iterable[bool]) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> all(a<span style="color:#f92672">==</span>b <span style="color:#66d9ef">for</span> a,b <span style="color:#f92672">in</span> zip(items, items[<span style="color:#ae81ff">1</span>:]))
+</span></span></code></pre></div><p>This <em>does</em> short-circuit as soon as there is a failure. Because of the semantics of <code>all</code>, it will return true on empty lists; so we might want to define it as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">all_same</span>(items: Iterable[bool]) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bool(items) <span style="color:#f92672">and</span> all(a<span style="color:#f92672">==</span>b <span style="color:#66d9ef">for</span> a,b <span style="color:#f92672">in</span> zip(items, items[<span style="color:#ae81ff">1</span>:]))
+</span></span></code></pre></div><p>I <em>suppose</em> in real Python code I would just use <code>more_itertools.all_equal</code> instead of rolling my own.</p>
+<hr>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

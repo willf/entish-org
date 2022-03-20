@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oversimplified on Will&#39;s Whims</title>
+    <link>http://example.org/categories/oversimplified/</link>
+    <description>Recent content in Oversimplified on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 May 2015 19:36:43 +0000</lastBuildDate><atom:link href="http://example.org/categories/oversimplified/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Word vectors: Machine learning oversimplified</title>
+      <link>http://example.org/2015/05/12/word-vectors-machine-learning-oversimplified/</link>
+      <pubDate>Tue, 12 May 2015 19:36:43 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/12/word-vectors-machine-learning-oversimplified/</guid>
+      <description>Word vectors have become increasingly important in as features in machine learning models for natural language processing. The idea is to represent a word in some multidimensional space (the vector) in which words which are “similar” are similar in that space. Typically, one hopes that word vectors will provide some kind of semantic similarity. A typical party trick is to use word vectors to solve word analogy problems; e.g., king is to queen as man is to ?</description>
+    </item>
+    
+    <item>
+      <title>How to to named entity recognition: machine learning oversimplified</title>
+      <link>http://example.org/2015/05/07/how-to-to-named-entity-recognition-machine-learning-oversimplified/</link>
+      <pubDate>Thu, 07 May 2015 18:11:40 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/07/how-to-to-named-entity-recognition-machine-learning-oversimplified/</guid>
+      <description>What is Named Entity Recognition? Named Entity Recognition (or NER) is the task of finding all the names of things in a text. For example, in the sentence “Jimi Hendrix played ‘The Star-Spangled Banner’ at Woodstock,” NER, correctly done, would find the references to “Jimi Hendrix,” “The Star-Spangled Banner,” and “Woodstock.” Note that NER should also extract names it has never previously seen; for example, in the sentence “Johannes von Smetly is the protagonist in Willard Smith’s new novel”, an NER system should extract “Johannes von Smetly” as a name, even if it it doesn’t appear in any standard name list.</description>
+    </item>
+    
+    <item>
+      <title>How to do part of speech tagging: machine learning, oversimplified</title>
+      <link>http://example.org/2015/05/05/how-to-do-part-of-speech-tagging-machine-learning-oversimplified/</link>
+      <pubDate>Wed, 06 May 2015 01:21:35 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/05/how-to-do-part-of-speech-tagging-machine-learning-oversimplified/</guid>
+      <description>What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:</description>
+    </item>
+    
+    <item>
+      <title>How to do sentiment analysis: machine learning, oversimplified</title>
+      <link>http://example.org/2015/04/30/how-to-do-sentiment-analysis-machine-learning-oversimplified/</link>
+      <pubDate>Fri, 01 May 2015 01:12:36 +0000</pubDate>
+      
+      <guid>http://example.org/2015/04/30/how-to-do-sentiment-analysis-machine-learning-oversimplified/</guid>
+      <description>What is sentiment analysis?
+Many texts contain an opinion about something: say, a movie or product review, a description of the service at a restaurant, a political position or candidate, or how things are going at a company. Sentiment analysis attempts to classify those opinions: did the writer have a positive opinion? A negative one? Or are they neutral? Sentiment analysis might also suggest how positive or negative an opinion is.</description>
+    </item>
+    
+  </channel>
+</rss>

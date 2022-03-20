@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clojure on Will&#39;s Whims</title>
+    <link>http://example.org/categories/clojure/</link>
+    <description>Recent content in Clojure on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Feb 2013 14:29:27 +0000</lastBuildDate><atom:link href="http://example.org/categories/clojure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why Scala is an acceptable Lisp</title>
+      <link>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</link>
+      <pubDate>Fri, 22 Feb 2013 14:29:27 +0000</pubDate>
+      
+      <guid>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</guid>
+      <description>It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.</description>
+    </item>
+    
+    <item>
+      <title>Clojure code: Iterated Prisoner’s Dilemma</title>
+      <link>http://example.org/2012/07/30/clojure-code-iterated-prisoners-dilemma/</link>
+      <pubDate>Mon, 30 Jul 2012 21:28:57 +0000</pubDate>
+      
+      <guid>http://example.org/2012/07/30/clojure-code-iterated-prisoners-dilemma/</guid>
+      <description>I hacked some Clojure code this weekend to run Iterated Prisoner’s Dilemma tournaments. It can be found at https://github.com/willf/prisoner.
+It feels good to be writing in a Lisp again!</description>
+    </item>
+    
+    <item>
+      <title>Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard)</title>
+      <link>http://example.org/2011/01/19/setting-up-clojure-1-2-for-mac-os-x-10-6-snow-leopard/</link>
+      <pubDate>Wed, 19 Jan 2011 01:53:38 +0000</pubDate>
+      
+      <guid>http://example.org/2011/01/19/setting-up-clojure-1-2-for-mac-os-x-10-6-snow-leopard/</guid>
+      <description>These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.2 command line prompt.
+First, create a directory for Clojure.
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>PROGN considered harmful | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Guy Steele in DDJ, Thoughts on Language Design: discusses going beyond the structured programming constructs of loops, if-then-else, and sequential operation:
+ What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="PROGN considered harmful" />
+<meta property="og:description" content="Guy Steele in DDJ, Thoughts on Language Design: discusses going beyond the structured programming constructs of loops, if-then-else, and sequential operation:
+ What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2005/12/30/progn-considered-harmful/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2005-12-30T05:26:03+00:00" />
+<meta property="article:modified_time" content="2005-12-30T05:26:03+00:00" />
+
+<meta itemprop="name" content="PROGN considered harmful">
+<meta itemprop="description" content="Guy Steele in DDJ, Thoughts on Language Design: discusses going beyond the structured programming constructs of loops, if-then-else, and sequential operation:
+ What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue."><meta itemprop="datePublished" content="2005-12-30T05:26:03+00:00" />
+<meta itemprop="dateModified" content="2005-12-30T05:26:03+00:00" />
+<meta itemprop="wordCount" content="411">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PROGN considered harmful"/>
+<meta name="twitter:description" content="Guy Steele in DDJ, Thoughts on Language Design: discusses going beyond the structured programming constructs of loops, if-then-else, and sequential operation:
+ What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">PROGN considered harmful</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-12-30T05:26:03Z">December 30, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Guy Steele in DDJ, <a href="http://www.ddj.com/documents/s=9938/ddj0601c/0601c.html">Thoughts on Language Design</a>: discusses going beyond the structured programming constructs of loops, <strong>if-then-else</strong>, and sequential operation:</p>
+<blockquote>
+<p>What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue. But they were not entirely satisfactory. I’m talking about a more general sort of language in which there are control structures, but designed for parallelism, rather than the sequential mindset of conventional structured programming. What if do loops and for loops were normally parallel, and you had to use a special declaration or keyword to indicate sequential execution? That might change your mindset a little bit.</p>
+</blockquote>
+<p>The programming language I work on, <a href="http://ti.arc.nasa.gov/projects/apex/">Apex</a> (as well as its predecessor, the RAP System), has parallelism turned <!-- raw HTML omitted -->off<!-- raw HTML omitted --> on by default, so that, for example, in</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>the “do this” step and the “do that” steps are executed in parallel. This does, in fact, turn out to require a change in mindset, especially when the individual steps are themselves composed of substeps executing in parallel. The RAP system also had an interesting approach to the <strong>if-then-else</strong>: procedures can have various <em>methods</em> which are tried in different cases; for example:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>I think that the syntax for both Apex and the Rap System turns out to be a bit heavy on keywords (<em>method</em>, <em>step</em>, etc.), which are, in turn due to their roots in Lisp. (There are some advantages to the ‘everything looks like data’ approach though). Neither the Rap System nor Apex really handle looping very well, though we’re working on some new looping constructs for Apex.</p>
+<p>In addition to the breakthroughs with respect to ‘structured programming’ constructs, both Apex and the Rap System have other important features, which like default parallelism, require some ‘changes in mindet.’ For example, conditions (such as in the methods above) can be much more richly expressed than boolean queries, but can stream bindings. Anyway, it is nice to think that Steele is working on making some of these ideas find their way into the mainstream. Here’s the latest spec for his new language <a href="http://research.sun.com/projects/plrg/fortress0785.pdf">Fortress</a>, which also includes support for Unicode-based operators, for example: “A × B” instead of the traditional ASCII “A * B” to indicate multiplcation.</p>
+<p>(via <a href="http://lambda-the-ultimate.org/node/view/1205">lambda the ultimate</a>).</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

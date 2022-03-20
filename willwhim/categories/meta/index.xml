@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meta on Will&#39;s Whims</title>
+    <link>http://example.org/categories/meta/</link>
+    <description>Recent content in Meta on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Aug 2012 04:06:44 +0000</lastBuildDate><atom:link href="http://example.org/categories/meta/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New site</title>
+      <link>http://example.org/2012/08/01/new-site/</link>
+      <pubDate>Wed, 01 Aug 2012 04:06:44 +0000</pubDate>
+      
+      <guid>http://example.org/2012/08/01/new-site/</guid>
+      <description>I’ve moved my blog to WP Engine, partially it is more convenient for my work at Wordnik (I can install our “Related Content” plugin, which I couldn’t do at WordPress.com).
+If you are subscribed to my RSS feed, you’ll want to change it to http://willwhim.wpengine.com/feed/l</description>
+    </item>
+    
+    <item>
+      <title>{Radio silence}</title>
+      <link>http://example.org/2011/01/11/radio-silence/</link>
+      <pubDate>Tue, 11 Jan 2011 16:53:45 +0000</pubDate>
+      
+      <guid>http://example.org/2011/01/11/radio-silence/</guid>
+      <description>Sorry for the radio silence; I’ve been busy working on The Trumpet in my spare time.</description>
+    </item>
+    
+    <item>
+      <title>Blog post from Microsoft Word</title>
+      <link>http://example.org/2010/05/05/blog-post-from-microsoft-word/</link>
+      <pubDate>Wed, 05 May 2010 17:38:55 +0000</pubDate>
+      
+      <guid>http://example.org/2010/05/05/blog-post-from-microsoft-word/</guid>
+      <description>Microsoft enters the mid oughties, and provides blog posting directly from Microsoft Word. Will it work, or no?
+Actually, this is pretty cool. It seems to allow me to edit the current blog post, and even to assign categories. My cynicism is unbecoming.
+But can I put in a table?
+ &amp;lt;td style=&amp;quot;padding-left:7px;padding-right:7px;border-top:solid black .5pt;border-left:none;border-bottom:solid black .5pt;border-right:solid black .5pt;&amp;quot;&amp;gt; Cats &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td style=&amp;quot;padding-left:7px;padding-right:7px;border-top:none;border-left:solid black .5pt;border-bottom:solid black .5pt;border-right:solid black .</description>
+    </item>
+    
+    <item>
+      <title>e-fast</title>
+      <link>http://example.org/2010/02/16/e-fast/</link>
+      <pubDate>Tue, 16 Feb 2010 13:52:12 +0000</pubDate>
+      
+      <guid>http://example.org/2010/02/16/e-fast/</guid>
+      <description>For Lent, I’ve decided to refrain from recreational checking of weblogs, Facebook and Twitter, starting February 17 until Easter Monday, April 5, 2010. I may be writing some weblog posts, and updating Facebook notes (and perhaps status), but after today, don’t expect to hear from me much except via the old ways, such as the Tele-Phone, Facsimile Transmission, and E-Mail. And F2F, of course.</description>
+    </item>
+    
+    <item>
+      <title>Moving to WordPress.com: six easy steps</title>
+      <link>http://example.org/2009/09/09/moving-to-wordpress-com-six-easy-steps/</link>
+      <pubDate>Wed, 09 Sep 2009 23:59:24 +0000</pubDate>
+      
+      <guid>http://example.org/2009/09/09/moving-to-wordpress-com-six-easy-steps/</guid>
+      <description>I got tired of baking my own bread, or better, perhaps, emptying my own garbage, so I’ve moved my weblog to WordPress.com (where you are right now). Please update your links, RSS feeds, etc.
+Here’s how to move a self-hosted WordPress weblog to WordPress.com, by exporting to XML and reimporting at WordPress.com. Depending on the version of WordPress software you are running, these instructions might have to be adjusted. Just look around: the right button or link is somewhere to be found.</description>
+    </item>
+    
+    <item>
+      <title>Blogging?</title>
+      <link>http://example.org/2008/12/01/blogging/</link>
+      <pubDate>Mon, 01 Dec 2008 12:49:57 +0000</pubDate>
+      
+      <guid>http://example.org/2008/12/01/blogging/</guid>
+      <description>Some of proclaimed the “end of blogging,” and it’s certainly the case that I haven’t written as much for this weblog recently. I do a lot of the teaching at our church, and more recently have been trying to write out my teaching notes and to send them to people who are interested or just unable to attend on a given Sunday. It’s a lot easier to do a teaching from an outline than to write everything down so that it’s semi-coherent, and that takes a significant amount of time.</description>
+    </item>
+    
+    <item>
+      <title>Status report</title>
+      <link>http://example.org/2008/05/02/status-report/</link>
+      <pubDate>Fri, 02 May 2008 21:04:45 +0000</pubDate>
+      
+      <guid>http://example.org/2008/05/02/status-report/</guid>
+      <description>I updated WordPress, my blogging software, today. Let me know if there is any problem.</description>
+    </item>
+    
+    <item>
+      <title>Yet another WordPress theme</title>
+      <link>http://example.org/2008/01/24/yet-another-wordpress-theme/</link>
+      <pubDate>Fri, 25 Jan 2008 02:41:38 +0000</pubDate>
+      
+      <guid>http://example.org/2008/01/24/yet-another-wordpress-theme/</guid>
+      <description>Your blog might be in trouble if you update your blog theme more often than the content.</description>
+    </item>
+    
+    <item>
+      <title>Yet another theme tryout</title>
+      <link>http://example.org/2007/10/27/yet-another-theme-tryout/</link>
+      <pubDate>Sat, 27 Oct 2007 19:43:02 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/27/yet-another-theme-tryout/</guid>
+      <description>I have no time to create my own, but I hope this is easier to read than the last. Three columns are a bit much, though. And for some reason I wasn’t getting updates about comments, but I seem to be doing so now.
+Let me know what you think (esp if you’re Michael Hanneman).</description>
+    </item>
+    
+    <item>
+      <title>Changing my theme</title>
+      <link>http://example.org/2007/08/18/changing-my-theme/</link>
+      <pubDate>Sat, 18 Aug 2007 20:59:41 +0000</pubDate>
+      
+      <guid>http://example.org/2007/08/18/changing-my-theme/</guid>
+      <description>Accidentally nuked my WordPress theme; here’s a new one.</description>
+    </item>
+    
+    <item>
+      <title>Unicode fixed (I think)</title>
+      <link>http://example.org/2007/06/24/unicode-fixed-i-think/</link>
+      <pubDate>Mon, 25 Jun 2007 01:42:46 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/24/unicode-fixed-i-think/</guid>
+      <description>When I brought my weblog data over, I neglected to ensure that the underlying encoding was correct. I think I’ve fixed this. I should now be able to write Arabic (يونِكود) and Persian (یونی‌کُد) and Hangul (유니코드) and Cyrillic (Юникод) and Cree (ᏳᏂᎪᏛ) and Middle English (yebisshop baythes hȳ ȝet wtbale at his hert) and Old English (Hwæt! wē Gār-Dena in geār-dagum) and whatever pleases my ❤.</description>
+    </item>
+    
+    <item>
+      <title>New host</title>
+      <link>http://example.org/2007/06/18/new-host/</link>
+      <pubDate>Mon, 18 Jun 2007 04:34:44 +0000</pubDate>
+      
+      <guid>http://example.org/2007/06/18/new-host/</guid>
+      <description>I’ve moved my website to a new hosting server (Slicehost), and I’m happy so far. Now I can recommence blogging…</description>
+    </item>
+    
+    <item>
+      <title>Comments turned off for a while</title>
+      <link>http://example.org/2006/09/18/comments-turned-off-for-a-while/</link>
+      <pubDate>Mon, 18 Sep 2006 19:50:14 +0000</pubDate>
+      
+      <guid>http://example.org/2006/09/18/comments-turned-off-for-a-while/</guid>
+      <description>Getting spam-blasted, so comments are turned off for a while.</description>
+    </item>
+    
+    <item>
+      <title>upgrade</title>
+      <link>http://example.org/2006/03/10/upgrade/</link>
+      <pubDate>Sat, 11 Mar 2006 03:00:18 +0000</pubDate>
+      
+      <guid>http://example.org/2006/03/10/upgrade/</guid>
+      <description>I upgraded the WordPress weblog software to the latest version. So, if you saw anything strange during that time, that was the reason. If you continue to see oddities, please contact me.</description>
+    </item>
+    
+    <item>
+      <title>Spammers attack</title>
+      <link>http://example.org/2005/12/09/spammers-attack/</link>
+      <pubDate>Sat, 10 Dec 2005 02:43:58 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/09/spammers-attack/</guid>
+      <description>I’m getting a lot of comment spam, so I’ve trying out Spam Karma, which was very easy to install. If you’re reading this, please leave a (non-spam!) comment; if you have any problems, please email me at will dot fitzgerald c/o gmail dot com.</description>
+    </item>
+    
+    <item>
+      <title>Excellent idea</title>
+      <link>http://example.org/2005/09/17/excellent-idea/</link>
+      <pubDate>Sat, 17 Sep 2005 09:58:39 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/17/excellent-idea/</guid>
+      <description>From Jorn at Robot Wisdom auxiliary: Napster for URLs, or p2p del.icio.us:
+ Could bloggers declare, say, the 13th of each month to be “I’m-an-idiot day”and try to post that day about some topic that they secretly feel everyone understands better than they do?
+ </description>
+    </item>
+    
+    <item>
+      <title>Bloggers Need Not Apply</title>
+      <link>http://example.org/2005/07/29/bloggers-need-not-apply/</link>
+      <pubDate>Sat, 30 Jul 2005 03:17:54 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/29/bloggers-need-not-apply/</guid>
+      <description>Bloggers Need Not Apply from the Chronicle for Higher Ed. A cautionary tale for academics and other job hunters.
+ For nothing is secret, that shall not be made manifest; neither any thing hid, that shall not be known and come abroad.
+ (via Natalia).</description>
+    </item>
+    
+    <item>
+      <title>The Art of the Fast Take</title>
+      <link>http://example.org/2005/07/01/the-art-of-the-fast-take/</link>
+      <pubDate>Fri, 01 Jul 2005 18:15:36 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/01/the-art-of-the-fast-take/</guid>
+      <description>The Art of the Fast Take: good stuff by my cousin-in-law Tim Oren on learning (about) a new field in a hurry. (Although the last recommendation — hire someone to learn it for you — might be a bit too specific to VCs).</description>
+    </item>
+    
+    <item>
+      <title>MIT Weblog Survey</title>
+      <link>http://example.org/2005/07/01/mit-weblog-survey/</link>
+      <pubDate>Fri, 01 Jul 2005 08:08:02 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/01/mit-weblog-survey/</guid>
+      <description>I just like the sticker, I guess.</description>
+    </item>
+    
+    <item>
+      <title>Syndication links</title>
+      <link>http://example.org/2005/04/11/syndication-links/</link>
+      <pubDate>Mon, 11 Apr 2005 12:47:32 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/11/syndication-links/</guid>
+      <description>If you’re using a syndication service, the following links will provide an RSS 2 feed, an Atom feed, a Bloglines subscription page.</description>
+    </item>
+    
+    <item>
+      <title>Plagiarism detector</title>
+      <link>http://example.org/2005/03/22/plagiarism-detector/</link>
+      <pubDate>Tue, 22 Mar 2005 15:58:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/03/22/plagiarism-detector/</guid>
+      <description>I learned about Copyscape.com today via rebecca’s pocket. Copyscape allows you to tell whether you’ve been plagiarized elsewhere on the web. I checked a number of pages, and found that I was feeling a bit sad that nothing I’d written had been worth plagiarizing … until finally I found that my description of C++ in my Real Quick C++ tutorial showed up at &amp;lt;a href=&amp;quot;http://support.maguma.com/doc/reader.php?docset=sdkdocs&amp;amp;page=oop.html&amp;quot;&amp;gt;http://support.maguma.com/doc/reader.php?docset=sdkdocs&amp;amp;page=oop.html&amp;lt;/a&amp;gt;. Now I don’t know whether to be flattered or angry…</description>
+    </item>
+    
+    <item>
+      <title>left-right blogosphere</title>
+      <link>http://example.org/2005/03/16/left-right-blogosphere/</link>
+      <pubDate>Wed, 16 Mar 2005 09:37:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/03/16/left-right-blogosphere/</guid>
+      <description>I haven’t read the study, but I like the pretty picture. (via 3 Quarks).</description>
+    </item>
+    
+    <item>
+      <title>Some publications</title>
+      <link>http://example.org/2005/02/24/some-publications/</link>
+      <pubDate>Thu, 24 Feb 2005 23:03:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/24/some-publications/</guid>
+      <description>Gee, I just discovered that two short technical reports I wrote at the Canadian National Research Council are available on their document site: Models for Cross-Cultural Communications for Cross-Cultural Website Design and Integrating Internationalized Websites with Databases and Email Systems: Working with Multilingual Texts.</description>
+    </item>
+    
+    <item>
+      <title>Is this thing on?</title>
+      <link>http://example.org/2004/09/15/is-this-thing-on/</link>
+      <pubDate>Wed, 15 Sep 2004 21:08:04 +0000</pubDate>
+      
+      <guid>http://example.org/2004/09/15/is-this-thing-on/</guid>
+      <description>OK, I lost the computer that I usually kept my weblog postings on, so maybe it makes sense to return to one of the free weblogging services. So, here I am back at Blogger. Yes, it isboring to read about changing weblogging servers, but it’s difficult to write something interesting, just to have it disappear into bitlandia.</description>
+    </item>
+    
+  </channel>
+</rss>

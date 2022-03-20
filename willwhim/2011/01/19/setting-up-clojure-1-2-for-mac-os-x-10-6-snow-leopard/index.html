@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard) | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.2 command line prompt.
+First, create a directory for Clojure.
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard)" />
+<meta property="og:description" content="These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.2 command line prompt.
+First, create a directory for Clojure.
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2011/01/19/setting-up-clojure-1-2-for-mac-os-x-10-6-snow-leopard/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-01-19T01:53:38+00:00" />
+<meta property="article:modified_time" content="2011-01-19T01:53:38+00:00" />
+
+<meta itemprop="name" content="Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard)">
+<meta itemprop="description" content="These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.2 command line prompt.
+First, create a directory for Clojure.
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1."><meta itemprop="datePublished" content="2011-01-19T01:53:38+00:00" />
+<meta itemprop="dateModified" content="2011-01-19T01:53:38+00:00" />
+<meta itemprop="wordCount" content="488">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard)"/>
+<meta name="twitter:description" content="These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1.2 command line prompt.
+First, create a directory for Clojure.
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on Mark Reid’s instructions, with a nod towards Ken Sipe). This will get you a Clojure 1."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Setting up Clojure 1.2 for Mac OS X 10.6 (Snow Leopard)</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-01-19T01:53:38Z">January 19, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on <a href="http://mark.reid.name/sap/setting-up-clojure.html">Mark Reid’s instructions</a>, with a nod towards <a href="http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html">Ken Sipe</a>). This will get you a Clojure 1.2 command line prompt.</p>
+<p>First, create a directory for Clojure.</p>
+<p>`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on <a href="http://mark.reid.name/sap/setting-up-clojure.html">Mark Reid’s instructions</a>, with a nod towards <a href="http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html">Ken Sipe</a>). This will get you a Clojure 1.2 command line prompt.</p>
+<p>First, create a directory for Clojure.</p>
+<p>`</p>
+<p>Second, download the core Clojure and Clojure contrib, and JLine packages.
+``These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on <a href="http://mark.reid.name/sap/setting-up-clojure.html">Mark Reid’s instructions</a>, with a nod towards <a href="http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html">Ken Sipe</a>). This will get you a Clojure 1.2 command line prompt.</p>
+<p>First, create a directory for Clojure.</p>
+<p>`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on <a href="http://mark.reid.name/sap/setting-up-clojure.html">Mark Reid’s instructions</a>, with a nod towards <a href="http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html">Ken Sipe</a>). This will get you a Clojure 1.2 command line prompt.</p>
+<p>First, create a directory for Clojure.</p>
+<p>`</p>
+<p>Second, download the core Clojure and Clojure contrib, and JLine packages.
+``</p>
+<p>Third, unzip these, and put the jar files into the lib directory.</p>
+<pre tabindex="0"><code class="language-These" data-lang="These">
+First, create a directory for Clojure.
+
+
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on [Mark Reid&amp;#8217;s instructions][1], with a nod towards [Ken Sipe][2]). This will get you a Clojure 1.2 command line prompt.
+
+First, create a directory for Clojure.
+
+
+` 
+
+Second, download the core Clojure and Clojure contrib, and JLine packages. 
+``These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on [Mark Reid&amp;#8217;s instructions][1], with a nod towards [Ken Sipe][2]). This will get you a Clojure 1.2 command line prompt.
+
+First, create a directory for Clojure.
+
+
+`These instructions are an amplification and some corrections (due to changes in standard Clojure distributions) on [Mark Reid&amp;#8217;s instructions][1], with a nod towards [Ken Sipe][2]). This will get you a Clojure 1.2 command line prompt.
+
+First, create a directory for Clojure.
+
+
+` 
+
+Second, download the core Clojure and Clojure contrib, and JLine packages. 
+`` 
+
+Third, unzip these, and put the jar files into the lib directory. 
+</code></pre><p>If you like, you can delete the <!-- raw HTML omitted -->tmp<!-- raw HTML omitted --> directory created above.</p>
+<p>Fourth, create a <!-- raw HTML omitted -->clj<!-- raw HTML omitted --> command and place it somewhere in an executable location.</p>
+<p>It should look something like this (mostly like Ken Sipe’s command).</p>
+<p>`<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h1 id="current-directory">current directory.</h1>
+<h1 id="will-fitzgerald-2011-01-18-based-on">Will Fitzgerald 2011-01-18, based on:</h1>
+<h1 id="ken-sipe-2010-02-20">Ken Sipe 2010-02-20,</h1>
+<h1 id="inspired-by-mark-reid">Inspired by Mark Reid</h1>
+<h1 id="sipes-code">Sipe&rsquo;s code:</h1>
+<h1 id="httpkensipeblogspotcom201002setting-up-clojure-110-on-mac-osxhtml"><a href="http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html">http://kensipe.blogspot.com/2010/02/setting-up-clojure-110-on-mac-osx.html</a></h1>
+<h1 id="original-httpgithubcommreidclojure-frameworkblobe1c80cc650f448713243be8272dba1fa3c1a7ceaclj">original: <a href="http://github.com/mreid/clojure-framework/blob/e1c80cc650f448713243be8272dba1fa3c1a7cea/clj">http://github.com/mreid/clojure-framework/blob/e1c80cc650f448713243be8272dba1fa3c1a7cea/clj</a></h1>
+<h1 id="heading"></h1>
+<h1 id="this-scripts-expects-java-to-be-define">This scripts expects java to be define.</h1>
+<h1 id="clojurejar-clojure-contribjar-and-jlinejar-should-be-in">clojure.jar, clojure-contrib.jar, and jline.jar should be in</h1>
+<h1 id="libraryclojurelib">~/Library/Clojure/lib</h1>
+<p>CLOJURE_HOME=~/Library/Clojure/lib CLJ_DIR=$CLOJURE_HOME CLOJURE=$CLJ_DIR/clojure.jar CONTRIB=$CLJ_DIR/clojure-contrib.jar JLINE=$CLJ_DIR/jline.jar CP=$PWD:$CLOJURE:$JLINE:$CONTRIB</p>
+<h1 id="add-extra-jars-as-specified-by-clojure-file">Add extra jars as specified by <code>.clojure</code> file</h1>
+<p>if [ -f .clojure ] then CP=$CP:<code>cat .clojure</code> fi</p>
+<p>if [ -z &ldquo;$1&rdquo; ]; then java -server -cp $CP jline.ConsoleRunner clojure.main else java -server -cp $CP clojure.main -i $* fi <!-- raw HTML omitted --></p>
+<p>You should now be able to execute <!-- raw HTML omitted -->clj<!-- raw HTML omitted --> or <!-- raw HTML omitted -->clj some.clj<!-- raw HTML omitted -->.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

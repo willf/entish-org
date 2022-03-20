@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Dispatch library for Scala: Promises and Either | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Dispatch library for Scala: Promises and Either" />
+<meta property="og:description" content="I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2012/08/30/dispatch-library-for-scala-promises-and-either/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2012-08-31T03:32:07+00:00" />
+<meta property="article:modified_time" content="2012-08-31T03:32:07+00:00" />
+
+<meta itemprop="name" content="Dispatch library for Scala: Promises and Either">
+<meta itemprop="description" content="I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0."><meta itemprop="datePublished" content="2012-08-31T03:32:07+00:00" />
+<meta itemprop="dateModified" content="2012-08-31T03:32:07+00:00" />
+<meta itemprop="wordCount" content="655">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dispatch library for Scala: Promises and Either"/>
+<meta name="twitter:description" content="I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Dispatch library for Scala: Promises and Either</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2012-08-31T03:32:07Z">August 31, 2012</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>I’ve been working with the <a href="http://dispatch.databinder.net/Combined+Pages.html">Dispatch</a> library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0.9.0 version of the library (linked above) as well as the “classic library” (<a href="http://dispatch-classic.databinder.net/Combined+Pages.html">0.8.x</a>)  to be effective. The classic library introduces a very funky syntax for URL paths (one of my least favorite aspects of Scala is how easy it is to create skanky DSLs), which you’ll need to learn to understand some legacy code. Also, the 0.9.0 documentation makes a big deal about for comprehensions — as an old Lisp hacker, I prefer my map, filter, and flatMap straight, if you don’t mind.</p>
+<p>First, let’s create a little web server. The easiest thing for me is to create a small <a href="http://www.sinatrarb.com/">Sinatra</a>-based server in Ruby. Here’s one that returns random numbers, with a 2.5 second delay to increase the latency for the examples below:</p>
+<p>The basic fact about the 0.9.0 dispatch library is in its asynchronocity. Dispatch deals with this by providing its own promise library; a promise is just a computation that will complete (successfully or unsuccessfully) at some point.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>And run it:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>This will provide a simple way to make calls to a known web server (the examples at the dispatch site assume you can call Google’s weather API; my access, at least, is blocked).</p>
+<p>The simplest way to make a dispatch call is to use something like the follow function:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>So, for example, to call the random number website:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>It’s a complicated object that gets returned, and I’ve elided much of it, but the key thing is the Promise, showing that it is incomplete. Eventually, after 2.5 seconds or so, it will look like this:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Looking at the <code>Http(url(path) OK as.String).either</code> can clarify what is going on. The <code>Http</code> is dispatch’s class for making HTTP calls. The <code>url</code> method converts a string into a URL object (Dispatch also allows a baroque syntax for this, which I won’t go into here). The <code>OK as.String</code> section essentially says we want the result (the body of the response in more traditional packages) as a string when the HTTP call succeeds. <code>Http</code> returns a promise; you can decide how this is returned; I think the most useful thing returned is an <code>&lt;a href=&quot;http://www.scala-lang.org/api/current/scala/Either.html&quot;&gt;Either&lt;/a&gt;</code> instance.</p>
+<p>The Either class is a lot like the Option class; but instead of None and Some[T], you can have a “Left” or a “Right” value. The equivalent of Some[T] is Right[T]; by convention, the Right side of an Either is reserved for successful results. In the example above, we see that we have been promised a <code>Right(0.8232113639449693)</code>; we can visually inspect that once the call is complete. The Left side is, by convention, an error; so, for example, fetching a non-existent URL from our simple web-server returns 404 error on the Left side (<code>Left(dispatch.StatusCode: Unexpected response status: 404)</code>).</p>
+<p>If all you care about is side-effects, you don’t need to do anything; but if you want to force the result, the promises made are funcallable, and the data promised is delivered. For example:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Forcing the Promise turns the async call into a synchronous one, but dispatch’s Promise class have a <code>right</code> and a <code>left</code> method which will (eventually) return a result, and a promise that can be forced:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Finally, it’s useful to know about <code>Promise.all</code>, which creates a Promise of an iterable group of promises; the promise is to return all the results.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>This creates a synchronization point for a set of promises; when all of the results are available, the promise is completed. Of course, calling the promise function as above causes its thread to wait until the results are available.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

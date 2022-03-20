@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+      <link href="/post/index.xml" rel="alternate" type="application/rss+xml" title="Will&#39;s Whims" />
+      <link href="/post/index.xml" rel="feed" type="application/rss+xml" title="Will&#39;s Whims" />
+      
+    
+    
+    <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/post/" />
+
+<meta itemprop="name" content="Posts">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
+      
+    </section>
+    <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 20, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/20/a-fibonacci-a-day-benchmarking/" class="link black dim">
+        A Fibonacci A Day — Benchmarking
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 20, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/20/a-fibonacci-a-day-memoization/" class="link black dim">
+        A Fibonacci A Day — Memoization
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Although the iterative recursive version is stateless, it looks different from the standard mathematical definition. The recursive version is a very close mapping, but it’s extremely inefficient. One way to overcome the inefficiencies is to dynamically record (or memoize) previous calculations of F(n). The idea is simple — if we already know the values of F(n – 1) and F(n – 2), we can simply add them without having to do the difficult steps in recreating them.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 19, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/19/a-fibonacci-a-day-golden-ratio-version/" class="link black dim">
+        A Fibonacci A Day — Golden Ratio version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The Fibonacci sequence has a very strong connection to the Golden Ratio (φ, or Phi). φ is defined as (√5 + 1)/2, or approximately 1.618, and has lots of special properties. Ron Knott has a web page with over 300 Fibonacci and φ formulas. One of these is this direct formula: F(n) = round(φn/√5), where the rounding function does rounding to the nearest whole number.
+This gives us a quite an efficient function:
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 18, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/18/a-fibonacci-a-day-speedy-recursion/" class="link black dim">
+        A Fibonacci A Day — Speedy Recursion
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 17, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/17/a-fibonacci-a-day-out-of-bounds/" class="link black dim">
+        A Fibonacci A Day — Out of Bounds
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 15, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/15/a-fibonacci-a-day-iterative-version/" class="link black dim">
+        A Fibonacci A Day — Iterative version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Yesterday’s Fibonacci function was recursive, but we saw that it was extremely inefficient. Recursive functions typically break down a problem into smaller pieces, solve the smaller pieces, then combine the results into a final result, where “breaking down” a problem is done by the recursive function calling itself on a smaller version of itself. But, as we saw, it’s possible that the number of times this may happen has to be controlled, or gross inefficiencies may occur; this sometimes gives recursion a bad name.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 14, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/14/a-fibonacci-a-day-special-pi-day-post/" class="link black dim">
+        A Fibonacci A Day — Special Pi Day Post
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Binging for “Fibonacci” and “Pi,” I came across this page: Pi and the Fibonacci Numbers, which has the nice formula
+pi/4 = Σk=1arccot(F(2k+1)) summed to ∞, where F(n) is the _n_th Fibonacci number.
+So, if you can compute the Fibonacci sequence, you can compute pi.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 14, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/14/a-fibonacci-a-day-recursive-version/" class="link black dim">
+        A Fibonacci A Day — Recursive version
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+This naturally leads to the following recursive function (here, as in all of the versions of A Fibonacci A Day, in Scala):
+Note that because we are in the world of Scala, we have to declare that we are writing a function on Ints (that is, the Java/Scala representation of 32-bit signed numbers).
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 14, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/13/a-fibonacci-a-day-introduction/" class="link black dim">
+        A Fibonacci A Day Introduction
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The Fibonacci sequence is the sequence of numbers 0,1,1,2,3,5,8, … such that the nth number in the sequence is the sum of the previous two numbers; and the the first two numbers are defined to be 0 and 1.
+The Fibonacci function is a function which returns the nth number in the Fibonacci sequence. It’s kind of a famous function in computer science when people are first learning about recursive functions.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        March 4, 2013
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/2013/03/04/refactoring-without-monoids-or-endomorphisms/" class="link black dim">
+        Refactoring without Monoids or Endomorphisms
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Debasish Ghosh wrote an interesting post, An exercise in Refactoring – Playing around with Monoids and Endomorphisms, in which he describes refactoring some imperative code and writing it in a more functional style. I especially like his clear description on what monoids and endomorphisms are. I suspect the main point of his article is to describe these things, and how them might be useful, and I think he succeeds, at least in the first part.
+    </div>
+  </div>
+
+        </div>
+      
+    </aside>
+    
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/page/76/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

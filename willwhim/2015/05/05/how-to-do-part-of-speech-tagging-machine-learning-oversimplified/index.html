@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>How to do part of speech tagging: machine learning, oversimplified | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="How to do part of speech tagging: machine learning, oversimplified" />
+<meta property="og:description" content="What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2015/05/05/how-to-do-part-of-speech-tagging-machine-learning-oversimplified/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2015-05-06T01:21:35+00:00" />
+<meta property="article:modified_time" content="2015-05-06T01:21:35+00:00" />
+
+<meta itemprop="name" content="How to do part of speech tagging: machine learning, oversimplified">
+<meta itemprop="description" content="What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:"><meta itemprop="datePublished" content="2015-05-06T01:21:35+00:00" />
+<meta itemprop="dateModified" content="2015-05-06T01:21:35+00:00" />
+<meta itemprop="wordCount" content="990">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to do part of speech tagging: machine learning, oversimplified"/>
+<meta name="twitter:description" content="What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">How to do part of speech tagging: machine learning, oversimplified</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-05-06T01:21:35Z">May 6, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="what-is-part-of-speech-tagging">What is part of speech tagging?</h2>
+<p>Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:</p>
+<pre><code>NNP/John  VBZ/thinks  PRP/it VBZ/'s  DT/all  JJ/good ./. 
+</code></pre>
+<p>where the tags are prepended to each word or token. In this set, the most typical set used, based on <a href="http://www.eecis.udel.edu/~vijay/cis889/ie/pos-set.pdf">some of the earliest work in POS tagging</a>, NNP means “singular proper noun,” VBZ means “third person singular present verb”, PRP means “preposition”, DT means determiner, JJ means “adjective,” and “.” means “sentence-final punctuation.” As might be inferred from this small sample, this particular set is very English-specific: distinguishing third-person present from other forms of the present, for example, which is very English-oriented; the tagset for standard Spanish would need to be different.</p>
+<p>POS tagging depends on a tokenization scheme; that is, some way to break text into words and punctuation and the like. This is much trickier than it first appears. In standard English, one can go a long way with simple regular-expression based tokenizers. But in any kind of informal language, it can get more difficult. Twitter text in particular has <a href="http://www.ark.cs.cmu.edu/TweetNLP/#pos">required new approaches to tokenization</a>.</p>
+<p>It should also be noted that POS tagging also requires software that determines the boundaries of sentences. A typical pipeline looks something like:</p>
+<pre><code> cat text | sentence_breaker | tokenizer | pos_tagger | ...
+</code></pre>
+<p>POS tagging is not usually used on its own, but as part of a larger pipeline, as hinted at above. For example, if one wanted to do something as simple as highlight all the adverbs in a text (because they were taught that too many adverbs were “bad”, a POS analysis is necessary. But more typically POS tags become features for downstream analysis, for example extracting names found in text, or “named entity recognition”, which we hope to discuss in the next essay in this series.</p>
+<h2 id="machine-learning-approaches-to-tagging">Machine learning approaches to tagging</h2>
+<p>POS tagging is a multi-label classification problem. There is one very important difference from the kind of multi-label classification problem we described in the previous essay on <a href="https://willwhim.wpengine.com/2015/04/30/how-to-do-sentiment-analysis-machine-learning-oversimplified">sentiment analysis</a>.</p>
+<p>A very important feature or set of features is the tag of the previous or following tokens. For example, if the previous tag is a determiner, such as “the”, the next tag is much more likely to be an adjective or noun than it is to be a verb. But, of course, we don’t know the tags of the previous or next token until the analysis is complete. So, what is required are techniques that minimizes the unlikelihood of a sequence of tags, given the evidence. <a href="https://en.wikipedia.org/wiki/Hidden_Markov_model">Hidden Markov Models</a> were used in the first successful POS taggers for standard English text, and they remain a reasonable technique. Really good results, as provided by the <a href="http://nlp.stanford.edu/software/tagger.shtml">Stanford POS Tagger</a>, use a “<a href="http://nlp.stanford.edu/~manning/papers/tagging.pdf">cyclic dependency network</a>,” in which previous <em>and</em> subsequent tags are considered at the same time.</p>
+<p>On Twitter text, <a href="http://www.ark.cs.cmu.edu/TweetNLP/owoputi+etal.tr12.pdf">the best results have come from additional features</a>, and not so much from the minimization technique, including the use of word clusters–another topic for a future essay.</p>
+<h2 id="quality-of-state-of-the-art-pos-taggers">Quality of state-of-the-art POS taggers</h2>
+<p>Standard English text can be tagged at <a href="http://aclweb.org/aclwiki/index.php?title=POS_Tagging_%28State_of_the_art%29">more that 97% accuracy</a>. Even a <a href="https://honnibal.wordpress.com/2013/09/11/a-good-part-of-speechpos-tagger-in-about-200-lines-of-python/">fast, averaged perceptron-base model</a> gets nearly 97% accuracy. This is very good, of course, but it suggest that in a paragraph of 100 words, there will be about three words incorrectly tagged. These are often “out-of-vocabulary” tags; that is, tags for words or tokens the system had not been trained on. It should be noted that just picking the most frequent tag for known tokens, and most frequent tag otherwise <a href="http://nlpwp.org/book/chap-tagging.xhtml">gets about 89% accuracy</a>.</p>
+<p>For Twitter text, <a href="http://www.ark.cs.cmu.edu/TweetNLP/owoputi+etal.naacl13.pdf">accuracy is about 93%</a>, which is roughly the inter-rater agreement for humans tagging Twitter text.</p>
+<h2 id="list-of-penn-treebank-part-of-speech-tags">List of Penn Treebank Part of Speech tags</h2>
+<p>Here is at least one version of the Penn Treebank POS tagset. Punctuation tags vary a lot. Since I often try to find a “complete” list, perhaps I’ll find it again more easily if I put it in my own blog…</p>
+<ol>
+<li>CC Coordinating Conjunction (and, or, both)</li>
+<li>CD Cardinal Number (371, 1, one, two)</li>
+<li>DT Determiner (all an another any both each either every many much neither no some such that the them these this those)</li>
+<li>Ex Existential There</li>
+<li>FW Foreign Word (ich jeux habeas jour salutaris oui corporis)</li>
+<li>IN Preposition/subordinating Conjunction (among upon in into below atop until over under towards to whether despite if)</li>
+<li>JJ Adjective (third ill-mannered regrettable calamitous clean nice)</li>
+<li>JJR Adjective, Comparative (cleaner nicer)</li>
+<li>JJS Adjective, Superlative (cleanest nicest)</li>
+<li>LS List Item Marker</li>
+<li>MD Modal (can could may might must need ought shall cannot can’t shouldn’t)</li>
+<li>NN Noun, singular or mass (machine computer air wind)</li>
+<li>NNS Noun plural (machines computers)</li>
+<li>NNP Proper Noun, Singular (Philadelphia Delaware Eagles)</li>
+<li>NNPS Proper Noun, plural (Americas)</li>
+<li>PDT Predeterminer (all both half)</li>
+<li>POS Possessive ending (‘s)</li>
+<li>PRP Personal pronoun (him himself we)</li>
+<li>PP$ Possessive pronoun (her our ours)</li>
+<li>RB Adverb (quickly swiftly always)</li>
+<li>RBR Adverb, Comparative (further greater more)</li>
+<li>RBS Adverb, Superlative (further best hardest most)</li>
+<li>RP Particle (across up)</li>
+<li>SYM Symbol, mathematical or scientific (= + &amp;)</li>
+<li>TO to</li>
+<li>UH Interjection (goodbye, shucks, heck, oops)</li>
+<li>VB Verb, base form (hit assign run)</li>
+<li>VBD Verb, past tense (hit assigned ran)</li>
+<li>VBG Verb, gerund/present participle (hitting)</li>
+<li>VBN Verb, past participle (assigned)</li>
+<li>VBP Verb, non-3rd person singular, present (displease)</li>
+<li>VBZ Verb, 3rd person singular, present (displeases)</li>
+<li>WDT wh-determiner (that which whichever what)</li>
+<li>WP wh-pronoun (that which what whom)</li>
+<li>WP$ Possessive wh-pronoun (whose)</li>
+<li>WRB Wh-adverb (how however wherein why)</li>
+<li># Pound sign</li>
+<li>$ Dollar sign</li>
+<li>. Sentence-final punctuation</li>
+<li>, Comma</li>
+<li>: Colon or semi-colon</li>
+<li>( Opening parenthesis</li>
+<li>) Closing parenthesis</li>
+<li>“ Opening quotation mark</li>
+<li>” Closing quotation mark</li>
+<li>‘ Apostophe</li>
+</ol>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>First experiment with Arc | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.
+One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="First experiment with Arc" />
+<meta property="og:description" content="I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.
+One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2008/02/01/first-experiment-with-arc/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2008-02-01T04:49:10+00:00" />
+<meta property="article:modified_time" content="2008-02-01T04:49:10+00:00" />
+
+<meta itemprop="name" content="First experiment with Arc">
+<meta itemprop="description" content="I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.
+One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc."><meta itemprop="datePublished" content="2008-02-01T04:49:10+00:00" />
+<meta itemprop="dateModified" content="2008-02-01T04:49:10+00:00" />
+<meta itemprop="wordCount" content="563">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="First experiment with Arc"/>
+<meta name="twitter:description" content="I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.
+One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">First experiment with Arc</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2008-02-01T04:49:10Z">February 1, 2008</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.</p>
+<p>One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc.</p>
+<p>Here’s an example of a specification that tests three of Arc’s list operations. The last specification will fail in this example. WordPress is going to screw up indentation; there’s not much to be done about it.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Note that <code>is</code>, <code>iso</code> and <code>acons</code> are Arc’s versions of Lisp’s <code>eq</code>, <code>equalp</code> and <code>consp</code>.</p>
+<p>When you evaluate this specification and print the results, you get:
+``I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.</p>
+<p>One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc.</p>
+<!-- raw HTML omitted -->
+<p>Here’s an example of a specification that tests three of Arc’s list operations. The last specification will fail in this example. WordPress is going to screw up indentation; there’s not much to be done about it.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Note that <code>is</code>, <code>iso</code> and <code>acons</code> are Arc’s versions of Lisp’s <code>eq</code>, <code>equalp</code> and <code>consp</code>.</p>
+<p>When you evaluate this specification and print the results, you get:
+``</p>
+<p>The result is either ‘red’ (at least one test failed) or ‘green’ (all tests passed).</p>
+<p>Each ‘it’ clause is a specification test; and optional clauses allow you to specify a ‘prolog’ to run before all the tests, an ‘epilog’ to run after, and setup and teardown clauses to run before and after each test. As a simple example:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>With a test result of:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>You can find the code at <a href="http://entish.org/spec.arc">spec.arc</a>.</p>
+<p>Things I liked about writing this program and Arc in general:</p>
+<ol>
+<li>It’s very nice to have real macros again, not Ruby’s sort-of macroish text re-evaluation.</li>
+<li>To collect all of the <code>it</code> clauses, I wrote a function called <code>assocs``, and I liked the way Arc allows you to write anonymous functions. Here's the definition:&lt;br&gt;``(def assocs (key list) (keep [and (acons _) (is (car _) key)] list))</code><br>
+The anonymous function is between the square brackets.</li>
+<li>I think I could come to like the short names Graham has chosen.</li>
+<li>I like to imagine that this is one of the first Arc programs not written by Graham or Morris.</li>
+<li>Although I didn’t write it, it would be trivial to add HTML output as a different format.</li>
+</ol>
+<p>Some things that Arc really does need and I missed in writing this code:</p>
+<ol>
+<li>A standard structure object (and vectors). Over half my code is spent in writing list accessors. Fortunately, these are easy to write.</li>
+<li>Error objects and error handling! It’s hard to believe there is none yet.</li>
+<li>The usual code writing things: tracing, edit modes, unit testing tools — oh, wait, I just wrote that.</li>
+</ol>
+<p>I don’t know how successful Arc will be. Certainly it will need lots of standard libraries, pervasive Unicode string handling, etc., if it is to move beyond it’s current state (and to Graham’s credit, he’s not claiming any more for ‘Arc0’ than is there). But it is nice to be able to program in a Lisp again.</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

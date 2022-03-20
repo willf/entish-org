@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A Fibonacci A Day: Using Streams and a Fast Memoization Method | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="A Fibonacci A Day: Using Streams and a Fast Memoization Method" />
+<meta property="og:description" content="Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2013-04-13T21:34:31+00:00" />
+<meta property="article:modified_time" content="2013-04-13T21:34:31+00:00" />
+
+<meta itemprop="name" content="A Fibonacci A Day: Using Streams and a Fast Memoization Method">
+<meta itemprop="description" content="Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list."><meta itemprop="datePublished" content="2013-04-13T21:34:31+00:00" />
+<meta itemprop="dateModified" content="2013-04-13T21:34:31+00:00" />
+<meta itemprop="wordCount" content="452">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A Fibonacci A Day: Using Streams and a Fast Memoization Method"/>
+<meta name="twitter:description" content="Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A Fibonacci A Day: Using Streams and a Fast Memoization Method</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-04-13T21:34:31Z">April 13, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Well, I didn’t think I’d write another <a href="http://willwhim.wpengine.com/2013/03/21/a-fibonacci-a-day-overview/" title="A Fibonacci A Day">Fibonacci A Day</a> post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their <a href="http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.Stream">discussion of Streams</a>.</p>
+<p>A <em>stream</em> is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list. For example, the list created by List(“cat”, “mouse”, “cheese”) is a list whose head is “cat”, and whose tail is a list whose head is “mouse” and whose tail is a list whose head is “cheese” and whose tail is Nil (the cheese does not quite stand alone).</p>
+<p>Elements in a stream (the values in their heads), on the other hand, are only evaluated when they are needed. For example, getting the _n_th value is a stream causes the steam to evaluate its first element, its second element, etc, up to <em>n</em>. Once evaluated, they are remembered (that is, memoized) so they the next time the element is requested, the value has already been computed (the lookup is still O(n), but no computation is done).</p>
+<p>Here’s a definition of a fibonacci stream, pretty much as given in the documents</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>This defines an “infinite” list of fibonacci numbers — infinite in the sense that the list can be as long as we have memory for. Note that Scala allows us to have <em>recursive data structures</em> as well as recursive functions. Here the tail of the _fibs stream (after the 2nd element, anyway) is defined in turns of itself — we zip the stream with the tail of the stream, and then each element is the sum of the two previous elements — just as we had defined.</p>
+<p>We can access this list in a similar way to our previous functions to get positive and negative fibonacci numbers:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>How does compare in speed with our previous functions? Calling stream_fibonacci(1000) the first time results in zipping though the stream and calculating the sums. Somewhat surprisingly, this is not more expensive than our fastest version. Afterwards, though, we just “look up” the 1001st element, which requires traversing the stream’s first 1001 elements. But this is very fast, and is about 100x times faster on my machine (see <a href="http://willwhim.wpengine.com/2013/03/20/a-fibonacci-a-day-benchmarking/" title="A Fibonacci A Day — Benchmarking">the updated benchmarks</a>).</p>
+<p>Of course, this comes at the expense of memory storage for the 1001 fibonacci numbers in the stream. Depending on the application, this could be just fine. Of course, fibonacci numbers get big fast, so maintaining a large stream of them might not be good (the other versions only require two or so BigInts to be held in memory during the computation).</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

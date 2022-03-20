@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>number &#43; string | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="number &#43; string" />
+<meta property="og:description" content="So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2005/08/13/number-string/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2005-08-13T13:47:57+00:00" />
+<meta property="article:modified_time" content="2005-08-13T13:47:57+00:00" />
+
+<meta itemprop="name" content="number &#43; string">
+<meta itemprop="description" content="So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time."><meta itemprop="datePublished" content="2005-08-13T13:47:57+00:00" />
+<meta itemprop="dateModified" content="2005-08-13T13:47:57+00:00" />
+<meta itemprop="wordCount" content="331">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="number &#43; string"/>
+<meta name="twitter:description" content="So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">number &#43; string</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-08-13T13:47:57Z">August 13, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time.</p>
+<p>Fer instance: automatic conversion of strings to numbers. What happens when evaluating <code>10 + &quot;10&quot;</code>? I wish I could have the four hours of my life back that I spent tracking down a bug which turned out to be caused by my forgetting this was a problem. (I was reading in an XML file, which included digits that Javascript <em>wasn’t</em> converting to numbers as I assumed. Grr, I have a PhD in computer science and I (was stupid enough to forget this | have to deal with ‘stone knives and bearskins’)?</p>
+<p>Note to self: Javascript converts numbers to strings when using ‘+’ (which adds numbers, but concatenates strings); for other math operations, it converts strings to numbers.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>I was explaining to Bess, my wife, what the problem was, and she didn’t seem to be listening, so I apologized for boring her. She said that it wasn’t that so much, but that she just didn’t understand the technical issues. I assured her that if she did understand the technical issues, she would still be bored.</p>
+<p>Oh, and by the way–with all the hype about <a href="http://www.adaptivepath.com/publications/essays/archives/000385.php">Ajax</a>, you think it would be a little easier to discover how various vendors have implemented  <code>XMLHttpRequest</code>, and that it can be called synchronously as well as asynchronously. I don’t really think it’s true that “the core Ajax technologies are mature, stable, and well understood.” But this is fodder for another essay.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

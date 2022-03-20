@@ -1,0 +1,2103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Science and Tech on Will&#39;s Whims</title>
+    <link>http://example.org/categories/science-and-tech/</link>
+    <description>Recent content in Science and Tech on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jun 2016 17:57:58 +0000</lastBuildDate><atom:link href="http://example.org/categories/science-and-tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What do you need to know to program FizzBuzz?</title>
+      <link>http://example.org/2016/06/09/need-know-program-fizzbuzz/</link>
+      <pubDate>Thu, 09 Jun 2016 17:57:58 +0000</pubDate>
+      
+      <guid>http://example.org/2016/06/09/need-know-program-fizzbuzz/</guid>
+      <description>I was showing my CS professor friend the hilarious “FizzBuzz in TensorFlow” post, and he’d actually had not heard of FizzBuzz. Basically FizzBuzz is a test to see if someone can do basic programming.
+This got me to thinking about what you actually need to know about a particular programming language and software engineering to program FizzBuzz in.
+Here’s a basic implementation in Go:
+So I think these are the things you need to know (including the syntax of these in a particular language):</description>
+    </item>
+    
+    <item>
+      <title>Of truth</title>
+      <link>http://example.org/2015/08/01/of-truth/</link>
+      <pubDate>Sat, 01 Aug 2015 15:51:12 +0000</pubDate>
+      
+      <guid>http://example.org/2015/08/01/of-truth/</guid>
+      <description>Of Truth
+Francis Bacon, translated by Will Fitzgerald August 1, 2015
+“What is truth?” asked jesting Pilate, and would not stay for an answer. Certainly there have been those who delight in giddiness, and count it bondage to settle on a belief, who affect free will in thinking as well as in acting. And though the schools of philosophers of that kind are gone, there remain certain chattering wits of the same vein—though not with as much blood in them as there was in the ancients.</description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch 1.6 upserts and partial updates</title>
+      <link>http://example.org/2015/06/18/elasticsearch-1-6-upserts-and-partial-updates/</link>
+      <pubDate>Thu, 18 Jun 2015 15:53:06 +0000</pubDate>
+      
+      <guid>http://example.org/2015/06/18/elasticsearch-1-6-upserts-and-partial-updates/</guid>
+      <description>To partially update an Elasticsearch document in 1.6, you’ll need to create a script for the partial update, and potentially use an upsert.
+For example, you want to add tags to a blog post
+here’s an example of a document created directly:
+POST /website/blog/1/_update { “doc” : { “tags” : [ “testing” ], “views”: 0 } }
+but if we want to add a tag without changing the view, you need to create a script in config/scripts</description>
+    </item>
+    
+    <item>
+      <title>Word vectors: Machine learning oversimplified</title>
+      <link>http://example.org/2015/05/12/word-vectors-machine-learning-oversimplified/</link>
+      <pubDate>Tue, 12 May 2015 19:36:43 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/12/word-vectors-machine-learning-oversimplified/</guid>
+      <description>Word vectors have become increasingly important in as features in machine learning models for natural language processing. The idea is to represent a word in some multidimensional space (the vector) in which words which are “similar” are similar in that space. Typically, one hopes that word vectors will provide some kind of semantic similarity. A typical party trick is to use word vectors to solve word analogy problems; e.g., king is to queen as man is to ?</description>
+    </item>
+    
+    <item>
+      <title>How to to named entity recognition: machine learning oversimplified</title>
+      <link>http://example.org/2015/05/07/how-to-to-named-entity-recognition-machine-learning-oversimplified/</link>
+      <pubDate>Thu, 07 May 2015 18:11:40 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/07/how-to-to-named-entity-recognition-machine-learning-oversimplified/</guid>
+      <description>What is Named Entity Recognition? Named Entity Recognition (or NER) is the task of finding all the names of things in a text. For example, in the sentence “Jimi Hendrix played ‘The Star-Spangled Banner’ at Woodstock,” NER, correctly done, would find the references to “Jimi Hendrix,” “The Star-Spangled Banner,” and “Woodstock.” Note that NER should also extract names it has never previously seen; for example, in the sentence “Johannes von Smetly is the protagonist in Willard Smith’s new novel”, an NER system should extract “Johannes von Smetly” as a name, even if it it doesn’t appear in any standard name list.</description>
+    </item>
+    
+    <item>
+      <title>How to do part of speech tagging: machine learning, oversimplified</title>
+      <link>http://example.org/2015/05/05/how-to-do-part-of-speech-tagging-machine-learning-oversimplified/</link>
+      <pubDate>Wed, 06 May 2015 01:21:35 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/05/how-to-do-part-of-speech-tagging-machine-learning-oversimplified/</guid>
+      <description>What is part of speech tagging? Part of speech tagging (POS tagging) is a classification problem: assigning each word or token in a text to a “part of speech,” that is, a lexical/grammatical class for each token. Different theories, or (perhaps more importantly) different uses will suggest different sets of grammatical labels, but they typically include nouns, verbs, adjectives, etc. For example, the sentence “John thinks it’s all good.” might be tagged as:</description>
+    </item>
+    
+    <item>
+      <title>Using lazy vals in a state object</title>
+      <link>http://example.org/2014/05/28/using-lazy-vals-state-object/</link>
+      <pubDate>Wed, 28 May 2014 15:29:28 +0000</pubDate>
+      
+      <guid>http://example.org/2014/05/28/using-lazy-vals-state-object/</guid>
+      <description>I was writing some Scala code which had a long series of somewhat complicated and expensive calculations to make, and in many cases I wanted to log the intermediate calculations. The first version of this code was quite complicated looking, because the calculations of the intermediate values and the logging statements were all intermixed.
+But then I realized that I could create a separate object which maintained the state, and which performed the calculations, too.</description>
+    </item>
+    
+    <item>
+      <title>A comment on “Computational linguistics and literary scholarship”</title>
+      <link>http://example.org/2013/09/14/comment-computational-linguistics-literary-scholarship/</link>
+      <pubDate>Sun, 15 Sep 2013 00:29:42 +0000</pubDate>
+      
+      <guid>http://example.org/2013/09/14/comment-computational-linguistics-literary-scholarship/</guid>
+      <description>There is a controversy over “Computational linguistics and literary scholarship.” A paper published at the Association for Computational Linguistics David Bamman, Brendan O’Connor, &amp;amp; Noah A. Smith, “Learning Latent Personas of Film Characters“) has come under criticims by Hannah Alpert-Abrams with Dan Garrette, “Some thoughts on the relationship between computational linguistics and literary scholarship“. The primary criticism has been that the ACL paper fails to cite any literary scholarship past the middle of the last century.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day: Using Streams and a Fast Memoization Method</title>
+      <link>http://example.org/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/</link>
+      <pubDate>Sat, 13 Apr 2013 21:34:31 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/</guid>
+      <description>Well, I didn’t think I’d write another Fibonacci A Day post — but there’s a great fibonacci function that’s defined right in the Scala documents, in their discussion of Streams.
+A stream is a standard Scala data structure which is very list like. Recall that a Scala list has two parts, a head and a tail; the head is a value, and the tail is either the special empty list (Nil), or another list.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day: Fibonacci(n) in O(lg(n)) steps</title>
+      <link>http://example.org/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/</link>
+      <pubDate>Tue, 02 Apr 2013 13:30:28 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/</guid>
+      <description>I am taking Martin Odensky’s Functional Programming in Scala class, and discovered (or rediscovered) that the Fibonacci function is discussed in SICP (Structure and Interpretation of Computer Programs, the book that Odensky seems to be basing much of his Functional Programming in Scala course on).
+Even more interesting is that a Fibonacci function which runs in O(lg(n)) steps is presented — that is, it takes about lg(n) steps to compute the _n_th Fibonacci number, instead of n steps.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day</title>
+      <link>http://example.org/2013/03/21/a-fibonacci-a-day-overview/</link>
+      <pubDate>Thu, 21 Mar 2013 16:20:01 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/21/a-fibonacci-a-day-overview/</guid>
+      <description>The goal of this series was to come up with a general, efficient fibonacci function that goes beyond the typical computer science introduction. The version we developed is fast, efficient with respect to memory, and general. I’d be glad to hear comments.
+The Series:
+ A Fibonacci A Day — Introduction A Fibonacci A Day — Recursive Version A Fibonacci A Day — Special Pi Day Post A Fibonacci A Day — Iterative Version A Fibonacci A Day — Out of Bounds A Fibonacci A Day — Speedy Recursion A Fibonacci A Day — Golden Ration Version A Fibonacci A Day — Memoization A Fibonacci A Day — Benchmarking A Fibonacci A Day — Extending to Negative Numbers A Fibonacci A Day — Fibonacci in O(lg(n)) Steps A Fibonacci A Day — Using Streams and a Fast Memoization Method   </description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Extending to Negative Numbers</title>
+      <link>http://example.org/2013/03/21/a-fibonacci-a-day-extending-to-negative-numbers/</link>
+      <pubDate>Thu, 21 Mar 2013 12:00:59 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/21/a-fibonacci-a-day-extending-to-negative-numbers/</guid>
+      <description>We are now confident that the fast recursive version is the best of the algorithms we have explored — it is fast, and can handle large values of the Fibonacci function.
+I haven’t been happy, though, with returning a negative -1 when the function is called with a negative number — this feels like a kind of silent error we were trying to avoid in going to BigInts. Fortunately, it turns out that there is a natural extension of the Fibonacci sequence to negative numbers.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Benchmarking</title>
+      <link>http://example.org/2013/03/20/a-fibonacci-a-day-benchmarking/</link>
+      <pubDate>Wed, 20 Mar 2013 10:30:54 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/20/a-fibonacci-a-day-benchmarking/</guid>
+      <description>The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Memoization</title>
+      <link>http://example.org/2013/03/20/a-fibonacci-a-day-memoization/</link>
+      <pubDate>Wed, 20 Mar 2013 10:00:17 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/20/a-fibonacci-a-day-memoization/</guid>
+      <description>Although the iterative recursive version is stateless, it looks different from the standard mathematical definition. The recursive version is a very close mapping, but it’s extremely inefficient. One way to overcome the inefficiencies is to dynamically record (or memoize) previous calculations of F(n). The idea is simple — if we already know the values of F(n – 1) and F(n – 2), we can simply add them without having to do the difficult steps in recreating them.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Golden Ratio version</title>
+      <link>http://example.org/2013/03/19/a-fibonacci-a-day-golden-ratio-version/</link>
+      <pubDate>Tue, 19 Mar 2013 13:00:02 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/19/a-fibonacci-a-day-golden-ratio-version/</guid>
+      <description>The Fibonacci sequence has a very strong connection to the Golden Ratio (φ, or Phi). φ is defined as (√5 + 1)/2, or approximately 1.618, and has lots of special properties. Ron Knott has a web page with over 300 Fibonacci and φ formulas. One of these is this direct formula: F(n) = round(φn/√5), where the rounding function does rounding to the nearest whole number.
+This gives us a quite an efficient function:</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Speedy Recursion</title>
+      <link>http://example.org/2013/03/18/a-fibonacci-a-day-speedy-recursion/</link>
+      <pubDate>Mon, 18 Mar 2013 13:00:02 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/18/a-fibonacci-a-day-speedy-recursion/</guid>
+      <description>We have seen a very inefficient recursive version of the Fibonacci function, and an efficient iterative version. Is there an efficient recursive version?
+Yes, in fact. Recall that the definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+What’s important to note is that the recursive step of the Fibonacci formula has two values that need to be accumulated. In the iterative version, the two temporary variables u and v are used to accumulate these values.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Out of Bounds</title>
+      <link>http://example.org/2013/03/17/a-fibonacci-a-day-out-of-bounds/</link>
+      <pubDate>Sun, 17 Mar 2013 13:00:09 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/17/a-fibonacci-a-day-out-of-bounds/</guid>
+      <description>Yesterday’s iterative version of the Fibonacci function is pretty speedy, especially compared to the recursive version. It calculates F(1000) in almost no time at all —
+But. The result for F(1000) looks suspiciously low — and odd things happen if we use a different ‘high’ number, such as 100:
+As it turns out, Scala’s Int and Long types are always signed, and do silent overflow. Once the number gets to a certain size, adding more will turn it ‘negative,’ and adding even more will eventually turn it positive, but (of course) the number is not correct.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Iterative version</title>
+      <link>http://example.org/2013/03/15/a-fibonacci-a-day-iterative-version/</link>
+      <pubDate>Fri, 15 Mar 2013 13:00:43 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/15/a-fibonacci-a-day-iterative-version/</guid>
+      <description>Yesterday’s Fibonacci function was recursive, but we saw that it was extremely inefficient. Recursive functions typically break down a problem into smaller pieces, solve the smaller pieces, then combine the results into a final result, where “breaking down” a problem is done by the recursive function calling itself on a smaller version of itself. But, as we saw, it’s possible that the number of times this may happen has to be controlled, or gross inefficiencies may occur; this sometimes gives recursion a bad name.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Special Pi Day Post</title>
+      <link>http://example.org/2013/03/14/a-fibonacci-a-day-special-pi-day-post/</link>
+      <pubDate>Thu, 14 Mar 2013 14:03:18 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/14/a-fibonacci-a-day-special-pi-day-post/</guid>
+      <description>Binging for “Fibonacci” and “Pi,” I came across this page: Pi and the Fibonacci Numbers, which has the nice formula
+pi/4 = Σk=1arccot(F(2k+1)) summed to ∞, where F(n) is the _n_th Fibonacci number.
+So, if you can compute the Fibonacci sequence, you can compute pi.</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day — Recursive version</title>
+      <link>http://example.org/2013/03/14/a-fibonacci-a-day-recursive-version/</link>
+      <pubDate>Thu, 14 Mar 2013 13:00:35 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/14/a-fibonacci-a-day-recursive-version/</guid>
+      <description>The definition of the Fibonacci function, F(n) is:
+F(0) = 0 F(1) = 1 F(n) = F(n-1) + F(n-2)
+This naturally leads to the following recursive function (here, as in all of the versions of A Fibonacci A Day, in Scala):
+Note that because we are in the world of Scala, we have to declare that we are writing a function on Ints (that is, the Java/Scala representation of 32-bit signed numbers).</description>
+    </item>
+    
+    <item>
+      <title>A Fibonacci A Day Introduction</title>
+      <link>http://example.org/2013/03/13/a-fibonacci-a-day-introduction/</link>
+      <pubDate>Thu, 14 Mar 2013 01:20:40 +0000</pubDate>
+      
+      <guid>http://example.org/2013/03/13/a-fibonacci-a-day-introduction/</guid>
+      <description>The Fibonacci sequence is the sequence of numbers 0,1,1,2,3,5,8, … such that the nth number in the sequence is the sum of the previous two numbers; and the the first two numbers are defined to be 0 and 1.
+The Fibonacci function is a function which returns the nth number in the Fibonacci sequence. It’s kind of a famous function in computer science when people are first learning about recursive functions.</description>
+    </item>
+    
+    <item>
+      <title>Why Scala is an acceptable Lisp</title>
+      <link>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</link>
+      <pubDate>Fri, 22 Feb 2013 14:29:27 +0000</pubDate>
+      
+      <guid>http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/</guid>
+      <description>It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.</description>
+    </item>
+    
+    <item>
+      <title>10 PRINT CHR$ (205.5 &#43; RND (1)); : GOTO 10</title>
+      <link>http://example.org/2012/12/01/10-print-chr-205-5-rnd-1-goto-10/</link>
+      <pubDate>Sat, 01 Dec 2012 22:08:35 +0000</pubDate>
+      
+      <guid>http://example.org/2012/12/01/10-print-chr-205-5-rnd-1-goto-10/</guid>
+      <description>Slate has a review of a new book with the obscure title 10 PRINT CHR$ (205.5 + RND (1)); : GOTO 10, and this brings back such memories of typing in games from Basic Computer Games. The Basic program above prints (forever) as seen in this clip: http://www.youtube.com/watch?v=m9joBLOZVEo.
+The magic here is that the computer is printing either a left or a right angled line character over and over; this looks like a maze.</description>
+    </item>
+    
+    <item>
+      <title>Dispatch library for Scala: Promises and Either</title>
+      <link>http://example.org/2012/08/30/dispatch-library-for-scala-promises-and-either/</link>
+      <pubDate>Fri, 31 Aug 2012 03:32:07 +0000</pubDate>
+      
+      <guid>http://example.org/2012/08/30/dispatch-library-for-scala-promises-and-either/</guid>
+      <description>I’ve been working with the Dispatch library for Scala over the past couple of days. This is a library for “library for asynchronous HTTP interaction,” and it’s a wrapper for a similar library in Java. It’s been a little tricky to learn — the documentation could be better — and it seems useful to take down a few notes. First, though, it’s worth noting that you need to understand both the 0.</description>
+    </item>
+    
+    <item>
+      <title>Simple Scala pmap (parallel map)</title>
+      <link>http://example.org/2012/07/30/simple-scala-pmap-parallel-map/</link>
+      <pubDate>Mon, 30 Jul 2012 21:25:49 +0000</pubDate>
+      
+      <guid>http://example.org/2012/07/30/simple-scala-pmap-parallel-map/</guid>
+      <description>I was wondering whether Scala had a parallel map function built in — it didn’t seem like it did.
+Edit: But it does; see Erik Post’s comment below.
+But, if you have a sequence of functions, for example:
+val fns = List(() =&amp;gt; &amp;quot;hello&amp;quot;, () =&amp;gt; &amp;quot;goodbye&amp;quot;, () =&amp;gt; &amp;quot;good to see you&amp;quot;)
+You can create a sequence of futures on it (thus, running them in parallel): import scala.actors.Futures._ val futures = fns.</description>
+    </item>
+    
+    <item>
+      <title>A tiny rant about ‘tr’</title>
+      <link>http://example.org/2012/03/24/a-tiny-rant-about-tr/</link>
+      <pubDate>Sat, 24 Mar 2012 22:40:55 +0000</pubDate>
+      
+      <guid>http://example.org/2012/03/24/a-tiny-rant-about-tr/</guid>
+      <description>The tr program converts a string of characters into another string of characters, using a very simple rule system. The tr [A-Z] [a-z]. But this works for simple “ASCII” strings only. tr, at least on many systems, understands Unicode, and so the standard example fails for converting, say, Russian or Czech. But tr also understands character classes, so the standard example should be written tr [:upper:] [:lower:].
+File under “boring post.</description>
+    </item>
+    
+    <item>
+      <title>Scala filters</title>
+      <link>http://example.org/2012/03/08/scala-filters/</link>
+      <pubDate>Thu, 08 Mar 2012 23:19:46 +0000</pubDate>
+      
+      <guid>http://example.org/2012/03/08/scala-filters/</guid>
+      <description>A random Scala note.
+Today, I wanted to apply a list of filters to each item in a list, and return just those that pass each of the filters.
+For example, given a range of integers, return just those that are divisible by 2 and by 3.
+Let’s start by defining a boolean function divides:
+Note that divides(2,_:Int) defines the (partial) function for division by 2.
+So we can create our filters so:</description>
+    </item>
+    
+    <item>
+      <title>Useful Scala introduction</title>
+      <link>http://example.org/2011/12/23/useful-scala-introduction/</link>
+      <pubDate>Fri, 23 Dec 2011 20:41:49 +0000</pubDate>
+      
+      <guid>http://example.org/2011/12/23/useful-scala-introduction/</guid>
+      <description>Part 1: the Scala REPL, expressions, variables, basic types, simple functions, saving and running programs, comments Part 2: Tuples, Lists, methods on Lists and Strings Part 3: Conditional execution with if-else blocks and matching Part 4: Iterating, mapping, filtering and counting Part 5: Regular expressions and matching with them Part 6: Regular expression matching and substitution with the Regex API Part 7: Maps, Sets, groupBy, Options, flatten, flatMap Part 8: Word counting, scala.</description>
+    </item>
+    
+    <item>
+      <title>Computational Social Science on the cheap using Twitter</title>
+      <link>http://example.org/2011/11/23/computational-social-science-on-the-cheap-using-twitter/</link>
+      <pubDate>Wed, 23 Nov 2011 05:37:37 +0000</pubDate>
+      
+      <guid>http://example.org/2011/11/23/computational-social-science-on-the-cheap-using-twitter/</guid>
+      <description>This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church).</description>
+    </item>
+    
+    <item>
+      <title>Producing n hash functions by hashing only once</title>
+      <link>http://example.org/2011/09/03/producing-n-hash-functions-by-hashing-only-once/</link>
+      <pubDate>Sat, 03 Sep 2011 06:52:38 +0000</pubDate>
+      
+      <guid>http://example.org/2011/09/03/producing-n-hash-functions-by-hashing-only-once/</guid>
+      <description>To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread.</description>
+    </item>
+    
+    <item>
+      <title>On “Retiring a Great Interview Problem”</title>
+      <link>http://example.org/2011/08/09/on-retiring-a-great-interview-problem/</link>
+      <pubDate>Tue, 09 Aug 2011 08:48:59 +0000</pubDate>
+      
+      <guid>http://example.org/2011/08/09/on-retiring-a-great-interview-problem/</guid>
+      <description>Daniel Tunkaleng wrote an interesting blog post, “Retiring a Great Interview Problem” on an interview problem that he has, in the past, posed to interviewees, but which he has now retired, because someone posted the problem, and a solution, to an interview problem website. The problem is the segmentation problem (which he calls the word-break problem): given a string, segment it into reasonable words, if possible (for example, breaking “applepie” into “apple pie”).</description>
+    </item>
+    
+    <item>
+      <title>O(n) beats O(lg n)</title>
+      <link>http://example.org/2011/07/07/on-beats-olg-n/</link>
+      <pubDate>Thu, 07 Jul 2011 18:57:21 +0000</pubDate>
+      
+      <guid>http://example.org/2011/07/07/on-beats-olg-n/</guid>
+      <description>Here’s a problem I faced at work: determine the effective top level domain of a URI, using the data from the Public Suffix List, but not using any data structures read into memory (ie, a dynamically created hash table or even a static array). For example, the effective top level domain of “http://blog.entish.org” is “entish.org”, because it is a name one could register.
+So, there are about 4000 “positive” rules and about 100 “negative” rules.</description>
+    </item>
+    
+    <item>
+      <title>Dynamic typing and testing</title>
+      <link>http://example.org/2011/07/07/dynamic-typing-and-testing/</link>
+      <pubDate>Thu, 07 Jul 2011 03:27:05 +0000</pubDate>
+      
+      <guid>http://example.org/2011/07/07/dynamic-typing-and-testing/</guid>
+      <description>As kind of a 10-finger exercise, I decided to write a small inverted index library in Ruby today, since I had the day off. This is just a few thoughts about what it was like to write tests for this code, which can be found at [https://github.com/willf/inverted_index_simple]1–not that I think you’ll write the next major search engine with this bit of code…
+What struck me was that as I was writing unit tests, how many of the tests failed at first either because of undefined variables or dynamic typing problems.</description>
+    </item>
+    
+    <item>
+      <title>Bloom filters in Go</title>
+      <link>http://example.org/2011/05/21/bloom-filters-in-go/</link>
+      <pubDate>Sat, 21 May 2011 14:32:00 +0000</pubDate>
+      
+      <guid>http://example.org/2011/05/21/bloom-filters-in-go/</guid>
+      <description>I’ve written my second Go package to implement Bloom filters. It can be found at:
+https://github.com/willf/bloom
+It requires my bitset implementation:
+https://github.com/willf/bitset
+Enjoy!</description>
+    </item>
+    
+    <item>
+      <title>Baby steps with Go</title>
+      <link>http://example.org/2011/05/11/baby-steps-with-go/</link>
+      <pubDate>Wed, 11 May 2011 23:27:06 +0000</pubDate>
+      
+      <guid>http://example.org/2011/05/11/baby-steps-with-go/</guid>
+      <description>I’ve started teaching myself the Go programming language. I’m enjoying most aspects of it. It feels like a really modern C–that is, low level enough to be fast, but with lots of the bells and whistles one comes to expect in a modern programming language. It has lots of data types, an interesting alternative to object-oriented programming called interfaces, a reasonably-sized library, support for concurrency baked into the language, etc. The Go home page says it well:</description>
+    </item>
+    
+    <item>
+      <title>Ruby Google Chart API</title>
+      <link>http://example.org/2011/04/09/ruby-google-chart-api/</link>
+      <pubDate>Sat, 09 Apr 2011 19:57:54 +0000</pubDate>
+      
+      <guid>http://example.org/2011/04/09/ruby-google-chart-api/</guid>
+      <description>A few years ago, I wrote some Ruby code to access the Google Chart API. I’ve (finally) put in up on GitHub.
+This is part of an effort to get more of my open source projects up in a common space.
+[https://github.com/willf/ruby_google_charts]2</description>
+    </item>
+    
+    <item>
+      <title>What is missing? Watson, AI and search technology</title>
+      <link>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</link>
+      <pubDate>Wed, 16 Feb 2011 14:14:37 +0000</pubDate>
+      
+      <guid>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</guid>
+      <description>All geekdom, and much that is outside our realm, is abuzz with news and discussion of the contest by IBM’s Jeopardy-playing computer, Watson, vs Ken Jennings and Brad Rutter. In last night’s game (the second half of a game started on Monday, Watson won decisively, answering many, many more questions than Jennings and Rutter combined. At the end of the first half, Rutter and Watson were tied. Lots of famous (and formerly famous) artificial intelligence researchers have weighed in on what this means for AI.</description>
+    </item>
+    
+    <item>
+      <title>On “culturomics”</title>
+      <link>http://example.org/2010/12/30/on-culturomics/</link>
+      <pubDate>Thu, 30 Dec 2010 07:28:58 +0000</pubDate>
+      
+      <guid>http://example.org/2010/12/30/on-culturomics/</guid>
+      <description>[Note: I got bogged down on reading and reporting on the culturomics paper a little too closely, and this is a reboot.]
+Peter Norvig, one of the co-authors of the culturomics paper and the director of research at Google, was also the co-author on another significant article with the suggestive title, “The Unreasonable Effectiveness of Data”. The invention of the term “culturomics” suggests a scientific programme for attacking questions of culture that stresses statistical models based on large amounts of data, a programme that has been very successful both academically and commercially for linguistics and artificial intelligence, to say nothing of the informatics approaches of genomics and proteomics upon which the term culturomics is based.</description>
+    </item>
+    
+    <item>
+      <title>More thoughts on “culturomics” (part one)</title>
+      <link>http://example.org/2010/12/28/more-thoughts-on-culturomics-part-one/</link>
+      <pubDate>Tue, 28 Dec 2010 05:57:05 +0000</pubDate>
+      
+      <guid>http://example.org/2010/12/28/more-thoughts-on-culturomics-part-one/</guid>
+      <description>I’ve now had a chance to read the Science Express article describing “culturomics,” that is, the “Quantitative Analysis of Culture Using Millions of Digitized Books,” recently published by researchers at Google and several high-profile academic and commercial institutions. The authors claim to have created a corpus of approximately four percent of all books ever published (over five billion books) and supplying time-stamped ngram data based on 500 billion words in seven languages, primarily English; from the 1500s until roughly the present, primarily more recently.</description>
+    </item>
+    
+    <item>
+      <title>Whitelisting in Google Mail</title>
+      <link>http://example.org/2010/11/08/whitelisting-in-google-mail/</link>
+      <pubDate>Mon, 08 Nov 2010 17:14:46 +0000</pubDate>
+      
+      <guid>http://example.org/2010/11/08/whitelisting-in-google-mail/</guid>
+      <description>Google Mail (Gmail) has been putting mail from the LinkedIn contacts and groups into the spam folder. I had to research how to whitelist domains in Gmail, and this is what I learned:
+ Press the ‘Create a Filter’ Enter the domain in the ‘From’ field Select the ‘Never send it to Spam’ option  And, hey presto: it’s been whitelisted.</description>
+    </item>
+    
+    <item>
+      <title>Some Bing N-gram notes on tokenization</title>
+      <link>http://example.org/2010/10/26/some-bing-n-gram-notes-on-tokenization/</link>
+      <pubDate>Tue, 26 Oct 2010 20:23:10 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/26/some-bing-n-gram-notes-on-tokenization/</guid>
+      <description>Brendan O’Connor asked me on Twitter what I knew about Bing N-gram tokenization conventions, and I said I would ask someone who knew. The N-gram team plans a future blog post on this, but here’s some things I was told that I could share (and I quote):
+Here are a few things we can share right now:
+ Segment boundaries use the special symbols and , thus P(“hello there ”) !</description>
+    </item>
+    
+    <item>
+      <title>New Bing NGram data</title>
+      <link>http://example.org/2010/10/26/new-bing-ngram-data/</link>
+      <pubDate>Tue, 26 Oct 2010 16:27:12 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/26/new-bing-ngram-data/</guid>
+      <description>Bing (my employer, but here a different area) has announced new publicly available NGram data, current to April 2010. It includes 1 through 5-grams for title, anchor and body streams (that is, HTML page titles, text in anchor links, and overall HTML body text).</description>
+    </item>
+    
+    <item>
+      <title>Tech notes to self: unix sort on a specific field</title>
+      <link>http://example.org/2010/10/25/tech-notes-to-self-unix-sort-on-a-specific-field/</link>
+      <pubDate>Mon, 25 Oct 2010 14:28:55 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/25/tech-notes-to-self-unix-sort-on-a-specific-field/</guid>
+      <description>given a tab separated file, want to sort on field n:
+ cat file.tsv | sort –key=n -t’ ‘ with ‘Ctrl-V Tab’ in the ‘t’ field (literal tabular character)
+ Hey, and use -g for ‘general numeric’ sorting! It understands scientific notation, etc.
+And for multi-field sorts (sorts on multiple keys):
+cat file.tsv | sort -t’ ‘ –key=2,2 –key=1,1gr -s</description>
+    </item>
+    
+    <item>
+      <title>Text is a radio verb</title>
+      <link>http://example.org/2010/10/16/text-is-a-radio-verb/</link>
+      <pubDate>Sat, 16 Oct 2010 15:27:45 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/16/text-is-a-radio-verb/</guid>
+      <description>Like tweet, text follows the pattern of verbs called “verbs of instruments of communication” in Beth Levin’s book, English Verb Classes and Alterations: A Preliminary Investigation. In Levin’s inventory, these verbs include
+ cable e-mail fax modem netmail phone radio relay satellite sign semaphore signal telecast telegraph telephone telex wire wireless
+ As I did for tweet, I downloaded tweets from Twitter; I just looked for occurrences of ‘texted. Not surprisingly, it was harder to find examples of texted than tweet[ed], but I did find a fair number of examples in a short time.</description>
+    </item>
+    
+    <item>
+      <title>Not surprisingly, the past tense of “tweet” is “tweeted”</title>
+      <link>http://example.org/2010/10/15/not-surprisingly-the-past-tense-of-tweet-is-tweeted/</link>
+      <pubDate>Fri, 15 Oct 2010 04:47:25 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/15/not-surprisingly-the-past-tense-of-tweet-is-tweeted/</guid>
+      <description>I have 100,000 tweets which were sent on 25 March, 2010. Of these, 2,522 had a token which matched the pattern ‘tw_t[_]’, which collected forms like ‘tweeted’ and ‘twittered’ (and forms like ‘twentysomething’ and ‘twilight’). I scanned these and found twenty examples of relatively clear uses of a past tense form of ‘tweet’ or ‘twitter’ (as a verb); there were only 21 of these. Of these 21, 20 where ‘tweeted,’ and the other was ‘twittered’ (It was actually ‘twittrd’, but I take that to be a mispelling).</description>
+    </item>
+    
+    <item>
+      <title>Tweet is a Radio Verb</title>
+      <link>http://example.org/2010/10/12/tweet-is-a-radio-verb/</link>
+      <pubDate>Tue, 12 Oct 2010 23:31:16 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/12/tweet-is-a-radio-verb/</guid>
+      <description>Geoffrey K Pullum, in Tweet this, a blog post at the inestimable Language Log, discusses the syntax of the neologism tweet and engagingly writes:
+ Twitter merely coined a verb meaning “send a message via Twitter”, but they didn’t specify what linguists call its subcategorization possibilities. They added the verb to the dictionary, but they didn’t specify its grammar. The verb tweet is gradually developing its own syntax according to what it means and what its users regard as its combinatory possibilities.</description>
+    </item>
+    
+    <item>
+      <title>Computational lexicography on the cheap using Twitter</title>
+      <link>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</link>
+      <pubDate>Mon, 11 Oct 2010 19:31:36 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</guid>
+      <description>Let’s say you want to investigate the use of “tweet” as a verb (see “Tweet this” at Language Log), and you want to collect, oh, 10,000 examples or so and do some concordance work, for example:
+This is simple to do with a bash command line, perl, Ruby, the Tweetstream gem, and a spreadsheet program (or just plain old grep).
+To download 10,000 tweets containing “tweet,” “tweets”, or “tweeting” and save them in a file called “tweet.</description>
+    </item>
+    
+    <item>
+      <title>How to put iPad in shuffle mode</title>
+      <link>http://example.org/2010/10/06/how-to-put-ipad-in-shuffle-mode/</link>
+      <pubDate>Wed, 06 Oct 2010 16:41:45 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/06/how-to-put-ipad-in-shuffle-mode/</guid>
+      <description>Launch iPod Select Music (on left rail) Select “Songs” (at bottom of screen) Drag entire list down (press some song and pull downwards). The “Shuffle” option will appear Press Shuffle  You can do this for any play list, including album songs. It’s surprising this is such a hidden option. Lots of my music are not “geniusable.”</description>
+    </item>
+    
+    <item>
+      <title>Obscene intensification of adjectives (a bit NSFW)</title>
+      <link>http://example.org/2010/09/30/obscene-intensification-of-adjectives-a-bit-nsfw/</link>
+      <pubDate>Thu, 30 Sep 2010 05:25:14 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/30/obscene-intensification-of-adjectives-a-bit-nsfw/</guid>
+      <description>XKCD, a ‘webcomic of romance, sarcasm, math, and language’, presents a hand-drawn chart of the frequency with which ‘fucking adjective‘ or ‘adjective as shit’ can be found in web search results.
+Well, with the Bing Ngram data, we can provide more exact figures which don’t depend on all of the choice and ranking decisions made by a search engine to include or not a page in a result, and (in particular) the estimate of the number of pages on which the term appears.</description>
+    </item>
+    
+    <item>
+      <title>Republican Pledge To America (the stock phrase version)</title>
+      <link>http://example.org/2010/09/28/republican-pledge-to-america-the-stock-phrase-version/</link>
+      <pubDate>Tue, 28 Sep 2010 02:27:33 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/28/republican-pledge-to-america-the-stock-phrase-version/</guid>
+      <description>This is the Republican Pledge to America, removing everything but the multiword stock phrases recognized by an (internal Microsoft) phrase detector. It makes a kind of poetry.
+  </description>
+    </item>
+    
+    <item>
+      <title>Nip it in the butt</title>
+      <link>http://example.org/2010/09/20/nip-it-in-the-butt/</link>
+      <pubDate>Mon, 20 Sep 2010 04:09:52 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/20/nip-it-in-the-butt/</guid>
+      <description>I’ve seen two references to “nip it in the butt” for “nip it in the bud” recently, which reminded me of the “avoid like the plaque” post.
+It’s a little harder to get statistics for this based on the public Bing data, which only goes to four tokens. But here are the most common following words for “nip in the ___”:
+bud:46.79%, air:45.60%, h: 2.53%, butt: 1.05%, taste: 0.95%, form: 0.</description>
+    </item>
+    
+    <item>
+      <title>C# Lambdas are almost like C# compile-time macros</title>
+      <link>http://example.org/2010/09/13/c-lambdas-are-almost-like-c-compile-time-macros/</link>
+      <pubDate>Mon, 13 Sep 2010 21:32:13 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/13/c-lambdas-are-almost-like-c-compile-time-macros/</guid>
+      <description>I was writing some instrumentation code in C# today that looked like this:
+MeasureOn(&amp;quot;SomeFeature&amp;quot;); ComputeSomeFeature(); MeasureOff(&amp;quot;SomeFeature&amp;quot;); MeasureOn(&amp;quot;AnotherFeature&amp;quot;); ComputeAnotherFeature(); MeasureOff(&amp;quot;AnotherFeature&amp;quot;);
+If I were using a language with (compile-time) code macros (like Clojure, Scheme or Lisp), I’d prefer to write something like:
+Measuring(&amp;quot;SomeFeature&amp;quot;){ComputeSomeFeature();} Measuring(&amp;quot;AnotherFeature&amp;quot;){ComputeAnotherFeature();}
+But C# doesn’t have such a basic and useful thing, by design (bad design, I think, but still by design).
+But C# does have first-class anonymous functions, so it’s possible to write methods that take one of these as a parameter.</description>
+    </item>
+    
+    <item>
+      <title>Using Ngram data for segmentation</title>
+      <link>http://example.org/2010/09/08/using-ngram-data-for-segmentation/</link>
+      <pubDate>Wed, 08 Sep 2010 05:59:39 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/08/using-ngram-data-for-segmentation/</guid>
+      <description>I’ve updated the Microsoft NGram Ruby library to provide an example use: segmenting Twitter hashtags. Twitter hashtags have been used for some time to tag tweets according to users’ choice and whimsy. Coincidentally, my daytime boss has just conducted an interview with William Morgan–formerly of Powerset, but now at Twitter–about hash tags, in case you want to come up to speed on what they are. It’s a fun read in any case, including the origin story of hash tags.</description>
+    </item>
+    
+    <item>
+      <title>Ruby project to access Microsoft Ngram data</title>
+      <link>http://example.org/2010/09/03/ruby-project-to-access-microsoft-ngram-data/</link>
+      <pubDate>Fri, 03 Sep 2010 06:55:44 +0000</pubDate>
+      
+      <guid>http://example.org/2010/09/03/ruby-project-to-access-microsoft-ngram-data/</guid>
+      <description>I am pleased to announce the availability of a Ruby library to access the Microsoft Ngram data. This data currently includes 1,2,3,4 gram data for anchor text, 1,2,3 gram data for body text, 1,2,3,4 gram data for page titles, and 1,2,3 gram data for queries, collected in June 2009. See the Bing/MSR Ngram data page for general information. Although I am a Microsoft employee, this software is provided by me, not Microsoft.</description>
+    </item>
+    
+    <item>
+      <title>log_10(n)</title>
+      <link>http://example.org/2010/08/18/log_10n/</link>
+      <pubDate>Wed, 18 Aug 2010 13:09:09 +0000</pubDate>
+      
+      <guid>http://example.org/2010/08/18/log_10n/</guid>
+      <description>I’ve been playing with Microsoft Research’s ngram server in my spare time. I’ll write some more about this in time, I hope.
+The API returns base 10 logs for its probabilities. Because the probabilities returned are so very low, it makes more sense to return a log probability. I could be wrong, but I think it’s normal practice to return base 2 logs, or base e logs for log probabilities. They are easily to convert from one base to another, so it doesn’t really matter.</description>
+    </item>
+    
+    <item>
+      <title>Alumin(i)um</title>
+      <link>http://example.org/2010/08/09/aluminium/</link>
+      <pubDate>Mon, 09 Aug 2010 17:07:25 +0000</pubDate>
+      
+      <guid>http://example.org/2010/08/09/aluminium/</guid>
+      <description>I enjoyed reading the Wikipedia page about its “lamest edit wars.” One of these edit wars was whether the article on what Americans call “aluminum” and what Brits call “aluminium” should have, as its fundamental title, “Aluminum,” or “Aluminium.” And, one of the arguments presented in favo(u)r of “Aluminum” was that more Google hits are available for the US spelling than the UK spelling. “Ghits” is notoriously unreliable (as are Bing hits and the other search engines), since the number of search results reported are subject to lots of factors, not of which is tied directly to actual number of documents returned.</description>
+    </item>
+    
+    <item>
+      <title>Google’s Superbowl ad</title>
+      <link>http://example.org/2010/02/08/googles-superbowl-ad/</link>
+      <pubDate>Mon, 08 Feb 2010 22:08:12 +0000</pubDate>
+      
+      <guid>http://example.org/2010/02/08/googles-superbowl-ad/</guid>
+      <description>I really enjoyed Google’s Superbowl ad, in which a love story is told as a series of search queries:
+ study abroad paris france cafes near the louve (sic) translate tu es très mignon impress a french girl chocolate shops paris france what are truffles who is truffaut long distance relationship advice jobs in paris AA120 churches in paris how to assemble a crib  I was curious how Google would do “in real life” on these queries, as well as how Bing (my employer) does.</description>
+    </item>
+    
+    <item>
+      <title>Driving while using a cell phone</title>
+      <link>http://example.org/2009/08/31/driving-while-using-a-cell-phone/</link>
+      <pubDate>Mon, 31 Aug 2009 23:39:05 +0000</pubDate>
+      
+      <guid>http://example.org/2009/08/31/driving-while-using-a-cell-phone/</guid>
+      <description>There are two questions: Is driving while talking on a cell phone safe? and Is it as dangerous as driving while drunk?
+After reviewing some earlier studies, and looking at a new Virginia Tech study, I’d say the answer is a definite yes to the first question; and a probably not to the second question (not as dangerous as driving drunk, but maybe “only” 1/4 as dangerous.)
+Details follow. All of the papers below are available online, and discuss (for the most part) their methodologies and metrics.</description>
+    </item>
+    
+    <item>
+      <title>Zipf’s law and city size</title>
+      <link>http://example.org/2009/05/21/zipfs-law-and-city-size/</link>
+      <pubDate>Thu, 21 May 2009 13:50:35 +0000</pubDate>
+      
+      <guid>http://example.org/2009/05/21/zipfs-law-and-city-size/</guid>
+      <description>Olivia Judson writes a column for the New York Times, and she had a guest column by mathematician Steven Strogatz, a math professor at Cornell, “Math and the City.”
+Strogatz writes:
+ One of the pleasures of looking at the world through mathematical eyes is that you can see certain patterns that would otherwise be hidden. This week’s column is about one such pattern. It’s a beautiful law of collective organization that links urban studies to zoology.</description>
+    </item>
+    
+    <item>
+      <title>Language Identification: A Computational Linguistics Primer</title>
+      <link>http://example.org/2009/04/25/language-identification-a-computational-linguistics-primer/</link>
+      <pubDate>Sat, 25 Apr 2009 14:44:59 +0000</pubDate>
+      
+      <guid>http://example.org/2009/04/25/language-identification-a-computational-linguistics-primer/</guid>
+      <description>Slides and results from a talk I gave at Kalamazoo College on language identification.
+My co-worker at Powerset, Chris Biemann, has a nice paper on [Slides and results from a talk I gave at Kalamazoo College on language identification.
+My co-worker at Powerset, Chris Biemann, has a nice paper on]2 .</description>
+    </item>
+    
+    <item>
+      <title>Epoch success</title>
+      <link>http://example.org/2009/02/13/epoch-success/</link>
+      <pubDate>Fri, 13 Feb 2009 23:36:00 +0000</pubDate>
+      
+      <guid>http://example.org/2009/02/13/epoch-success/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Things that are wrong with Python (3): destructive functions</title>
+      <link>http://example.org/2009/02/12/things-that-are-wrong-with-python-3-destructive-functions/</link>
+      <pubDate>Thu, 12 Feb 2009 19:10:18 +0000</pubDate>
+      
+      <guid>http://example.org/2009/02/12/things-that-are-wrong-with-python-3-destructive-functions/</guid>
+      <description>Pythons’s sort and append functions mutate the sequence they work on.
+This is wrong. Rather than write x = list.append(1).sort() you have to write: x = list[:] x.append(1) x.sort()</description>
+    </item>
+    
+    <item>
+      <title>Things that are wrong with Python (2): return values</title>
+      <link>http://example.org/2009/02/12/things-that-are-wrong-with-python-2-return-values/</link>
+      <pubDate>Thu, 12 Feb 2009 19:07:12 +0000</pubDate>
+      
+      <guid>http://example.org/2009/02/12/things-that-are-wrong-with-python-2-return-values/</guid>
+      <description>Python doesn’t return values by default.
+This is wrong. The last value should always be returned.</description>
+    </item>
+    
+    <item>
+      <title>Things That Are Wrong with Python (1): True and False</title>
+      <link>http://example.org/2009/02/12/things-that-are-wrong-with-python-1-true-and-false/</link>
+      <pubDate>Thu, 12 Feb 2009 19:06:06 +0000</pubDate>
+      
+      <guid>http://example.org/2009/02/12/things-that-are-wrong-with-python-1-true-and-false/</guid>
+      <description>The following values are all false in Python programming language.
+ None False numbers equal to 0: 0, 0L, 0.0, 0j empty sequences:e.g., ‘””, (), [], array.array(‘i’) empty maps: e.g., {} any object that defines a __nonzero__ or __len__ method (returning False or len=0, respectively  This is a Thing that is Wrong with Python.
+(The Right Way: false is None or False; everything else is true.)
+(Note: I really do disagree with this design decision, but I’m mostly writing this down so I will remember not to write code like this:</description>
+    </item>
+    
+    <item>
+      <title>Epoch odometer</title>
+      <link>http://example.org/2009/02/12/epoch-odometer/</link>
+      <pubDate>Thu, 12 Feb 2009 05:42:44 +0000</pubDate>
+      
+      <guid>http://example.org/2009/02/12/epoch-odometer/</guid>
+      <description>My epoch odometer.</description>
+    </item>
+    
+    <item>
+      <title>Leap second 2009</title>
+      <link>http://example.org/2008/12/31/leap-second-2009/</link>
+      <pubDate>Thu, 01 Jan 2009 00:04:39 +0000</pubDate>
+      
+      <guid>http://example.org/2008/12/31/leap-second-2009/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>parallel line-oriented file processing</title>
+      <link>http://example.org/2008/07/31/parallel-line-oriented-file-processing/</link>
+      <pubDate>Thu, 31 Jul 2008 16:40:17 +0000</pubDate>
+      
+      <guid>http://example.org/2008/07/31/parallel-line-oriented-file-processing/</guid>
+      <description>At work, I’ve been doing a lot of line-oriented file processing, for example, of the tabbed-separated value files produced by the Freebase project (downloads). This is similar in spirit to Tim Bray’s ‘wide finder’ project, and I’ve leveraged his popularity to find a useful utility created by Preston l. Bannister called “feed-workers” that implements the ‘map’ part of map-reduce (but over a large file, rather than a large set of files).</description>
+    </item>
+    
+    <item>
+      <title>O(log(N)) array insertion in Ruby</title>
+      <link>http://example.org/2008/07/24/ologn-array-insertion-in-ruby/</link>
+      <pubDate>Thu, 24 Jul 2008 16:58:34 +0000</pubDate>
+      
+      <guid>http://example.org/2008/07/24/ologn-array-insertion-in-ruby/</guid>
+      <description>`&amp;raquo; require &amp;lsquo;bdb&amp;rsquo;
+  x = BDB::Btree.open(&amp;rsquo;/tmp/foo.db&amp;rsquo;,nil, &amp;lsquo;w+&amp;rsquo;, {&amp;lsquo;set_bt_compare&amp;rsquo; =&amp;gt; lambda {|a,b| (a.to_i) (b.to_i)}}) =&amp;gt; # (0..9).to_a.sort_by{rand}.each{|i| x[i] = i};true =&amp;gt; true x.keys.map{|i| i.to_i} =&amp;gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`
+  </description>
+    </item>
+    
+    <item>
+      <title>How many ways to win the election with nothing to spare?</title>
+      <link>http://example.org/2008/06/10/how-many-ways-to-win-the-election-with-nothing-to-spare/</link>
+      <pubDate>Wed, 11 Jun 2008 01:27:24 +0000</pubDate>
+      
+      <guid>http://example.org/2008/06/10/how-many-ways-to-win-the-election-with-nothing-to-spare/</guid>
+      <description>Over at FiveThirtyEight, the following ‘homework assignment’ was given:
+ How many unique ways are there to acquire at least 270 electoral votes without any excess? I figured it would be a ‘large’ number, but I was surprised at the actual total: 51,199,463,116,367 (or, fifty-one trillion and change). about 2.3% of all possible combinations (This exact number is based on the simplifying assumption of treating Maine and Nevada as giving up their electoral votes in the same way as all the other states).</description>
+    </item>
+    
+    <item>
+      <title>The evolution of a Ruby programmer</title>
+      <link>http://example.org/2008/06/05/the-evolution-of-a-ruby-programmer/</link>
+      <pubDate>Thu, 05 Jun 2008 12:58:26 +0000</pubDate>
+      
+      <guid>http://example.org/2008/06/05/the-evolution-of-a-ruby-programmer/</guid>
+      <description>  </description>
+    </item>
+    
+    <item>
+      <title>Positive Predictive Value</title>
+      <link>http://example.org/2008/04/10/positive-predictive-value/</link>
+      <pubDate>Thu, 10 Apr 2008 13:58:56 +0000</pubDate>
+      
+      <guid>http://example.org/2008/04/10/positive-predictive-value/</guid>
+      <description>Mark “Language Log” Liberman is taking Steven D. “Freakonomics” Levitt to task for either misunderstanding the language of statistics, or the underlying statistics theory itself.
+In a blog post, “Medicine and Statistics Don’t Mix,” Levitt tells the story of friends of his who spent $5,000 on Preimplantation Genetic Diagnosis (PGD) — a test for genetic viability of embryos — during fertility treatment. The test came back positive for the possibility of birth defects.</description>
+    </item>
+    
+    <item>
+      <title>OpenDMAP paper</title>
+      <link>http://example.org/2008/03/25/opendmap-paper/</link>
+      <pubDate>Wed, 26 Mar 2008 01:55:31 +0000</pubDate>
+      
+      <guid>http://example.org/2008/03/25/opendmap-paper/</guid>
+      <description>For the few who might be interested: OpenDMAP: An open source, ontology-driven concept analysis engine, with applications to capturing knowledge regarding protein transport, protein interactions and cell-type-specific gene expression (PDF).
+ OpenDMAP advances the performance standards for extracting protein-protein interaction predications from the full texts of biomedical research articles. Furthermore, this level of performance appears to generalize to other information extraction tasks, including extracting information about predicates of more than two arguments.</description>
+    </item>
+    
+    <item>
+      <title>UAVs at Wired Science</title>
+      <link>http://example.org/2008/03/13/uavs-at-wired-science/</link>
+      <pubDate>Fri, 14 Mar 2008 00:54:49 +0000</pubDate>
+      
+      <guid>http://example.org/2008/03/13/uavs-at-wired-science/</guid>
+      <description>A nice Wired Science video on UAVs (unmanned autonomous vehicles), including some video of the UAV helicopter I worked on at NASA. I miss doing that cool stuff. Of course, I like doing the cool stuff I’m working on now. Autonomous flying search engines! Yes, that’s the ticket!
+(via lemondor, who’s always finding cool stuff like this. Thanks, John!)</description>
+    </item>
+    
+    <item>
+      <title>Powerset in Ruby</title>
+      <link>http://example.org/2008/03/03/powerset-in-ruby/</link>
+      <pubDate>Mon, 03 Mar 2008 21:50:21 +0000</pubDate>
+      
+      <guid>http://example.org/2008/03/03/powerset-in-ruby/</guid>
+      <description>I actually needed to use a powerset function (set of all subsets of a set) today in some Ruby testing code I was writing. So I share it with you:
+For example:
+&amp;gt;&amp;gt; [1,2,3].powerset =&amp;gt; [[1, 2, 3], [1, 2], [1, 3], [1], [2, 3], [2], [3], []]</description>
+    </item>
+    
+    <item>
+      <title>Glitches</title>
+      <link>http://example.org/2008/02/25/glitches/</link>
+      <pubDate>Mon, 25 Feb 2008 12:30:54 +0000</pubDate>
+      
+      <guid>http://example.org/2008/02/25/glitches/</guid>
+      <description>Back when I was a child, I had two choices for watching moving images: watching live television or going to the movies.
+Now, we have a large array of choices, and this weekend we used quite a few of them, but it was interesting (and frustrating) to see the large array of troubleshooting techniques they required.
+I watched a BBC production of Dorothy L. Sayers’s Gaudy Night using the ‘instant watch’ feature of Netflx.</description>
+    </item>
+    
+    <item>
+      <title>More better spec for Arc</title>
+      <link>http://example.org/2008/02/02/more-better-spec-for-arc/</link>
+      <pubDate>Sat, 02 Feb 2008 15:40:23 +0000</pubDate>
+      
+      <guid>http://example.org/2008/02/02/more-better-spec-for-arc/</guid>
+      <description>A DESCRIBE form now creates a procedure, which, when run, returns a set of results, which can be printed. Also, errors in test forms are caught.
+See spec.arc
+Can an HTML format be far behind?
+It’s not perfect. But parts of it are excellent.</description>
+    </item>
+    
+    <item>
+      <title>First experiment with Arc</title>
+      <link>http://example.org/2008/02/01/first-experiment-with-arc/</link>
+      <pubDate>Fri, 01 Feb 2008 04:49:10 +0000</pubDate>
+      
+      <guid>http://example.org/2008/02/01/first-experiment-with-arc/</guid>
+      <description>&lt;p&gt;I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.&lt;/p&gt;
+&lt;p&gt;One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>arc is here</title>
+      <link>http://example.org/2008/01/29/arc-is-here/</link>
+      <pubDate>Wed, 30 Jan 2008 01:48:54 +0000</pubDate>
+      
+      <guid>http://example.org/2008/01/29/arc-is-here/</guid>
+      <description>``
+arclanguage.org
+I should have mentioned: via lemonodor.</description>
+    </item>
+    
+    <item>
+      <title>Ser-Venn-Ity Prayer in Google’s new Chart API</title>
+      <link>http://example.org/2007/12/07/ser-venn-ity-prayer-in-googles-new-chart-api/</link>
+      <pubDate>Fri, 07 Dec 2007 15:46:14 +0000</pubDate>
+      
+      <guid>http://example.org/2007/12/07/ser-venn-ity-prayer-in-googles-new-chart-api/</guid>
+      <description>Courtesy of Google’s Chart API.</description>
+    </item>
+    
+    <item>
+      <title>RemoveSpecialCharsExceptQuote</title>
+      <link>http://example.org/2007/11/26/657/</link>
+      <pubDate>Mon, 26 Nov 2007 14:35:03 +0000</pubDate>
+      
+      <guid>http://example.org/2007/11/26/657/</guid>
+      <description>Worse than Failure posts about a silly function named:
+`Worse than Failure posts about a silly function named:
+`
+Hah! If I’d written this in Lisp, it would be the much simpler:
+remove_special_chars_except_quote&amp;lt;em&amp;gt;ampersand&amp;lt;/em&amp;gt; apostrophe_open_bracket_close_bracket_comma&amp;lt;em&amp;gt;hyphen&amp;lt;/em&amp;gt; full_stop_comma_forward_slash
+which is why Lisp is so much better than Any Other Language.
+(I tend to write functions that have names that are too long, which is why I thought this was funny. I wonder what the longest function name that I’ve ever written is?</description>
+    </item>
+    
+    <item>
+      <title>More ubiquitous helmet news …</title>
+      <link>http://example.org/2007/10/27/more-ubiquitous-helmet-news/</link>
+      <pubDate>Sat, 27 Oct 2007 17:30:41 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/27/more-ubiquitous-helmet-news/</guid>
+      <description>In more news of our always-wearing-helmets future:
+ “This is more a piece of safety equipment, along the lines of a child car seat, than just a piece of athletic equipment,” Ferrara said. From Helmet design Absorbs Shock in a New Way — yet another new helmet design.
+ </description>
+    </item>
+    
+    <item>
+      <title>New Google translation software</title>
+      <link>http://example.org/2007/10/23/new-google-translation-software/</link>
+      <pubDate>Tue, 23 Oct 2007 15:23:36 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/23/new-google-translation-software/</guid>
+      <description>Google is now using their internal translation software for all language pairs, and my very, very brief look at their results look good. This is very idiomatic, for example:
+ I was amused by calculating the number of video tags football (soccer) and rugby on Dailymotion (English pages). No doubt, soccer is more popular than rugby! The original French (from Jean Véronis’s blog):
+  Je me suis amusé à calculer le nombre de vidéos portant les tags foot (ou football) et rugby sur Dailymotion (pages françaises).</description>
+    </item>
+    
+    <item>
+      <title>In the future, everyone will wear bike helmets</title>
+      <link>http://example.org/2007/10/07/in-the-future-everyone-will-wear-bike-helmets/</link>
+      <pubDate>Mon, 08 Oct 2007 03:08:43 +0000</pubDate>
+      
+      <guid>http://example.org/2007/10/07/in-the-future-everyone-will-wear-bike-helmets/</guid>
+      <description>One of my wackier predictions is that in the future, everyone will wear bike helmets. Obviously, not like current bulky bike helmets, but just as today it is almost unthinkable for someone to ride a bike without a helmet (at least for some people), I have been claiming that someday it will be almost unthinkable for to go outside without some kind of protection against impacts.
+Well, it looks like my wacky dream may be coming true!</description>
+    </item>
+    
+    <item>
+      <title>As simple as possible, but no simpler</title>
+      <link>http://example.org/2007/09/29/as-simple-as-possible-but-no-simpler/</link>
+      <pubDate>Sat, 29 Sep 2007 18:15:49 +0000</pubDate>
+      
+      <guid>http://example.org/2007/09/29/as-simple-as-possible-but-no-simpler/</guid>
+      <description>Search on the web for “as simple as possible, but no simpler” and the web will tell you that Albert Einstein said this. Einstein said a lot of things, and a lot of things are attributed to him; knowing whether he, in fact, said a particular pithy quote is a bit of a problem.
+I spent a good couple of hours this morning tracking this down, and I think that the Wikiquote page on Einsteingets it right.</description>
+    </item>
+    
+    <item>
+      <title>The Young Geek, Mocked by His Crush, Fantasizes About Future World Domination, When He’ll Have Cyborg Raping Powers</title>
+      <link>http://example.org/2007/09/09/the-young-geek-mocked-by-his-crush-fantasizes-about-future-world-domination-when-hell-have-cyborg-raping-powers/</link>
+      <pubDate>Mon, 10 Sep 2007 00:11:23 +0000</pubDate>
+      
+      <guid>http://example.org/2007/09/09/the-young-geek-mocked-by-his-crush-fantasizes-about-future-world-domination-when-hell-have-cyborg-raping-powers/</guid>
+      <description>Jonathan Coulton is “a musician, a singer-songwriter and an internet superstar.” He wrote a sweet, goopy song called Code Monkey that I like, as well as a song about the Mandelbrot set. But he also wrote a song called “The Future Soon.” It it, the protagonist sings:
+ Last week I left a note on Laura’s desk It said I love you signed anonymous friend Turns out she’s smarter than I thought she was She knows I wrote it, now the whole class does too … But I know that I’ll forget the look of pity in her face When I’m living in my solar dome on a platform in space.</description>
+    </item>
+    
+    <item>
+      <title>Distantly related to a giant sloth</title>
+      <link>http://example.org/2007/07/16/distantly-related-to-a-giant-sloth/</link>
+      <pubDate>Mon, 16 Jul 2007 12:15:33 +0000</pubDate>
+      
+      <guid>http://example.org/2007/07/16/distantly-related-to-a-giant-sloth/</guid>
+      <description>My wife’s cousin, David Oren, has been searching for evidence of the existence of the mapinguary, a “giant slothlike monster of the Amazon.” The San Francisco Chronicle published an article on it last Sunday.</description>
+    </item>
+    
+    <item>
+      <title>Waxing gibbous</title>
+      <link>http://example.org/2007/05/31/waxing-gibbous/</link>
+      <pubDate>Thu, 31 May 2007 13:05:36 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/31/waxing-gibbous/</guid>
+      <description>Today’s Earth and Sky discusses a few topics mildly dear to my lunatic heart. They discuss blue moons and time zones.
+ When there’s a second full moon of a calendar month, it’s come to be called a Blue Moon. I like the careful use of “it’s come to be called,” since it is a bit controversial what “blue moon” means, and where it comes from. But I think they’re right that “the second full moon of a calendar month” is the most common meaning of “blue moon” these days.</description>
+    </item>
+    
+    <item>
+      <title>Actually, a little more robot overlordship than I’m currently experiencing would be nice</title>
+      <link>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</link>
+      <pubDate>Thu, 17 May 2007 05:16:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</guid>
+      <description>Sitting down to dinner, I said something like today I wrote a program that wrote a program, and its running righ now. Daughter and wife looked slightly alarmed, and dear wife asked if there were any chance that I was working myself out of a job. I said I didn’t think there was much chance that the coming robot wars were about to begin. Getting back to my computer later, I saw this on the console:</description>
+    </item>
+    
+    <item>
+      <title>Freebase.com invitation</title>
+      <link>http://example.org/2007/05/09/freebasecom-invitation/</link>
+      <pubDate>Wed, 09 May 2007 18:16:50 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/09/freebasecom-invitation/</guid>
+      <description>I’ve got five freebase.com developer invitations; if you’re interested, and are a ‘data fanatic,’ then get in touch with me.</description>
+    </item>
+    
+    <item>
+      <title>Kelly (and Susan) Clark</title>
+      <link>http://example.org/2007/05/07/kelly-and-sue-clark/</link>
+      <pubDate>Mon, 07 May 2007 07:36:50 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/07/kelly-and-sue-clark/</guid>
+      <description>Sunday evening, Bess, a number of friends, and I went to hear Calvin professors Kelly Clark (philosophy) and Steve Matheson (biology) speak on “God after Darwin, Dawkins, and Dennet” at the Church of the Servant in Grand Rapids. Kelly has been a friend of Bess’s since high school, and Susan Ford Clark, Kelly’s wife, shared an apartment with Bess their senior year–in fact, Kelly and Susan, and Bess and I, were married on the same day in the same church (at different times).</description>
+    </item>
+    
+    <item>
+      <title>Semantic Parser, best in show</title>
+      <link>http://example.org/2007/04/27/semantic-parser-best-in-show/</link>
+      <pubDate>Fri, 27 Apr 2007 04:17:35 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/27/semantic-parser-best-in-show/</guid>
+      <description>I got an email today from Larry Hunter at University of Colorado School of Medicine, who writes to say that a DMAP-based parser was the “international world-champion” in the The BioCreAtIvE (Critical Assessment of Information Extraction systems in Biology) data text mining challenge. The chart above are the results from the Protein-Protein Interaction Task.
+My colleague at Powerset, Jim Firby and I worked on some of the semantic parsing technology used by the Colorado group.</description>
+    </item>
+    
+    <item>
+      <title>Daylight saving time shift</title>
+      <link>http://example.org/2007/04/03/daylight-saving-time-shift/</link>
+      <pubDate>Wed, 04 Apr 2007 01:59:55 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/03/daylight-saving-time-shift/</guid>
+      <description>It looks like the early change-over to Daylight Saving Time failed to save energy; the failure was predicted by Berkeley scientists and even the Department of Energy.</description>
+    </item>
+    
+    <item>
+      <title>Powerset in NY Times, Venturebeat</title>
+      <link>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</link>
+      <pubDate>Fri, 09 Feb 2007 14:00:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</guid>
+      <description>The company I work for, Powerset, is being written up in the New York Times and Venturebeat, both reporting on a deal between Powerset and PARC. The New York Times article (behind a registration wall, alack) mostly follows the storied arc of the Palo Alto Research Center, where the graphical user interface and ethernet were born but capitalized on more by rivals rather than its original owner, Xerox. Our CEO, Barney Pell is quoted:</description>
+    </item>
+    
+    <item>
+      <title>Upgrading from buggy iTunes 7.0.x to a working iTunes 6.0.5 on the Mac</title>
+      <link>http://example.org/2006/10/05/upgrading-from-buggy-itunes-70x-to-a-working-itunes-605-on-the-mac/</link>
+      <pubDate>Thu, 05 Oct 2006 23:41:39 +0000</pubDate>
+      
+      <guid>http://example.org/2006/10/05/upgrading-from-buggy-itunes-70x-to-a-working-itunes-605-on-the-mac/</guid>
+      <description>ITunes 7.0.x for the Mac, at least, is very, very buggy. Here are instructions for reverting to iTunes 6.0.5, based on instructions found in various places on the web. ITunes 7.0.x hasn’t worked for me at all for more than 10 minutes since I installed it. The 7.0.1 release did not fix any of the problems that I was having. Note that these instructions will lose any changes you’ve made since upgrading to iTunes 7.</description>
+    </item>
+    
+    <item>
+      <title>One small step for a man</title>
+      <link>http://example.org/2006/09/30/one-small-step-for-a-man/</link>
+      <pubDate>Sun, 01 Oct 2006 02:57:15 +0000</pubDate>
+      
+      <guid>http://example.org/2006/09/30/one-small-step-for-a-man/</guid>
+      <description>It’s looking as if Neil Armstrong did say “One small step for a man…” rather than “One small step for man…”; this is what he has always maintained as his intent (Houston Chronicle story; via /.).
+Perhaps someday historians will correct it again to “That’s one small step for a man; one giant leap for humanity.”
+Update: I should have been a bit more skeptical, I think. At least taken a closer look at the data, which David Beaver has now done in a post on Language Log.</description>
+    </item>
+    
+    <item>
+      <title>Bad dog, Ruby, Bad dog!</title>
+      <link>http://example.org/2006/09/09/bad-dog-ruby-bad-dog/</link>
+      <pubDate>Sat, 09 Sep 2006 21:48:29 +0000</pubDate>
+      
+      <guid>http://example.org/2006/09/09/bad-dog-ruby-bad-dog/</guid>
+      <description>  </description>
+    </item>
+    
+    <item>
+      <title>Plumnomics</title>
+      <link>http://example.org/2006/08/26/plumnomics/</link>
+      <pubDate>Sat, 26 Aug 2006 13:21:55 +0000</pubDate>
+      
+      <guid>http://example.org/2006/08/26/plumnomics/</guid>
+      <description>With the demotion of Pluto to a dwarf planet, there are reports that a new mnemonic is required to recall the order of the nine–er, wait, only eight–planets. In fact, Jason Kottke sponsored a mnemonics contest. Kottke is one of the first generation bloggers, along Meg Hourihan. They were the subject of a New Yorker article early on, as well as an update recently when they got married. Kottke doesn’t write very much about himself, though, so I was pretty sure my entry wouldn’t win, but I still like it very much:</description>
+    </item>
+    
+    <item>
+      <title>Living with a computer</title>
+      <link>http://example.org/2006/08/11/living-with-a-computer/</link>
+      <pubDate>Sat, 12 Aug 2006 00:59:26 +0000</pubDate>
+      
+      <guid>http://example.org/2006/08/11/living-with-a-computer/</guid>
+      <description>Way fun: The Atlantic has posted James Fallows’s essay, Living with a computer as part of their Tech &amp;amp; Innovation “Celebration of 150 Years” tour. It was written in 1982, and describes his using an early word processor program, the Electric Pencil, running on 48k of memory (carefully described: “each K represents 1,024 bytes of information—each byte representing one character or digit—the machine can manipulate more than 49,000 items of information at a time.</description>
+    </item>
+    
+    <item>
+      <title>Leopard announcements</title>
+      <link>http://example.org/2006/08/08/leopard-announcements/</link>
+      <pubDate>Tue, 08 Aug 2006 15:54:03 +0000</pubDate>
+      
+      <guid>http://example.org/2006/08/08/leopard-announcements/</guid>
+      <description>Apple has posted some details of the upcoming version of the Apple OS. Two little things of note that will make me want to buy it: A new speech synthesis voice, Alex, that sounds quite good. And boolean operators in Spotlight, the full-text searching tool; plus search on file attributes. The later should have already been in Spotlight, in my humble opinion, but that’s one way Apple keeps getting my money…</description>
+    </item>
+    
+    <item>
+      <title>Craigslist comes to Kalamazoo</title>
+      <link>http://example.org/2006/06/19/craigslist-comes-to-kalamazoo/</link>
+      <pubDate>Mon, 19 Jun 2006 04:03:30 +0000</pubDate>
+      
+      <guid>http://example.org/2006/06/19/craigslist-comes-to-kalamazoo/</guid>
+      <description>Craigslist comes to Kalamazoo, Michigan, and lots more cities. 4 postings so far!</description>
+    </item>
+    
+    <item>
+      <title>Cool visual illusion</title>
+      <link>http://example.org/2006/06/08/cool-visual-illusion/</link>
+      <pubDate>Thu, 08 Jun 2006 14:52:25 +0000</pubDate>
+      
+      <guid>http://example.org/2006/06/08/cool-visual-illusion/</guid>
+      <description>See Big Spanish Castle and follow the instructions. (Via Mind Hacks).</description>
+    </item>
+    
+    <item>
+      <title>Geek’d out</title>
+      <link>http://example.org/2006/05/19/geekd-out/</link>
+      <pubDate>Fri, 19 May 2006 04:31:26 +0000</pubDate>
+      
+      <guid>http://example.org/2006/05/19/geekd-out/</guid>
+      <description>What is the equivalent of testosterone for geeks? I mean, besides testosterone? I went to the Nutch meeting at the Rite-Spot Cafe (a delightfully greasy spoon not far from my house, actually), and sat around a loud, long table with (fellow) geeks talking about search and map-reduce and clusters and regression testing and spidering. The noise level became VERY LOUD and so I left to come home and sleep (though I’m writing this instead).</description>
+    </item>
+    
+    <item>
+      <title>New YUI</title>
+      <link>http://example.org/2006/05/10/new-yui/</link>
+      <pubDate>Wed, 10 May 2006 09:06:34 +0000</pubDate>
+      
+      <guid>http://example.org/2006/05/10/new-yui/</guid>
+      <description>Yahoo! has announced a new rev of the Yahoo! User Interface library. I’ve already thought of an innovative use for the windowing controls, which must remain sekrit for now. Safari died a spectacular death when testing out the AutoComplete feature, though. I guess that’s one reason they’re still calling it a beta test. I really wish I’d had this library available when I did the NASA mission planning interface.</description>
+    </item>
+    
+    <item>
+      <title>The Internet, 1972</title>
+      <link>http://example.org/2006/03/18/the-internet-1972/</link>
+      <pubDate>Sat, 18 Mar 2006 20:20:30 +0000</pubDate>
+      
+      <guid>http://example.org/2006/03/18/the-internet-1972/</guid>
+      <description>“Here is an instance of the Arpanet, as it was recently configured,” says Bob Kahn of BBN.
+From The Heralds of Resource Sharing, a 1972 documentary on the creation of Arpanet.</description>
+    </item>
+    
+    <item>
+      <title>Who Can Name the Bigger Number?</title>
+      <link>http://example.org/2006/03/16/who-can-name-the-bigger-number/</link>
+      <pubDate>Thu, 16 Mar 2006 09:47:39 +0000</pubDate>
+      
+      <guid>http://example.org/2006/03/16/who-can-name-the-bigger-number/</guid>
+      <description>Who Can Name the Bigger Number?</description>
+    </item>
+    
+    <item>
+      <title>Orange</title>
+      <link>http://example.org/2006/03/14/orange/</link>
+      <pubDate>Tue, 14 Mar 2006 16:48:09 +0000</pubDate>
+      
+      <guid>http://example.org/2006/03/14/orange/</guid>
+      <description>Orange!
+ Orange is a component-based data mining software. It includes a range of preprocessing, modelling and data exploration techniques. It is based on C++ components, that are accessed either directly (not very common), through Python scripts (easier and better), or through GUI objects called Orange Widgets….Orange is distributed free under GPL. Some of the readily-available features of Orange include: Data input/ouput: Orange can read from and write to tab-delimited files and C4.</description>
+    </item>
+    
+    <item>
+      <title>Distracting in-car navigation systems</title>
+      <link>http://example.org/2006/02/21/distraction-in-car-navigation-systems/</link>
+      <pubDate>Wed, 22 Feb 2006 03:25:43 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/21/distraction-in-car-navigation-systems/</guid>
+      <description>In-car navigation systems can be distracting (1) Well, duh. (2) The article provides no details. This was probably an online poll conducted by YouGov by Privilege Insurance, a UK company. It’s hard to say whether there’s any chance of the survey being accurate, since no details are given in the Computerworld story (which might just be a Reuters reprint), and the study isn’t mentioned, as far as I can tell, on Priviledge’s website.</description>
+    </item>
+    
+    <item>
+      <title>Bill Labov on NPR</title>
+      <link>http://example.org/2006/02/19/bill-labov-on-npr/</link>
+      <pubDate>Sun, 19 Feb 2006 20:38:19 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/19/bill-labov-on-npr/</guid>
+      <description>Good stuff, as always: NPR : American Accent Undergoing Great Vowel Shift (NPR was contractually required to play “Let’s call the whole thing off” as its segue at the end).</description>
+    </item>
+    
+    <item>
+      <title>Robot inspector in Iraq</title>
+      <link>http://example.org/2006/02/17/robot-inspector-in-iraq/</link>
+      <pubDate>Fri, 17 Feb 2006 16:34:31 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/17/robot-inspector-in-iraq/</guid>
+      <description>Robot inspector in Iraq (disturbing image) “A robot inspects the corpse of a terrorist who had planned to attack Iraqi security forces in Bagdad, Iraq. Terrorists, dressed in Iraqi police uniforms, have kidnapped a rich Iraqi businessman, killing his son and five of his bodyguards, according to police today.”
+edited to correct URL</description>
+    </item>
+    
+    <item>
+      <title>Geek accolade scale</title>
+      <link>http://example.org/2006/02/16/geek-accolade-scale/</link>
+      <pubDate>Thu, 16 Feb 2006 19:19:36 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/16/geek-accolade-scale/</guid>
+      <description>Really, this seems sensible.</description>
+    </item>
+    
+    <item>
+      <title>Yahoo! makes User Interface code available</title>
+      <link>http://example.org/2006/02/14/yahoo-makes-user-interface-code-available/</link>
+      <pubDate>Tue, 14 Feb 2006 12:21:33 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/14/yahoo-makes-user-interface-code-available/</guid>
+      <description>Very, very nice: Yahoo has opened up their Javascript UI Library, Design Pattern Library, and started a UI weblog. Their description of graded browser support (including a support grid) is brilliant. Just look at this animated tree view widget for an example of what they’re making available.</description>
+    </item>
+    
+    <item>
+      <title>Living Braitenberg vehicle!</title>
+      <link>http://example.org/2006/02/13/living-braitenberg-vehicle/</link>
+      <pubDate>Mon, 13 Feb 2006 21:05:10 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/13/living-braitenberg-vehicle/</guid>
+      <description>New Scientist Breaking News – Robot moved by a slime mould’s fears</description>
+    </item>
+    
+    <item>
+      <title>eBay: EVIL KILLER ROBOT (seeks to destroy humanity) (item 7588933294 end time Feb-17-06 22:55:49 PST)</title>
+      <link>http://example.org/2006/02/13/ebay-evil-killer-robot-seeks-to-destroy-humanity-item-7588933294-end-time-feb-17-06-225549-pst/</link>
+      <pubDate>Mon, 13 Feb 2006 17:56:10 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/13/ebay-evil-killer-robot-seeks-to-destroy-humanity-item-7588933294-end-time-feb-17-06-225549-pst/</guid>
+      <description>eBay: EVIL KILLER ROBOT (seeks to destroy humanity) (item 7588933294 end time Feb-17-06 22:55:49 PST) Heh: “You are bidding on the very best, most psychotic killer robot ever devised by man.” (via robots.net).</description>
+    </item>
+    
+    <item>
+      <title>Negotiating time</title>
+      <link>http://example.org/2006/02/07/negotiating-time/</link>
+      <pubDate>Tue, 07 Feb 2006 20:01:36 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/07/negotiating-time/</guid>
+      <description>Release 1.0 video on negotiating time. Joyce Park, friend of mine and CTO of Renkoo, is interviewed.</description>
+    </item>
+    
+    <item>
+      <title>War and Technology</title>
+      <link>http://example.org/2006/02/06/war-and-technology/</link>
+      <pubDate>Tue, 07 Feb 2006 00:26:14 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/06/war-and-technology/</guid>
+      <description>Interesting read from cousin-in-law Tim Oren: The War and Technology Discontinuity.
+ You can see other pieces of the future [in addition to audio search and automatic translation] emerging as well. In-Q-Tel has a variety of investments in sensor related technology, including network architectures, next generation protein and gene chips, and fundamental nanotechnology fabrication techniques, with wide applicability to chemical and biological threats.
+ </description>
+    </item>
+    
+    <item>
+      <title>Mission Planner Interface</title>
+      <link>http://example.org/2006/02/01/mission-planner-interface/</link>
+      <pubDate>Wed, 01 Feb 2006 17:57:14 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/01/mission-planner-interface/</guid>
+      <description>As part of the Autonomous Rotorcraft Project, I was the main developer on the Mission Planner Interface (MPI). It’s a browser-based tool (requiring Firefox 1.5, Safari, or the latest Opera beta) that allows definition of observation targets that are sent off to the mission planner, which then creates a plan to visit all of the targets and then controls the heliocopter as it carries out the mission. One cool technical trick is that the MPI uses the new-fangled ‘Ajax’ ideas to talk to the plan execution system (well, talks to a server that talks to the system) so that, for example, the position of the helicopter is shown on the map, and to provide pan-and-zoom features (a la Google Maps).</description>
+    </item>
+    
+    <item>
+      <title>Helicopters and Patent Notes</title>
+      <link>http://example.org/2006/02/01/helicopters-and-patent-notes/</link>
+      <pubDate>Wed, 01 Feb 2006 06:39:06 +0000</pubDate>
+      
+      <guid>http://example.org/2006/02/01/helicopters-and-patent-notes/</guid>
+      <description>We demo’d the Autonomous Rotocraft Project at Moffett Field today–not just any demo, but the “5 year demo,” the capstone of the project. I was a bit nervous, since I had a major role to play in the demo script, but hadn’t actually been able to practice with the real helicopter. There was a tricky bit where I had to induce a simulated ‘communication fault,’ so the helicopter could respond in a useful way–but it had to be done at just the right time; that is, where a communication fault could occur and be successfully taken care of.</description>
+    </item>
+    
+    <item>
+      <title>Obsesity due to a virus??</title>
+      <link>http://example.org/2006/01/30/obsesity-due-to-a-virus/</link>
+      <pubDate>Mon, 30 Jan 2006 16:54:14 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/30/obsesity-due-to-a-virus/</guid>
+      <description>New human virus linked to obesity in animals:
+ “The nearly simultaneous increase in the prevalence of obesity in most countries of the world is difficult to explain by changes in food intake and exercise alone, and suggests that adenoviruses could have contributed,” the authors state.“The role of adenoviruses in the worldwide epidemic of obesity is a critical question that demands additional research.” </description>
+    </item>
+    
+    <item>
+      <title>weather.gov</title>
+      <link>http://example.org/2006/01/26/weathergov/</link>
+      <pubDate>Fri, 27 Jan 2006 00:00:26 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/26/weathergov/</guid>
+      <description>We have a big demo next week that requires at least one rain-free morning on Tuesday or Wednesday, so I’ve been checking the weather forecasts. One thing I’ve learned is that the National Weather Service publishes ‘forecast discussions.’ These give the rationale for the government’s weather forecasts. For example, from today:
+ After Sunday…the forecast becomes much less clear. Over the past several days…there has been significant variation in solutions both run-to-run of the same model and between the different longer-range models.</description>
+    </item>
+    
+    <item>
+      <title>CSS tech note to self</title>
+      <link>http://example.org/2006/01/26/css-tech-note-to-self/</link>
+      <pubDate>Thu, 26 Jan 2006 21:43:29 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/26/css-tech-note-to-self/</guid>
+      <description>There are two CSS rules above. Which one should apply? The official answer is the latter defined rule is the one used. Reference: Assigning property values, Cascading, and Inheritance in the CSS spec.</description>
+    </item>
+    
+    <item>
+      <title>Superhuman speech recognition?</title>
+      <link>http://example.org/2006/01/25/superhuman-speech-recognition/</link>
+      <pubDate>Wed, 25 Jan 2006 12:24:41 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/25/superhuman-speech-recognition/</guid>
+      <description>Well, I got excited when I saw this article referenced on Slashdot: IBM Strives For “Superhuman” Speech Tech. It may be very good–and the Voicebox in-car technology looks similar to what we worked on at I/NET–but:
+On their automatic translation software: “The software development kit (SDK) is available now, but no final products exist yet for consumers to purchase. A product will probably not be available to consumers for at least another 6 months, an IBM representative said.</description>
+    </item>
+    
+    <item>
+      <title>Is Sacred Harp religious or saccular music?</title>
+      <link>http://example.org/2006/01/17/religious-and-saccular-music/</link>
+      <pubDate>Wed, 18 Jan 2006 03:25:01 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/17/religious-and-saccular-music/</guid>
+      <description>Neil P. McAngus Todd and Bjorn Merker, in Siamang gibbons exceed the saccular threshold: Intensity of the song of Hylobates syndactylus, states:
+ While evolution has produced in all classes of vertebrate a great diversity of vocal courtship displays, loud synchronous chorusing employing amplitude summation of multiple voices may have played a special role in human evolution. The abstract from Todd and Merker’s paper:
+  Measurements are reported of the intensity of the siamang gibbon loud call obtained from the vocal bouts of three family groups at Twycross Zoo, UK.</description>
+    </item>
+    
+    <item>
+      <title>Happy birthday, Artificial intelligence</title>
+      <link>http://example.org/2006/01/09/happy-birthday-artificial-intelligence/</link>
+      <pubDate>Tue, 10 Jan 2006 02:42:57 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/09/happy-birthday-artificial-intelligence/</guid>
+      <description>Over the holidays 50 years ago, two scientists hatched artificial intelligence–what did you do over your holiday? (via the ACM).</description>
+    </item>
+    
+    <item>
+      <title>New Lego Mindstorms</title>
+      <link>http://example.org/2006/01/05/new-lego-mindstorms/</link>
+      <pubDate>Thu, 05 Jan 2006 14:03:44 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/05/new-lego-mindstorms/</guid>
+      <description>LEGO has announced a new Mindstorms kit: the LEGO® MINDSTORMS™ NXT Robotics Toolset. 32-bit processor. program downloading via Bluetooth, new ultrasoniic, sound, light and touch sensors, a developer’s program, Announced availability is Fall 2006, and should cost $US250.</description>
+    </item>
+    
+    <item>
+      <title>Scientists turn weapons into tools</title>
+      <link>http://example.org/2006/01/03/scientists-turn-weapons-into-tools/</link>
+      <pubDate>Tue, 03 Jan 2006 22:28:26 +0000</pubDate>
+      
+      <guid>http://example.org/2006/01/03/scientists-turn-weapons-into-tools/</guid>
+      <description>According to today’s Earth &amp;amp; Sky radio show.
+ [We at NASA are] exploring the use of UAVs, trying to heavily leverage what the Department of Defense has invested in them, and what the Federal Aviation is investing in them . . . to see if we can’t use these as yet another tool to take science instruments aloft to study our Earth, mainly the atmosphere . . . and Earth’s geology.</description>
+    </item>
+    
+    <item>
+      <title>Leap second!</title>
+      <link>http://example.org/2005/12/31/leap-second/</link>
+      <pubDate>Sun, 01 Jan 2006 00:04:01 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/31/leap-second/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PROGN considered harmful</title>
+      <link>http://example.org/2005/12/30/progn-considered-harmful/</link>
+      <pubDate>Fri, 30 Dec 2005 05:26:03 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/30/progn-considered-harmful/</guid>
+      <description>Guy Steele in DDJ, Thoughts on Language Design: discusses going beyond the structured programming constructs of loops, if-then-else, and sequential operation:
+ What might a language look like in which parallelism is the default? How about data-parallel languages, in which you operate, at least conceptually, on all the elements of an array at the same time? These go back to APL in the 1960s, and there was a revival of interest in the 1980s when data-parallel computer architectures were in vogue.</description>
+    </item>
+    
+    <item>
+      <title>Watch your ears</title>
+      <link>http://example.org/2005/12/29/watch-your-ears/</link>
+      <pubDate>Thu, 29 Dec 2005 11:53:36 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/29/watch-your-ears/</guid>
+      <description>‘Ear bud’ headphones can cause hearing loss, experts warn:
+ “I have an audiologist friend at Wichita State University who actually pulls off earphones of students he sees and asks, in the interest of science, if he could measure the output of the signal going into their heads,” Garstecki said. Often he finds students listening at 110 to 120 decibels. “That’s a sound level equivalent to measures that are made at rock concerts,” said Garstecki.</description>
+    </item>
+    
+    <item>
+      <title>At the tone, the time will be 2005 December 31, 23h 59m 60s.</title>
+      <link>http://example.org/2005/12/26/upcoming-leap-second/</link>
+      <pubDate>Mon, 26 Dec 2005 20:32:21 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/26/upcoming-leap-second/</guid>
+      <description>It’s rare that I get to write an email this geeky: what to do about the upcoming leap second if you’re using some time and date code I wrote for Scheme a while back: Upcoming leap second.</description>
+    </item>
+    
+    <item>
+      <title>Wild: BASIC for Javascript</title>
+      <link>http://example.org/2005/12/22/wild-basic-for-javascript/</link>
+      <pubDate>Thu, 22 Dec 2005 16:11:19 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/22/wild-basic-for-javascript/</guid>
+      <description>BASIC for Javascript (Requires Firefox 1.5). Even wierder than than Lisp in Javascript.</description>
+    </item>
+    
+    <item>
+      <title>Cost of operating UAVs for border patrol</title>
+      <link>http://example.org/2005/12/22/aero-news-network-the-aviation-and-aerospace-worlds-dailyreal-time-news-and-information-service/</link>
+      <pubDate>Thu, 22 Dec 2005 14:59:19 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/22/aero-news-network-the-aviation-and-aerospace-worlds-dailyreal-time-news-and-information-service/</guid>
+      <description>Border UAVS May Not Be All They’re Cracked Up To Be: Are UAVs cheaper than manned aircraft?
+ Not necessarily, according to Department of Homeland Security Inspector General Richard Skinner. According to his written testimony, one UAV requires a crew of up to 20 support personnel. In fact, the operating cost is more than double that of a manned aircraft.
+ </description>
+    </item>
+    
+    <item>
+      <title>Someone (finally) takes on the ‘churlishness’ of Richard Dawkins</title>
+      <link>http://example.org/2005/12/22/someone-finally-takes-on-the-churlishness-of-richard-dawkins/</link>
+      <pubDate>Thu, 22 Dec 2005 14:54:38 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/22/someone-finally-takes-on-the-churlishness-of-richard-dawkins/</guid>
+      <description>Bullied and Brainswashed.
+ What ought to be a fascinating discourse–What made us? How? Why?–instead too often becomes an occasion for childish name-calling on both sides. Isn’t there some way we can discuss God versus Darwin in civil tones?
+ And don’t get me started about the Flying Spaghetti Monster rhetoric.</description>
+    </item>
+    
+    <item>
+      <title>Nose to the Grindstone</title>
+      <link>http://example.org/2005/12/16/nose-to-the-grindstone/</link>
+      <pubDate>Fri, 16 Dec 2005 21:25:35 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/16/nose-to-the-grindstone/</guid>
+      <description>Just for Daniel: Inside Higher Ed :: Nose to the Grindstone. (Academics work harder that those in industry and much harderthan those in the government).</description>
+    </item>
+    
+    <item>
+      <title>Good CANVAS examples</title>
+      <link>http://example.org/2005/12/16/good-canvas-examples/</link>
+      <pubDate>Fri, 16 Dec 2005 19:39:15 +0000</pubDate>
+      
+      <guid>http://example.org/2005/12/16/good-canvas-examples/</guid>
+      <description>Firefox 1.5 (and Safari) introduced support for the CANVAS tag, which people are just beginning to grok. Here are some good examples:
+ A ‘particle generator‘. A ‘scribbler‘.  </description>
+    </item>
+    
+    <item>
+      <title>A027868</title>
+      <link>http://example.org/2005/11/28/a053824/</link>
+      <pubDate>Mon, 28 Nov 2005 06:57:11 +0000</pubDate>
+      
+      <guid>http://example.org/2005/11/28/a053824/</guid>
+      <description>Tim Converse reports on recruiting trip to Michigan he made–that is, Michigan the University. He asked the audience trivia questions, including “how many trailing zeros in 100 factorial?”
+I remember seeing 100! for the first time:
+93,­326,­215,­443,­944,­152,­681,­699,­238,­856,­266,­700,­490,­715,­968,­264,­381,­621,­468,­592,­963,­895,­217,­599,­993,­229,­915,­608,­941,­463,­976,­156,­518,­286,­253,­697,­920,­827,­223,­758,­251,­185,­210,­916,­864,­000,­000,­000,­000,­000,­000,­000,­000
+I wondered where all those (24) zeroes came from, but I never took the time to figure it out.
+Nor did I have time to figure it out as I read Tim’s post, but I did have a couple of minutes to write a Lisp program to compute n!</description>
+    </item>
+    
+    <item>
+      <title>Very nice post on buggy bug reports</title>
+      <link>http://example.org/2005/11/26/very-nice-post-on-buggy-bug-reports/</link>
+      <pubDate>Sat, 26 Nov 2005 04:20:25 +0000</pubDate>
+      
+      <guid>http://example.org/2005/11/26/very-nice-post-on-buggy-bug-reports/</guid>
+      <description>Tim Converse, on the Proper uses of bugzilla.</description>
+    </item>
+    
+    <item>
+      <title>The long tail of suicide choice points</title>
+      <link>http://example.org/2005/11/02/the-long-tail-of-suicide-choice-points/</link>
+      <pubDate>Thu, 03 Nov 2005 03:49:22 +0000</pubDate>
+      
+      <guid>http://example.org/2005/11/02/the-long-tail-of-suicide-choice-points/</guid>
+      <description>The San Francisco Chronicle has published an interesting graphic showing the number of suicides per location at the Golden Gate Bridge (each location is linked to a light pole, of which there are 128). My morbid curiosity asked whether this would show a long tail-like distribution, given the “many choices, many choosers” nature this. Well, here it is; you decide:</description>
+    </item>
+    
+    <item>
+      <title>Windows (not so) Live!</title>
+      <link>http://example.org/2005/11/02/windows-not-so-live/</link>
+      <pubDate>Wed, 02 Nov 2005 20:32:57 +0000</pubDate>
+      
+      <guid>http://example.org/2005/11/02/windows-not-so-live/</guid>
+      <description>Windows Live screen shot (in Safari).</description>
+    </item>
+    
+    <item>
+      <title>Park on interop</title>
+      <link>http://example.org/2005/10/22/park-on-interop/</link>
+      <pubDate>Sat, 22 Oct 2005 13:27:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/22/park-on-interop/</guid>
+      <description>I think Joyce, in her Zend conference presentation, was saying the same thing I was saying when I talked about how to have systems talk to one another; but as usual, she put it more succinctly:
+ It’s all strings, man.
+ </description>
+    </item>
+    
+    <item>
+      <title>I have to use words when I talk to you</title>
+      <link>http://example.org/2005/10/19/bits-over-wires/</link>
+      <pubDate>Thu, 20 Oct 2005 01:13:18 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/19/bits-over-wires/</guid>
+      <description>Jim Waldo writes that it’s a good idea to send objects over wires (when doing IPC, etc.), and Tim Bray challenged him somewhat to consider sending XML instead. Waldo replied that you still have to define the semantics, and, of course, Bray agrees.
+TANSTAAFL, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc.</description>
+    </item>
+    
+    <item>
+      <title>20 Tropical Storms</title>
+      <link>http://example.org/2005/10/19/20-hurricanes/</link>
+      <pubDate>Wed, 19 Oct 2005 19:31:38 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/19/20-hurricanes/</guid>
+      <description>Mpeg video of the 2005 hurricane season, viewed as if from space. Fascinating. (via robotwisdom).</description>
+    </item>
+    
+    <item>
+      <title>Hah, hah — aren’t those Amish quaint?</title>
+      <link>http://example.org/2005/10/17/hah-hah-arent-those-amish-quaint/</link>
+      <pubDate>Mon, 17 Oct 2005 18:24:49 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/17/hah-hah-arent-those-amish-quaint/</guid>
+      <description>Joel Stein: What’s Next … With The Amish.
+I wrote this letter to Time:
+ I’m fairly appalled at the patronizing tone Joel Stein takes in his column ‘What’s next…with the Amish,’ as posted on-line Oct 17: Stein could have chosen to ask how the Amish go about making decisions about new technologies rather than making fun of them or assuming that many are looking for ‘loopholes’ that would allow them to use cell phones and Rollerblades.</description>
+    </item>
+    
+    <item>
+      <title>Purty pictures…</title>
+      <link>http://example.org/2005/10/13/purty-pictures/</link>
+      <pubDate>Fri, 14 Oct 2005 03:20:25 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/13/purty-pictures/</guid>
+      <description>… of complex networks at visual complexity. Via information aesthetics.</description>
+    </item>
+    
+    <item>
+      <title>Machine evolution and consciousness (circa 1872)</title>
+      <link>http://example.org/2005/10/13/machine-evolution-and-consciousness-circa/</link>
+      <pubDate>Thu, 13 Oct 2005 11:49:44 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/13/machine-evolution-and-consciousness-circa/</guid>
+      <description>From Samuel Butler’s The Book of the Machines in Erewhon:
+ Complex now, but how much simpler and more intelligibly organised may [a machine] not become in another hundred thousand years? or in twenty thousand? For man at present believes that his interest lies in that direction; he spends an incalculable amount of labour and time and thought in making machines breed always better and better; he has already succeeded in effecting much that at one time appeared impossible, and there seem no limits to the results of accumulated improvements if they are allowed to descend with modification from generation to generation.</description>
+    </item>
+    
+    <item>
+      <title>Predator-B UAV to Patrol US Borders</title>
+      <link>http://example.org/2005/10/07/predator-b-uav-to-patrol-us-borders/</link>
+      <pubDate>Fri, 07 Oct 2005 19:58:39 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/07/predator-b-uav-to-patrol-us-borders/</guid>
+      <description>Predator-B UAV to Patrol US Borders</description>
+    </item>
+    
+    <item>
+      <title>Answers to Questions on Unstructured Data</title>
+      <link>http://example.org/2005/10/07/answers-to-questions-on-unstructured-data/</link>
+      <pubDate>Fri, 07 Oct 2005 16:40:18 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/07/answers-to-questions-on-unstructured-data/</guid>
+      <description>Answers to Questions on Unstructured Data asked by my friend Daniel Lemire for a course he’s teaching on IR and unstructured data. (I should have referenced Tim Converse‘s ‘Are you still working on that?’ essay, but it was unavailable today…)
+**Update:**Tim says (writing from Seoul) that his weblog is available again, so his essay You still working on that?, which he wrote at Excite before it eventually became part of Yahoo, is, too.</description>
+    </item>
+    
+    <item>
+      <title>Ammonia pills for hydrogen cars?</title>
+      <link>http://example.org/2005/10/06/ammonia-pills-for-hydrogen-cars/</link>
+      <pubDate>Thu, 06 Oct 2005 12:32:40 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/06/ammonia-pills-for-hydrogen-cars/</guid>
+      <description>Is this a potential solution to the production of hydrogen-fueled cars? Danish Researchers Reveal New Hydrogen Storage Technology. What are the possible pollution side-effects?
+ In the process described in the article, ammonia (NH3) is produced as an intermediate step. The biggest challenge of this technology is creating a safe fuel tank that can hold ammonia, which can be harmful or fatal to people and animals in the vehicle, because: NH3 is immediately toxic at 500 ppm, NH3 reacts with water, producing ammonium hydroxide (NH4OH), producing a lot of heat (‘exothermic reaction’) which could (say) blow up the car, NH3 is very cold when it is vaporized.</description>
+    </item>
+    
+    <item>
+      <title>Human-centered design considered harmful</title>
+      <link>http://example.org/2005/09/29/human-centered-design-considered-harmful/</link>
+      <pubDate>Fri, 30 Sep 2005 00:00:01 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/29/human-centered-design-considered-harmful/</guid>
+      <description>I’m not sure this is available to the general public, but Don Norman has an intriguing article Human-centered design considered harmful.
+ Human-centered design has become such a dominant theme in design that it is now accepted by interface and application designers automatically, without thought, let alone criticism. That’s a dangerous state—when things are treated as accepted wisdom. The purpose of this essay is to provoke thought, discussion, and reconsideration of some of the fundamental principles of human-centered design.</description>
+    </item>
+    
+    <item>
+      <title>Google And NASA To Collaborate On Technology</title>
+      <link>http://example.org/2005/09/29/google-and-nasa-to-collaborate-on-technology/</link>
+      <pubDate>Thu, 29 Sep 2005 15:55:20 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/29/google-and-nasa-to-collaborate-on-technology/</guid>
+      <description>Slashdot | Google And NASA [Ames] To Collaborate On Technology Hmm. Up to a million square feet of Google R&amp;amp;D space at Moffett Field. Could be interesting. Probably related to the recent layoffs.</description>
+    </item>
+    
+    <item>
+      <title>Robot discovers buried treasure</title>
+      <link>http://example.org/2005/09/28/robot-discovers-buried-treasure/</link>
+      <pubDate>Wed, 28 Sep 2005 14:40:34 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/28/robot-discovers-buried-treasure/</guid>
+      <description>600 barrels of loot found on Crusoe island
+ This most recent announcement, however, deserves greater credence because of the equipment used by the treasure hunters: a mini robot that can scan 50 metres deep into the earth. The robot, dubbed “Arturito”, was invented by Chileans and over the past year has grabbed headlines by breaking some of the country’s biggest criminal mysteries.
+ </description>
+    </item>
+    
+    <item>
+      <title>Unmanned Aerial Vehicles weblog</title>
+      <link>http://example.org/2005/09/22/unmanned-aerial-vehicles-weblog/</link>
+      <pubDate>Thu, 22 Sep 2005 17:56:04 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/22/unmanned-aerial-vehicles-weblog/</guid>
+      <description>Just discovered this weblog, directly relevant to my work: Unmanned Aerial Vehicles (UAVs) (via lemonodor).</description>
+    </item>
+    
+    <item>
+      <title>The new-style USB drive</title>
+      <link>http://example.org/2005/09/20/the-new-style-usb-drive/</link>
+      <pubDate>Wed, 21 Sep 2005 03:29:09 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/20/the-new-style-usb-drive/</guid>
+      <description>I’ve got to believe that something like the new-style USB drive will become increasingly important, with monitors and cpus staying behind on desktops. I already have a 1 Gb USB drive, which is almost enough to carry my work to California and back; I also have a 120 Gb firewire drive that has a bootable copy of my main drive, so, in theory, I don’t need to even bring my laptop at all.</description>
+    </item>
+    
+    <item>
+      <title>Genome Quilts</title>
+      <link>http://example.org/2005/09/10/genome-quilts/</link>
+      <pubDate>Sun, 11 Sep 2005 00:38:41 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/10/genome-quilts/</guid>
+      <description>Cool, pretty: Genome Quilts by Beverly St. Clair.</description>
+    </item>
+    
+    <item>
+      <title>More on UAVs over La</title>
+      <link>http://example.org/2005/09/08/more-on-uavs-over-la/</link>
+      <pubDate>Thu, 08 Sep 2005 21:17:36 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/08/more-on-uavs-over-la/</guid>
+      <description>More on those drones. John Wiseman writes this:
+ The 10 Evolution mini-UAVs flying out of the New Orleans Naval Air Station and “[assessing] damage to oil and gas distribution, dikes, berms and other aspects of the region’s infrastructure” are apparently part of the biggest civilian UAV deployment ever.
+ </description>
+    </item>
+    
+    <item>
+      <title>Drones to help rescuers</title>
+      <link>http://example.org/2005/09/05/drones-to-help-rescuers/</link>
+      <pubDate>Tue, 06 Sep 2005 01:43:29 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/05/drones-to-help-rescuers/</guid>
+      <description>Drones to help Katrina rescuers. Oddly, no mention on the manufacturer’s website. (via boing boing).</description>
+    </item>
+    
+    <item>
+      <title>vertically-centered images in a horizontally scrolling DIV element</title>
+      <link>http://example.org/2005/09/01/vertically-centered-images-in-a-horizontally-scrolling-div-element/</link>
+      <pubDate>Thu, 01 Sep 2005 17:57:03 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/01/vertically-centered-images-in-a-horizontally-scrolling-div-element/</guid>
+      <description>I wanted to have a bunch of images, all lined up in a horizontal row, but within a fixed size element (like above). This is mostly a note to myself so I can ‘remember’ this the next time I need it…
+Here are the CSS style declarations:
+Note that the IMG size is the same as the line-height of the enclosing DIV; which is just a bit less than the DIV height (to allow for the scroll bar).</description>
+    </item>
+    
+    <item>
+      <title>Send your name to Pluto!</title>
+      <link>http://example.org/2005/08/29/send-your-name-to-pluto/</link>
+      <pubDate>Tue, 30 Aug 2005 01:51:04 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/29/send-your-name-to-pluto/</guid>
+      <description>(via /.).</description>
+    </item>
+    
+    <item>
+      <title>Even more on index size</title>
+      <link>http://example.org/2005/08/23/even-more-on-index-size/</link>
+      <pubDate>Tue, 23 Aug 2005 13:24:09 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/23/even-more-on-index-size/</guid>
+      <description>Jean Véronis got slashdotted on the index size story.
+The NCSA is somewhat disclaiming the index size study published on the NCSA website, and the study has been revised somewhat. Véronis is keeping up: his latest post, Technologies du Langage: Yahoo: Missing pages? (4), includes the original stronger disclaimer, and discusses why the revised study is still flawed.
+ In conclusion, this new study is just as biaised as the previous one.</description>
+    </item>
+    
+    <item>
+      <title>DIY Maps</title>
+      <link>http://example.org/2005/08/22/diy-maps/</link>
+      <pubDate>Mon, 22 Aug 2005 13:37:41 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/22/diy-maps/</guid>
+      <description>(2004 Sacred Harp Conventions)
+Nice Do it yourself map creation tool written in Flash.</description>
+    </item>
+    
+    <item>
+      <title>those which, from a distance, look like flies (*)</title>
+      <link>http://example.org/2005/08/17/those-which-from-a-distance-look-like-flies/</link>
+      <pubDate>Thu, 18 Aug 2005 02:14:28 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/17/those-which-from-a-distance-look-like-flies/</guid>
+      <description>Daughter Jane straightened out our DVDs today, at her mother’s request. She decided to organize by genre:
+ Fighting movies (e.g. Crouching Tiger, Hidden Dragon), Animation (e.g. The Incredibles), Classicish (e.g. It’s a Wonderful Life), Magic (e.g., Harry Potter), Modern Action (e.g., Charlie’s Angels), Princess Movies (e.g. The Princess Diaries), Movies That I Have No Intention of Watching in the Next Millenium (e.g. 2001, A Space Oddesey).  (*) See The Analytical Language of John Wilkins.</description>
+    </item>
+    
+    <item>
+      <title>Search engine index wars</title>
+      <link>http://example.org/2005/08/16/search-engine-index-wars/</link>
+      <pubDate>Tue, 16 Aug 2005 05:47:40 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/16/search-engine-index-wars/</guid>
+      <description>Slashdot reported on a NCSA study, A Comparison of the Size of the Yahoo! and Google Indices. On the one hand, they examined actual results returned from the search engines; on the other, they investigated only English searches. The later makes it very unlikely to report a comparison fairly.
+Jean Véronis has written a series of posts examining reported results from Google, Yahoo and MSN. One of the latest looks at the claim that Yahoo is indexing 19 billion pages.</description>
+    </item>
+    
+    <item>
+      <title>Multiple visual representations of objects</title>
+      <link>http://example.org/2005/08/15/multiple-visual-representations-of-objects/</link>
+      <pubDate>Mon, 15 Aug 2005 10:34:08 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/15/multiple-visual-representations-of-objects/</guid>
+      <description>More than mirror neurons? A summary of an study reported in Neuron:
+ Most importantly, the study affirms that there really isn’t a single fundamental visual representation in the brain — the representation used to recognize an object is not the same as the representation used to pick up that object. Because of the different functions of these tasks, this probably doesn’t sound too surprising but, to me, it is surprising!</description>
+    </item>
+    
+    <item>
+      <title>number &#43; string</title>
+      <link>http://example.org/2005/08/13/number-string/</link>
+      <pubDate>Sat, 13 Aug 2005 13:47:57 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/13/number-string/</guid>
+      <description>So, I’m doing what I thought would be a small browser-based project (kindof ‘Ajaxy’), but it turns out to be taking longer than I thought it would. Things are better than there were when I last did heavy web-dev work, especially considering that I am not worrying about being compatible with anything other than the latest FIrefox or Safari releases. But I’m writing a lot of Javascript, and it feels a bit like going back to the mid-80s, and I’m having to remember certain caveats that I haven’t had to thing about in a long time.</description>
+    </item>
+    
+    <item>
+      <title>Claude Shannon</title>
+      <link>http://example.org/2005/08/12/claude-shannon/</link>
+      <pubDate>Fri, 12 Aug 2005 21:07:42 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/12/claude-shannon/</guid>
+      <description>Random notes about Claude Shannon., the founder of information theory. Although Wikipedia says he was born in Petoskey, Michigan, a statue of him was erected in Gaylord Michigan as part of six statues erected in his honor, including the University of Michigan. The lispmeister found the TeX source for Shannon’s seminal A Mathematical Theory of Communication.</description>
+    </item>
+    
+    <item>
+      <title>Preventing Alzheimer’s: The Eight-Step Plan</title>
+      <link>http://example.org/2005/08/10/preventing-alzheimers-the-eight-step-plan/</link>
+      <pubDate>Wed, 10 Aug 2005 20:40:09 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/10/preventing-alzheimers-the-eight-step-plan/</guid>
+      <description>Preventing Alzheimer’s: The Eight-Step Plan (via rebeccablood).</description>
+    </item>
+    
+    <item>
+      <title>Safe home</title>
+      <link>http://example.org/2005/08/09/safe-home/</link>
+      <pubDate>Tue, 09 Aug 2005 12:14:16 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/09/safe-home/</guid>
+      <description>Safe home. Whew.</description>
+    </item>
+    
+    <item>
+      <title>An earlier era</title>
+      <link>http://example.org/2005/08/05/an-earlier-era/</link>
+      <pubDate>Fri, 05 Aug 2005 16:10:31 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/05/an-earlier-era/</guid>
+      <description>
+ In the foreground is an OJ379 standard intelligence terminal that allows an intelligence analyst to view incoming data on one screen while using the other screen to view reference data. The equipment is located at the cartographic facility. Location: GRIFFISS AIR FORCE BASE, NEW YORK (NY) UNITED STATES OF AMERICA (USA)
+ </description>
+    </item>
+    
+    <item>
+      <title>Not good</title>
+      <link>http://example.org/2005/07/28/not-good/</link>
+      <pubDate>Thu, 28 Jul 2005 12:34:05 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/28/not-good/</guid>
+      <description>NASA Suspending Shuttle Program Over Foam Debris (- New York Times)</description>
+    </item>
+    
+    <item>
+      <title>Music as distraction while driving</title>
+      <link>http://example.org/2005/07/27/music-as-distraction-while-driving/</link>
+      <pubDate>Thu, 28 Jul 2005 02:07:37 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/27/music-as-distraction-while-driving/</guid>
+      <description>Interesting piece on how listening to music makes you a worse driver (or, perhaps, video game racer): Pedal To The Metal: Heavy Tunes Cause Gaming Fender Benders. (Via robotwisdom).</description>
+    </item>
+    
+    <item>
+      <title>Huzzah for Return to flight!</title>
+      <link>http://example.org/2005/07/26/huzzah-for-return-to-flight/</link>
+      <pubDate>Tue, 26 Jul 2005 15:57:15 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/26/huzzah-for-return-to-flight/</guid>
+      <description>.
+Congratulations!</description>
+    </item>
+    
+    <item>
+      <title>Congressional fight over global warming</title>
+      <link>http://example.org/2005/07/24/usatodaycom-global-warming-roils-congress/</link>
+      <pubDate>Sun, 24 Jul 2005 06:24:26 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/24/usatodaycom-global-warming-roils-congress/</guid>
+      <description>As noted in several places, Rep. Joe Barton of the House Energy Committee has asked three scientists for data–both scientific and personal–underlying their investigations into global warming. The USA Today article and Realclimate.org post helpfully links to the original letter sent by Barton, as well as to the scientists’ and others’ responses (mostly PDF files):
+ Rep. Barton’s letters to scientists Highly respected members of the science institutions respond to Barton Response of Michael Mann Response of Ray Bradley Response of Malcolm Hughes The House Science Committee chairman chimes in  Fascinating reading!</description>
+    </item>
+    
+    <item>
+      <title>The Onion | Never In My Wildest Dreams Did I Think I’d Get Bored Watching Robots Fight</title>
+      <link>http://example.org/2005/07/23/the-onion-never-in-my-wildest-dreams-did-i-think-id-get-bored-watching-robots-fight/</link>
+      <pubDate>Sun, 24 Jul 2005 00:31:46 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/23/the-onion-never-in-my-wildest-dreams-did-i-think-id-get-bored-watching-robots-fight/</guid>
+      <description>The Onion | Never In My Wildest Dreams Did I Think I’d Get Bored Watching Robots Fight</description>
+    </item>
+    
+    <item>
+      <title>TeamOsaka’s Robocup entry…</title>
+      <link>http://example.org/2005/07/22/teamosakas-robocup-entry/</link>
+      <pubDate>Fri, 22 Jul 2005 12:32:33 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/22/teamosakas-robocup-entry/</guid>
+      <description>&amp;lt;img src=&amp;quot;http://www.entish.org/images/TeamOsakaRobot.jpg&amp;amp;quot; alt=&amp;ldquo;Robot&amp;rdquo;
+finding and kicking a ball. Impressive! (more pictures and videos from Robocup).</description>
+    </item>
+    
+    <item>
+      <title>AAAI-05 ( Blog )</title>
+      <link>http://example.org/2005/07/10/aaai-05-blog/</link>
+      <pubDate>Mon, 11 Jul 2005 01:17:19 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/10/aaai-05-blog/</guid>
+      <description>I’m at the AAAI 2005 national convention; some students are blogging it at AAAI-05 Blog: Moving Minsky, including this great picture of Marvin Minsky on a Segway.</description>
+    </item>
+    
+    <item>
+      <title>Robot throws out first pitch …</title>
+      <link>http://example.org/2005/07/07/robot-throws-out-first-pitch/</link>
+      <pubDate>Thu, 07 Jul 2005 23:26:14 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/07/robot-throws-out-first-pitch/</guid>
+      <description>.
+in Nationals-Mets game. It was a QRIO from Sony.</description>
+    </item>
+    
+    <item>
+      <title>Chiroptera commences</title>
+      <link>http://example.org/2005/07/06/chiroptera-commences/</link>
+      <pubDate>Wed, 06 Jul 2005 12:47:09 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/06/chiroptera-commences/</guid>
+      <description>For some reason, my daughter ask what the scientific name for bats is the other day. I couldn’t remember, and wasn’t near my information box at the time. It’s chiroptera, as you probably already knew. I didn’t know that bats were the most diverse group of mammals (about a quarter of all species) and that they are not that closely related to rodents.
+(Happy birthday to brother Dave.)</description>
+    </item>
+    
+    <item>
+      <title>Deep Impact</title>
+      <link>http://example.org/2005/07/04/deep-impact/</link>
+      <pubDate>Mon, 04 Jul 2005 13:28:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/04/deep-impact/</guid>
+      <description>Congratulations, Deep Impact team! Deep Impact Kicks off Fourth of July with Deep Space Fireworks.</description>
+    </item>
+    
+    <item>
+      <title>JD Powers question on conversational interfaces</title>
+      <link>http://example.org/2005/07/04/jd-powers-question-on-conversational-interfaces/</link>
+      <pubDate>Mon, 04 Jul 2005 11:52:27 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/04/jd-powers-question-on-conversational-interfaces/</guid>
+      <description>JD Powers sent a survey around to new car buyers, and asked the following question:
+ A Natural Language Voice-Activation feature works by understanding fluent natural language instead of command keywords like ‘RADIO…ON’. For example, ‘TURN UP THE RADIO’ or ‘MAKE THE MUSIC LOUDER’ would all have the same effect. How likely would you be to purchase this feature on your next vehicle at a cost of $300? I wonder who’s asking this?</description>
+    </item>
+    
+    <item>
+      <title>The Art of the Fast Take</title>
+      <link>http://example.org/2005/07/01/the-art-of-the-fast-take/</link>
+      <pubDate>Fri, 01 Jul 2005 18:15:36 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/01/the-art-of-the-fast-take/</guid>
+      <description>The Art of the Fast Take: good stuff by my cousin-in-law Tim Oren on learning (about) a new field in a hurry. (Although the last recommendation — hire someone to learn it for you — might be a bit too specific to VCs).</description>
+    </item>
+    
+    <item>
+      <title>Fun powers of 10</title>
+      <link>http://example.org/2005/06/29/fun-powers-of-10/</link>
+      <pubDate>Wed, 29 Jun 2005 22:52:31 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/29/fun-powers-of-10/</guid>
+      <description>Molecular Expressions: Science, Optics and You – Secret Worlds: The Universe Within – Interactive Java Tutorial (via my brother, Steve).</description>
+    </item>
+    
+    <item>
+      <title>Tiger burning bright</title>
+      <link>http://example.org/2005/06/24/tiger-burning-bright/</link>
+      <pubDate>Sat, 25 Jun 2005 03:19:53 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/24/tiger-burning-bright/</guid>
+      <description>I’ve just installed Tiger — Mac OS 10.4.1. Things seem pretty stable right now. I really like Spotlight, the full text search feature, although I would really appreciate it if Apple would document the search syntax. The Dashboard doesn’t thrill me, although I am posting this to my weblog through a Dashboard widget.
+By the way, I will continue posting only ever so often; my father is ill and has taken a turn for the worse.</description>
+    </item>
+    
+    <item>
+      <title>ILC 2005</title>
+      <link>http://example.org/2005/06/23/ilc-2005/</link>
+      <pubDate>Thu, 23 Jun 2005 15:30:14 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/23/ilc-2005/</guid>
+      <description>I attended the 2005 International Lisp Conference at Stanford, and presented a paper (abstract; the whole thing) on our work at NASA on using Lisp as the substrate of our autonomy software, Apex. I was surprised that the conference lasted for four days. But it made more sense once I arrived: I think people who like Lisp feel somewhat embattled, and this conference is an opportunity to lick wounds and recuperate and not feel the need to justify the use of a nearly 50-year old language.</description>
+    </item>
+    
+    <item>
+      <title>AERCam lives!</title>
+      <link>http://example.org/2005/06/23/aercam-lives/</link>
+      <pubDate>Thu, 23 Jun 2005 14:46:30 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/23/aercam-lives/</guid>
+      <description>Michael Hannemann sent me a pointer to a New Scientist article about the newest version of the AERCam, a spherical space camera for inspection tasks.
+Speaking of ex-co-workers, here’s a photo of John Wiseman and me at the International Lisp Conference (ILC2005). John is the cool looking guy with the ‘burns. I’m the nose on the right.</description>
+    </item>
+    
+    <item>
+      <title>Bird Flu Drug Rendered Useless</title>
+      <link>http://example.org/2005/06/18/bird-flu-drug-rendered-useless/</link>
+      <pubDate>Sat, 18 Jun 2005 14:17:34 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/18/bird-flu-drug-rendered-useless/</guid>
+      <description>Bird Flu Drug Rendered Useless (writes the Washington Post) because farmers used an antiviral meant for humans on chickens. Aargh!</description>
+    </item>
+    
+    <item>
+      <title>Morse Code Music by David Tulga</title>
+      <link>http://example.org/2005/05/27/morse-code-music-by-david-tulga/</link>
+      <pubDate>Sat, 28 May 2005 00:46:59 +0000</pubDate>
+      
+      <guid>http://example.org/2005/05/27/morse-code-music-by-david-tulga/</guid>
+      <description>Morse Code Music by David Tulga</description>
+    </item>
+    
+    <item>
+      <title>German spam?</title>
+      <link>http://example.org/2005/05/16/german-spam/</link>
+      <pubDate>Mon, 16 May 2005 20:34:23 +0000</pubDate>
+      
+      <guid>http://example.org/2005/05/16/german-spam/</guid>
+      <description>I’m getting hundreds of spam emails in German today — it looks like this started in general about a year ago. I’m surprised the spam filter in Gmail isn’t catching them.
+They pretty much all start ‘Lese sebst:’ followed by a URL.
+Anyone else getting these suddenly?
+Update I guess it is a worldwide attack, according to the Beeb.</description>
+    </item>
+    
+    <item>
+      <title>U.S. security devices at ports to be replaced</title>
+      <link>http://example.org/2005/05/09/us-security-devices-at-ports-to-be-replaced/</link>
+      <pubDate>Mon, 09 May 2005 21:46:12 +0000</pubDate>
+      
+      <guid>http://example.org/2005/05/09/us-security-devices-at-ports-to-be-replaced/</guid>
+      <description>U.S. security devices at ports to be replaced (via robotwisdom).
+ After spending more than $4.5 billion on screening devices to monitor ports, borders, airports, mail and the air, the U.S. government is moving to replace or alter much of the antiterrorism equipment, concluding that it is ineffective, unreliable or too expensive to operate.
+ </description>
+    </item>
+    
+    <item>
+      <title>Borges’s “The Analytical Language of John Wilkins”</title>
+      <link>http://example.org/2005/05/06/borgess-the-analytical-language-of-john-wilkins/</link>
+      <pubDate>Fri, 06 May 2005 15:54:33 +0000</pubDate>
+      
+      <guid>http://example.org/2005/05/06/borgess-the-analytical-language-of-john-wilkins/</guid>
+      <description>I made a correction or two and reformatted my translation of Borges’s The Analytical Language of John Wilkins.
+ The impossibility of penetrating the divine scheme of the universe does not, however, dissuade us from planning human schemes, even though we know they must be provisional.
+ </description>
+    </item>
+    
+    <item>
+      <title>Apex in tha house</title>
+      <link>http://example.org/2005/04/15/apex-in-tha-house/</link>
+      <pubDate>Fri, 15 Apr 2005 14:12:09 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/15/apex-in-tha-house/</guid>
+      <description>Apex in tha house (created via HTTP in tha House).
+variety of task domains including those listed ask developed by users combines components yes developed by users outside on cognitive architectures qi a more general airspace definition language pdl see
+were developed by users outside building debugging analyzing knee manual for more information what apex vary greatly their experience uncut explore autonomy design parameters simulating for teaching and te capabilities for monitoring and sequence of routine free</description>
+    </item>
+    
+    <item>
+      <title>Comparing algorithm styles</title>
+      <link>http://example.org/2005/04/14/comparing-algorithm-styles/</link>
+      <pubDate>Thu, 14 Apr 2005 13:34:20 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/14/comparing-algorithm-styles/</guid>
+      <description>While poking around as I created my previous post, I discovered that the LaTeX sources for printing algorithms in the style used in Introduction to Algorithms is available from Thomas H. Cormen’s website. Below are examples of an insertion sort algorithm typeset using Cormen’s style, and the same algorithm typeset using the standard “algorithm” package. Which do you like better?
+.</description>
+    </item>
+    
+    <item>
+      <title>Multiple values in binary trees</title>
+      <link>http://example.org/2005/04/14/multiple-vlalues/</link>
+      <pubDate>Thu, 14 Apr 2005 12:36:32 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/14/multiple-vlalues/</guid>
+      <description>I had a small ‘ah-hah’ experience while reading Implementing sets efficiently in a functional language. Descriptions of binary tree sorting/searching algorithms, such as the excellent Introduction to Algorithms, state that items to be sorted have to be strictly ordered, which means you can’t have duplicates in the tree. But this is easily solved by storing duplicates together in the same binary tree node. “The implementing sets” article suggests adding a ‘count’ field to the node, which marks how many copies are in the node.</description>
+    </item>
+    
+    <item>
+      <title>Advances in Human-Machine Interaction</title>
+      <link>http://example.org/2005/04/13/advances-in-human-machine-interaction/</link>
+      <pubDate>Wed, 13 Apr 2005 13:10:08 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/13/advances-in-human-machine-interaction/</guid>
+      <description>Introducing Blendie. (via Language Log).</description>
+    </item>
+    
+    <item>
+      <title>We th ppl f th US (Compressing the US Constitution)</title>
+      <link>http://example.org/2005/04/07/we-th-ppl-f-th-us-compressing-the-us-constitution/</link>
+      <pubDate>Thu, 07 Apr 2005 08:59:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/07/we-th-ppl-f-th-us-compressing-the-us-constitution/</guid>
+      <description>As promised, a quick test of compressing the US Constitution to compare it to the compression rates seen by Jean Véronis for the European constitution.
+It’s interesting to note that the compression ratio went down with the addition of the Bill of Rights. Not surprisingly, the other amendments have the biggest compression ratio There are a number of copies of “The Congress shall have power to enforce this article by appropriate legislation.</description>
+    </item>
+    
+    <item>
+      <title>Compression as indicator of document quality</title>
+      <link>http://example.org/2005/04/06/compression-as-indicator-of-document-quality/</link>
+      <pubDate>Wed, 06 Apr 2005 08:30:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/06/compression-as-indicator-of-document-quality/</guid>
+      <description>Jean Véronis describes an informal experiment in compressing different texts, including the European constitution. (Original in French, Auto-translated to English). He notes that normally, French texts compress at about 60-65% of the original, but the EU constitution compresses at about 75%. He puts this down to “jargon, puffery, redundancy…” in the constitution. I wonder what the US Constitution is (before and after any admendments added after the Bill of Rights). To be determined…</description>
+    </item>
+    
+    <item>
+      <title>Dropping Lambda</title>
+      <link>http://example.org/2005/04/01/dropping-lambda/</link>
+      <pubDate>Fri, 01 Apr 2005 11:36:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/04/01/dropping-lambda/</guid>
+      <description>Shriram Krishnamurthi, that bad boy of the Scheme community, announced today (April 1) that PLT Scheme plans on removing LAMBDA from PLT Scheme 3.0.
+So I posted this note:
+A group of us are pretty upset that the PLT Scheme Team has announced plans to drop LAMBDA from PLT Scheme v300.
+We agree that dropping FILTER and MAP is a good idea, although for different reasons. We think that (filter P S) is almost always written more clearly as:</description>
+    </item>
+    
+    <item>
+      <title>Ascii mandelbrot set movie</title>
+      <link>http://example.org/2005/03/09/ascii-mandelbrot-set-movie/</link>
+      <pubDate>Wed, 09 Mar 2005 10:02:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/03/09/ascii-mandelbrot-set-movie/</guid>
+      <description>Ascii mandelbrot set movie.</description>
+    </item>
+    
+    <item>
+      <title>Why I love Lisp</title>
+      <link>http://example.org/2005/02/25/why-i-love-lisp/</link>
+      <pubDate>Fri, 25 Feb 2005 14:19:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/25/why-i-love-lisp/</guid>
+      <description>In what other language could I write a function like this:
+(defmethod subject-to-variable-bound-precondition-p ((operator (eql &#39;%%eql-if-bound))) nil)</description>
+    </item>
+    
+    <item>
+      <title>Some publications</title>
+      <link>http://example.org/2005/02/24/some-publications/</link>
+      <pubDate>Thu, 24 Feb 2005 23:03:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/24/some-publications/</guid>
+      <description>Gee, I just discovered that two short technical reports I wrote at the Canadian National Research Council are available on their document site: Models for Cross-Cultural Communications for Cross-Cultural Website Design and Integrating Internationalized Websites with Databases and Email Systems: Working with Multilingual Texts.</description>
+    </item>
+    
+    <item>
+      <title>Spead the meme: captchaservice.org</title>
+      <link>http://example.org/2005/02/23/spead-the-meme-captchaserviceorg/</link>
+      <pubDate>Wed, 23 Feb 2005 11:06:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/23/spead-the-meme-captchaserviceorg/</guid>
+      <description>Spread the meme: captchaservice.org provides a web-served captchas (testat that are easy for humans, but hard for robot spammers, to pass). Created by my wizardly friend Tim Converse and hosted by CommerceNet.</description>
+    </item>
+    
+    <item>
+      <title>First century texting</title>
+      <link>http://example.org/2005/02/16/first-century-texting/</link>
+      <pubDate>Wed, 16 Feb 2005 11:25:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/16/first-century-texting/</guid>
+      <description>Jean Veronis has interesting post about the use of abbreviations in an ancient Christian text. He points out that later (medieval) texts had a much higher use of abbreviations, and suggests that perhaps the use of translations for Lord, Jesus, etc., were to mark “membership in a tribe” in addition to compression.
+ Ne retrouve-t-on pas là le double besoin qui se fait sentir dans l’écriture “texto” : gagner de la place, sans doute, mais aussi marquer son appartenance à une tribu, à un groupe à part ?</description>
+    </item>
+    
+    <item>
+      <title>Rovers and Whegs</title>
+      <link>http://example.org/2005/02/16/rovers-and-whegs/</link>
+      <pubDate>Wed, 16 Feb 2005 11:09:00 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/16/rovers-and-whegs/</guid>
+      <description>Is the Rotundus the new Rover?
+And check out this movie (35mb) of wheg robots.
+Thanks to Robots that chase burglers (or…prisoners??) at Mirabilis.ca</description>
+    </item>
+    
+    <item>
+      <title>YACPDS</title>
+      <link>http://example.org/2005/02/02/yacpds/</link>
+      <pubDate>Wed, 02 Feb 2005 17:35:19 +0000</pubDate>
+      
+      <guid>http://example.org/2005/02/02/yacpds/</guid>
+      <description>Yet Another Cell Phone Distraction Study. Study size: 20. Findings: talking on a cell phone is distracting; young people react with the slowness of older/drunken people; old people react with the slowness of slightly older people. Six of the 20 rear-ended the (simulated) pace car (four while talking on a cell phone).
+ “If you put a 20-year-old driver behind the wheel with a cell phone, their reaction times are the same as a 70-year-old driver who is not using a cell phone.</description>
+    </item>
+    
+    <item>
+      <title>Ratios and percentages</title>
+      <link>http://example.org/2005/01/15/ratios-and-percentages/</link>
+      <pubDate>Sat, 15 Jan 2005 22:36:06 +0000</pubDate>
+      
+      <guid>http://example.org/2005/01/15/ratios-and-percentages/</guid>
+      <description>Daughter Jane is taking the SAT test next week as part of a program to foster academically talented junior high students. We’re fairly confident of her language skills (today she asked me what ‘subcutaneous meant), but she’s fairly math adverse, so Bess asked me to tutor her a little. It’s hard to know how to prepare a 12 year old for the math section of the SATs, but today we spent about an hour discussing odds and percentages.</description>
+    </item>
+    
+    <item>
+      <title>The secret to  programming is having smart friends</title>
+      <link>http://example.org/2004/12/21/the-secret-to-programming-is-having-smart-friends/</link>
+      <pubDate>Tue, 21 Dec 2004 22:32:49 +0000</pubDate>
+      
+      <guid>http://example.org/2004/12/21/the-secret-to-programming-is-having-smart-friends/</guid>
+      <description>The story behind the Apple graphing calculator. (via /..)</description>
+    </item>
+    
+    <item>
+      <title>Lots of cool pictures</title>
+      <link>http://example.org/2004/12/17/lots-of-cool-pictures/</link>
+      <pubDate>Fri, 17 Dec 2004 10:48:10 +0000</pubDate>
+      
+      <guid>http://example.org/2004/12/17/lots-of-cool-pictures/</guid>
+      <description>Lots of cool blimp pictures, and more, at the Moffett Field Museum website.</description>
+    </item>
+    
+    <item>
+      <title>Christmas addresses</title>
+      <link>http://example.org/2004/12/08/christmas-addresses/</link>
+      <pubDate>Wed, 08 Dec 2004 08:56:08 +0000</pubDate>
+      
+      <guid>http://example.org/2004/12/08/christmas-addresses/</guid>
+      <description>Every year I attempt to update our address list, especially in order to send out Christmas cards. The original database of addresses I created is gone; I can’t remember what I originally used. Last year was too choatic to do anything. This year I decided to create the list from scratch. In fact, I decided I would just write out addresses in an address book.
+In the end, though, I had a brainstorm.</description>
+    </item>
+    
+    <item>
+      <title>Followup on the search for ‘vice presidential debate’</title>
+      <link>http://example.org/2004/10/08/followup-on-the-search-for-vice-presidential-debate/</link>
+      <pubDate>Fri, 08 Oct 2004 09:01:20 +0000</pubDate>
+      
+      <guid>http://example.org/2004/10/08/followup-on-the-search-for-vice-presidential-debate/</guid>
+      <description>A followup on post about searching for ‘vice presidential debate’, which Tim commented on.
+First of all, I really wasn’t complaining about (say) Yahoo Search’s lack of results from the 2004 debates–it was just odd and a bit disorienting to be thrown back to 2000. I even clicked on an audio stream of the debate and got a ‘this stream is no longer available’ error message–it was then that I realized this was a link for the 2000 Lieberman-Cheney debate.</description>
+    </item>
+    
+    <item>
+      <title>Searching for ‘vice presidential debate’</title>
+      <link>http://example.org/2004/10/05/searching-for-vice-presidential-debate/</link>
+      <pubDate>Tue, 05 Oct 2004 22:58:35 +0000</pubDate>
+      
+      <guid>http://example.org/2004/10/05/searching-for-vice-presidential-debate/</guid>
+      <description>It’s interesting that as I’ve searched for sources for the vice presidential debates tonight, I’m getting a lot of hits from the debates (both presidential and vice presidential) from 2000. I guess this has to do with “page rank,” but it seems odd. This CNN link, for example, was the fifth link on Google for ‘vice presidential debate. Four out of the top five results for ‘vice presidential debate’ from the beta search engine snap, as well as Yahoo search were from the 2000 election.</description>
+    </item>
+    
+    <item>
+      <title>Passports with RFID tags</title>
+      <link>http://example.org/2004/10/05/passports-with-rfid-tags/</link>
+      <pubDate>Tue, 05 Oct 2004 13:09:12 +0000</pubDate>
+      
+      <guid>http://example.org/2004/10/05/passports-with-rfid-tags/</guid>
+      <description>According to Bruce Schneier, the Bush adminstration wants to put RFID tags in our passports.
+ Unfortunately, there is only one possible reason: The administration wants surreptitious access [to the broadcast information on the passports] themselves. It wants to be able to identify people in crowds. It wants to surreptitiously pick out the Americans, and pick out the foreigners. It wants to do the very thing that it insists, despite demonstrations to the contrary, can’t be done.</description>
+    </item>
+    
+    <item>
+      <title>Too cool zipcode map</title>
+      <link>http://example.org/2004/09/22/too-cool-zipcode-map/</link>
+      <pubDate>Wed, 22 Sep 2004 21:37:10 +0000</pubDate>
+      
+      <guid>http://example.org/2004/09/22/too-cool-zipcode-map/</guid>
+      <description>Use the zoom! (via Anil Dash)</description>
+    </item>
+    
+    <item>
+      <title>Nice big robot</title>
+      <link>http://example.org/2004/09/16/nice-big-robot/</link>
+      <pubDate>Thu, 16 Sep 2004 12:22:38 +0000</pubDate>
+      
+      <guid>http://example.org/2004/09/16/nice-big-robot/</guid>
+      <description>Jason Kottke has a picture of a 40-foot robot in Times Square.</description>
+    </item>
+    
+  </channel>
+</rss>

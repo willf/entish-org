@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uncategorized on Will&#39;s Whims</title>
+    <link>http://example.org/categories/uncategorized/</link>
+    <description>Recent content in Uncategorized on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Jan 2012 00:09:53 +0000</lastBuildDate><atom:link href="http://example.org/categories/uncategorized/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2011 in review</title>
+      <link>http://example.org/2012/01/01/2011-in-review/</link>
+      <pubDate>Sun, 01 Jan 2012 00:09:53 +0000</pubDate>
+      
+      <guid>http://example.org/2012/01/01/2011-in-review/</guid>
+      <description>The WordPress.com stats helper monkeys prepared a 2011 annual report for this blog.
+Here’s an excerpt:
+ A New York City subway train holds 1,200 people. This blog was viewed about 6,000 times in 2011. If it were a NYC subway train, it would take about 5 trips to carry that many people. Click here to see the complete report.
+ </description>
+    </item>
+    
+    <item>
+      <title>Ruby Google Chart API</title>
+      <link>http://example.org/2011/04/09/ruby-google-chart-api/</link>
+      <pubDate>Sat, 09 Apr 2011 19:57:54 +0000</pubDate>
+      
+      <guid>http://example.org/2011/04/09/ruby-google-chart-api/</guid>
+      <description>A few years ago, I wrote some Ruby code to access the Google Chart API. I’ve (finally) put in up on GitHub.
+This is part of an effort to get more of my open source projects up in a common space.
+[https://github.com/willf/ruby_google_charts]2</description>
+    </item>
+    
+  </channel>
+</rss>

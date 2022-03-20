@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>On the Cheap on Will&#39;s Whims</title>
+    <link>http://example.org/categories/on-the-cheap/</link>
+    <description>Recent content in On the Cheap on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Nov 2011 05:37:37 +0000</lastBuildDate><atom:link href="http://example.org/categories/on-the-cheap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Computational Social Science on the cheap using Twitter</title>
+      <link>http://example.org/2011/11/23/computational-social-science-on-the-cheap-using-twitter/</link>
+      <pubDate>Wed, 23 Nov 2011 05:37:37 +0000</pubDate>
+      
+      <guid>http://example.org/2011/11/23/computational-social-science-on-the-cheap-using-twitter/</guid>
+      <description>This is a followup to my post Computational lexicography on the cheap using Twitter, but more especially in response to Using off-the-shelf software for basic Twitter analysis.
+The later article shows how to use database software (MySQL and its implementation of the SQL language) to do basic Twitter analysis. The ‘basic analysis’ includes counts by hashtag, timelines, and word clouds. They analyse about 475k tweets.
+But here’s the thing: all their analyses can be done more simply with simple text files and pipes of Unix commands (as most eloquently demonstarted in Unix for Poets, by Ken Church).</description>
+    </item>
+    
+    <item>
+      <title>Computational lexicography on the cheap using Twitter</title>
+      <link>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</link>
+      <pubDate>Mon, 11 Oct 2010 19:31:36 +0000</pubDate>
+      
+      <guid>http://example.org/2010/10/11/computational-lexicography-on-the-cheap-using-twitter/</guid>
+      <description>Let’s say you want to investigate the use of “tweet” as a verb (see “Tweet this” at Language Log), and you want to collect, oh, 10,000 examples or so and do some concordance work, for example:
+This is simple to do with a bash command line, perl, Ruby, the Tweetstream gem, and a spreadsheet program (or just plain old grep).
+To download 10,000 tweets containing “tweet,” “tweets”, or “tweeting” and save them in a file called “tweet.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes to Myself on Will&#39;s Whims</title>
+    <link>http://example.org/categories/notes-to-myself/</link>
+    <description>Recent content in Notes to Myself on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jun 2011 01:52:10 +0000</lastBuildDate><atom:link href="http://example.org/categories/notes-to-myself/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ʬ</title>
+      <link>http://example.org/2011/06/08/%CA%AC/</link>
+      <pubDate>Wed, 08 Jun 2011 01:52:10 +0000</pubDate>
+      
+      <guid>http://example.org/2011/06/08/%CA%AC/</guid>
+      <description>I discovered “extended IPA” symbols today, including ʬ (smacking your lips). Which I think would be an awesome symbol for “will/whim.”
+ʬFather’s Day is coming, ʬ.net is available, but my family is not geeky enough to get it for me…</description>
+    </item>
+    
+    <item>
+      <title>F# no parameter functions</title>
+      <link>http://example.org/2011/03/31/f-no-parameter-functions/</link>
+      <pubDate>Thu, 31 Mar 2011 15:21:03 +0000</pubDate>
+      
+      <guid>http://example.org/2011/03/31/f-no-parameter-functions/</guid>
+      <description>Notes to myself: F# version
+Whenever writing or using a no parameter function, give it an empty parameter list.
+not:
+or
+The last example will create a (global) non-function variable which evaluates to the result of the do_something function at load/compile time; probably not what is wanted.
+Just wasted about 4 hours on this (since it was taking a long time, and consumed all the resources on my machine, it was difficulter to debug).</description>
+    </item>
+    
+    <item>
+      <title>Whitelisting in Google Mail</title>
+      <link>http://example.org/2010/11/08/whitelisting-in-google-mail/</link>
+      <pubDate>Mon, 08 Nov 2010 17:14:46 +0000</pubDate>
+      
+      <guid>http://example.org/2010/11/08/whitelisting-in-google-mail/</guid>
+      <description>Google Mail (Gmail) has been putting mail from the LinkedIn contacts and groups into the spam folder. I had to research how to whitelist domains in Gmail, and this is what I learned:
+ Press the ‘Create a Filter’ Enter the domain in the ‘From’ field Select the ‘Never send it to Spam’ option  And, hey presto: it’s been whitelisted.</description>
+    </item>
+    
+  </channel>
+</rss>

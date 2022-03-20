@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Is Bing cheating at search? Redux: It’s all in the clicks | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]
+Matt Cutts has a thoughtful follow-up articleon the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Is Bing cheating at search? Redux: It’s all in the clicks" />
+<meta property="og:description" content="[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]
+Matt Cutts has a thoughtful follow-up articleon the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2011/02/04/is-bing-cheating-at-search-redux-its-all-in-the-clicks/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2011-02-04T02:55:12+00:00" />
+<meta property="article:modified_time" content="2011-02-04T02:55:12+00:00" />
+
+<meta itemprop="name" content="Is Bing cheating at search? Redux: It’s all in the clicks">
+<meta itemprop="description" content="[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]
+Matt Cutts has a thoughtful follow-up articleon the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy."><meta itemprop="datePublished" content="2011-02-04T02:55:12+00:00" />
+<meta itemprop="dateModified" content="2011-02-04T02:55:12+00:00" />
+<meta itemprop="wordCount" content="943">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Is Bing cheating at search? Redux: It’s all in the clicks"/>
+<meta name="twitter:description" content="[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]
+Matt Cutts has a thoughtful follow-up articleon the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Is Bing cheating at search? Redux: It’s all in the clicks</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2011-02-04T02:55:12Z">February 4, 2011</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>[Disclaimer: I work for Bing as a senior research software developer, but I do not speak for Bing]</p>
+<p>Matt Cutts has a thoughtful <!-- raw HTML omitted -->follow-up article<!-- raw HTML omitted --> on the controversy over whether Bing is copying Google’s search results. There has been a little too much heat and not enough light in the discussion, and I appreciate reflective thoughts, and his shout out to us Bing engineers. Someday, we’ll have forgotten all about this controversy. I predict about two and a half weeks.</p>
+<p>I’ve been thinking some more about this, too, and I’d like to write a bit more about the clickstream data. I won’t describe specific ways that the data is collected, although Bing has made it clear that it comes though the use of opt-in data provided by users. And I won’t describe all the content or format of what the clickstream contains. But let’s abstract what is obviously there: information about the search engine used, the query, the presented URLs (and their order), and the URLs that are clicked by the user. So, you can imagine that there is this stream of click data coming from a browser (I suggest only search engines here, Google, Bing and SearchCo, which will be a strawman for any search engine not as good as Google or Bing):</p>
+<p>&lt;Bing, “fish sticks”, <a href="http://fishsticks.com">http://fishsticks.com</a> @1, clicked&gt; &lt;Bing “fish sticks”, <a href="http://fishlips.com">http://fishlips.com</a> @2, unclicked&gt; &lt;Google, “fish sticks”, <a href="http://fishsticks.com">http://fishsticks.com</a> @1, clicked&gt; &lt;Google, “fish sticks”, <a href="http://fishplanks.com">http://fishplanks.com</a> @2, clicked&gt; &lt;SearchCo, “fish sticks”, <a href="http://fishlips,com">http://fishlips,com</a> @1, unclicked&gt; &lt;SearchCo, “fish sticks”, <a href="http://firesticks.com">http://firesticks.com</a> @2, unclicked&gt;</p>
+<p>and thousands and millions more of these (I have no idea of the number, actually, but it’s “large”).</p>
+<p>A first question is to ask how these events are captured; given the variety of ways search requests are encoded, something, some process will have to do the decoding. Matt Cutts seems to think this is <em>a priori</em> bad reverse engineering (I guess), but it is done billions of times a day by all the search engine companies; the term of art is <em>scraping</em>, but it’s just using a practice of converting data from one form (a form outside the original intent of the provider) into a usable clickstream form. We all do this, all the time.</p>
+<p>A second thing to note, and I think this is very important, is that the “goodness” of Google with respect to the clickstream is not evidenced because there is necessarily a choice to favor Google <em>a priori</em>. Rather, <em>it is the users’ clicking on the links which provides the real evidence</em>. The fake clickstreams above indicate users preferred Google’s particular search results (as evidenced by both results being clicked) to Bing’s (only one URL clicked) or to SearchCo (no URL clicked). The point is this: it is not that Bing is targeting Google, but that the evidence given by the users signal the good results provided by Google. As a bare fact, it is not the triple &lt;Search Engine, Query, URL&gt; triple that matters, but the triple &lt;Query, URL, User Evaluation&gt; that matters.</p>
+<p>In the natural course of things, Bing’s search engine results gets better because users say so; when people like what Google (or Bing, or even SearchCo) gives them, that eventually shows up as selection and ranking preferences at Bing. In the end, when Bing’s search results look similar to Google’s search results, it’s because Google does a good job, and Bing’s learning algorithms do a good job; the learning algorithm doesn’t even have to know where the result came from to begin with. Bing won’t look as much like SearchCo just because SearchCo (mythical company, of course) doesn’t do as well. Also, of course, Google has had a huge market share, and so the preponderance of data comes from Google (although I have no real idea of the market share for the opt-in data Bing receives).</p>
+<p>In yet other words, it’s all in the clicks. Or, at least, mostly in the clicks.</p>
+<p>Time for a reminder: I’m a Bing developer, but I don’t work on ranking or selection.</p>
+<p>I personally agree with Matt that software companies in general should do a better job of being transparent about what opting in means. I really don’t know what this should look like, though. For example, I use Chrome for a lot for personal web use—it’s so fast—and I know this helps, at some level, competitors to the people who pay my salary. But I have very little knowledge of the specific ways this happens—and perhaps then it doesn’t really matter. Just as I am glad that there is now a choice in search engines, so also I am glad that there are three or more good choices for browsers—which incidentally improve the aligned search engines. It just doesn’t seem that important to say anything more than anonymous data will be used to improve products, with a way to find out more details of the matter.</p>
+<p>Finally, I want to point out that, even though the pages that Matt presents do have the same unique query/URL pairs for Bing and Google (and how that could happen is described above, my previous post, and in others’ posts on the web), the content on the pages is <em>not</em> the same. The titles differ in at least one case (alas for Bing, I think Google’s is better), and the captions are different (in general, I think Bing’s are better—but then I’m biased, because that is a large part of the work that goes on around me). Bing suggests alternative segmentation/spelling for some of the synthetic queries, and “related searches.” So, whatever the merit of Matt’s case as to what counts as “copying,” it’s important to note that much of the content differs.</p>
+<p> </p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

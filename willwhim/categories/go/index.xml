@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Will&#39;s Whims</title>
+    <link>http://example.org/categories/go/</link>
+    <description>Recent content in Go on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Sep 2011 06:52:38 +0000</lastBuildDate><atom:link href="http://example.org/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Producing n hash functions by hashing only once</title>
+      <link>http://example.org/2011/09/03/producing-n-hash-functions-by-hashing-only-once/</link>
+      <pubDate>Sat, 03 Sep 2011 06:52:38 +0000</pubDate>
+      
+      <guid>http://example.org/2011/09/03/producing-n-hash-functions-by-hashing-only-once/</guid>
+      <description>To implement a bloom filter, you need a bunch of hash functions. In naive implementations (and I’ve seen plenty), programmers pick out, say, five cryptographic hash functions. One problem with this is that the hash functions for bloom filters have different requirements than hash functions for cryptography–the latter tend to be more than is required for the former. What you want for bloom filters is something that’s very, very fast, while maintaining that basic desiderata for bloom filter hashing, uniform spread.</description>
+    </item>
+    
+    <item>
+      <title>Bloom filters in Go</title>
+      <link>http://example.org/2011/05/21/bloom-filters-in-go/</link>
+      <pubDate>Sat, 21 May 2011 14:32:00 +0000</pubDate>
+      
+      <guid>http://example.org/2011/05/21/bloom-filters-in-go/</guid>
+      <description>I’ve written my second Go package to implement Bloom filters. It can be found at:
+https://github.com/willf/bloom
+It requires my bitset implementation:
+https://github.com/willf/bitset
+Enjoy!</description>
+    </item>
+    
+    <item>
+      <title>Baby steps with Go</title>
+      <link>http://example.org/2011/05/11/baby-steps-with-go/</link>
+      <pubDate>Wed, 11 May 2011 23:27:06 +0000</pubDate>
+      
+      <guid>http://example.org/2011/05/11/baby-steps-with-go/</guid>
+      <description>I’ve started teaching myself the Go programming language. I’m enjoying most aspects of it. It feels like a really modern C–that is, low level enough to be fast, but with lots of the bells and whistles one comes to expect in a modern programming language. It has lots of data types, an interesting alternative to object-oriented programming called interfaces, a reasonably-sized library, support for concurrency baked into the language, etc. The Go home page says it well:</description>
+    </item>
+    
+  </channel>
+</rss>

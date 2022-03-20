@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>A Fibonacci A Day — Benchmarking | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="A Fibonacci A Day — Benchmarking" />
+<meta property="og:description" content="The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2013/03/20/a-fibonacci-a-day-benchmarking/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2013-03-20T10:30:54+00:00" />
+<meta property="article:modified_time" content="2013-03-20T10:30:54+00:00" />
+
+<meta itemprop="name" content="A Fibonacci A Day — Benchmarking">
+<meta itemprop="description" content="The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0."><meta itemprop="datePublished" content="2013-03-20T10:30:54+00:00" />
+<meta itemprop="dateModified" content="2013-03-20T10:30:54+00:00" />
+<meta itemprop="wordCount" content="367">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A Fibonacci A Day — Benchmarking"/>
+<meta name="twitter:description" content="The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).
+Log Recursive (BigInt)0."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A Fibonacci A Day — Benchmarking</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-03-20T10:30:54Z">March 20, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --> The following table describes the limits of the various Fibonacci algorithms I’ve created during this series. I ran them through a very simple benchmarking routine, and empirically tested them for the maximum size they can handle. Each benchmark was run 1000 times, except the first algorithm, which was run just once — we already know it runs too slow. These were run on a MacBook Air (Late 2010).</p>
+<p><a href="http://willwhim.wpengine.com/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/">Log Recursive</a> (BigInt)0.0082Unlimited (except for memory)</p>
+<!-- raw HTML omitted -->
+<pre><code>&lt;th&gt;
+  Milliseconds per call for F(46)
+&lt;/th&gt;
+
+&lt;th&gt;
+  Max size
+&lt;/th&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  21,360.00
+&lt;/td&gt;
+
+&lt;td&gt;
+  40 or so
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0040
+&lt;/td&gt;
+
+&lt;td&gt;
+  46
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0040
+&lt;/td&gt;
+
+&lt;td&gt;
+  164
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0030
+&lt;/td&gt;
+
+&lt;td&gt;
+  76
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0080
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0060
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0030
+&lt;/td&gt;
+
+&lt;td&gt;
+  70 or so
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0020
+&lt;/td&gt;
+
+&lt;td&gt;
+  unpredictable
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.0940
+&lt;/td&gt;
+
+&lt;td&gt;
+  unpredictable
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<p>Here is a table comparing the versions which allow really big fibonacci numbers, calculating F(20000) 100 times each.</p>
+<!-- raw HTML omitted -->
+<pre><code>&lt;th&gt;
+  Milliseconds per call for F(20000)
+&lt;/th&gt;
+
+&lt;th&gt;
+  Max size
+&lt;/th&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  24.23
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  23.50
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  1.00
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  3.19
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  0.22
+&lt;/td&gt;
+
+&lt;td&gt;
+  unlimited (except memory)
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<p>F(20000) is a really big integer, and a lot of this time is creating and destoying the memory associated with creating the integers. The thing to notice is that the iterative and the tail recursive versions take approximately the same amount of time — the recursive version actually runs a little more quickly than the iterative version. And the Log recursive version of the same is two orders of magnitude faster — — the stream version is yet another order faster, but it may use too much memory. Note that even the first use is faster than the iterative and tail recursive versions!</p>
+<p>Still, there’s really no reason not to use the BigInt, log recursive version of this function — it’s both fast and accurate.</p>
+<p>(April 2, 2013: Updated to include <a href="http://willwhim.wpengine.com/2013/04/02/a-fibonacci-a-day-fibonaccin-in-olgn-steps/">log recursive version</a>.</p>
+<p>(April 13, 2013: Updated to include &lt; a href=&quot;<a href="http://willwhim.wpengine.com/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/">stream”&gt;http://willwhim.wpengine.com/2013/04/13/a-fibonacci-a-day-using-streams-and-a-fast-memoization-method/”&gt;stream</a> version<!-- raw HTML omitted -->; rerun benchmarks for F(20000); and update conclusions.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Artificial Intelligence on Will&#39;s Whims</title>
+    <link>http://example.org/categories/artificial-intelligence/</link>
+    <description>Recent content in Artificial Intelligence on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Feb 2011 14:14:37 +0000</lastBuildDate><atom:link href="http://example.org/categories/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is missing? Watson, AI and search technology</title>
+      <link>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</link>
+      <pubDate>Wed, 16 Feb 2011 14:14:37 +0000</pubDate>
+      
+      <guid>http://example.org/2011/02/16/what-is-missing-watson-ai-and-search-technology/</guid>
+      <description>All geekdom, and much that is outside our realm, is abuzz with news and discussion of the contest by IBM’s Jeopardy-playing computer, Watson, vs Ken Jennings and Brad Rutter. In last night’s game (the second half of a game started on Monday, Watson won decisively, answering many, many more questions than Jennings and Rutter combined. At the end of the first half, Rutter and Watson were tied. Lots of famous (and formerly famous) artificial intelligence researchers have weighed in on what this means for AI.</description>
+    </item>
+    
+    <item>
+      <title>Language Identification: A Computational Linguistics Primer</title>
+      <link>http://example.org/2009/04/25/language-identification-a-computational-linguistics-primer/</link>
+      <pubDate>Sat, 25 Apr 2009 14:44:59 +0000</pubDate>
+      
+      <guid>http://example.org/2009/04/25/language-identification-a-computational-linguistics-primer/</guid>
+      <description>Slides and results from a talk I gave at Kalamazoo College on language identification.
+My co-worker at Powerset, Chris Biemann, has a nice paper on [Slides and results from a talk I gave at Kalamazoo College on language identification.
+My co-worker at Powerset, Chris Biemann, has a nice paper on]2 .</description>
+    </item>
+    
+    <item>
+      <title>Ockham’s Razor is Dull</title>
+      <link>http://example.org/2008/06/14/ockhams-razor-is-dull/</link>
+      <pubDate>Sun, 15 Jun 2008 01:49:23 +0000</pubDate>
+      
+      <guid>http://example.org/2008/06/14/ockhams-razor-is-dull/</guid>
+      <description>It’s all (well, mostly) about representation. Peter Turney:
+ [F]iguring out how to represent the problem is 95% of the work. By the time you have the representation right, the tool that you use to finish the remaining 5% is not terribly important.
+ </description>
+    </item>
+    
+    <item>
+      <title>OpenDMAP paper</title>
+      <link>http://example.org/2008/03/25/opendmap-paper/</link>
+      <pubDate>Wed, 26 Mar 2008 01:55:31 +0000</pubDate>
+      
+      <guid>http://example.org/2008/03/25/opendmap-paper/</guid>
+      <description>For the few who might be interested: OpenDMAP: An open source, ontology-driven concept analysis engine, with applications to capturing knowledge regarding protein transport, protein interactions and cell-type-specific gene expression (PDF).
+ OpenDMAP advances the performance standards for extracting protein-protein interaction predications from the full texts of biomedical research articles. Furthermore, this level of performance appears to generalize to other information extraction tasks, including extracting information about predicates of more than two arguments.</description>
+    </item>
+    
+    <item>
+      <title>What’s the opposite of ‘hype’?</title>
+      <link>http://example.org/2007/09/26/whats-the-opposite-of-hype/</link>
+      <pubDate>Wed, 26 Sep 2007 17:10:00 +0000</pubDate>
+      
+      <guid>http://example.org/2007/09/26/whats-the-opposite-of-hype/</guid>
+      <description>There must be an antonym for ‘hype.’ To hype something is to engage in hyperbole about it: Apple products have generated their share of hype. (For example: Steve Jobs said, “We made the buttons on the screen look so good you’ll want to lick them.”) I don’t mean ‘anti-hype’ in the sense of telling the approximate truth about something, desengaño or dis-illusionment. But after the IPhone announcement, Steve Ballmer said, “There’s no chance that the iPhone is going to get any significant market share.</description>
+    </item>
+    
+    <item>
+      <title>Why the New Yorker cartoon caption contest winners are not especially funny</title>
+      <link>http://example.org/2007/08/29/why-the-new-yorker-cartoon-caption-contest-winners-are-not-especially-funny/</link>
+      <pubDate>Wed, 29 Aug 2007 12:39:27 +0000</pubDate>
+      
+      <guid>http://example.org/2007/08/29/why-the-new-yorker-cartoon-caption-contest-winners-are-not-especially-funny/</guid>
+      <description>Here’s a QA with the primary gatekeeper to the New Yorker cartoon caption contest:
+ Q. Did your predecessor or Bob give you any advice when looking through the responses? A. My predecessor stared me in the eyes and warned me that reading too many captions in one sitting could make a man crazy. Oh, and also to “pick the funny ones.” Q. After a while isn’t it difficult to decide what’s funny?</description>
+    </item>
+    
+    <item>
+      <title>Powerlabs coming soon ….</title>
+      <link>http://example.org/2007/05/24/powerlabs-coming-soon/</link>
+      <pubDate>Thu, 24 May 2007 18:24:56 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/24/powerlabs-coming-soon/</guid>
+      <description>Powerlabs coming soon! See the our Powerset home page.</description>
+    </item>
+    
+    <item>
+      <title>Actually, a little more robot overlordship than I’m currently experiencing would be nice</title>
+      <link>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</link>
+      <pubDate>Thu, 17 May 2007 05:16:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/17/actually-a-little-more-robot-overlordship-than-im-currently-experiencing-would-be-nice/</guid>
+      <description>Sitting down to dinner, I said something like today I wrote a program that wrote a program, and its running righ now. Daughter and wife looked slightly alarmed, and dear wife asked if there were any chance that I was working myself out of a job. I said I didn’t think there was much chance that the coming robot wars were about to begin. Getting back to my computer later, I saw this on the console:</description>
+    </item>
+    
+    <item>
+      <title>Quotes on names (2)</title>
+      <link>http://example.org/2007/05/05/quotes-on-names-2/</link>
+      <pubDate>Sat, 05 May 2007 14:30:22 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/05/quotes-on-names-2/</guid>
+      <description> The uniqueness and immense pragmatic convenience of proper names in our language lie precisely in the fact that they enable us to refer publicly to objects without being forced to raise issues and come to agreement on what descriptive characteristics exactly constitute the identity of the object. They function not as descriptions, but as pegs on which to hang descriptions (Searle).
+ </description>
+    </item>
+    
+    <item>
+      <title>Quotes on names (1)</title>
+      <link>http://example.org/2007/05/04/quotes-on-names-1/</link>
+      <pubDate>Fri, 04 May 2007 07:07:33 +0000</pubDate>
+      
+      <guid>http://example.org/2007/05/04/quotes-on-names-1/</guid>
+      <description> When Mr N.N. dies, one says that the bearer of the name dies, not that the meaning dies. — Wittgenstein, Philosophical Investigations
+ </description>
+    </item>
+    
+    <item>
+      <title>WordNet, saints and Robin Hood</title>
+      <link>http://example.org/2007/04/28/wordnet-saints-and-robin-hood/</link>
+      <pubDate>Sat, 28 Apr 2007 21:06:29 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/28/wordnet-saints-and-robin-hood/</guid>
+      <description>Why are you reading this, when you should be reading Natalia’s ball-peen hammer to the head?
+One of the many things that it takes for a computer to “understand” text (as we are trying to do at Powerset) is for it recognize names and what they refer to. So for example, in the sentence “Maid Marian is the female companion to the legendary figure Robin Hood.”, a computer needs to see the names Maid Marian and Robin Hood are present, and have some kind of internal representation of Ms.</description>
+    </item>
+    
+    <item>
+      <title>Semantic Parser, best in show</title>
+      <link>http://example.org/2007/04/27/semantic-parser-best-in-show/</link>
+      <pubDate>Fri, 27 Apr 2007 04:17:35 +0000</pubDate>
+      
+      <guid>http://example.org/2007/04/27/semantic-parser-best-in-show/</guid>
+      <description>I got an email today from Larry Hunter at University of Colorado School of Medicine, who writes to say that a DMAP-based parser was the “international world-champion” in the The BioCreAtIvE (Critical Assessment of Information Extraction systems in Biology) data text mining challenge. The chart above are the results from the Protein-Protein Interaction Task.
+My colleague at Powerset, Jim Firby and I worked on some of the semantic parsing technology used by the Colorado group.</description>
+    </item>
+    
+    <item>
+      <title>Word game!</title>
+      <link>http://example.org/2007/03/09/word-game/</link>
+      <pubDate>Fri, 09 Mar 2007 18:11:15 +0000</pubDate>
+      
+      <guid>http://example.org/2007/03/09/word-game/</guid>
+      <description>A fun word game oddly related to my current work: Varun’s word games.</description>
+    </item>
+    
+    <item>
+      <title>Powerset in NY Times, Venturebeat</title>
+      <link>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</link>
+      <pubDate>Fri, 09 Feb 2007 14:00:07 +0000</pubDate>
+      
+      <guid>http://example.org/2007/02/09/powerset-in-ny-times-venturebeat/</guid>
+      <description>The company I work for, Powerset, is being written up in the New York Times and Venturebeat, both reporting on a deal between Powerset and PARC. The New York Times article (behind a registration wall, alack) mostly follows the storied arc of the Palo Alto Research Center, where the graphical user interface and ethernet were born but capitalized on more by rivals rather than its original owner, Xerox. Our CEO, Barney Pell is quoted:</description>
+    </item>
+    
+    <item>
+      <title>Machine evolution and consciousness (circa 1872)</title>
+      <link>http://example.org/2005/10/13/machine-evolution-and-consciousness-circa/</link>
+      <pubDate>Thu, 13 Oct 2005 11:49:44 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/13/machine-evolution-and-consciousness-circa/</guid>
+      <description>From Samuel Butler’s The Book of the Machines in Erewhon:
+ Complex now, but how much simpler and more intelligibly organised may [a machine] not become in another hundred thousand years? or in twenty thousand? For man at present believes that his interest lies in that direction; he spends an incalculable amount of labour and time and thought in making machines breed always better and better; he has already succeeded in effecting much that at one time appeared impossible, and there seem no limits to the results of accumulated improvements if they are allowed to descend with modification from generation to generation.</description>
+    </item>
+    
+    <item>
+      <title>Lemonodor: Stanford Wins Grand Challenge</title>
+      <link>http://example.org/2005/10/10/lemonodor-stanford-wins-grand-challenge/</link>
+      <pubDate>Tue, 11 Oct 2005 02:24:38 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/10/lemonodor-stanford-wins-grand-challenge/</guid>
+      <description>Lemonodor: Stanford Wins Grand Challenge Great pix from John and Lori — follow the Flickr links.</description>
+    </item>
+    
+    <item>
+      <title>Borges: a whale of an error</title>
+      <link>http://example.org/2005/10/10/borges-a-whale-of-an-error/</link>
+      <pubDate>Mon, 10 Oct 2005 04:43:33 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/10/borges-a-whale-of-an-error/</guid>
+      <description>I received an email from Justin Bur that says (quoting with permission):
+ Your English version of Borges’ celebrated essay http://www.entish.org/essays/Wilkins.html contains a rather spectacular mistranslation based presumably on a typo in the original Spanish. Section 16 of Wilkins’ taxonomy classifies the *whale*, not beauty, as a viviparous oblong fish. There is a complete text online at http://reliant.teknowledge.com/Wilkins, and the relevant passage is on page 132. The confusion seems to arise from the graphic similarity between “ballena” (whale) and “belleza” (beauty) in Spanish.</description>
+    </item>
+    
+    <item>
+      <title>those which, from a distance, look like flies (*)</title>
+      <link>http://example.org/2005/08/17/those-which-from-a-distance-look-like-flies/</link>
+      <pubDate>Thu, 18 Aug 2005 02:14:28 +0000</pubDate>
+      
+      <guid>http://example.org/2005/08/17/those-which-from-a-distance-look-like-flies/</guid>
+      <description>Daughter Jane straightened out our DVDs today, at her mother’s request. She decided to organize by genre:
+ Fighting movies (e.g. Crouching Tiger, Hidden Dragon), Animation (e.g. The Incredibles), Classicish (e.g. It’s a Wonderful Life), Magic (e.g., Harry Potter), Modern Action (e.g., Charlie’s Angels), Princess Movies (e.g. The Princess Diaries), Movies That I Have No Intention of Watching in the Next Millenium (e.g. 2001, A Space Oddesey).  (*) See The Analytical Language of John Wilkins.</description>
+    </item>
+    
+    <item>
+      <title>The Onion | Never In My Wildest Dreams Did I Think I’d Get Bored Watching Robots Fight</title>
+      <link>http://example.org/2005/07/23/the-onion-never-in-my-wildest-dreams-did-i-think-id-get-bored-watching-robots-fight/</link>
+      <pubDate>Sun, 24 Jul 2005 00:31:46 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/23/the-onion-never-in-my-wildest-dreams-did-i-think-id-get-bored-watching-robots-fight/</guid>
+      <description>The Onion | Never In My Wildest Dreams Did I Think I’d Get Bored Watching Robots Fight</description>
+    </item>
+    
+    <item>
+      <title>TeamOsaka’s Robocup entry…</title>
+      <link>http://example.org/2005/07/22/teamosakas-robocup-entry/</link>
+      <pubDate>Fri, 22 Jul 2005 12:32:33 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/22/teamosakas-robocup-entry/</guid>
+      <description>&amp;lt;img src=&amp;quot;http://www.entish.org/images/TeamOsakaRobot.jpg&amp;amp;quot; alt=&amp;ldquo;Robot&amp;rdquo;
+finding and kicking a ball. Impressive! (more pictures and videos from Robocup).</description>
+    </item>
+    
+    <item>
+      <title>Robot throws out first pitch …</title>
+      <link>http://example.org/2005/07/07/robot-throws-out-first-pitch/</link>
+      <pubDate>Thu, 07 Jul 2005 23:26:14 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/07/robot-throws-out-first-pitch/</guid>
+      <description>.
+in Nationals-Mets game. It was a QRIO from Sony.</description>
+    </item>
+    
+    <item>
+      <title>JD Powers question on conversational interfaces</title>
+      <link>http://example.org/2005/07/04/jd-powers-question-on-conversational-interfaces/</link>
+      <pubDate>Mon, 04 Jul 2005 11:52:27 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/04/jd-powers-question-on-conversational-interfaces/</guid>
+      <description>JD Powers sent a survey around to new car buyers, and asked the following question:
+ A Natural Language Voice-Activation feature works by understanding fluent natural language instead of command keywords like ‘RADIO…ON’. For example, ‘TURN UP THE RADIO’ or ‘MAKE THE MUSIC LOUDER’ would all have the same effect. How likely would you be to purchase this feature on your next vehicle at a cost of $300? I wonder who’s asking this?</description>
+    </item>
+    
+    <item>
+      <title>AERCam lives!</title>
+      <link>http://example.org/2005/06/23/aercam-lives/</link>
+      <pubDate>Thu, 23 Jun 2005 14:46:30 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/23/aercam-lives/</guid>
+      <description>Michael Hannemann sent me a pointer to a New Scientist article about the newest version of the AERCam, a spherical space camera for inspection tasks.
+Speaking of ex-co-workers, here’s a photo of John Wiseman and me at the International Lisp Conference (ILC2005). John is the cool looking guy with the ‘burns. I’m the nose on the right.</description>
+    </item>
+    
+    <item>
+      <title>Conversing with Computers</title>
+      <link>http://example.org/2005/06/10/conversing-with-computers/</link>
+      <pubDate>Fri, 10 Jun 2005 14:06:57 +0000</pubDate>
+      
+      <guid>http://example.org/2005/06/10/conversing-with-computers/</guid>
+      <description>I just ran across this NASA article about the software I helped develop for them at a previous employer: CONVERSING WITH COMPUTERS.</description>
+    </item>
+    
+    <item>
+      <title>Borges’s “The Analytical Language of John Wilkins”</title>
+      <link>http://example.org/2005/05/06/borgess-the-analytical-language-of-john-wilkins/</link>
+      <pubDate>Fri, 06 May 2005 15:54:33 +0000</pubDate>
+      
+      <guid>http://example.org/2005/05/06/borgess-the-analytical-language-of-john-wilkins/</guid>
+      <description>I made a correction or two and reformatted my translation of Borges’s The Analytical Language of John Wilkins.
+ The impossibility of penetrating the divine scheme of the universe does not, however, dissuade us from planning human schemes, even though we know they must be provisional.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

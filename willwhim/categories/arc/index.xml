@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arc on Will&#39;s Whims</title>
+    <link>http://example.org/categories/arc/</link>
+    <description>Recent content in arc on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Feb 2008 15:40:23 +0000</lastBuildDate><atom:link href="http://example.org/categories/arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>More better spec for Arc</title>
+      <link>http://example.org/2008/02/02/more-better-spec-for-arc/</link>
+      <pubDate>Sat, 02 Feb 2008 15:40:23 +0000</pubDate>
+      
+      <guid>http://example.org/2008/02/02/more-better-spec-for-arc/</guid>
+      <description>A DESCRIBE form now creates a procedure, which, when run, returns a set of results, which can be printed. Also, errors in test forms are caught.
+See spec.arc
+Can an HTML format be far behind?
+It’s not perfect. But parts of it are excellent.</description>
+    </item>
+    
+    <item>
+      <title>First experiment with Arc</title>
+      <link>http://example.org/2008/02/01/first-experiment-with-arc/</link>
+      <pubDate>Fri, 01 Feb 2008 04:49:10 +0000</pubDate>
+      
+      <guid>http://example.org/2008/02/01/first-experiment-with-arc/</guid>
+      <description>&lt;p&gt;I decided to try to write a simple but useful program in Arc, the programming language recently released by Paul Graham.&lt;/p&gt;
+&lt;p&gt;One thing I’ve liked about using Ruby is a testing framework called Rspec, in which you describe the behavior of your program in a kind of narrative form. So I decided to try and write a similar system for Arc.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>arc is here</title>
+      <link>http://example.org/2008/01/29/arc-is-here/</link>
+      <pubDate>Wed, 30 Jan 2008 01:48:54 +0000</pubDate>
+      
+      <guid>http://example.org/2008/01/29/arc-is-here/</guid>
+      <description>``
+arclanguage.org
+I should have mentioned: via lemonodor.</description>
+    </item>
+    
+  </channel>
+</rss>

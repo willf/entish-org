@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Why Scala is an acceptable Lisp | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Why Scala is an acceptable Lisp" />
+<meta property="og:description" content="It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2013/02/22/why-scala-is-an-acceptable-lisp/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2013-02-22T14:29:27+00:00" />
+<meta property="article:modified_time" content="2013-02-22T14:29:27+00:00" />
+
+<meta itemprop="name" content="Why Scala is an acceptable Lisp">
+<meta itemprop="description" content="It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java."><meta itemprop="datePublished" content="2013-02-22T14:29:27+00:00" />
+<meta itemprop="dateModified" content="2013-02-22T14:29:27+00:00" />
+<meta itemprop="wordCount" content="590">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why Scala is an acceptable Lisp"/>
+<meta name="twitter:description" content="It’s been a while since I thought about Paul Graham’s essay, Revenge of the Nerds, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, Why Ruby is an acceptable LISP, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.
+Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Why Scala is an acceptable Lisp</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2013-02-22T14:29:27Z">February 22, 2013</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>It’s been a while since I thought about Paul Graham’s essay, <a href="http://www.paulgraham.com/icad.html">Revenge of the Nerds</a>, in which he highlighted the advantages Lisp has over other programming languages, or the essay Eric Kidd wrote, <a href="http://www.randomhacks.net/articles/2005/12/03/why-ruby-is-an-acceptable-lisp">Why Ruby is an acceptable LISP</a>, in which he highlighted features of the Ruby language that made it “acceptable” to use as a Lisp replacement.</p>
+<p>Wordnik made the transition from Java to Scala before I joined them, and at least in my early days there, it seemed like the question was “Why Scala is a better Java.” For example, Tony Tam (the current CEO, but “A CEO who codes” and the chef overseeing the preparation of our particular technological stew), said that Scala’s <em>traits</em> were a big win for Wordnik (see <a href="http://highscalability.com/blog/2011/2/15/wordnik-10-million-api-requests-a-day-on-mongodb-and-scala.html">this report</a>, for example). Traits are an improvement over Java’s interfaces, but not an especially new way of looking at programming.</p>
+<p>Scala isn’t as Lisp-like as Clojure, nor is it as pure as Haskell. A lot of work has been done to make Scala more like Haskell, both in the language itself as well as third-party libraries such as <a href="http://code.google.com/p/scalaz/">scalaz</a>. But, as I have been writing Scala code, especially on a recent series of projects, I’ve come to realize that many of the things that I liked about programming in Lisp are present in Scala, even without going into the deeper ends of <a href="http://www.jasq.org/2/post/2013/01/the-mathematician-the-monoid.html">Monads, Monoids and Applicatives</a>.</p>
+<p>As three examples, consider collections, recursion, and functional counters.</p>
+<p><em>Collections</em>. Most of the code I write seems to work over collections of various types, and the Scala <a href="https://www.scala-lang.org/api/current/index.html#scala.collection.package">collection</a> is well-thought out. It provides the real workhorses of functional programing (map, flatMap, filter, fold, reduce, take, drop, zip). And the chaining syntax is, I would argue, an improvement over Common Lisp’s s-expressions (so much so that Clojure provides it as well). As a random snippet of code, consider this from something I’m working on right now (similar returns an iterable set of Tuples which contain an object and a score):</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->Recursion<!-- raw HTML omitted -->. I was talking to Stew O’Connor about a particular mess of code I had created, and I was trying to simplify it (there was a hairy fold operation, if I recall, and the line count for the function itself was way too high). His wise suggestion was that I use recursion for what I was doing — I palmfaced myself and told him that they were going to take away my Lisp coder’s card. <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->I write a lot of code that looks like this:<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>(I apologize for that <em>null</em>; this is a case where I’m using a Java library — the wonderful <a href="http://jsoup.org/">Jsoup</a> — and it retains its Javaness even when called from Scala). This feels very Lisp-like to me.</p>
+<p><em>Functional counters</em>. I really only mention this because it’s described in Paul Graham’s original essay — how to write a function that generates accumulators; that is, a function (with parameter <em>n</em>) returning a function which, on each invocation, returns the <em>next</em> value of <em>n</em>. To be able to do this, of course, a language needs to support functions as first-level objects.  As Graham points out, this is easy in Lisp:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>And it’s not too difficult in Scala:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Scala has many other virtues, even if it at times is hampered by its syntax. Scala 2.10 added Lisp-like macros, and I look forward to exploring them, even as I dread what that will be like for a messy language like Scala. But it is its basic functional aspect that I currently like the most. I’m even gaining an appreciation for strong typing.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

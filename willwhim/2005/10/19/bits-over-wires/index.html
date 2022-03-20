@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>I have to use words when I talk to you | Will&#39;s Whims</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jim Waldo writes that it’s a good idea to send objects over wires (when doing IPC, etc.), and Tim Bray challenged him somewhat to consider sending XML instead. Waldo replied that you still have to define the semantics, and, of course, Bray agrees.
+TANSTAAFL, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc.">
+    <meta name="generator" content="Hugo 0.94.2" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="I have to use words when I talk to you" />
+<meta property="og:description" content="Jim Waldo writes that it’s a good idea to send objects over wires (when doing IPC, etc.), and Tim Bray challenged him somewhat to consider sending XML instead. Waldo replied that you still have to define the semantics, and, of course, Bray agrees.
+TANSTAAFL, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/2005/10/19/bits-over-wires/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2005-10-20T01:13:18+00:00" />
+<meta property="article:modified_time" content="2005-10-20T01:13:18+00:00" />
+
+<meta itemprop="name" content="I have to use words when I talk to you">
+<meta itemprop="description" content="Jim Waldo writes that it’s a good idea to send objects over wires (when doing IPC, etc.), and Tim Bray challenged him somewhat to consider sending XML instead. Waldo replied that you still have to define the semantics, and, of course, Bray agrees.
+TANSTAAFL, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc."><meta itemprop="datePublished" content="2005-10-20T01:13:18+00:00" />
+<meta itemprop="dateModified" content="2005-10-20T01:13:18+00:00" />
+<meta itemprop="wordCount" content="273">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="I have to use words when I talk to you"/>
+<meta name="twitter:description" content="Jim Waldo writes that it’s a good idea to send objects over wires (when doing IPC, etc.), and Tim Bray challenged him somewhat to consider sending XML instead. Waldo replied that you still have to define the semantics, and, of course, Bray agrees.
+TANSTAAFL, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Will&#39;s Whims
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">I have to use words when I talk to you</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              willwhim
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2005-10-20T01:13:18Z">October 20, 2005</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Jim Waldo writes that <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=108879">it’s a good idea to send objects</a> over wires (when doing <a href="http://www.google.com/search?q=define%3A+IPC">IPC</a>, etc.), and Tim Bray challenged him somewhat to <a href="http://www.tbray.org/ongoing/When/200x/2005/10/19/Waldo-on-IPC">consider sending XML</a> instead. Waldo replied that <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=132646">you still have to define the semantics</a>, and, of course, <a href="http://www.tbray.org/ongoing/When/200x/2003/04/09/SemanticMarkup">Bray agrees</a>.</p>
+<p><a href="http://www.google.com/search?q=define%3A+TANSTAAFL">TANSTAAFL</a>, of course. There has to be some kind of social agreement in place for the systems that people write to make sense of messages. Sometimes that agreement is to use natural language (English, etc.) tags that will help other people more or less understand what you mean. Sometimes the agreement is so strong you can use shortcuts–like sending bits representing programming language objects, with all of their implied semantics (class structure, types, role in a system, etc.).</p>
+<p>In a system I’m writing at NASA, we send a  <a href="http://www.google.com/search?q=define%3A+UTM">UTM</a> coordinate as a string like “[584180, 4142030, -20]”. If we store this in a definition file, that same coordinate looks like this:</p>
+<pre><code>&lt;target&gt;...
+      &lt;utm_easting&gt;584180&lt;/utm_easting&gt;
+      &lt;utm_northing&gt;4142030&lt;/utm_northing&gt;
+      &lt;utm_height&gt;-20&lt;/utm_height&gt;
+&lt;/target&gt;
+</code></pre>
+<p>Presumably, the later is easier to understand <em>to a human reader</em> familiar with UTM coordinates. But the key is agreeing to what a series of bits means. And it’s certainly easier to understand in general than inspecting the bit patterns underlying Java or Lisp or C++ objects. Strings (that is, sequences of characters) turn out to often be useful for communication between disparate systems just because they can be more easily interpreted by people. TANSTAAFL, but we can take advantage of several millenia of hard work at writing systems and maybe get a discount on dessert. (Using relatively ‘bare’ strings as the format for inter-process control is a lesson I learned from Jim Firby).</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy;  Will's Whims 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div></div>
+  </div>
+</footer>
+
+  </body>
+</html>

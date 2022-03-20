@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Economics on Will&#39;s Whims</title>
+    <link>http://example.org/categories/economics/</link>
+    <description>Recent content in Economics on Will&#39;s Whims</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Mar 2008 12:33:02 +0000</lastBuildDate><atom:link href="http://example.org/categories/economics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cost of the Iraq War and the Economy</title>
+      <link>http://example.org/2008/03/19/cost-of-the-iraq-war-and-the-economy/</link>
+      <pubDate>Wed, 19 Mar 2008 12:33:02 +0000</pubDate>
+      
+      <guid>http://example.org/2008/03/19/cost-of-the-iraq-war-and-the-economy/</guid>
+      <description>More stuff worth reading: Joseph Stiglitz’s testimony before Congress on the cost of the Iraqi War (pdf):
+ I have, so far, emphasized the direct economic costs as well as the opportunity costs—the diversion of funds that could have been used in so many other and better ways. I would be remiss, however, if I did not note that there are other costs: in the long run, the squandering of America’s leadership role in the international community, the diversion of attention from critical global issues, including issues like global warming and nuclear proliferation in North Korea—that simply won’t go away on their own, and that cannot simply wait to be addressed—may represent the largest and most longstanding legacy of this unfortunate war.</description>
+    </item>
+    
+    <item>
+      <title>Death of print media?</title>
+      <link>http://example.org/2005/11/01/death-of-print/</link>
+      <pubDate>Tue, 01 Nov 2005 04:36:40 +0000</pubDate>
+      
+      <guid>http://example.org/2005/11/01/death-of-print/</guid>
+      <description>’05 Proving To Be Worst Newspaper Year Since the last time it was bad. If you had to choose, would you prefer to see the Internet, or print media, die?</description>
+    </item>
+    
+    <item>
+      <title>Funny, or horrifying, or both</title>
+      <link>http://example.org/2005/10/13/funny-or-horrifying-or-both/</link>
+      <pubDate>Thu, 13 Oct 2005 17:11:06 +0000</pubDate>
+      
+      <guid>http://example.org/2005/10/13/funny-or-horrifying-or-both/</guid>
+      <description>My Outsourced Life.</description>
+    </item>
+    
+    <item>
+      <title>Useful list of search company acquisitions</title>
+      <link>http://example.org/2005/09/28/useful-list-of-search-company-acquisitions/</link>
+      <pubDate>Wed, 28 Sep 2005 21:20:21 +0000</pubDate>
+      
+      <guid>http://example.org/2005/09/28/useful-list-of-search-company-acquisitions/</guid>
+      <description>The original in French. In English (translated automatically).</description>
+    </item>
+    
+    <item>
+      <title>Poor Kalamazoo</title>
+      <link>http://example.org/2005/07/22/poor-kalamazoo/</link>
+      <pubDate>Fri, 22 Jul 2005 12:09:52 +0000</pubDate>
+      
+      <guid>http://example.org/2005/07/22/poor-kalamazoo/</guid>
+      <description>Poor Kalamazoo: It looks like Pfizer is moving some 500 research jobs out of the area (most of these are actually in Portage, the city just to our south). They’re leaving most of the manuafacturing jobs, and animal research in the area, as well as a small research group. Kalamazoo was the world headquarters of the Upjohn Company, which merged with Pharmacia and then swallowed by Pfizer. This doesn’t bode well for Kalamazoo’s long term future.</description>
+    </item>
+    
+  </channel>
+</rss>
