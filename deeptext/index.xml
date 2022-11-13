@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Text</title>
+    <link>http://entish.org/deeptext/</link>
+    <description>Recent content on Deep Text</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 Nov 2022 13:20:31 -0500</lastBuildDate><atom:link href="http://entish.org/deeptext/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome</title>
+      <link>http://entish.org/deeptext/posts/welcome/</link>
+      <pubDate>Sun, 13 Nov 2022 13:20:31 -0500</pubDate>
+      
+      <guid>http://entish.org/deeptext/posts/welcome/</guid>
+      <description>Hello! The following welcome message was written by OpenAPI[1], given the following prompt:
+Write a short friendly welcome paragraph, describing the new blog and what it&amp;#39;s about: The use of deep text models. Paragraph: Welcome to my new blog on deep text models! In this blog, I&amp;rsquo;ll be discussing the use of deep text models in natural language processing. I&amp;rsquo;ll be exploring the various benefits and applications of these models, as well as some of the challenges involved in working with them.</description>
+    </item>
+    
+  </channel>
+</rss>
