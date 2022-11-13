@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Deep Text</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Nov 2022 13:20:31 -0500</lastBuildDate><atom:link href="http://entish.org/deeptext/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Nov 2022 16:47:57 -0500</lastBuildDate><atom:link href="http://entish.org/deeptext/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advices</title>
+      <link>http://entish.org/deeptext/posts/advices/</link>
+      <pubDate>Sun, 13 Nov 2022 16:47:57 -0500</pubDate>
+      
+      <guid>http://entish.org/deeptext/posts/advices/</guid>
+      <description>Business Advice from a young robot to an aspiring entrepreneur I ask the OpenAI brain for advice on how to run Twitter&amp;rsquo;s Verified Accounts. The context is Elon Musk&amp;rsquo;s recent takeover of Twitter and the debacle that ensued when he allowed any account to be verified for $8 per month.
+My prompt was this, up to Advice:
+I need some advice. I am the new CEO of a major social media platform.</description>
+    </item>
+    
     <item>
       <title>Welcome</title>
       <link>http://entish.org/deeptext/posts/welcome/</link>
